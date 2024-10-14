@@ -18,6 +18,16 @@ Controller
 		사용하지 않으면 페이지가 반환됨
 
 
+mybatis
+	mapper-locations: classpath:mybatis/mariadb/**/*.xml : 실제 경로에 맞게 작성
+	config-location: classpath:mybatis-config.xml : 설정값을을 별도의 xml에 적용
+		configuration.map-underscore-to-camel-case: true 아니면 이런식으로 별도로 작성
+
+
+
+
+
+
 
 
 ======================================================================

@@ -1,0 +1,20 @@
+# server port
+server:
+  port: 8080
+
+# database
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    #driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:mariadb://localhost:3306/springstudy?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowMultiQueries=true
+    username: atdata
+    password: atdata.1!!
+
+# mybatis
+mybatis:
+  mapper-locations: classpath:mybatis/mariadb/**/*.xml
+  config-location: classpath:mybatis-config.xml
+  #configuration:
+  #  map-underscore-to-camel-case: true
+
