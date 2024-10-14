@@ -1,4 +1,4 @@
-package com.study.jumpto;
+package com.study.codingrecipe;
 
 import lombok.Getter;
 import lombok.Setter;

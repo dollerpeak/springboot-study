@@ -1,4 +1,4 @@
-package com.study.jumpto;
+package com.study.codingrecipe;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
