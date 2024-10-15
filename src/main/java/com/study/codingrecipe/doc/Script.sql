@@ -45,7 +45,30 @@ commit
 =====================================================================================================
 =====================================================================================================
 
+create table board 
+(
+	id int not null auto_increment comment 'id',
+	title varchar(100) not null comment '제목',
+	contents varchar(500) not null comment '내용',
+	writer varchar(20) not null comment '작성자',
+	password varchar(20) not null comment '비밀번호',
+	hits int not null default 0 comment '조회수',
+	frst_reg_date datetime not null default current_timestamp comment '최초등록일',
+	frst_reg_user_id varchar(20) not null default 'SYSTEM' comment '최초등록자',
+	last_chg_date datetime not null default current_timestamp comment '변경등록일',
+	last_chg_user_id varchar(20) not null default 'SYSTEM' comment '변경등록자',
+	primary key(id)
+)
 
+commit
+
+=====================================================================================================
+=====================================================================================================
+
+
+select current_timestamp()
+
+select * from board
 
 
 

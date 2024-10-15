@@ -8,7 +8,18 @@ lombok
 		@NoArgsConstructor : 파라메터가 없는 기본 생성자
 		@AllArgsConstructor : 모든 파라메터가 있는 생성자
 		@RequiredArgsConstructor : final, NonNull인 값만 파라메터로 받는 생성자
-
+			spring의 생성자 주입으로 주로 사용
+			아니면 @Autowired 로 사용해야 함
+			
+	@EqualsAndHashCode
+		Equals : 동등성, 객체(주소)가 동일한지 비교
+		HashCode : 동일성, 값이 동일한지 비교 
+	@Data : 아래 내용 모두 적용
+		@Getter
+		@Setter
+		@ToString
+		@RequiredArgsConstructor
+		@EqualsAndHashCode
 
 Controller
 	@Controller

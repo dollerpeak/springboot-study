@@ -1,12 +1,12 @@
 package com.study.codingrecipe.board.dto;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
-@ToString
+@Data
 public class BoardDto {
 	private long id;
 	private String title;
@@ -14,7 +14,6 @@ public class BoardDto {
 	private String writer;
 	private String password;	
 	private int hits;
-	private String createdAt;
 	private String frstRegDate;
 	private String frstRegUserId;
 	private String lastChgDate;

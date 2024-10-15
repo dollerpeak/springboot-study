@@ -14,7 +14,7 @@ spring:
 # mybatis
 mybatis:
   mapper-locations: classpath:mybatis/mariadb/**/*.xml
-  config-location: classpath:mybatis-config.xml
+  config-location: classpath:mybatis/mybatis-config.xml
   #configuration:
   #  map-underscore-to-camel-case: true
 
