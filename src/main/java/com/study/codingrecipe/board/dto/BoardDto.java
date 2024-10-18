@@ -1,21 +1,39 @@
 package com.study.codingrecipe.board.dto;
 
+import com.study.codingrecipe.board.entity.BoardEntity;
+
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 @Data
 public class BoardDto {
-	private long id;
+	private long seq;
 	private String title;
 	private String contents;
 	private String writer;
-	private String password;	
+	private String password;
 	private int hits;
 	private String frstRegDate;
 	private String frstRegUserId;
 	private String lastChgDate;
 	private String lastChgUserId;
+
+	public BoardEntity toBoardEntity() {
+		//BoardEntity boardEntity = new BoardEntity(seq, title, contents, writer, password, hits, frstRegDate,
+		//		frstRegUserId, lastChgDate, lastChgUserId);
+		BoardEntity boardEntity = new BoardEntity();
+
+		boardEntity.setSeq(seq);
+		boardEntity.setTitle(title);
+		boardEntity.setContents(contents);
+		boardEntity.setWriter(writer);
+		boardEntity.setPassword(password);
+		boardEntity.setHits(hits);
+		boardEntity.setFrstRegDate(frstRegDate);
+		boardEntity.setFrstRegUserId(frstRegUserId);
+		boardEntity.setLastChgDate(lastChgDate);
+		boardEntity.setLastChgUserId(lastChgUserId);
+
+		return boardEntity;
+	}
+
 }

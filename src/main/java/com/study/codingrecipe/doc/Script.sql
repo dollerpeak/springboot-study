@@ -47,7 +47,7 @@ commit
 
 create table board 
 (
-	id int not null auto_increment comment 'id',
+	seq int not null auto_increment comment 'seq',
 	title varchar(100) not null comment '제목',
 	contents varchar(500) not null comment '내용',
 	writer varchar(20) not null comment '작성자',
@@ -57,8 +57,12 @@ create table board
 	frst_reg_user_id varchar(20) not null default 'SYSTEM' comment '최초등록자',
 	last_chg_date datetime not null default current_timestamp comment '변경등록일',
 	last_chg_user_id varchar(20) not null default 'SYSTEM' comment '변경등록자',
-	primary key(id)
+	primary key(seq)
 )
+
+drop table board
+
+alter table board change id seq int
 
 commit
 
@@ -69,6 +73,9 @@ commit
 select current_timestamp()
 
 select * from board
+
+-- delete from board 
+where seq > 2
 
 
 
