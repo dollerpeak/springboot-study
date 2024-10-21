@@ -16,10 +16,9 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/codingrecipe")
 @RequiredArgsConstructor
-//@Slf4j
+@Slf4j
 public class BoardController {
 	private final BoardService boardService;
-	Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	@GetMapping("/insert")
 	public String insert() {

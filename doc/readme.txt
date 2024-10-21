@@ -60,6 +60,15 @@ lombok =====================================================================
 		클래스를 생성할 수 있는데 예외 사항이 좀 있는것 같아 좀 더 확인해 사용 가능
 
 
+logging =====================================================================
+	springboot는 기본적으로 spring-boot-starter-logging 즉 logback
+	별도로 기존 logback을 제외하고 spring-boot-starter-log4j2로 사용하기도 함, 대세는??
+	logback의 자세한 설정은 logback-spring.xml에서 수행하고 (파일명이 몇개정도로 고정되어 있음)
+	logback-spring.xml에서 사용할 값은 application.yml에서 설정을 해준다.
+		level을 지정할때는 패키지별로 설정이 가능
+			'[com.study]': warn
+	color 별도 설정 가능		
+
 
 mybatis =====================================================================
 	mybatis설정 config.xml
