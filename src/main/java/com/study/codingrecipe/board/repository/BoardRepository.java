@@ -1,5 +1,7 @@
 package com.study.codingrecipe.board.repository;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -16,9 +18,9 @@ public class BoardRepository {
 	public void insert(BoardEntity boardEntity) {
 		sqlSessionTemplate.insert(namespace + "insert", boardEntity);
 	}
-	
-//	public List<BoardEntity> select() {
-//		return sqlSessionTemplate.selectList(namespace + "select");
-//	}
+
+	public List<BoardEntity> selectAll() {
+		return sqlSessionTemplate.selectList(namespace + "selectAll");
+	}
 
 }

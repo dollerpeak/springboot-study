@@ -9,7 +9,6 @@ public class BoardEntity {
 	private long seq = 0;
 	private String title;
 	private String contents;
-	private String writer;
 	private String password;
 	private int hits;
 	private String frstRegDate;
@@ -23,7 +22,6 @@ public class BoardEntity {
 		boardDto.setSeq(seq);
 		boardDto.setTitle(title);
 		boardDto.setContents(contents);
-		boardDto.setWriter(writer);
 		boardDto.setPassword(password);
 		boardDto.setHits(hits);
 		boardDto.setFrstRegDate(frstRegDate);

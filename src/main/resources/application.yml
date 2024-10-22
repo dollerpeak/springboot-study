@@ -18,6 +18,7 @@ server:
 
 # log
 logging:
+  config: classpath:logback-config.xml
   level:
     root: info
   file:
@@ -33,10 +34,8 @@ logging:
 
 # mybatis
 mybatis:
-  mapper-locations: classpath:mybatis/mariadb/**/*.xml
   config-location: classpath:mybatis/mybatis-config.xml
-  #configuration:
-  #  map-underscore-to-camel-case: true
+  mapper-locations: classpath:mybatis/mariadb/**/*.xml
 
 
 

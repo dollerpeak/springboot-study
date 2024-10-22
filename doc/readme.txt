@@ -63,42 +63,58 @@ lombok =====================================================================
 logging =====================================================================
 	springboot는 기본적으로 spring-boot-starter-logging 즉 logback
 	별도로 기존 logback을 제외하고 spring-boot-starter-log4j2로 사용하기도 함, 대세는??
-	logback의 자세한 설정은 logback-spring.xml에서 수행하고 (파일명이 몇개정도로 고정되어 있음)
-	logback-spring.xml에서 사용할 값은 application.yml에서 설정을 해준다.
-		level을 지정할때는 패키지별로 설정이 가능
-			'[com.study]': warn
-	color 별도 설정 가능		
+    logback-spring.xml (디폴트로 지정된 파일 이름이 있음)으로 상세 설정이 가능하고
+    	사용할 값은 application.yml파일에서 받아서 사용
+    		cofing파일명도 변경이 가능함
+    		max-history: 3 는 갯수가 아니라 일자를 나타냄, 3일유지
+    		'[com.study]': warn 형식으로 적용하면 log level을 패키지별로 지정할 수 있음
+    	받을때는 <springProperty name="LOG_LEVEL" source="logging.level.root" /> 형식으로 사용
+		color 별도 설정 가능
+			<conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+			clr로 패턴을 감싸주는 형태로 사용, %clr(%-40.40logger{36}){cyan}
+				등급은 색상 지정을 하지 않아도 자동 적용		
 
 
 mybatis =====================================================================
-	mybatis설정 config.xml
-		config-location: classpath:mybatis/mybatis-config.xml : 설정값을을 별도의 xml에 적용
-		대표적으로 <setting name="mapUnderScoreToCamelCase" value="true" />
-		근데 이건 application.yml에서도 지정해 줄수 있음
-			configuration.map-underscore-to-camel-case: true
-	실제 쿼리가 들어가 있는 mapper xml
-		mapper-locations: classpath:mybatis/mariadb/**/*.xml : 실제 경로에 맞게 작성
-			/resources 디렉토리 아래에 생성해서 관리
-		mapper는 다수가 존재하고 namespace는 꼭 작성되어야 한다.
-			namespace는 꼭 작성되어야 하는 유니크한 값이여야 한다.
-			주로 VO, DAO의 패키지 명으로 정한다. 
-			패키지명을 alias로 mybatis-config.xml 간단하게 매핑해서 사용할 수 있지만 더 번거러울 것 같아서 사용 안함
-	필수 사항
-		id : 고유 ID
-		parameterType : 입력값  
+	application.yml에 
+	config-path 지정 : config-location: classpath:mybatis/mybatis-config.xml
+		config 설정이 들어가 있음
+	config-path-mapper 지정 : mapper-locations: classpath:mybatis/mariadb/**/*.xml
+		사용하는 mapper가 들어가 있음
+	config
+		mybatis설정값이 들어감 대표적으로
+			<setting name="mapUnderScoreToCamelCase" value="true" />
+				application.yml에 config-path를 지정하면 camecase적용이 안되기에 config파일에 지정해야 함
+			<typeAlias type="com.study.codingrecipe.board.dto.BoardDto" alias="board" />
+				namespace나 parameterType, resultType에 패키지명까지 기입해야 하기에 간단히 사용할려고 설정
+				더 번거러워 질것 같으니 사용 안함
+	mapper
+		namespace : mapper 고유 ID, 주로 DB와 매핑되는 Entity를 패키지까지 전체경로로 사용
+		id : 각 sql고유 ID
+		parameterType : 입력값, 피키지포함해서 Entity까지 작성
 			#{title} 이런식으로 입력값을 쿼리에 매핑
-		resultType : 출력값
-	<![CDATA[내용]]> : 크다작다(><)같은 문자는 html과 혼돈이 있어 cdata사용
-			
-
-
-
-
-
-
-
-
-
+		resultType : 출력값, 피키지포함해서 Entity까지 작성 
+		그외 Entity가 아닌 경우 자바타입으로 사용
+			java.util.Hashmap
+			java.lang.String
+			java.lang.Integer
+		SQL
+			xml이라 크다작다 <>를 사용하지 못함
+			대신 &lt; &gt; 이런식으로 사용하거나
+			<![CDATA[내용]]> 이런식으로 사용하는데 이게 제일 편할듯 함
+		사용 1
+			DB와 매핑되는 Entity로만 데이터를 주고 받음
+			mapper.xml에 
+				namespace를 패키지.Entity로 사용하고
+				@Repository에서 sqlSessionTemplate.insert(namespace.id, nParam)형식으로 사용
+		사용 2
+			DB와 매핑되는 Entity로만 데이터를 주고 받음
+			mapper.xml에
+				namespace를 패키지.@Mapper인터페이스로 사용하고
+				@Service에서 바로 @Mapper인터페이스 호출, testMapper.insert(nParam)
+		익숙한 사용2가 더 적합
+		SqlSessionTemplate 사용 가능 method
+			insert, update, delete, selectOne, selectList, selectMap
 
 
 

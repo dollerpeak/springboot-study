@@ -1,0 +1,87 @@
+2024-10-21 17:58:10.783 [INFO ] 36128 --- [restartedMain] c.study.SpringbootStudyApplication       : Starting SpringbootStudyApplication using Java 17.0.6 with PID 36128 (D:\workspace-sts\springboot-study\target\classes started by P088454 in D:\workspace-sts\springboot-study)
+2024-10-21 17:58:10.785 [INFO ] 36128 --- [restartedMain] c.study.SpringbootStudyApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-10-21 17:58:10.824 [INFO ] 36128 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-10-21 17:58:10.825 [INFO ] 36128 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-10-21 17:58:11.436 [WARN ] 36128 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.study]' package. Please check your configuration.
+2024-10-21 17:58:11.734 [INFO ] 36128 --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer         : Tomcat initialized with port 8081 (http)
+2024-10-21 17:58:11.744 [INFO ] 36128 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-8081"]
+2024-10-21 17:58:11.746 [INFO ] 36128 --- [restartedMain] o.a.catalina.core.StandardService        : Starting service [Tomcat]
+2024-10-21 17:58:11.746 [INFO ] 36128 --- [restartedMain] o.a.catalina.core.StandardEngine         : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-10-21 17:58:11.786 [INFO ] 36128 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-21 17:58:11.786 [INFO ] 36128 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 960 ms
+2024-10-21 17:58:12.046 [INFO ] 36128 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-10-21 17:58:12.311 [INFO ] 36128 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-10-21 17:58:12.326 [INFO ] 36128 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-8081"]
+2024-10-21 17:58:12.351 [INFO ] 36128 --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer         : Tomcat started on port 8081 (http) with context path '/'
+2024-10-21 17:58:12.360 [INFO ] 36128 --- [restartedMain] c.study.SpringbootStudyApplication       : Started SpringbootStudyApplication in 2.031 seconds (process running for 3.074)
+2024-10-21 17:58:19.304 [INFO ] 36128 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-21 17:58:19.304 [INFO ] 36128 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-21 17:58:19.305 [INFO ] 36128 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-10-21 17:58:19.326 [INFO ] 36128 --- [http-nio-8081-exec-1] c.s.c.b.controller.BoardController       : log info ===================
+2024-10-21 17:58:19.326 [WARN ] 36128 --- [http-nio-8081-exec-1] c.s.c.b.controller.BoardController       : log warn ===================
+2024-10-21 17:58:19.326 [ERROR] 36128 --- [http-nio-8081-exec-1] c.s.c.b.controller.BoardController       : log error ===================
+2024-10-21 18:08:34.829 [INFO ] 36128 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-10-21 18:08:34.832 [INFO ] 36128 --- [Thread-5] o.a.coyote.http11.Http11NioProtocol      : Stopping ProtocolHandler ["http-nio-8081"]
+2024-10-21 18:08:35.483 [INFO ] 36128 --- [restartedMain] c.study.SpringbootStudyApplication       : Starting SpringbootStudyApplication using Java 17.0.6 with PID 36128 (D:\workspace-sts\springboot-study\target\classes started by P088454 in D:\workspace-sts\springboot-study)
+2024-10-21 18:08:35.483 [INFO ] 36128 --- [restartedMain] c.study.SpringbootStudyApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-10-21 18:08:35.701 [WARN ] 36128 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.study]' package. Please check your configuration.
+2024-10-21 18:08:35.760 [INFO ] 36128 --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer         : Tomcat initialized with port 8081 (http)
+2024-10-21 18:08:35.761 [INFO ] 36128 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-8081"]
+2024-10-21 18:08:35.761 [INFO ] 36128 --- [restartedMain] o.a.catalina.core.StandardService        : Starting service [Tomcat]
+2024-10-21 18:08:35.761 [INFO ] 36128 --- [restartedMain] o.a.catalina.core.StandardEngine         : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-10-21 18:08:35.775 [INFO ] 36128 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-21 18:08:35.775 [INFO ] 36128 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 290 ms
+2024-10-21 18:08:35.858 [INFO ] 36128 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-10-21 18:08:35.932 [INFO ] 36128 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-10-21 18:08:35.938 [INFO ] 36128 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-8081"]
+2024-10-21 18:08:35.942 [INFO ] 36128 --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer         : Tomcat started on port 8081 (http) with context path '/'
+2024-10-21 18:08:35.946 [INFO ] 36128 --- [restartedMain] c.study.SpringbootStudyApplication       : Started SpringbootStudyApplication in 0.498 seconds (process running for 626.654)
+2024-10-21 18:08:35.948 [INFO ] 36128 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-10-21 18:09:25.168 [INFO ] 36128 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-10-21 18:09:25.169 [INFO ] 36128 --- [Thread-7] o.a.coyote.http11.Http11NioProtocol      : Stopping ProtocolHandler ["http-nio-8081"]
+2024-10-21 18:09:25.575 [32m[INFO ][0;39m 36128 --- [restartedMain] c.study.SpringbootStudyApplication       : Starting SpringbootStudyApplication using Java 17.0.6 with PID 36128 (D:\workspace-sts\springboot-study\target\classes started by P088454 in D:\workspace-sts\springboot-study)
+2024-10-21 18:09:25.575 [32m[INFO ][0;39m 36128 --- [restartedMain] c.study.SpringbootStudyApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-10-21 18:09:25.660 [33m[WARN ][0;39m 36128 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.study]' package. Please check your configuration.
+2024-10-21 18:09:25.685 [32m[INFO ][0;39m 36128 --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer         : Tomcat initialized with port 8081 (http)
+2024-10-21 18:09:25.686 [32m[INFO ][0;39m 36128 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-8081"]
+2024-10-21 18:09:25.686 [32m[INFO ][0;39m 36128 --- [restartedMain] o.a.catalina.core.StandardService        : Starting service [Tomcat]
+2024-10-21 18:09:25.686 [32m[INFO ][0;39m 36128 --- [restartedMain] o.a.catalina.core.StandardEngine         : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-10-21 18:09:25.693 [32m[INFO ][0;39m 36128 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-21 18:09:25.693 [32m[INFO ][0;39m 36128 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 117 ms
+2024-10-21 18:09:25.725 [32m[INFO ][0;39m 36128 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-10-21 18:09:25.763 [32m[INFO ][0;39m 36128 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-10-21 18:09:25.767 [32m[INFO ][0;39m 36128 --- [restartedMain] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-8081"]
+2024-10-21 18:09:25.769 [32m[INFO ][0;39m 36128 --- [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer         : Tomcat started on port 8081 (http) with context path '/'
+2024-10-21 18:09:25.772 [32m[INFO ][0;39m 36128 --- [restartedMain] c.study.SpringbootStudyApplication       : Started SpringbootStudyApplication in 0.213 seconds (process running for 676.48)
+2024-10-21 18:09:25.773 [32m[INFO ][0;39m 36128 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-10-21 18:09:33.177 [32m[INFO ][0;39m 36128 --- [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-21 18:09:33.177 [32m[INFO ][0;39m 36128 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-21 18:09:33.178 [32m[INFO ][0;39m 36128 --- [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-10-21 18:09:33.179 [32m[INFO ][0;39m 36128 --- [http-nio-8081-exec-1] c.s.c.b.controller.BoardController       : log info ===================
+2024-10-21 18:09:33.179 [33m[WARN ][0;39m 36128 --- [http-nio-8081-exec-1] c.s.c.b.controller.BoardController       : log warn ===================
+2024-10-21 18:09:33.179 [31m[ERROR][0;39m 36128 --- [http-nio-8081-exec-1] c.s.c.b.controller.BoardController       : log error ===================
+2024-10-21 18:10:44.327 [32m[INFO ][0;39m 36128 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-10-21 18:10:44.328 [32m[INFO ][0;39m 36128 --- [Thread-11] o.a.coyote.http11.Http11NioProtocol      : Stopping ProtocolHandler ["http-nio-8081"]
+2024-10-21 18:10:44.746 [32m[INFO ][0;39m 36128 --- [restartedMain] $clr(c.study.SpringbootStudyApplication      2024-10-21 18:10:44.746 [32m[INFO ][0;39m 36128 --- [restartedMain] $clr(c.study.SpringbootStudyApplication      2024-10-21 18:10:44.820 [33m[WARN ][0;39m 36128 --- [restartedMain] $clr(o.m.s.mapper.ClassPathMapperScanner     2024-10-21 18:10:44.843 [32m[INFO ][0;39m 36128 --- [restartedMain] $clr(o.s.b.w.e.tomcat.TomcatWebServer        2024-10-21 18:10:44.843 [32m[INFO ][0;39m 36128 --- [restartedMain] $clr(o.a.coyote.http11.Http11NioProtocol     2024-10-21 18:10:44.843 [32m[INFO ][0;39m 36128 --- [restartedMain] $clr(o.a.catalina.core.StandardService       2024-10-21 18:10:44.843 [32m[INFO ][0;39m 36128 --- [restartedMain] $clr(o.a.catalina.core.StandardEngine        2024-10-21 18:10:44.850 [32m[INFO ][0;39m 36128 --- [restartedMain] $clr(o.a.c.c.C.[Tomcat].[localhost].[/]      2024-10-21 18:10:44.850 [32m[INFO ][0;39m 36128 --- [restartedMain] $clr(w.s.c.ServletWebServerApplicationContext2024-10-21 18:10:44.880 [32m[INFO ][0;39m 36128 --- [restartedMain] $clr(o.s.b.a.w.s.WelcomePageHandlerMapping   2024-10-21 18:10:44.913 [32m[INFO ][0;39m 36128 --- [restartedMain] $clr(o.s.b.d.a.OptionalLiveReloadServer      2024-10-21 18:10:44.917 [32m[INFO ][0;39m 36128 --- [restartedMain] $clr(o.a.coyote.http11.Http11NioProtocol     2024-10-21 18:10:44.919 [32m[INFO ][0;39m 36128 --- [restartedMain] $clr(o.s.b.w.e.tomcat.TomcatWebServer        2024-10-21 18:10:44.921 [32m[INFO ][0;39m 36128 --- [restartedMain] $clr(c.study.SpringbootStudyApplication      2024-10-21 18:10:44.922 [32m[INFO ][0;39m 36128 --- [restartedMain] $clr(.ConditionEvaluationDeltaLoggingListener2024-10-21 18:10:59.564 [32m[INFO ][0;39m 36128 --- [File Watcher] $clr(rtingClassPathChangeChangedEventListener2024-10-21 18:10:59.565 [32m[INFO ][0;39m 36128 --- [Thread-15] $clr(o.a.coyote.http11.Http11NioProtocol     2024-10-21 18:10:59.962 [32m[INFO ][0;39m 36128 --- [restartedMain] [36mc.study.SpringbootStudyApplication      [0;39m : Starting SpringbootStudyApplication using Java 17.0.6 with PID 36128 (D:\workspace-sts\springboot-study\target\classes started by P088454 in D:\workspace-sts\springboot-study)
+2024-10-21 18:10:59.962 [32m[INFO ][0;39m 36128 --- [restartedMain] [36mc.study.SpringbootStudyApplication      [0;39m : No active profile set, falling back to 1 default profile: "default"
+2024-10-21 18:11:00.036 [33m[WARN ][0;39m 36128 --- [restartedMain] [36mo.m.s.mapper.ClassPathMapperScanner     [0;39m : No MyBatis mapper was found in '[com.study]' package. Please check your configuration.
+2024-10-21 18:11:00.057 [32m[INFO ][0;39m 36128 --- [restartedMain] [36mo.s.b.w.e.tomcat.TomcatWebServer        [0;39m : Tomcat initialized with port 8081 (http)
+2024-10-21 18:11:00.058 [32m[INFO ][0;39m 36128 --- [restartedMain] [36mo.a.coyote.http11.Http11NioProtocol     [0;39m : Initializing ProtocolHandler ["http-nio-8081"]
+2024-10-21 18:11:00.058 [32m[INFO ][0;39m 36128 --- [restartedMain] [36mo.a.catalina.core.StandardService       [0;39m : Starting service [Tomcat]
+2024-10-21 18:11:00.058 [32m[INFO ][0;39m 36128 --- [restartedMain] [36mo.a.catalina.core.StandardEngine        [0;39m : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-10-21 18:11:00.065 [32m[INFO ][0;39m 36128 --- [restartedMain] [36mo.a.c.c.C.[Tomcat].[localhost].[/]      [0;39m : Initializing Spring embedded WebApplicationContext
+2024-10-21 18:11:00.065 [32m[INFO ][0;39m 36128 --- [restartedMain] [36mw.s.c.ServletWebServerApplicationContext[0;39m : Root WebApplicationContext: initialization completed in 101 ms
+2024-10-21 18:11:00.094 [32m[INFO ][0;39m 36128 --- [restartedMain] [36mo.s.b.a.w.s.WelcomePageHandlerMapping   [0;39m : Adding welcome page: class path resource [static/index.html]
+2024-10-21 18:11:00.128 [32m[INFO ][0;39m 36128 --- [restartedMain] [36mo.s.b.d.a.OptionalLiveReloadServer      [0;39m : LiveReload server is running on port 35729
+2024-10-21 18:11:00.132 [32m[INFO ][0;39m 36128 --- [restartedMain] [36mo.a.coyote.http11.Http11NioProtocol     [0;39m : Starting ProtocolHandler ["http-nio-8081"]
+2024-10-21 18:11:00.136 [32m[INFO ][0;39m 36128 --- [restartedMain] [36mo.s.b.w.e.tomcat.TomcatWebServer        [0;39m : Tomcat started on port 8081 (http) with context path '/'
+2024-10-21 18:11:00.140 [32m[INFO ][0;39m 36128 --- [restartedMain] [36mc.study.SpringbootStudyApplication      [0;39m : Started SpringbootStudyApplication in 0.193 seconds (process running for 770.847)
+2024-10-21 18:11:00.141 [32m[INFO ][0;39m 36128 --- [restartedMain] [36m.ConditionEvaluationDeltaLoggingListener[0;39m : Condition evaluation unchanged
+2024-10-21 18:12:06.428 [32m[INFO ][0;39m 36128 --- [http-nio-8081-exec-1] [36mo.a.c.c.C.[Tomcat].[localhost].[/]      [0;39m : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-21 18:12:06.428 [32m[INFO ][0;39m 36128 --- [http-nio-8081-exec-1] [36mo.s.web.servlet.DispatcherServlet       [0;39m : Initializing Servlet 'dispatcherServlet'
+2024-10-21 18:12:06.428 [32m[INFO ][0;39m 36128 --- [http-nio-8081-exec-1] [36mo.s.web.servlet.DispatcherServlet       [0;39m : Completed initialization in 0 ms
+2024-10-21 18:12:06.429 [32m[INFO ][0;39m 36128 --- [http-nio-8081-exec-1] [36mc.s.c.b.controller.BoardController      [0;39m : log info ===================
+2024-10-21 18:12:06.429 [33m[WARN ][0;39m 36128 --- [http-nio-8081-exec-1] [36mc.s.c.b.controller.BoardController      [0;39m : log warn ===================
+2024-10-21 18:12:06.429 [31m[ERROR][0;39m 36128 --- [http-nio-8081-exec-1] [36mc.s.c.b.controller.BoardController      [0;39m : log error ===================
+2024-10-21 18:36:07.151 [32m[INFO ][0;39m 36128 --- [RMI TCP Connection(56)-127.0.0.1] [36minMXBeanRegistrar$SpringApplicationAdmin[0;39m : Application shutdown requested.
+2024-10-21 18:36:07.152 [32m[INFO ][0;39m 36128 --- [RMI TCP Connection(56)-127.0.0.1] [36mo.a.coyote.http11.Http11NioProtocol     [0;39m : Stopping ProtocolHandler ["http-nio-8081"]

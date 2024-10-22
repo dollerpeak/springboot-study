@@ -9,7 +9,6 @@ public class BoardDto {
 	private long seq;
 	private String title;
 	private String contents;
-	private String writer;
 	private String password;
 	private int hits;
 	private String frstRegDate;
@@ -18,14 +17,13 @@ public class BoardDto {
 	private String lastChgUserId;
 
 	public BoardEntity toBoardEntity() {
-		//BoardEntity boardEntity = new BoardEntity(seq, title, contents, writer, password, hits, frstRegDate,
+		//BoardEntity boardEntity = new BoardEntity(seq, title, contents, password, hits, frstRegDate,
 		//		frstRegUserId, lastChgDate, lastChgUserId);
 		BoardEntity boardEntity = new BoardEntity();
 
 		boardEntity.setSeq(seq);
 		boardEntity.setTitle(title);
 		boardEntity.setContents(contents);
-		boardEntity.setWriter(writer);
 		boardEntity.setPassword(password);
 		boardEntity.setHits(hits);
 		boardEntity.setFrstRegDate(frstRegDate);
