@@ -68,6 +68,7 @@ logging =====================================================================
     		cofing파일명도 변경이 가능함
     		max-history: 3 는 갯수가 아니라 일자를 나타냄, 3일유지
     		'[com.study]': warn 형식으로 적용하면 log level을 패키지별로 지정할 수 있음
+    			mybatis 사용시에 debug 레벨을 주면 SQL 로그 확인이 가능
     	받을때는 <springProperty name="LOG_LEVEL" source="logging.level.root" /> 형식으로 사용
 		color 별도 설정 가능
 			<conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
@@ -114,7 +115,21 @@ mybatis =====================================================================
 				@Service에서 바로 @Mapper인터페이스 호출, testMapper.insert(nParam)
 		익숙한 사용2가 더 적합
 		SqlSessionTemplate 사용 가능 method
-			insert, update, delete, selectOne, selectList, selectMap
+			<T> T selectOne(String statement, Object parameter)
+			<E> List<E> selectList(String statement, Object parameter)
+			<T> Cursor<T> selectCursor(String statement, Object parameter)
+			<K,V> Map<K,V> selectMap(String statement, Object parameter, String mapKey)
+			int insert(String statement, Object parameter)
+			int update(String statement, Object parameter)
+			int delete(String statement, Object parameter)
+		log
+			mybatis-config.xml 파일에 작성하면 stdout 콘솔로그 확인 가능, 변경은 불가능
+				<setting name="logImpl" value="STDOUT_LOGGING"/>
+			logback을 사용할려면 아래처럼 하면 가능하나 mybatis를 @Mapper interface사용할때만 가능
+				<setting name="logImpl" value="SLF4J"/>
+				logback 설정파일에 아래처럼 @Mapper interface 패키지를 작성해 줘야 함
+					<logger name="com.baeldung.mybatis.mapper.AddressMapper" level="TRACE"/>
+					전체 mapper, <logger name="com.baeldung.mybatis.mapper" level="TRACE"/>
 
 
 

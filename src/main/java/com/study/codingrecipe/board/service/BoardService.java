@@ -21,7 +21,7 @@ public class BoardService {
 	String defaultFrstRegUserId = "SYSTEM";
 	String defaultLastChgUserId = "SYSTEM";
 
-	public void insert(BoardDto boardDto) {
+	public int insert(BoardDto boardDto) {
 		String nowtime = DateFormat.getFormatString(System.currentTimeMillis(), null);
 		BoardEntity boardentity = boardDto.toBoardEntity();
 
@@ -39,20 +39,35 @@ public class BoardService {
 			boardentity.setLastChgUserId(boardentity.getFrstRegUserId());
 		}
 
-		boardRepository.insert(boardentity);
+		int row = boardRepository.insert(boardentity);
 		// testMapper.insert(boardentity);
+		
+		return row;
 	}
 
 	public List<BoardDto> selectAll() {
-		List<BoardDto> boardDtoList = new ArrayList<>();
-		List<BoardEntity> boardEntityList = boardRepository.selectAll();
+		List<BoardDto> boarddtolist = new ArrayList<>();
+		List<BoardEntity> boardentitylist = boardRepository.selectAll();
 
-		for (BoardEntity boardentity : boardEntityList) {
+		for (BoardEntity boardentity : boardentitylist) {
 			BoardDto boarddto = boardentity.toBoardDto();
-			boardDtoList.add(boarddto);
+			boarddtolist.add(boarddto);
 		}
 
-		return boardDtoList;
+		return boarddtolist;
+	}
+
+	public void updateSeq(long seq) {
+		boardRepository.updateSeq(seq);		
+	}
+
+	public BoardDto selectSeq(long seq) {
+		BoardDto boarddto = null;
+		BoardEntity boardentity = boardRepository.selectSeq(seq);
+		
+		boarddto = boardentity.toBoardDto();
+		
+		return boarddto;
 	}
 
 }

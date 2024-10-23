@@ -32,10 +32,11 @@
         <th>수정일</th>
         <th>수정자</th>
     </tr>
-    <tr th:each="boarddto: ${boardDtoList}">
+    <tr th:each="boarddto: ${boarddtolist}">
         <td th:text="${boarddto.seq}"></td>
         <td>
-            <a th:text="${boarddto.title}" th:href="@{|/${boarddto.seq}|}"></a>
+        	<!-- <a th:text="${board.boardTitle}" th:href="@{|/${board.id}|}"></a> -->
+            <a th:text="${boarddto.title}" th:href="@{/codingrecipe/select/{seq}(seq=${boarddto.seq})}"></a>
         </td>
         <td th:text="${boarddto.contents}"></td>
         <td th:text="${boarddto.password}"></td>

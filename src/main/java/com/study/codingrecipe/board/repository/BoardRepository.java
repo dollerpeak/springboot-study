@@ -15,12 +15,20 @@ public class BoardRepository {
 	private static final String namespace = "com.study.codingrecipe.board.entity.BoardEntity.";
 	private final SqlSessionTemplate sqlSessionTemplate;
 
-	public void insert(BoardEntity boardEntity) {
-		sqlSessionTemplate.insert(namespace + "insert", boardEntity);
+	public int insert(BoardEntity boardEntity) {
+		return sqlSessionTemplate.insert(namespace + "insert", boardEntity);
 	}
 
 	public List<BoardEntity> selectAll() {
 		return sqlSessionTemplate.selectList(namespace + "selectAll");
+	}
+
+	public void updateSeq(long seq) {
+		sqlSessionTemplate.selectList(namespace + "updateSeq", seq);
+	}
+
+	public BoardEntity selectSeq(long seq) {
+		return sqlSessionTemplate.selectOne(namespace + "selectSeq", seq);
 	}
 
 }
