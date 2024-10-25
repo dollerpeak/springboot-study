@@ -74,7 +74,7 @@ select current_timestamp()
 
 select * from board
 
-delete from board 
+-- delete from board 
 where seq > 2
 
 

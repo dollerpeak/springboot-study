@@ -1,21 +1,98 @@
 
-spring =====================================================================
-	구조
-		client(browser)
-		controller
-		service			
-		repository(dao)
-	dto
-		layer간 데이터 전송용 class
-		controller, service간 사용
-	entity
-		db테이블과 완전 매핑되는 class
-		service, repository간 사용
-	dto <-> entity
-		어디에서 변활할 것인가?
-		service에서 하는게 유리할 것 같음
-		@builder로 변환함수를 사용하거나 이외 다른 방법도 있을까?
+springboot =====================================================================
+	# 구조	
+			Client
+				DTO
+			Controller/Restcontroller
+				DTO
+			Service
+				Entity/Domain
+			Repository/DAO
+				Entity/Domain
+			DB
+		DTO : layer간 데이터 전송에 사용되는 class
+		Entity/Domain : DB와 완전 매핑이 되는 class 혹은 @Entity로 테이블 스키마 역할
+		DTO <-> Entity
+			둘간에는 어떤식으로든 변활할 수 있는 방법이 있어야 함
+		@Mapper : 이 방법으로는 사용하지 않음
+			mybatis에서 인터페이스로만 생성해서 실제 쿼리가 있는 xml파일과 연동
+	# 주요 Annotation
+		@Bean
+			spring 컨테이너에 인스턴스 생성
+		@Component
+			@ComponentScan을 통해 자동으로 @Bean 등록
+			* 클래스 레벨에서 사용 가능해서 개발자가 작성해서 제어가 가능한 클래스에 사용
+				전체 프로젝트에 필요한 클래스를 자동으로 적용한다 생각하면 편할 듯
+			생성시 마다 다른 객체로 인식
+		@Configuration
+			내부에 @Component 존재
+			@Bean을 명시했을때 여러개 @Bean을 한번에 등록
+				싱글톤으로 사용 가능
+			* 직접 제어가 불가능한 라이브러리 등록에 사용
+			* 전체 프로젝트에 필요한 커스텀 기능을 수동으로 적용한다 생각하면 편할 듯
+				* 예를 들어 DB가 교체될수도 있을때
+					인터페이스Repository 로 기능을 정의하고
+					DB별로 Repository를 만들어서 인터페이스Repository를 상속받고
+					@Configuration에서 인터페이스Repository를 @Bean으로 등록을 하면
+						DB별로 Repository를 그때그때 변경해서 비지니스 코드는 수정을 안해도 됨
+		@Controller
+			내부에 @Component 존재
+			client와 통신, 페이지를 리턴
+		@RestController
+			내부에 @Component 존재
+			client와 통신, 데이터를 리턴(json)
+		@Service
+			내부에 @Component 존재
+			실제 비지니스 로직이 들어감
+		@Repository
+			내부에 @Component 존재
+			SqlSessionTemplate을 이용해서 mybatis xml파일과 연동해서 사용
+	
+	# application.properties/yml, 설정값 가져오기
+		* @PropertySource, @Value 상하 관계가 아니다.
+			@PropertySource 사용할 경우 Environment class 사용할 수 있어 용이하다
+			@Value는 @PropertySource관계없이 @Bean에 등록되어 있는 경로만 있다면 무조건 값을 가죠오고
+				겹치는 경로를 가지는 설정파일이 있다면 디폴트값인 application 값을 가져오고 없다면 에러가 발생한다.
+			특정 properties를 사용할려면 @PropertySource경로를 명시하고 @Value 키가 있는 값을 가져올 수 있다.
+				없으면 물론 에러가 발생한다.
+		@Controller, @RestController, @Service, @Repository 등.. 내부에 @Component 존재하기에
+			@Value("${test.property.1}") 형식으로 바로 적용할 수 있음		
+		1. Annotation 사용
+			@Value("${test.property.one}")으로 변수에 값을 매핑
+		2. Environment class 사용
+			@PropertySource("classpath:test.properties")으로 properties파일의 경로 지정
+				멀티, 여러개도 가능
+			내부에 Environment 사용해서 매핑, @Component로 @Bean에 등록해서 사용
+				@Autowired
+				private Environment environment;
+				environment.getProperty("test.property.2");
+		주의 : 버전별로 차이가 많은 것 같음
+			yml파일의 경우 list로 받을때 - 이런식으로 줄바꿈하면 안되고 properties파일처럼 , 로 데이터를 구분해서 사용
+				- 이걸로 사용할려면 string[]로 받아야 함
+			yaml파일의 경우 
+				YamlPropertySourceFactory.class 구현하고
+				이런식으로 사용해야 가능하다고 하는데
+					@PropertySource(value = "classpath:foo.yml", factory = YamlPropertySourceFactory.class)
+				그냥 되네? 업데이트 되었나?
+		@ConfigurationProperties
+			설정정보를 class에 바로 매핑할 수 있다.
+				prefixtest.number: 789 값은 class의 number라는 변수에 매핑
+			@ConfigurationProperties(prefix = "prefixtest") 사용하면
+				디폴트 값인 application 기준으로 값을 가져오고
+				다른 파일을 가져오고 싶다면 @PropertySource 사용
+				* 마지막으로 @Bean에 등록해야 해야 하는데 @Component 적당할 것 같다.
+					@Configuration은 하나만 사용하는게 좋지 않을까?
+				그외 getter, setter를 위해 Lombok을 사용하고
+					Lombok사용시 값이 없는 경우 에러가 발생하지 않고 초기값이 셋팅된다
+			사용할 경우 spring-boot-configuration-processor 추가라하고 나온느데
+				기능은 target/classes/META-INF/spring-configuration-metadata.json 경로에 
+				@ConfigurationProperties 사용한 데이터를 json으로 파일형식으로 생성해 준다.
+			
+		
 
+
+
+		
 
 
 Controller =====================================================================
@@ -73,7 +150,8 @@ logging =====================================================================
 		color 별도 설정 가능
 			<conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
 			clr로 패턴을 감싸주는 형태로 사용, %clr(%-40.40logger{36}){cyan}
-				등급은 색상 지정을 하지 않아도 자동 적용		
+				등급은 색상 지정을 하지 않아도 자동 적용
+				그런데 color적용하면 파일에 로그작성 시 관련 문자가 들어가서 별로임, 사용하지 않음		
 
 
 mybatis =====================================================================
@@ -103,17 +181,16 @@ mybatis =====================================================================
 			xml이라 크다작다 <>를 사용하지 못함
 			대신 &lt; &gt; 이런식으로 사용하거나
 			<![CDATA[내용]]> 이런식으로 사용하는데 이게 제일 편할듯 함
-		사용 1
+		[사용]적용_1
 			DB와 매핑되는 Entity로만 데이터를 주고 받음
 			mapper.xml에 
 				namespace를 패키지.Entity로 사용하고
 				@Repository에서 sqlSessionTemplate.insert(namespace.id, nParam)형식으로 사용
-		사용 2
+		적용_2
 			DB와 매핑되는 Entity로만 데이터를 주고 받음
 			mapper.xml에
 				namespace를 패키지.@Mapper인터페이스로 사용하고
 				@Service에서 바로 @Mapper인터페이스 호출, testMapper.insert(nParam)
-		익숙한 사용2가 더 적합
 		SqlSessionTemplate 사용 가능 method
 			<T> T selectOne(String statement, Object parameter)
 			<E> List<E> selectList(String statement, Object parameter)
@@ -123,8 +200,26 @@ mybatis =====================================================================
 			int update(String statement, Object parameter)
 			int delete(String statement, Object parameter)
 		log
-			mybatis-config.xml 파일에 작성하면 stdout 콘솔로그 확인 가능, 변경은 불가능
-				<setting name="logImpl" value="STDOUT_LOGGING"/>
+			[사용]종속성이 있지만 가장 괜찮은 방법
+				org.bgee.log4jdbc-log4j2 추가
+				log4jdbc.log4j2.properties 추가, 파일명 변경 안됨
+				spring.datasource:
+				    driver-class-name, url 변경적용
+				logback_config.xml에 logger추가
+					logging의 level.root와는 별개로 적용 됨
+					<logger name="jdbc.audit" level="OFF"/>, 로그량이 많음, db분석용
+					<logger name="jdbc.resultset" level="OFF"/>, 로그량이 많음, db분석용
+					<logger name="jdbc.connection" level="OFF"/>, 로그량이 많음, db분석용
+					<logger name="jdbc.sqlonly" level="OFF"/>, sql만 출력
+					<logger name="jdbc.sqltiming" level="INFO"/>, sql, execute time까지 출력 
+				  	<logger name="jdbc.resultsettable" level="INFO"/>, 결과값을 테이블 형태로 출력
+			동일한 로그 가능, logback-config.xml 사용하는게 가장 좋음
+				mybatis-config.xml 파일에 작성하면 stdout 콘솔로그 확인 가능, 커스텀은 불가능
+					<setting name="logImpl" value="STDOUT_LOGGING"/>
+				application.yml logging.level에 '[com.study]' 특정패키지로 적용하면 가능
+	    			mybatis 사용시에 debug 레벨을 주면 SQL 로그 확인이 가능
+	    		logback-config.xml 에 아래 작성하면 동일하게 확인 가능
+	    			<logger name="com.study" level="DEBUG" appender-ref="console" />
 			logback을 사용할려면 아래처럼 하면 가능하나 mybatis를 @Mapper interface사용할때만 가능
 				<setting name="logImpl" value="SLF4J"/>
 				logback 설정파일에 아래처럼 @Mapper interface 패키지를 작성해 줘야 함
@@ -132,6 +227,29 @@ mybatis =====================================================================
 					전체 mapper, <logger name="com.baeldung.mybatis.mapper" level="TRACE"/>
 
 
+HikariCP =====================================================================
+	springboot에 자동구성되어 있음
+	SQL사용 시 아래 로그 확인할 수 있음 
+		com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+		com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@6a899d10
+		com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+	application.yaml spring.datasource.hikari에 별도 설정을 할 수 있음, 아래는 default값
+		spring.datasource.hikari.pool-name: auto naming
+		spring.datasource.hikari.maximum-pool-size=10
+		spring.datasource.hikari.minimum-idle=maximum-pool-size 동일
+		spring.datasource.hikari.connection-timeout=30000
+		spring.datasource.hikari.idle-timeout=600000
+		spring.datasource.hikari.auto-commit=true		
+		spring.datasource.hikari.keepalivetime=0 (비활성화)
+		spring.datasource.hikari.max-lifetime=1800000
+		spring.datasource.hikari.connection-init-sql=없음, ex) select 1 from dual
+			최초 sql시 pool 갯수만큼 실행 됨, 사용하지 않음 권장
+		spring.datasource.hikari.connection-test-query=없음, ex) select 1 from dual
+			sql 실행 시 마다 사전에 실행되는 sql, 사용하지 않음 권장
+	[사용] spring.datasource.hikari에 필요한 만큼만 설정
+		maximum-pool-size 운영상의 이유
+		connection-timeout=30000 운영상의 이유로 비율에 맞게 적용
+		idle-timeout=600000
 
 
 ======================================================================================
