@@ -1,4 +1,4 @@
-
+================================================================================
 springboot =====================================================================
 	# 구조	
 			Client
@@ -51,7 +51,7 @@ springboot =====================================================================
 	# application.properties/yml, 설정값 가져오기
 		* @PropertySource, @Value 상하 관계가 아니다.
 			@PropertySource 사용할 경우 Environment class 사용할 수 있어 용이하다
-			@Value는 @PropertySource관계없이 @Bean에 등록되어 있는 경로만 있다면 무조건 값을 가죠오고
+			@Value는 @PropertySource관계없이 @Bean에 등록되어 있는 경로만 있다면 무조건 값을 가져오고
 				겹치는 경로를 가지는 설정파일이 있다면 디폴트값인 application 값을 가져오고 없다면 에러가 발생한다.
 			특정 properties를 사용할려면 @PropertySource경로를 명시하고 @Value 키가 있는 값을 가져올 수 있다.
 				없으면 물론 에러가 발생한다.
@@ -88,13 +88,50 @@ springboot =====================================================================
 				기능은 target/classes/META-INF/spring-configuration-metadata.json 경로에 
 				@ConfigurationProperties 사용한 데이터를 json으로 파일형식으로 생성해 준다.
 			
-		
+	# IoC (Inversion of Control, 제어의 역전)
+		new로 생성하는 것이 아니라 @Bean으로 객체를 생성해서 spring이 관리
+			@Component, @ComponentScan을 통해 자동으로 @Bean 등록
+			@Configuration, 내부에 @Component 존재
+			@Controller, @RestController, @Service, @Repository, 내부에 @Component 존재
+	# DI (Dependency Injection, 의존성 주입)
+		IoC가 있기에 가능
+		* 생성자 주입(Constructor Injection)
+			public class A {     
+				private B b;        
+				@Autowired    
+				public A(B b) {
+					this.b = b;    
+				}
+			}
+		* Field 주입(Field Injection)
+			public class A {
+				@Autowired
+				private B b; 
+			}
+		* Setter 주입(Setter Injection)
+			public class A {     
+				private B b;        
+				@Autowired 생략 가능    
+				public setB(B b) {
+					this.b = b;    
+				}
+			}
+		재귀호출 문제로 생성자 주입을 권장
+			Lombok을 이용해서 생성자 주입을 간단히 할수 있음
+				@RequiredArgsConstructor
+				public class A {
+					@Autowired     
+					private final B b;
+				}
 
 
 
-		
 
 
+
+
+
+================================================================================
 Controller =====================================================================
 	@Controller
 	@RequestMapping("/v1") : 반복되는 url에 사용
@@ -108,7 +145,7 @@ Controller =====================================================================
 			Model의 경우 리턴되는 값이 페이지를 의미하는 문자열이 리턴되지만 데이터로 인식됨
 
 
-
+================================================================================
 lombok =====================================================================
 	@Getter : get 자동생성
 	@Setter : set 자동생성
@@ -137,6 +174,7 @@ lombok =====================================================================
 		클래스를 생성할 수 있는데 예외 사항이 좀 있는것 같아 좀 더 확인해 사용 가능
 
 
+================================================================================
 logging =====================================================================
 	springboot는 기본적으로 spring-boot-starter-logging 즉 logback
 	별도로 기존 logback을 제외하고 spring-boot-starter-log4j2로 사용하기도 함, 대세는??
@@ -154,6 +192,7 @@ logging =====================================================================
 				그런데 color적용하면 파일에 로그작성 시 관련 문자가 들어가서 별로임, 사용하지 않음		
 
 
+================================================================================
 mybatis =====================================================================
 	application.yml에 
 	config-path 지정 : config-location: classpath:mybatis/mybatis-config.xml
@@ -227,6 +266,7 @@ mybatis =====================================================================
 					전체 mapper, <logger name="com.baeldung.mybatis.mapper" level="TRACE"/>
 
 
+================================================================================
 HikariCP =====================================================================
 	springboot에 자동구성되어 있음
 	SQL사용 시 아래 로그 확인할 수 있음 
@@ -252,19 +292,8 @@ HikariCP =====================================================================
 		idle-timeout=600000
 
 
+================================================================================
 ======================================================================================
-
-DispatcherServlet
-	클라이언트에서 http프로토콜로 들어오는 모든 요청을 제일 앞에서 중앙집중식으로 처리해 주는 front controller
-		오래전에는 controller 마다 servlet 설정이 필요했는데 spring이 DispatcherServlet 정의
-		spring도 예전에는 DispatcherServlet 설정이 필요했지만
-		지금은 특별한 경우가 아니라면 설정하는 경우가 없는 것 같음
-	
-ViewResolver
-	controller에서 어노테이션에 따라 뷰인지 데이터인지를 구분하고 뷰일때 적절한 페이지를 반환
-		예전에는 이것도 설정이 있었다는데 지금은 특별한 경우가 아니라면 설정하는 경우가 없는 것 같음
-	
-----------------------------------------------------------------------------------------
 
 @RequestMapping
 	controller에서 사용되며 url과 method 매핑에 사용 
@@ -292,6 +321,50 @@ ViewResolver
 	리턴되는 값이 ModelAndView면 페이지도 표시가 됨
 		리턴되는 값이 페이지만 아니라면 데이터로 표기되는 것 같음
 		Model의 경우 리턴되는 값이 페이지를 의미하는 문자열이 리턴되지만 데이터로 인식됨
+
+
+==================================================================
+tomcat, 필터(web.xml)
+spring컨테이너, 필터(인터셉터)
+messageconverter, client에서 json으로 보내도 class로 받을 수 있음
+
+client -> tomcat(서블릿 컨테이너)
+
+
+아파치 : URL, 정적자원 파일, 이미지, 동영상등의 리소스
+톰캣 : URI, 식별자, jsp같은 자바를 컴파일해서 아파치에 리턴
+
+client -> apach -> tomcat -> apach -> client
+
+springdms URL을 모두 막아 줌, jsp같은 URI를 통한 자바형식이 요청만 받아 들임
+
+=======================================================
+DispatcherServlet
+	클라이언트에서 http프로토콜로 들어오는 모든 요청을 제일 앞에서 중앙집중식으로 처리해 주는 front controller
+		오래전에는 controller 마다 servlet 설정이 필요했는데 spring이 DispatcherServlet 정의
+		spring도 예전에는 DispatcherServlet 설정이 필요했지만
+		지금은 특별한 경우가 아니라면 설정하는 경우가 없는 것 같음
+	
+ViewResolver
+	controller에서 어노테이션에 따라 뷰인지 데이터인지를 구분하고 뷰일때 적절한 페이지를 반환
+		예전에는 이것도 설정이 있었다는데 지금은 특별한 경우가 아니라면 설정하는 경우가 없는 것 같음
+
+
+
+web.xml
+servlet context 초기 파라미터
+세션 유효시간 설정
+servlet/jsp 정의
+servlet/jsp 매핑
+mine type 매핑
+welcome file list
+error page처리
+리스너/필터 설정
+보안
+
+
+
+
 
 
 
