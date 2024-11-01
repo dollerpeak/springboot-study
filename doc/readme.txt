@@ -24,7 +24,7 @@ springboot =====================================================================
 			둘간에는 어떤식으로든 변활할 수 있는 방법이 있어야 함
 		@Mapper : 이 방법으로는 사용하지 않음
 			mybatis에서 인터페이스로만 생성해서 실제 쿼리가 있는 xml파일과 연동
-		# IoC (Inversion of Control, 제어의 역전)
+	# IoC (Inversion of Control, 제어의 역전)
 		new로 생성하는 것이 아니라 @Bean으로 객체를 생성해서 spring이 관리
 			@Component, @ComponentScan을 통해 자동으로 @Bean 등록
 			@Configuration, 내부에 @Component 존재
@@ -46,8 +46,9 @@ springboot =====================================================================
 			}
 		* Setter 주입(Setter Injection)
 			public class A {     
-				private B b;        
-				@Autowired 생략 가능    
+				private B b;
+				
+				@Autowired    
 				public setB(B b) {
 					this.b = b;    
 				}
