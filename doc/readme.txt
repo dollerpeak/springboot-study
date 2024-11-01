@@ -1,3 +1,11 @@
+
+start ================================================================================
+개발은 STS
+view VSCODE를 사용해야 하나?
+API 목록은 크롬 확장프로그램인 Talend API Tester 사용
+
+
+
 ================================================================================
 springboot =====================================================================
 	# 구조	
@@ -16,79 +24,7 @@ springboot =====================================================================
 			둘간에는 어떤식으로든 변활할 수 있는 방법이 있어야 함
 		@Mapper : 이 방법으로는 사용하지 않음
 			mybatis에서 인터페이스로만 생성해서 실제 쿼리가 있는 xml파일과 연동
-	# 주요 Annotation
-		@Bean
-			spring 컨테이너에 인스턴스 생성
-		@Component
-			@ComponentScan을 통해 자동으로 @Bean 등록
-			* 클래스 레벨에서 사용 가능해서 개발자가 작성해서 제어가 가능한 클래스에 사용
-				전체 프로젝트에 필요한 클래스를 자동으로 적용한다 생각하면 편할 듯
-			생성시 마다 다른 객체로 인식
-		@Configuration
-			내부에 @Component 존재
-			@Bean을 명시했을때 여러개 @Bean을 한번에 등록
-				싱글톤으로 사용 가능
-			* 직접 제어가 불가능한 라이브러리 등록에 사용
-			* 전체 프로젝트에 필요한 커스텀 기능을 수동으로 적용한다 생각하면 편할 듯
-				* 예를 들어 DB가 교체될수도 있을때
-					인터페이스Repository 로 기능을 정의하고
-					DB별로 Repository를 만들어서 인터페이스Repository를 상속받고
-					@Configuration에서 인터페이스Repository를 @Bean으로 등록을 하면
-						DB별로 Repository를 그때그때 변경해서 비지니스 코드는 수정을 안해도 됨
-		@Controller
-			내부에 @Component 존재
-			client와 통신, 페이지를 리턴
-		@RestController
-			내부에 @Component 존재
-			client와 통신, 데이터를 리턴(json)
-		@Service
-			내부에 @Component 존재
-			실제 비지니스 로직이 들어감
-		@Repository
-			내부에 @Component 존재
-			SqlSessionTemplate을 이용해서 mybatis xml파일과 연동해서 사용
-	
-	# application.properties/yml, 설정값 가져오기
-		* @PropertySource, @Value 상하 관계가 아니다.
-			@PropertySource 사용할 경우 Environment class 사용할 수 있어 용이하다
-			@Value는 @PropertySource관계없이 @Bean에 등록되어 있는 경로만 있다면 무조건 값을 가져오고
-				겹치는 경로를 가지는 설정파일이 있다면 디폴트값인 application 값을 가져오고 없다면 에러가 발생한다.
-			특정 properties를 사용할려면 @PropertySource경로를 명시하고 @Value 키가 있는 값을 가져올 수 있다.
-				없으면 물론 에러가 발생한다.
-		@Controller, @RestController, @Service, @Repository 등.. 내부에 @Component 존재하기에
-			@Value("${test.property.1}") 형식으로 바로 적용할 수 있음		
-		1. Annotation 사용
-			@Value("${test.property.one}")으로 변수에 값을 매핑
-		2. Environment class 사용
-			@PropertySource("classpath:test.properties")으로 properties파일의 경로 지정
-				멀티, 여러개도 가능
-			내부에 Environment 사용해서 매핑, @Component로 @Bean에 등록해서 사용
-				@Autowired
-				private Environment environment;
-				environment.getProperty("test.property.2");
-		주의 : 버전별로 차이가 많은 것 같음
-			yml파일의 경우 list로 받을때 - 이런식으로 줄바꿈하면 안되고 properties파일처럼 , 로 데이터를 구분해서 사용
-				- 이걸로 사용할려면 string[]로 받아야 함
-			yaml파일의 경우 
-				YamlPropertySourceFactory.class 구현하고
-				이런식으로 사용해야 가능하다고 하는데
-					@PropertySource(value = "classpath:foo.yml", factory = YamlPropertySourceFactory.class)
-				그냥 되네? 업데이트 되었나?
-		@ConfigurationProperties
-			설정정보를 class에 바로 매핑할 수 있다.
-				prefixtest.number: 789 값은 class의 number라는 변수에 매핑
-			@ConfigurationProperties(prefix = "prefixtest") 사용하면
-				디폴트 값인 application 기준으로 값을 가져오고
-				다른 파일을 가져오고 싶다면 @PropertySource 사용
-				* 마지막으로 @Bean에 등록해야 해야 하는데 @Component 적당할 것 같다.
-					@Configuration은 하나만 사용하는게 좋지 않을까?
-				그외 getter, setter를 위해 Lombok을 사용하고
-					Lombok사용시 값이 없는 경우 에러가 발생하지 않고 초기값이 셋팅된다
-			사용할 경우 spring-boot-configuration-processor 추가라하고 나온느데
-				기능은 target/classes/META-INF/spring-configuration-metadata.json 경로에 
-				@ConfigurationProperties 사용한 데이터를 json으로 파일형식으로 생성해 준다.
-			
-	# IoC (Inversion of Control, 제어의 역전)
+		# IoC (Inversion of Control, 제어의 역전)
 		new로 생성하는 것이 아니라 @Bean으로 객체를 생성해서 spring이 관리
 			@Component, @ComponentScan을 통해 자동으로 @Bean 등록
 			@Configuration, 내부에 @Component 존재
@@ -125,28 +61,197 @@ springboot =====================================================================
 				}
 
 
+================================================================================
+주요 Annotation =====================================================================
+	@Bean
+		spring 컨테이너에 인스턴스 생성
+	@Component
+		@ComponentScan을 통해 자동으로 @Bean 등록
+		* 클래스 레벨에서 사용 가능해서 개발자가 작성해서 제어가 가능한 클래스에 사용
+			전체 프로젝트에 필요한 클래스를 자동으로 적용한다 생각하면 편할 듯
+		생성시 마다 다른 객체로 인식
+	@Configuration
+		내부에 @Component 존재
+		@Bean을 명시했을때 여러개 @Bean을 한번에 등록
+			싱글톤으로 사용 가능
+		* 직접 제어가 불가능한 라이브러리 등록에 사용
+		* 전체 프로젝트에 필요한 커스텀 기능을 수동으로 적용한다 생각하면 편할 듯
+			* 예를 들어 DB가 교체될수도 있을때
+				인터페이스Repository 로 기능을 정의하고
+				DB별로 Repository를 만들어서 인터페이스Repository를 상속받고
+				@Configuration에서 인터페이스Repository를 @Bean으로 등록을 하면
+					DB별로 Repository를 그때그때 변경해서 비지니스 코드는 수정을 안해도 됨
+	@Controller
+		내부에 @Component 존재
+		client와 통신, 페이지를 리턴
+	@RestController
+		내부에 @Component 존재
+		client와 통신, 데이터를 리턴(json)
+	@Service
+		내부에 @Component 존재
+		실제 비지니스 로직이 들어감
+	@Repository
+		내부에 @Component 존재
+		SqlSessionTemplate을 이용해서 mybatis xml파일과 연동해서 사용
 
 
-
-
+================================================================================
+application.properties/yml, 설정값 가져오기 ============================================
+	[사용] 
+		@Component로 @Bean에 등록
+			@PropertySource, @Value 같이 사용
+				@PropertySource 경로를 설정하고
+				@Value 값을 가져오고
+		단, 경로를 적용하더라도 여러파일에 동일하게 접근하게 되면 default로 접근하게 되니 접근하는 패스는 파일이 다르더라도 다른 패스로 명기하자
+		아니면 @ConfigurationProperties 로 파일별로 클래스로 만들어서 사용		
+	* @PropertySource, @Value 상하 관계가 아니다.
+		@PropertySource 사용할 경우 Environment class 사용할 수 있어 용이하다
+		@Value는 @PropertySource관계없이 @Bean에 등록되어 있는 경로만 있다면 무조건 값을 가져오고
+			겹치는 경로를 가지는 설정파일이 있다면 디폴트값인 application 값을 가져오고 없다면 에러가 발생한다.
+		특정 properties를 사용할려면 @PropertySource경로를 명시하고 @Value 키가 있는 값을 가져올 수 있다.
+			없으면 물론 에러가 발생한다.
+	@Controller, @RestController, @Service, @Repository 등.. 내부에 @Component 존재하기에
+		@Value("${test.property.1}") 형식으로 바로 적용할 수 있음, 단 default로 로드된 application파일이 있을때
+	1. Annotation 사용
+		@Value("${test.property.one}")으로 변수에 값을 매핑
+	2. Environment class 사용
+		@PropertySource("classpath:test.properties")으로 properties파일의 경로 지정
+			멀티, 여러개도 가능
+		내부에 Environment 사용해서 매핑, @Component로 @Bean에 등록해서 사용
+			@Autowired
+			private Environment environment;
+			environment.getProperty("test.property.2");
+	주의 : 버전별로 차이가 많은 것 같음
+		yml파일의 경우 list로 받을때 - 이런식으로 줄바꿈하면 안되고 properties파일처럼 , 로 데이터를 구분해서 사용
+			- 이걸로 사용할려면 string[]로 받아야 함
+		yaml파일의 경우 
+			YamlPropertySourceFactory.class 구현하고
+			이런식으로 사용해야 가능하다고 하는데
+				@PropertySource(value = "classpath:foo.yml", factory = YamlPropertySourceFactory.class)
+			그냥 되네? 업데이트 되었나?
+	@ConfigurationProperties
+		설정정보를 class에 바로 매핑할 수 있다.
+			prefixtest.number: 789 값은 class의 number라는 변수에 매핑
+		@ConfigurationProperties(prefix = "prefixtest") 사용하면
+			디폴트 값인 application 기준으로 값을 가져오고
+			다른 파일을 가져오고 싶다면 @PropertySource 사용
+			* 마지막으로 @Bean에 등록해야 해야 하는데 @Component 적당할 것 같다.
+				@Configuration은 하나만 사용하는게 좋지 않을까?
+			그외 getter, setter를 위해 Lombok을 사용하고
+				Lombok사용시 값이 없는 경우 에러가 발생하지 않고 초기값이 셋팅된다
+		사용할 경우 spring-boot-configuration-processor 추가라하고 나온느데
+			기능은 target/classes/META-INF/spring-configuration-metadata.json 경로에 
+			@ConfigurationProperties 사용한 데이터를 json으로 파일형식으로 생성해 준다.
 
 
 ================================================================================
 Controller =====================================================================
+	@RequestMapping("/v1") : 반복되는 중간 뎁스 url에 사용
 	@Controller
-	@RequestMapping("/v1") : 반복되는 url에 사용
-	@ResponseBody
-		사용하면 데이터가 반환됨
-		사용하지 않으면 페이지가 반환됨
+		기본적으로 view를 반환, 리턴되는 문자열의 페이지를 반환
+		데이터를 반환할때는 function에 @ResponseBody를 붙이면 json데이터 반환
+			일반적으로 데이터 반환시에는 ResponseEntity로 감싸서 반환
+		둘다 반환이 필요할 경우 Model사용
+			model.addAttribute()로 데이터 반환
+			return으로 view반환
+		리턴 종류
+			일반적으로 view name
+			data를 반환하고 싶은경우 
+				function에 @ResponseBody를 붙이면 json데이터 반환
+			둘다
+				Model사용, model.addAttribute()로 데이터 반환, return값은 view
+				ModelAndView, old한 방법으로 사용하지 말자
+					ModelAndView mav = new ModelAndView("view name");
+					modelAndView.addObject("key", "value");
+					return mav;
+			void
+				현재 view name 리턴
+			redirect
+				controller에서 바로 URI전송(다른 controller)		
 	@RestController = @Controller + @ResponseBody 
-		데이터(JSON/XML) 반환
-		리턴되는 값이 ModelAndView면 페이지도 표시가 됨
-			리턴되는 값이 페이지만 아니라면 데이터로 표기되는 것 같음
-			Model의 경우 리턴되는 값이 페이지를 의미하는 문자열이 리턴되지만 데이터로 인식됨
+		기본적으로 json데이터 반환
+			일반적으로 데이터 반환시에는 ResponseEntity로 감싸서 반환
+		
+		
+================================================================================
+ResponseEntity =====================================================================
+	@ResponseEntity
+		status값 종류
+			1XX : 요청에 대한 정보, HttpStatus.CONTINUE
+			2XX : 성공, HttpStatus.OK
+			3XX : 리다이렉션, HttpStatus.MULTIPLE_CHOICES
+			4XX : 클라이언트 오류, HttpStatus.BAD_REQUEST
+			5XX : 서버오류, HttpStatus.INTERNAL_SERVER_ERROR
+		리턴 방식
+			상태값 :ResponseEntity<>(HttpStatus.OK);
+		    데이터, 상태값 : ResponseEntity<>(response, HttpStatus.CREATED);
+		    데이터, 헤더, 상태값 : ResponseEntity<>(response, new HttpHeaders(HttpHeaders.EMPTY), HttpStatus.CREATED);
+
+
+================================================================================
+Http Method =====================================================================
+	주요 method
+		GET : 조회
+			@RequestBody 사용할 수 있으나 대다수의 서버가 GetMapping일 경우 Body부분을 읽지 않아 사용하지 않음
+		POST : 등록(추가)
+			@RequestBody를 주로 사용
+		PUT : 대체(덮어쓰기, 없으면 등록)
+		DELETE : 삭제
+			GET처럼 @PathVariable, @RequestParam 사용 권장
+		PATCH : 부분 변경
+	기타 method
+		HEAD : GET과 동일하나 Body를 제외하고 상태줄과 헤더만 반환
+		OPTIONS : 통신 가능 옵션 확인, method/header/content-type (주로 CORS에 사용)
+		CONNECT : 대상 자원으로 식별되는 서버에 대한 터널을 설정
+		TRACE : 대상 경로를 따라 메세지 루프백 테스트 수행
+
+
+================================================================================
+Controller에서 Request Data를 받아오는 방식 =========================================
+	@PathVariable, 변수 하나씩 받는 방식
+		형식 : http://url/url/key/value
+			URI는 / 끝내고 / 이걸 구분자로 값을 넣는다.
+				ex) http://localhost:8081/codingrecipe/test/select/4
+			controller에서 사용할때는 
+				@GetMapping("/select/{seq}")
+				값에 변수 이름을 매핑 시키고 @PathVariable long seq 형태
+				변수이름과 실제 변수와 차이가 있을때는 @PathVariable("seq") long nSeq 형태				
+	@RequestParam, 변수를 map으로 받을 수 있음
+		형식 : http://url?key=value&abc=def
+			URI는 ? 끝내고 key=value 형식, 여러개 일경우는 & 구분자
+				ex) http://localhost:8081/codingrecipe/test/select4?seq=4&v1=123&v2=abc
+			controller에서 사용할때는 값은 표현하지 않음
+				@GetMapping("/select")
+				값에 변수 이름을 매핑 시키고 @RequestParam long seq 형태
+				변수이름과 실제 변수와 차이가 있을때는 @RequestParam("seq") long nSeq 형태
+			기본 key=value라서 얼마나 길게 올지 모르니 그냥 Map<>으로 받을 수 있음
+	@ModelAttribute, DTO로 받을수 있음, 생략가능
+		형식 : http://url?key=value&abc=def
+			@RequestParam와 동일형식으로 인자, map으로 받을 수 있지만 DTO로 바로 매핑도 가능
+		조건
+			변수이름과 완전 매핑이 되어야 함
+			setter가 있어야 함
+	@RequestBody, DTO로 받을수 있음, @PostMapping만 가능, map으로도 가능
+		형식 : http://url
+			요청데이터는 RequestBody에 넣어서 보낸다.
+			데이터는 디폴트인 json사용
+		controller에서 사용할때는 값은 표현하지 않음
+				@PostMapping("/select")
+				값을 받을때 @RequestBody BoardDto nDto
+		json 외의 데이터를 보낼때, 주로 class가 아닌 다른 것들..
+			Content-Type: application/x-www-form-urlencoded 이외 기타 등등이 있는데
+			이런걸 보내면 데이터를 받지 못한다 그럴때는
+			@RequestBody 를 생략하면 될수도 있음
+		조건
+			변수이름과 완전 매핑이 되어야 함
+			setter가 없어도 됨
 
 
 ================================================================================
 lombok =====================================================================
+	[사용]
+		특별한거 없으면 @Data
+		@Data사용 후에는 모든 DI는 @RequiredArgsConstructor로 사용하고 final처리
 	@Getter : get 자동생성
 	@Setter : set 자동생성
 	@ToString : toString() 자동생성
@@ -176,6 +281,9 @@ lombok =====================================================================
 
 ================================================================================
 logging =====================================================================
+	[사용] 
+		컬러가 포함되지 않는 xml파일을 사용하고
+		설정값은 application에 logging설정해서 사용
 	springboot는 기본적으로 spring-boot-starter-logging 즉 logback
 	별도로 기존 logback을 제외하고 spring-boot-starter-log4j2로 사용하기도 함, 대세는??
     logback-spring.xml (디폴트로 지정된 파일 이름이 있음)으로 상세 설정이 가능하고
@@ -194,6 +302,13 @@ logging =====================================================================
 
 ================================================================================
 mybatis =====================================================================
+	[사용]
+		xml파일에 일반적인 설정 사용하고
+		설정값은 application에 mybatis설정해서 사용
+		그외
+			datasource는 application에 사용
+		    hikarie는 application에 사용
+		로그 출력방법은 logging에 작성
 	application.yml에 
 	config-path 지정 : config-location: classpath:mybatis/mybatis-config.xml
 		config 설정이 들어가 있음
@@ -225,7 +340,7 @@ mybatis =====================================================================
 			mapper.xml에 
 				namespace를 패키지.Entity로 사용하고
 				@Repository에서 sqlSessionTemplate.insert(namespace.id, nParam)형식으로 사용
-		적용_2
+		적용_2, 근데 이건 함수명이 달라지면 어떻게 되나? 같은 entity에 select도 여러 종류가 있을텐데
 			DB와 매핑되는 Entity로만 데이터를 주고 받음
 			mapper.xml에
 				namespace를 패키지.@Mapper인터페이스로 사용하고
@@ -268,6 +383,10 @@ mybatis =====================================================================
 
 ================================================================================
 HikariCP =====================================================================
+	[사용] spring.datasource.hikari에 필요한 만큼만 설정
+		maximum-pool-size 운영상의 이유
+		connection-timeout=30000 운영상의 이유로 비율에 맞게 적용
+		idle-timeout=600000
 	springboot에 자동구성되어 있음
 	SQL사용 시 아래 로그 확인할 수 있음 
 		com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
@@ -286,81 +405,9 @@ HikariCP =====================================================================
 			최초 sql시 pool 갯수만큼 실행 됨, 사용하지 않음 권장
 		spring.datasource.hikari.connection-test-query=없음, ex) select 1 from dual
 			sql 실행 시 마다 사전에 실행되는 sql, 사용하지 않음 권장
-	[사용] spring.datasource.hikari에 필요한 만큼만 설정
-		maximum-pool-size 운영상의 이유
-		connection-timeout=30000 운영상의 이유로 비율에 맞게 적용
-		idle-timeout=600000
 
 
-================================================================================
-======================================================================================
-
-@RequestMapping
-	controller에서 사용되며 url과 method 매핑에 사용 
-	ex) @RequestMapping(value = "/main", method = RequestMethod.GET)
-	현재는
-		method매핑에 대해서 개별적인 어노테이션이 있고 controller에 중복되는 url을 처리해주는데 사용되고 있음
-			@GetMapping("/data"), @PostMapping("/data"), @PutMapping("/data"), @DeleteMapping("/data")
-	자주 사용되는 method 종류 
-		GET : read
-		POST : create
-		PUT : update
-		PATCH : 일부 update
-		DELETE : delete
-	
-@Controller
-	뷰(HTML 페이지) 반환
-	데이터를 반환하고 싶을때 @RestController 처럼
-		메소드에 @ResponseBody 추가
-	뷰와 데이터를 같이 반환하고 싶을때
-		Model, ModelAndView
-		더 쎄련된 방법은? 더 구식인 방법은?
-	
-@RestController = @Controller + @ResponseBody 
-	데이터(JSON/XML) 반환
-	리턴되는 값이 ModelAndView면 페이지도 표시가 됨
-		리턴되는 값이 페이지만 아니라면 데이터로 표기되는 것 같음
-		Model의 경우 리턴되는 값이 페이지를 의미하는 문자열이 리턴되지만 데이터로 인식됨
-
-
-==================================================================
-tomcat, 필터(web.xml)
-spring컨테이너, 필터(인터셉터)
-messageconverter, client에서 json으로 보내도 class로 받을 수 있음
-
-client -> tomcat(서블릿 컨테이너)
-
-
-아파치 : URL, 정적자원 파일, 이미지, 동영상등의 리소스
-톰캣 : URI, 식별자, jsp같은 자바를 컴파일해서 아파치에 리턴
-
-client -> apach -> tomcat -> apach -> client
-
-springdms URL을 모두 막아 줌, jsp같은 URI를 통한 자바형식이 요청만 받아 들임
-
-=======================================================
-DispatcherServlet
-	클라이언트에서 http프로토콜로 들어오는 모든 요청을 제일 앞에서 중앙집중식으로 처리해 주는 front controller
-		오래전에는 controller 마다 servlet 설정이 필요했는데 spring이 DispatcherServlet 정의
-		spring도 예전에는 DispatcherServlet 설정이 필요했지만
-		지금은 특별한 경우가 아니라면 설정하는 경우가 없는 것 같음
-	
-ViewResolver
-	controller에서 어노테이션에 따라 뷰인지 데이터인지를 구분하고 뷰일때 적절한 페이지를 반환
-		예전에는 이것도 설정이 있었다는데 지금은 특별한 경우가 아니라면 설정하는 경우가 없는 것 같음
-
-
-
-web.xml
-servlet context 초기 파라미터
-세션 유효시간 설정
-servlet/jsp 정의
-servlet/jsp 매핑
-mine type 매핑
-welcome file list
-error page처리
-리스너/필터 설정
-보안
+end ================================================================================
 
 
 
