@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.study.codingrecipe.PropertiesPrefix;
-import com.study.codingrecipe.PropertyApp;
-import com.study.codingrecipe.PropertyYml;
+//import com.study.codingrecipe.PropertiesPrefix;
+//import com.study.codingrecipe.PropertyApp;
+//import com.study.codingrecipe.PropertyYml;
 import com.study.codingrecipe.board.dto.BoardDto;
 import com.study.codingrecipe.board.service.BoardService;
 
@@ -28,42 +28,42 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 	private final BoardService boardService;
 	
-	@Autowired
-	private PropertyApp propertyApp;
-	@Value("${test.property.direct}")
-	private String testproperties;
-	
-	@Autowired
-	private PropertyYml propertyYml;
-	@Value("${test.yaml.direct}")
-	private String testyml;
-	
-	@Value("${test.property.list}")
-	private List<String> testymllist;
-	
-	@Autowired
-	private PropertiesPrefix propertiesPrefix;
+//	@Autowired
+//	private PropertyApp propertyApp;
+//	@Value("${test.property.direct}")
+//	private String testproperties;
+//	
+//	@Autowired
+//	private PropertyYml propertyYml;
+//	@Value("${test.yaml.direct}")
+//	private String testyml;
+//	
+//	@Value("${test.property.list}")
+//	private List<String> testymllist;
+//	
+//	@Autowired
+//	private PropertiesPrefix propertiesPrefix;
 	
 	@GetMapping("/home")
 	public String home(Model nMmodel) {
 		List<BoardDto> boarddtolist = selectAll();
 		nMmodel.addAttribute("boarddtolist", boarddtolist);
 		
-		log.info("propertyApp, test1 = " + propertyApp.getTest1());
-		log.info("propertyApp, test2 = " + propertyApp.getTest2());
-		log.info("propertyApp, test3 = " + propertyApp.getTest3());
-		log.info("testproperties = " + testproperties);
-		
-		log.info("propertyYml, test1 = " + propertyYml.getTest1());
-		log.info("propertyYml, test2 = " + propertyYml.getTest2());
-		log.info("propertyYml, test3 = " + propertyYml.getTest3());
-		log.info("testyml = " + testyml);
-		
-		log.info("testymllist = " + testymllist);
-		
-		log.info("propertiesPrefix, number = " + propertiesPrefix.getNumber());
-		log.info("propertiesPrefix, str = " + propertiesPrefix.getStr());
-		log.info("propertiesPrefix, list = " + propertiesPrefix.getList());
+//		log.info("propertyApp, test1 = " + propertyApp.getTest1());
+//		log.info("propertyApp, test2 = " + propertyApp.getTest2());
+//		log.info("propertyApp, test3 = " + propertyApp.getTest3());
+//		log.info("testproperties = " + testproperties);
+//		
+//		log.info("propertyYml, test1 = " + propertyYml.getTest1());
+//		log.info("propertyYml, test2 = " + propertyYml.getTest2());
+//		log.info("propertyYml, test3 = " + propertyYml.getTest3());
+//		log.info("testyml = " + testyml);
+//		
+//		log.info("testymllist = " + testymllist);
+//		
+//		log.info("propertiesPrefix, number = " + propertiesPrefix.getNumber());
+//		log.info("propertiesPrefix, str = " + propertiesPrefix.getStr());
+//		log.info("propertiesPrefix, list = " + propertiesPrefix.getList());
 		
 		return "/codingrecipe/home";
 	}

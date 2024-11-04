@@ -246,6 +246,47 @@ Controller에서 Request Data를 받아오는 방식 ===========================
 		조건
 			변수이름과 완전 매핑이 되어야 함
 			setter가 없어도 됨
+	HttpServletRequest
+		client에서 server로 요청
+			controller에서 HttpServletRequest request 형식으로 값을 받을 수 있다.
+			위쪽에 있는 annotation으로 추상화된 방식으로 데이터를 받기 전에 사용 됐을 것으로 보인다.
+		@GetMapping
+			 @RequestParam 방식으로만 받을 수 있음
+		@PostMapping
+			body에 데이터를 넣어서 보낼경우 확인 가능
+		특이점
+			HttpServletRequest은 @Bean에 등록되어 있으므로 매번 controller에서 받지 않고
+				@Autowired
+				HttpServletRequest request;
+				위 방법으로 매번 값을 받을 수 있음
+			body값은 1회성 값으로 별도로 저정하지 않는다면 getInputStream() 읽으면 값이 사라짐
+				또 @RequestBody와 값을 같이 받을 경우 @RequestBody내부에서 한번 소비해 버려서
+				HttpServletRequest.body에는 값이 없어 짐
+			요청이 끝날때까지 임시 저장소로 사용 가능
+				setAttribute(String, Object)
+				getAttribute(String)
+	HttpServletResponse 
+		server에서 client 응답
+		특이점
+			HttpServletRequest은 @Bean에 등록되어 있으므로 매번 controller에서 받지 않고
+				@Autowired
+				HttpServletRequest request;
+				위 방법으로 매번 값을 받을 수 있음
+
+
+================================================================================
+Cookie, Session ===========================================================================
+	client가 서버에 요청하면 응답으로 session이 cookie의 JSESSIONID에 보관
+	Cookie
+		브라우저가 종료되어도 쿠키 만료 시간이 있다면 클라이언트에 보관 됨
+		Cookie, HttpServletResponse.addCookie()
+		key-values로 String만 가능
+	Session
+		쿠키기반이지만 서버측에서 관리
+		브라우저가 종료되면 만료시간이 있다고 해도 삭제 됨
+		HttpSession, setAttribute() / getAttribute
+
+
 
 
 ================================================================================
