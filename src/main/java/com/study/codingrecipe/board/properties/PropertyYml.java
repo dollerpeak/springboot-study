@@ -1,4 +1,4 @@
-package com.study.codingrecipe;
+package com.study.codingrecipe.board.properties;
 
 import java.util.List;
 
@@ -9,15 +9,15 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 //@Component
-//@PropertySource("classpath:test.properties")
-//public class PropertyApp {
+//@PropertySource("classpath:application.yml")
+//public class PropertyYml {
 //	@Autowired
 //	private Environment environment;
-//
-//	@Value("${test.property.one}")
+//	
+//	@Value("${test.yaml.one}")
 //	private String test1;
 //	private String test2;
-//	@Value("${test.property.list}")
+//	@Value("${test.yaml.list}")
 //	private List<String> test3;
 //
 //	public String getTest1() {
@@ -25,12 +25,12 @@ import org.springframework.stereotype.Component;
 //	}
 //
 //	public String getTest2() {
-//		test2 = environment.getProperty("test.property.two");
+//		test2 = environment.getProperty("test.yaml.two");
 //		return test2;
 //	}
 //	
 //	public List<String> getTest3() {
 //		return test3;
 //	}
-//
+//	
 //}

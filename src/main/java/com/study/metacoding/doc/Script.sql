@@ -36,11 +36,15 @@ grant all privileges on springstudy.* to 'atdata'@'%' -- database 전체권한
 -- 권한회수
 revoke delete on aroundhub.* from 'atdata'@'%'
 
+-- 한글설정 확인
+show variables like '%char%'
+
 -- 
 flush privileges
 
 -- 
 commit
+
 
 =====================================================================================================
 =====================================================================================================

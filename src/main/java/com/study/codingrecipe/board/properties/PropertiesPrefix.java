@@ -1,4 +1,4 @@
-package com.study.codingrecipe;
+package com.study.codingrecipe.board.properties;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import lombok.Data;
 
 //@Data
 //@Component
-//@PropertySource("classpath:prefix.properties")
+//@PropertySource("classpath:/properties/prefix.properties")
 //@ConfigurationProperties(prefix = "prefixtest") // prefixyaml, prefixpro, prefixtest
 //public class PropertiesPrefix {
 //	private int number;
