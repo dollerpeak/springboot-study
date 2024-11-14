@@ -144,6 +144,14 @@ application.properties/yml, 설정값 가져오기 =============================
 			기능은 target/classes/META-INF/spring-configuration-metadata.json 경로에 
 			@ConfigurationProperties 사용한 데이터를 json으로 파일형식으로 생성해 준다.
 
+	기타
+		server:
+		  port: 8081 <= 실행 포트 설정이 가능  
+		  servlet:
+		    context-path: /abc <= URI의 부모값, 맨앞에 주소를 공통적으로 적용
+		    ex) http://localhost:8081/http/get => http://localhost:8081/abc/http/get 
+
+
 
 ================================================================================
 Controller =====================================================================
