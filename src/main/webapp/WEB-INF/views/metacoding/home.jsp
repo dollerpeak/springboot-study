@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +19,7 @@
 </head>
 <body>
 	<h2>metacoding blog</h2>
-	<h2>html</h2>
+	<h2>jsp</h2>
 	<a href="/">main</a>
 	<!-- <a href="metacoding">글작성</a> -->
 	

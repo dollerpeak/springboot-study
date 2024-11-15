@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +18,7 @@
 </head>
 <body>
 	<h2>codingrecipe board</h2>
-	<h2>html</h2>
+	<h2>jsp</h2>
 	<a href="/codingrecipe/home">뒤로</a>
 	
 	<table>

@@ -152,6 +152,98 @@ application.properties/yml, 설정값 가져오기 =============================
 		    ex) http://localhost:8081/http/get => http://localhost:8081/abc/http/get 
 
 
+================================================================================
+기타설정 ========================================================================
+	Common Application Properties
+		https://docs.spring.io/spring-boot/appendix/application-properties/index.html#appendix.application-properties.json
+	포트설정
+		디폴트는 8080
+		성정방법
+			server:
+			  port: 8081
+	URI 설정
+		디폴트는 /
+			그래서 이렇게 설정, http://localhost:8081/ 됨
+		설정방법 
+			server:  
+			  servlet:
+			    context-path: /abc <= URI의 부모값, 맨앞에 주소를 공통적으로 적용
+			아니면 main()에 코드로 설정
+				public static void main(String[] args) {
+					System.setProperty("server.servlet.context-path", "/abc");
+					SpringApplication.run(SpringbootStudyApplication.class, args);
+				}
+			ex) http://localhost:8081/http/get => http://localhost:8081/abc/http/get 
+	UTF-8 설정
+		server:  
+		  servlet:
+		    encoding:
+		      charset: utf-8
+		      enabled: true # 설정 encoding 활성화 여부
+		      force: true # request, response 둘다 적용
+		      #force-request: true
+		      #force-response: true
+	spring boot3에는 아래 설정이 전부 
+		* application.yml에 모두 설정
+		spring legacy
+			web.xml
+				WAS가 기동할대 최초로 실행
+				내부에 root-context.xml, servlet-context.xml 로드 설정이 있음
+			root-context.xml
+				view와 관련되지 않은 객체를 @Bean 생성, 싱글톤으로 관리
+				주로 데이터베이스, dao
+			servlet-context.xml
+				view쪽, 프론트엔드 설정들
+				jsp, thymeleaf 이런 설정들		      
+
+
+================================================================================
+view 설정 ========================================================================
+	JSP 설정
+		JSP 컴파일러
+			<dependency>
+			    <groupId>org.apache.tomcat.embed</groupId>
+			    <artifactId>tomcat-embed-jasper</artifactId>
+			</dependency>
+		JSTL (JSP Standard Tag Library), JSP개발 단순화
+			<dependency>
+			    <groupId>jakarta.servlet</groupId>
+			    <artifactId>jakarta.servlet-api</artifactId>
+			</dependency>
+			<dependency>
+			    <groupId>jakarta.servlet.jsp.jstl</groupId>
+			    <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+			</dependency>
+			<dependency>
+			    <groupId>org.glassfish.web</groupId>
+			    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+			</dependency>
+		view 설정
+			전체경로
+				src/main/webapp/WEB-INF/views/*.jsp
+			설정
+				spring:
+				  mvc:
+				    view:
+				      prefix: /WEB-INF/views/
+				      suffix: .jsp
+	Thymeleaf 설정
+		* maven에 적용되면 자동으로 설정 됨 
+		자동설정
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			</dependency>
+		전체경로
+			src/main/resource/templates
+		설정
+			spring:
+			  thymeleaf:
+			    prefix: classpath:/templates/
+			    suffix: .html
+			    cache: false # 테스트 시에만 사용, html파일 수정 후 저장하면 바로 적용가능하게 설정
+			    #view-names: thymeleaf/* # 정확한 기능을 모르겠음
+
 
 ================================================================================
 Controller =====================================================================
