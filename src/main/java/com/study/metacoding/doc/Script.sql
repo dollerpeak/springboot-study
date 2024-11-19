@@ -49,20 +49,49 @@ commit
 =====================================================================================================
 =====================================================================================================
 
-create table board 
+use springstudy
+
+create table user 
 (
-	seq int not null auto_increment comment 'seq',
-	title varchar(100) not null comment '제목',
-	contents varchar(500) not null comment '내용',
-	writer varchar(20) not null comment '작성자',
-	password varchar(20) not null comment '비밀번호',
-	hits int not null default 0 comment '조회수',
+	id int not null auto_increment comment 'id',
+	name varchar(20) not null comment '이름',
+	password varchar(100) not null comment '비밀번호',
+	email varchar(100) not null comment '이메일',
+	role varchar(100) not null default 'USER' comment '역할',
 	frst_reg_date datetime not null default current_timestamp comment '최초등록일',
 	frst_reg_user_id varchar(20) not null default 'SYSTEM' comment '최초등록자',
 	last_chg_date datetime not null default current_timestamp comment '변경등록일',
 	last_chg_user_id varchar(20) not null default 'SYSTEM' comment '변경등록자',
-	primary key(seq)
+	primary key(id)
 )
+
+create table panel 
+(
+	id int not null auto_increment comment 'id',
+	title varchar(100) not null comment '제목',
+	contents varchar(1000) null comment '내용',
+	hits int not null default 0 comment '조회수',
+	user_id int not null comment '작성자',
+	frst_reg_date datetime not null default current_timestamp comment '최초등록일',
+	frst_reg_user_id varchar(20) not null default 'SYSTEM' comment '최초등록자',
+	last_chg_date datetime not null default current_timestamp comment '변경등록일',
+	last_chg_user_id varchar(20) not null default 'SYSTEM' comment '변경등록자',
+	primary key(id)
+)
+
+create table reply 
+(
+	id int not null auto_increment comment 'id',
+	contents varchar(1000) not null comment '내용',
+	panel_id int not null comment '게시글',
+	user_id int not null comment '작성자',
+	frst_reg_date datetime not null default current_timestamp comment '최초등록일',
+	frst_reg_user_id varchar(20) not null default 'SYSTEM' comment '최초등록자',
+	last_chg_date datetime not null default current_timestamp comment '변경등록일',
+	last_chg_user_id varchar(20) not null default 'SYSTEM' comment '변경등록자',
+	primary key(id)
+)
+
 
 drop table board
 
@@ -73,15 +102,11 @@ commit
 =====================================================================================================
 =====================================================================================================
 
-
 select current_timestamp()
 
-select * from board
+select * from user 
 
--- delete from board 
-where seq > 2
-
-
+select * from panel
 
 
 

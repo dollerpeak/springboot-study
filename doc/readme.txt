@@ -236,6 +236,7 @@ view 설정 ====================================================================
 			</dependency>
 		전체경로
 			src/main/resource/templates
+			다른 뷰와 구분을 위해 src/main/resource/templates/thymeleaf 사용이 가능
 		설정
 			spring:
 			  thymeleaf:

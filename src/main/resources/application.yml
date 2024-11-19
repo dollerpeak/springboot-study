@@ -29,7 +29,7 @@ spring:
     hikari:
       pool-name: HikariPool-${spring.application.name}
   thymeleaf:
-    prefix: classpath:/templates/
+    prefix: classpath:/templates/thymeleaf
     suffix: .html
     cache: false
   #mvc:
