@@ -19,12 +19,16 @@ public class UserRepository {
 		return sqlSessionTemplate.insert(namespace + "insert", nUserEntity);
 	}
 	
-	public UserEntity selectUser(long id) {
+	public UserEntity selectUser(int id) {
 		return sqlSessionTemplate.selectOne(namespace + "selectUser", id);
 	}
 	
 	public List<UserEntity> selectAll() {
 		return sqlSessionTemplate.selectList(namespace + "selectAll");
+	}
+	
+	public int update(UserEntity nUserEntity) {
+		return sqlSessionTemplate.update(namespace + "update", nUserEntity);
 	}
 
 }

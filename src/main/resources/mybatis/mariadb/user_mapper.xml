@@ -17,24 +17,40 @@
 		)
 	</insert>
 
-	<select id="selectUser" parameterType="Long" resultType="com.study.metacoding.blog.entity.UserEntity">
-		SELECT			
+	<select id="selectUser" parameterType="java.lang.Integer" resultType="com.study.metacoding.blog.entity.UserEntity">
+		SELECT
+			ID,
 			NAME,
 			PASSWORD,	
 			EMAIL,
-			ROLE
+			ROLE,
+			FRST_REG_DATE,
+			FRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID
 		FROM USER
 		WHERE ID = #{id}
 	</select>
 	
 	<select id="selectAll" resultType="com.study.metacoding.blog.entity.UserEntity">
-		SELECT			
+		SELECT
+			ID,
 			NAME,
 			PASSWORD,	
 			EMAIL,
-			ROLE
+			ROLE,
+			FRST_REG_DATE,
+			FRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID
 		FROM USER
 	</select>
+	
+	<update id="update" parameterType="com.study.metacoding.blog.entity.UserEntity">
+		UPDATE USER
+			SET PASSWORD = #{password}, EMAIL = #{email}, LAST_CHG_DATE = #{lastChgDate}
+		WHERE ID = #{id}
+	</update>
 	
 	<!-- <update id="updateSeq" parameterType="Long">
 		UPDATE BOARD

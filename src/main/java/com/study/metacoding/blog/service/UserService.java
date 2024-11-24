@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.study.common.util.DateFormat;
 import com.study.metacoding.blog.dto.UserDto;
 import com.study.metacoding.blog.entity.UserEntity;
 import com.study.metacoding.blog.repository.UserRepository;
@@ -15,19 +17,20 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Transactional
 public class UserService {
 	private final UserRepository userRepository;
 
 	public int insert(UserDto nUserDto) throws Exception {
 		int row;
-
+		
 		UserEntity userEntity = nUserDto.toUserEntity();
 		row = userRepository.insert(userEntity);
 
 		return row;
 	}
 
-	public UserDto selectUser(long id) throws Exception {
+	public UserDto selectUser(int id) throws Exception {
 		UserEntity userEntity = userRepository.selectUser(id);
 		// log.info("userEntity = " + userEntity);
 		// log.info("userEntity.toString() = " + userEntity.toString());
@@ -45,6 +48,19 @@ public class UserService {
 		}
 
 		return userDtoList;
+	}
+
+	public int update(int id, UserDto nChangeUserDto) throws Exception {
+		int row = -1;
+		
+		UserEntity userEntity = userRepository.selectUser(id);
+		userEntity.setPassword(nChangeUserDto.getPassword());
+		userEntity.setEmail(nChangeUserDto.getEmail());
+		userEntity.setLastChgDate(DateFormat.getFormatString(System.currentTimeMillis(), null));
+		
+		row = userRepository.update(userEntity);
+
+		return row;
 	}
 
 }

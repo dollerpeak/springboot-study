@@ -469,7 +469,7 @@ mybatis =====================================================================
 		id : 각 sql고유 ID
 		parameterType : 입력값, 피키지포함해서 Entity까지 작성
 			#{title} 이런식으로 입력값을 쿼리에 매핑
-		resultType : 출력값, 피키지포함해서 Entity까지 작성 
+		resultType : 출력값, 패키지포함해서 Entity까지 작성 
 		그외 Entity가 아닌 경우 자바타입으로 사용
 			java.util.Hashmap
 			java.lang.String

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -62,6 +63,23 @@ public class UserRestController {
 		}
 
 		return userDtoList;
+	}
+	
+	@PutMapping("/update/{id}")
+	public int update(@PathVariable("id") int nId, @RequestBody UserDto nChangeUserDto) {
+		// password, email 만 변경
+		log.info(nChangeUserDto.toString());
+
+		int row = -1;
+
+		try {
+			row = userService.update(nId, nChangeUserDto);
+			log.info("row = " + row);
+		} catch (Exception e) {
+			log.error("e = " + e.toString());
+		}
+
+		return row;
 	}
 
 }
