@@ -1,5 +1,7 @@
 package com.study.metacoding.blog.repository;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +17,14 @@ public class UserRepository {
 
 	public int insert(UserEntity nUserEntity) {
 		return sqlSessionTemplate.insert(namespace + "insert", nUserEntity);
+	}
+	
+	public UserEntity selectUser(long id) {
+		return sqlSessionTemplate.selectOne(namespace + "selectUser", id);
+	}
+	
+	public List<UserEntity> selectAll() {
+		return sqlSessionTemplate.selectList(namespace + "selectAll");
 	}
 
 }

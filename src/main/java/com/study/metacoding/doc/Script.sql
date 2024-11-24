@@ -5,6 +5,9 @@ database : 공란
 username : root
 password : atdata.1!!
 
+-- use database
+use springstudy
+
 -- database
 show databases
 
@@ -27,11 +30,9 @@ alter user 'atdata'@'%' identified by 'atdata.1!!' -- 패스워드 변경
 -- 권한부여
 show grants for 'atdata'@'%'
 
-grant all privileges on aroundhub.* to 'atdata'@'%' -- database 전체권한
-grant all privileges on aroundhub.tablename to 'atdata'@'%' -- database.tablename 전체권한
-grant select privileges on aroundhub.tablename to 'atdata'@'%' -- database.tablename select권한
-
 grant all privileges on springstudy.* to 'atdata'@'%' -- database 전체권한
+grant all privileges on springstudy.tablename to 'atdata'@'%' -- database.tablename 전체권한
+grant select privileges on springstudy.tablename to 'atdata'@'%' -- database.tablename select권한
 
 -- 권한회수
 revoke delete on aroundhub.* from 'atdata'@'%'
