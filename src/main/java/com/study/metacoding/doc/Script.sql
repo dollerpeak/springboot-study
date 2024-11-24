@@ -107,6 +107,10 @@ select current_timestamp()
 
 select * from user 
 
+update user
+set password = "3456"
+where id = 3
+
 select * from panel
 
 select * from reply
