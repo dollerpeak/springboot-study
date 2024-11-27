@@ -30,8 +30,8 @@ public class UserService {
 		return row;
 	}
 
-	public UserDto selectUser(int id) throws Exception {
-		UserEntity userEntity = userRepository.selectUser(id);
+	public UserDto select(int nId) throws Exception {
+		UserEntity userEntity = userRepository.select(nId);
 		// log.info("userEntity = " + userEntity);
 		// log.info("userEntity.toString() = " + userEntity.toString());
 
@@ -50,15 +50,21 @@ public class UserService {
 		return userDtoList;
 	}
 
-	public int update(int id, UserDto nChangeUserDto) throws Exception {
+	public int update(int nId, UserDto nChangeUserDto) throws Exception {
 		int row = -1;
 		
-		UserEntity userEntity = userRepository.selectUser(id);
+		UserEntity userEntity = userRepository.select(nId);
 		userEntity.setPassword(nChangeUserDto.getPassword());
 		userEntity.setEmail(nChangeUserDto.getEmail());
 		userEntity.setLastChgDate(DateFormat.getFormatString(System.currentTimeMillis(), null));
 		
 		row = userRepository.update(userEntity);
+
+		return row;
+	}
+
+	public int delete(int nId) throws Exception {
+		int row = userRepository.delete(nId);
 
 		return row;
 	}

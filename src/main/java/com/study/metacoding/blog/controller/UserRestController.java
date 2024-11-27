@@ -39,12 +39,12 @@ public class UserRestController {
 		return row;
 	}
 
-	@GetMapping("/selectUser/{id}")
-	public UserDto selectUser(@PathVariable("id") int nId) {
+	@GetMapping("/select/{id}")
+	public UserDto select(@PathVariable("id") int nId) {
 		UserDto userDto = null;
 
 		try {
-			userDto = userService.selectUser(nId);
+			userDto = userService.select(nId);
 		} catch (Exception e) {
 			log.error("e = " + e.toString());
 		}
@@ -53,7 +53,7 @@ public class UserRestController {
 	}
 
 	@GetMapping("/selectAll")
-	public List<UserDto> selectUser() {
+	public List<UserDto> selectAll() {
 		List<UserDto> userDtoList = null;
 
 		try {
@@ -75,6 +75,19 @@ public class UserRestController {
 		try {
 			row = userService.update(nId, nChangeUserDto);
 			log.info("row = " + row);
+		} catch (Exception e) {
+			log.error("e = " + e.toString());
+		}
+
+		return row;
+	}
+
+	@GetMapping("/delete/{id}")
+	public int delete(@PathVariable("id") int nId) {
+		int row = -1;
+
+		try {
+			row = userService.delete(nId);
 		} catch (Exception e) {
 			log.error("e = " + e.toString());
 		}

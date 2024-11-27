@@ -668,6 +668,39 @@
               "entity": {
                 "type": "Request",
                 "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text",
+                  "textBody": "{\n  \"password\" : \"abcd\",\n  \"email\" : \"test@gmail.com\"\n}"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/metacoding/user/delete/5"
+                },
+                "id": "159021cd-cf55-4e04-966a-0a75fb54280c",
+                "name": "3_user_delete",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
                   "requestBody": true,
                   "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
                   "name": "POST"
@@ -679,7 +712,7 @@
                     "items": []
                   },
                   "bodyType": "Text",
-                  "textBody": "{\n  \"name\" : \"banana\",\n  \"password\" : \"3456\",\n  \"email\" : \"banana@gmail.com\",\n  \"role\" : \"USER\"\n}"
+                  "textBody": "{\n  \"name\" : \"cron\",\n  \"password\" : \"asdf\",\n  \"email\" : \"cron@gmail.com\",\n  \"role\" : \"USER\"\n}"
                 },
                 "uri": {
                   "query": {
@@ -730,10 +763,10 @@
                     "version": "V11"
                   },
                   "host": "localhost:8081",
-                  "path": "/metacoding/user/selectAll"
+                  "path": "/metacoding/user/select/1"
                 },
-                "id": "14f530aa-16f0-4249-b373-801c1d5e6c24",
-                "name": "3_user_selectAll",
+                "id": "cf0b12e6-f782-413f-9cfb-9a15dec9a5fe",
+                "name": "3_user_select",
                 "headers": []
               }
             },
@@ -763,10 +796,10 @@
                     "version": "V11"
                   },
                   "host": "localhost:8081",
-                  "path": "/metacoding/user/selectUser/1"
+                  "path": "/metacoding/user/selectAll"
                 },
-                "id": "cf0b12e6-f782-413f-9cfb-9a15dec9a5fe",
-                "name": "3_user_selectUser",
+                "id": "14f530aa-16f0-4249-b373-801c1d5e6c24",
+                "name": "3_user_selectAll",
                 "headers": []
               }
             },
@@ -785,7 +818,7 @@
                     "items": []
                   },
                   "bodyType": "Text",
-                  "textBody": "{\n  \"password\" : \"abcd\",\n  \"email\" : \"banana@gmail.com\"\n}"
+                  "textBody": "{\n  \"password\" : \"abcd\",\n  \"email\" : \"test@gmail.com\"\n}"
                 },
                 "uri": {
                   "query": {
@@ -797,7 +830,7 @@
                     "version": "V11"
                   },
                   "host": "localhost:8081",
-                  "path": "/metacoding/user/update/1"
+                  "path": "/metacoding/user/update/5"
                 },
                 "id": "5a25e1e9-fa37-4535-8086-dcae97eb5e46",
                 "name": "3_user_update",

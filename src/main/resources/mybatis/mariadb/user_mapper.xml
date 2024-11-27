@@ -17,7 +17,7 @@
 		)
 	</insert>
 
-	<select id="selectUser" parameterType="java.lang.Integer" resultType="com.study.metacoding.blog.entity.UserEntity">
+	<select id="select" parameterType="java.lang.Integer" resultType="com.study.metacoding.blog.entity.UserEntity">
 		SELECT
 			ID,
 			NAME,
@@ -52,10 +52,9 @@
 		WHERE ID = #{id}
 	</update>
 	
-	<!-- <update id="updateSeq" parameterType="Long">
-		UPDATE BOARD
-			SET HITS = HITS+1
-		WHERE SEQ = #{seq}
-	</update> -->
+	<update id="delete" parameterType="java.lang.Integer">
+		DELETE FROM USER
+		WHERE ID = #{id}
+	</update>
 	
 </mapper>

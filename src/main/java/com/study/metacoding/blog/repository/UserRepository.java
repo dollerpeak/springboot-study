@@ -19,8 +19,8 @@ public class UserRepository {
 		return sqlSessionTemplate.insert(namespace + "insert", nUserEntity);
 	}
 	
-	public UserEntity selectUser(int id) {
-		return sqlSessionTemplate.selectOne(namespace + "selectUser", id);
+	public UserEntity select(int nId) {
+		return sqlSessionTemplate.selectOne(namespace + "select", nId);
 	}
 	
 	public List<UserEntity> selectAll() {
@@ -29,6 +29,10 @@ public class UserRepository {
 	
 	public int update(UserEntity nUserEntity) {
 		return sqlSessionTemplate.update(namespace + "update", nUserEntity);
+	}
+	
+	public int delete(int nId) {
+		return sqlSessionTemplate.delete(namespace + "delete", nId);
 	}
 
 }
