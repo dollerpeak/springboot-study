@@ -32,6 +32,7 @@ public class UserService {
 
 	public UserDto select(int nId) throws Exception {
 		UserEntity userEntity = userRepository.select(nId);
+		userEntity = null;
 		// log.info("userEntity = " + userEntity);
 		// log.info("userEntity.toString() = " + userEntity.toString());
 

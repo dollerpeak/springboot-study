@@ -28,14 +28,14 @@ spring:
     password: atdata.1!!
     hikari:
       pool-name: HikariPool-${spring.application.name}
-  thymeleaf:
-    prefix: classpath:/templates/thymeleaf
-    suffix: .html
-    cache: false
-  #mvc:
-  #  view:
-  #    prefix: /WEB-INF/views/
-  #    suffix: .jsp
+  #thymeleaf:
+  #  prefix: classpath:/templates/thymeleaf
+  #  suffix: .html
+  #  cache: false
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
 
 
 # log

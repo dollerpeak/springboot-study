@@ -46,13 +46,13 @@
 		</dependency>
 		
 		<!-- thymeleaf -->
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
+		</dependency>-->
 		
 		<!-- JSP -->
-		<!--<dependency>
+		<dependency>
 		    <groupId>org.apache.tomcat.embed</groupId>
 		    <artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
@@ -67,7 +67,7 @@
 		<dependency>
 		    <groupId>org.glassfish.web</groupId>
 		    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-		</dependency>-->
+		</dependency>
 		
 		<!-- DB, logging -->
 		<dependency>

@@ -388,7 +388,16 @@ Cookie, Session ================================================================
 		HttpSession, setAttribute() / getAttribute
 
 
-
+================================================================================
+Exception ===========================================================================
+	@ExceptionHandler
+		클래스에서 발생하는 exception에 대해서 특정 함수가 처리하게 적용
+		@ExceptionHandler(NoSuchElementFoundException.class)
+			이런식으로 특정 exception에 대해서만 처리도 가능
+			패키지도 가능한것으로 알고 있음
+	@ControllerAdvice, @RestControllerAdvice + @ExceptionHandler 형식으로 많이 사용
+		controller에서 발생하는 모든 exception에 대해서 exception별로 @ExceptionHandler 지정해서 
+		사용하는 방식
 
 ================================================================================
 lombok =====================================================================

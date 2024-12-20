@@ -22,6 +22,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserRestController {
 	private final UserService userService;
+	
+//	@Autowired
+//	private HttpServletRequest request;
+//	@Autowired
+//	private HttpServletResponse response;
 
 	@PostMapping("/insert")
 	public int insert(@RequestBody UserDto nUserDto) {
@@ -38,7 +43,46 @@ public class UserRestController {
 
 		return row;
 	}
-
+	
+//	@ExceptionHandler
+//	public ResponseEntity<Map<String, Integer>> errorHandle(Exception e){
+//		log.info("e = " + e.toString());
+//		log.info("e = " + e.getMessage());
+//		log.info("e = " + e.getStackTrace());
+//		for(StackTraceElement ele		:e.getStackTrace()) {
+//			log.info("e = " + ele.toString());
+//		}
+//		
+////		e.getStackTrace().
+//		HttpStatus code = HttpStatus.NOT_FOUND;
+//		log.info("ve = " + code.value());
+//		log.info("ve = " + code.series());
+//		log.info("ve = " + code.getReasonPhrase());
+//
+//		log.info("post::request.getMethod() = " + request.getMethod());
+//		log.info("post::request.getProtocol() = " + request.getProtocol());
+//		log.info("post::request.getScheme() = " + request.getScheme());
+//		log.info("post::request.getRequestURL() = " + request.getRequestURL());
+//		log.info("post::request.getRequestURI() = " + request.getRequestURI());
+//		log.info("post::request.getQueryString() = " + request.getQueryString());
+//
+//		Map<String, Integer> map = new HashMap<>();
+//		map.put("a", 0);
+//		map.put("b", 1);
+//		map.put("c", 2);
+//		return new ResponseEntity<>(map, HttpStatus.OK);
+//	}
+	
+//	@GetMapping("/selectt/{id}")
+//	public UserDto selectt(@PathVariable("id") int nId) {
+//		UserDto userDto = new UserDto();
+//
+//		String str = "a";
+//		int a = Integer.parseInt(str);	
+//		
+//		return userDto;
+//	}
+	
 	@GetMapping("/select/{id}")
 	public UserDto select(@PathVariable("id") int nId) {
 		UserDto userDto = null;
@@ -51,6 +95,27 @@ public class UserRestController {
 
 		return userDto;
 	}
+
+//	@GetMapping("/select/{id}")
+//	public UserDto select(@PathVariable("id") int nId) throws Exception {
+//		UserDto userDto = null;
+//
+////		try {
+//			userDto = userService.select(nId);
+////		} catch (Exception e) {
+////			log.error("e = " + e.toString());
+////		}
+//		
+////		ResponseEntity<HttpStatus> entity = new ResponseEntity<>(HttpStatus.OK);
+////		log.info("entity = " + entity.toString());
+////		HttpHeaders header = new HttpHeaders();
+////		log.info("header = " + header.toString());
+//			
+//		String str = "a";
+//		int a = Integer.parseInt(str);
+//
+//		return userDto;
+//	}
 
 	@GetMapping("/selectAll")
 	public List<UserDto> selectAll() {
