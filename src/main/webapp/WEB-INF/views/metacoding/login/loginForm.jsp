@@ -7,22 +7,18 @@
 <div class="container">
 	<form>
 		<div class="form-group">
-			<label for="email">Name:</label> <input type="text"
+			<label for="name">Name:</label> <input type="text"
 				class="form-control" placeholder="Enter name" id="name">
 		</div>
 		<div class="form-group">
 			<label for="password">Password:</label> <input type="password"
 				class="form-control" placeholder="Enter password" id="password">
 		</div>
-		<div class="form-group">
-			<label for="email">Email:</label> <input type="email"
-				class="form-control" placeholder="Enter email" id="email">
-		</div>
 	</form>
-	<button id="btn-join" class="btn btn-primary">회원가입</button>
+	<button id="btn-login" class="btn btn-primary">로그인</button>
 </div>
 
-<!-- <script src="../js/join.jsp"></script> -->
+<script src="/js/metacoding/login/login.js"></script>
 <%@ include file="../layout/footer.jsp"%>
 
 
