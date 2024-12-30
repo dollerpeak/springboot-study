@@ -1,5 +1,6 @@
 package com.study.metacoding.blog.join.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,9 @@ import com.study.common.ResultData;
 import com.study.metacoding.blog.dto.UserDto;
 import com.study.metacoding.blog.join.service.JoinService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,10 +24,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JoinController {
 	private final JoinService joinService;
+	
+	@Autowired
+	HttpSession nHttpSession;
+	@Autowired
+	HttpServletRequest nHttpServletRequest;
+	@Autowired
+	HttpServletResponse nHttpServletResponse;
 
 	@GetMapping("/joinForm")
 	public String login() {
-		log.info("joinForm");
+		log.info("joinForm = " + nHttpSession.getAttribute("principal"));
 		return "/metacoding/join/joinForm";
 	}
 	
@@ -34,7 +45,7 @@ public class JoinController {
 
 		try {
 			log.info("nUserDto = " + nUserDto);
-			resultData = joinService.insertUser(nUserDto);
+			resultData = joinService.insertUser(nUserDto);			
 		} catch (Exception e) {
 			log.error("e = " + e.toString());
 		}

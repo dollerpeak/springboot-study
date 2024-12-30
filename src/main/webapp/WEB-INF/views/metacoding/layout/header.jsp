@@ -28,27 +28,30 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
-			<ul class="navbar-nav">
+			<!-- <ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="/">Main</a></li>
 				<li class="nav-item"><a class="nav-link" href="/metacoding/login/loginForm">로그인</a></li>
 				<li class="nav-item"><a class="nav-link" href="/metacoding/join/joinForm">회원가입</a></li>
-			</ul>
+			</ul> -->
+			
+			 <c:out value="${sessionScope.attributeName}" />
 			
 			<!-- 세션이 있을때와 없을때 처리 -->
 			<c:choose>
-				<!-- <c:when test="${empty sessionScope.principal}"> -->
-				<c:when test="${empty principal}">
-					<!-- <ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="/auth/loginForm">로그인</a></li>
-						<li class="nav-item"><a class="nav-link" href="/auth/joinForm">회원가입</a></li>
-					</ul> -->
+				<c:when test="${empty sessionScope.principal}">
+				<%-- <c:when test="${empty principal}"> --%>
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link" href="/metacoding/login/loginForm">로그인</a></li>
+						<li class="nav-item"><a class="nav-link" href="/metacoding/join/joinForm">회원가입</a></li>
+					</ul>
 				</c:when>
 				<c:otherwise>
-					<!-- <ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="/board/saveForm">글쓰기</a></li>
+					<ul class="navbar-nav">
+						<!-- <li class="nav-item"><a class="nav-link" href="/board/saveForm">글쓰기</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/updateForm">회원정보</a></li>
-						<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-					</ul> -->
+						<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li> -->
+						<li class="nav-item"><a class="nav-link" href="/metacoding/join/joinForm">회원가입</a></li>
+					</ul>
 				</c:otherwise>
 			</c:choose>
 			

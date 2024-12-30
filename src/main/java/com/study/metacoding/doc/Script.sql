@@ -106,6 +106,7 @@ commit
 select current_timestamp()
 
 select * from user 
+order by id desc
 
 update user
 set password = "3456"

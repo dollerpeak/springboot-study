@@ -2,6 +2,7 @@ package com.study.metacoding.blog.login.controller;
 
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Enumeration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,14 +46,30 @@ public class LoginController {
 	@ResponseBody
 	public ResultData login(@RequestBody UserDto nUserDto) {
 		ResultData resultData = new ResultData(ResultData.CODE_SUCCESS, null, null);
+		UserDto resultDto;
 
 		try {
 			log.info("nUserDto = " + nUserDto);
 			resultData = loginService.selectUser(nUserDto);
+			log.info("resultData = " + resultData.toString());
+			resultDto = (UserDto) resultData.getData().get(ResultData.TYPE_OBJECT);
+			log.info("resultData = " + resultDto.getId());
+						
+			if(resultData.getData() != null) {
+				nHttpSession.setAttribute("principal", resultDto.getId());
+				nHttpSession.setMaxInactiveInterval(30);
+				log.info("session make");
+			}
 			
-			if(nUserDto != null) {
-				nHttpSession.setAttribute("principal", nUserDto);
-			}			
+			
+			log.info("session = " + nHttpSession.getAttribute("principal"));
+//			nHttpSession.invalidate();
+			
+			Enumeration<String> a = nHttpSession.getAttributeNames();
+			while(a.hasMoreElements()) {
+				log.info("session value = " + a.nextElement().toString());
+			}
+			
 			
 		} catch (Exception e) {
 			log.error("e = " + e.toString());
