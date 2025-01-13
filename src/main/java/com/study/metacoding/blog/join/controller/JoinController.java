@@ -1,5 +1,7 @@
 package com.study.metacoding.blog.join.controller;
 
+import java.util.Enumeration;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +36,8 @@ public class JoinController {
 
 	@GetMapping("/joinForm")
 	public String login() {
-		log.info("joinForm = " + nHttpSession.getAttribute("principal"));
+		//log.info("joinForm = " + nHttpSession.getAttribute("principal"));
+		log.info("joinForm");
 		return "/metacoding/join/joinForm";
 	}
 	
@@ -42,10 +45,29 @@ public class JoinController {
 	@ResponseBody
 	public ResultData join(@RequestBody UserDto nUserDto) {
 		ResultData resultData = new ResultData(ResultData.CODE_SUCCESS, null, null);
+		UserDto resultDto;
 
 		try {
 			log.info("nUserDto = " + nUserDto);
-			resultData = joinService.insertUser(nUserDto);			
+			resultData = joinService.insertUser(nUserDto);
+			resultDto = (UserDto) resultData.getData().get(ResultData.TYPE_OBJECT);
+			log.info("resultDto.getId() = " + resultDto.getId());
+
+			if (resultData.getData() != null) {
+				nHttpSession.setAttribute("principal", resultDto.getId());
+				nHttpSession.setMaxInactiveInterval(30);
+
+				log.info("session make, resultDto.getId()");
+				log.info("nHttpSession.getMaxInactiveInterval() = " + nHttpSession.getMaxInactiveInterval());
+			}
+			log.info("session = " + nHttpSession.getAttribute("principal"));
+			//log.info("nHttpSession.getCreationTime() = " + nHttpSession.getCreationTime());
+			//log.info("nHttpSession.getLastAccessedTime() = " + nHttpSession.getLastAccessedTime());
+
+			//Enumeration<String> session = nHttpSession.getAttributeNames();
+			//while (session.hasMoreElements()) {
+			//	log.info("session.nextElement() = " + session.nextElement().toString());
+			//}
 		} catch (Exception e) {
 			log.error("e = " + e.toString());
 		}

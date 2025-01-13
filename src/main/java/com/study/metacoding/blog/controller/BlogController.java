@@ -1,18 +1,42 @@
 package com.study.metacoding.blog.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.study.common.util.DateFormat;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/metacoding")
 @Slf4j
 public class BlogController {
+	
+	@Autowired
+	HttpSession nHttpSession;
+	@Autowired
+	HttpServletRequest nHttpServletRequest;
+	@Autowired
+	HttpServletResponse nHttpServletResponse;
 
 	@GetMapping("/home")
-	public String home() {		
+	public String home() {
+		
+		if(nHttpSession.getAttribute("principal") != null) {			
+			log.info("session principal = " + nHttpSession.getAttribute("principal"));
+			
+			//log.info("nHttpSession.getMaxInactiveInterval() = " + nHttpSession.getMaxInactiveInterval());
+			//log.info("nHttpSession.getCreationTime() = " + DateFormat.getFormatString(nHttpSession.getCreationTime(), null));
+			//log.info("nHttpSession.getLastAccessedTime() = " + DateFormat.getFormatString(nHttpSession.getLastAccessedTime(), null));
+		} else {
+			log.info("session principal is null");
+		}
+
 		return "/metacoding/home";
 	}
 	

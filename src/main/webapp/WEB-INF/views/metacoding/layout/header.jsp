@@ -48,10 +48,9 @@
 				</c:when>
 				<c:otherwise>
 					<ul class="navbar-nav">
-						<!-- <li class="nav-item"><a class="nav-link" href="/board/saveForm">글쓰기</a></li>
-						<li class="nav-item"><a class="nav-link" href="/user/updateForm">회원정보</a></li>
-						<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li> -->
-						<li class="nav-item"><a class="nav-link" href="/metacoding/join/joinForm">회원가입</a></li>
+						<li class="nav-item"><a class="nav-link" href="/metacoding/panel/panelForm">글쓰기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/metacoding/user/userForm">회원정보</a></li>
+						<li class="nav-item"><a class="nav-link" href="/metacoding/logout">로그아웃</a></li>
 					</ul>
 				</c:otherwise>
 			</c:choose>

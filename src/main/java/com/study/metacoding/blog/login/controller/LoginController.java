@@ -51,26 +51,25 @@ public class LoginController {
 		try {
 			log.info("nUserDto = " + nUserDto);
 			resultData = loginService.selectUser(nUserDto);
-			log.info("resultData = " + resultData.toString());
+			log.info("resultData.toString() = " + resultData.toString());
 			resultDto = (UserDto) resultData.getData().get(ResultData.TYPE_OBJECT);
-			log.info("resultData = " + resultDto.getId());
+			log.info("resultDto.getId() = " + resultDto.getId());
 						
 			if(resultData.getData() != null) {
 				nHttpSession.setAttribute("principal", resultDto.getId());
 				nHttpSession.setMaxInactiveInterval(30);
-				log.info("session make");
+				
+				log.info("session make, resultDto.getId()");
+				log.info("nHttpSession.getMaxInactiveInterval() = " + nHttpSession.getMaxInactiveInterval());				
 			}
-			
-			
 			log.info("session = " + nHttpSession.getAttribute("principal"));
-//			nHttpSession.invalidate();
+			//log.info("nHttpSession.getCreationTime() = " + nHttpSession.getCreationTime());
+			//log.info("nHttpSession.getLastAccessedTime() = " + nHttpSession.getLastAccessedTime());
 			
-			Enumeration<String> a = nHttpSession.getAttributeNames();
-			while(a.hasMoreElements()) {
-				log.info("session value = " + a.nextElement().toString());
-			}
-			
-			
+			//Enumeration<String> session = nHttpSession.getAttributeNames();
+			//while(session.hasMoreElements()) {
+			//	log.info("session.nextElement() = " + session.nextElement().toString());
+			//}
 		} catch (Exception e) {
 			log.error("e = " + e.toString());
 		}
