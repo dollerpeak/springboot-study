@@ -59,6 +59,7 @@ $(function() {
 						alert(response.message);
 						
 						location.href = "/metacoding/home";
+						//location.href = "http://localhost:8082/receiver";						
 					}
 				}).fail(function(error) {
 					console.log("fail = ", JSON.stringify(error));

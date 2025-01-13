@@ -22,7 +22,8 @@
 <body>
 
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-		<a class="navbar-brand" href="/metacoding/home">metacoding</a>
+		<a class="navbar-brand" href="/">Main</a>
+		<a class="navbar-brand" href="/metacoding/home">Metacoding</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
