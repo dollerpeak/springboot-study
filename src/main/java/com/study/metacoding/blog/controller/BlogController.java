@@ -27,15 +27,17 @@ public class BlogController {
 	@GetMapping("/home")
 	public String home() {
 		
-		if(nHttpSession.getAttribute("principal") != null) {			
-			log.info("session principal = " + nHttpSession.getAttribute("principal"));
-			
-			//log.info("nHttpSession.getMaxInactiveInterval() = " + nHttpSession.getMaxInactiveInterval());
-			//log.info("nHttpSession.getCreationTime() = " + DateFormat.getFormatString(nHttpSession.getCreationTime(), null));
-			//log.info("nHttpSession.getLastAccessedTime() = " + DateFormat.getFormatString(nHttpSession.getLastAccessedTime(), null));
-		} else {
-			log.info("session principal is null");
-		}
+//		if(nHttpSession.getAttribute("principal") != null) {			
+//			log.info("session principal = " + nHttpSession.getAttribute("principal"));
+//			
+//			//log.info("nHttpSession.getMaxInactiveInterval() = " + nHttpSession.getMaxInactiveInterval());
+//			//log.info("nHttpSession.getCreationTime() = " + DateFormat.getFormatString(nHttpSession.getCreationTime(), null));
+//			//log.info("nHttpSession.getLastAccessedTime() = " + DateFormat.getFormatString(nHttpSession.getLastAccessedTime(), null));
+//		} else {
+//			log.info("session principal is null");
+//		}
+		
+		log.info("======= BlogController");
 
 		return "/metacoding/home";
 	}
