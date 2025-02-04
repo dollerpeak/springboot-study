@@ -1,9 +1,5 @@
 package com.study.metacoding.blog.login.controller;
 
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.Enumeration;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,11 +19,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/metacoding/login")
+@RequestMapping("/metacoding/auth/login")
 @RequiredArgsConstructor
 @Slf4j
 public class LoginController {
-	private final LoginService loginService;
+	private final LoginService loginService;;
 	
 	@Autowired
 	HttpSession nHttpSession;
@@ -35,6 +31,8 @@ public class LoginController {
 	HttpServletRequest nHttpServletRequest;
 	@Autowired
 	HttpServletResponse nHttpServletResponse;
+	
+	
 
 	@GetMapping("/loginForm")
 	public String login() {		
@@ -76,6 +74,32 @@ public class LoginController {
 //
 //		return resultData;
 //	}
+	
+//	@PostMapping("/login")
+//	@ResponseBody
+//	public ResultData login(@RequestBody UserDto nUserDto) {
+//		ResultData resultData = new ResultData(ResultData.CODE_SUCCESS, null, null);
+//		UserDto resultDto;
+//
+//		try {
+//			log.info("nUserDto = " + nUserDto);
+//			resultData = loginService.selectUser(nUserDto);
+//			log.info("resultData.toString() = " + resultData.toString());
+//			resultDto = (UserDto) resultData.getData().get(ResultData.TYPE_OBJECT);
+//			log.info("resultDto.getId() = " + resultDto.getId());			
+//		} catch (Exception e) {
+//			log.error("e = " + e.toString());
+//		}
+//
+//		return resultData;
+//	}
+	
+	@GetMapping("/logout")
+	public String logout() {		
+		log.info("logout");
+		//return "/metacoding/home";
+		return "/home";
+	}
 	
 	
 	

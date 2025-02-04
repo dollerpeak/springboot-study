@@ -9,7 +9,7 @@
 //	console.log(">>> 0.document.ready");
 //	//console.log("g_value = ", gValue);
 //})
-
+//
 $(function() {
 	console.log(">>> 1.function");
 
@@ -44,7 +44,7 @@ $(function() {
 				$.ajax({
 					type: "POST",
 					//url: "/metacoding/login/rest/login",
-					url: "/metacoding/login/login",
+					url: "/metacoding/auth/login/login",
 					data: JSON.stringify(loginData),
 					contentType: "application/json; charset=utf-8", // 요청데이터 형식
 					dataType: "json" // 응답데이터 형식

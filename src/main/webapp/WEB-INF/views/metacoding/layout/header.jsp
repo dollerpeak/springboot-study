@@ -3,12 +3,13 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<sec:authorize access="!isAuthenticated()">
+<sec:authorize access="!isAuthenticated()">  
+  <!-- 로그인 가능 -->
+</sec:authorize>
+<sec:authorize access="isAuthenticated()">
+  <!-- 로그인된 사용자, 로그아웃 가능 -->
   <sec:authentication property="principal" var="principal"/>
 </sec:authorize>
-<%-- <sec:authorize access="isAuthenticated()">
-  Logout
-</sec:authorize> --%>
 
 <!DOCTYPE html>
 
@@ -29,7 +30,7 @@
 
 </head>
 <body>
-	<h6>principal = ${principal}</h6>
+	<h6>principal ==> ${principal}</h6>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
 		<a class="navbar-brand" href="/">Main</a>
 		<a class="navbar-brand" href="/metacoding/home">Metacoding</a>
@@ -51,15 +52,15 @@
 				<%-- <c:when test="${empty sessionScope.principal}"> --%>
 				<c:when test="${empty principal}">
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="/metacoding/login/loginForm">로그인</a></li>
-						<li class="nav-item"><a class="nav-link" href="/metacoding/join/joinForm">회원가입</a></li>
+						<li class="nav-item"><a class="nav-link" href="/metacoding/auth/login/loginForm">로그인</a></li>
+						<li class="nav-item"><a class="nav-link" href="/metacoding/auth/join/joinForm">회원가입</a></li>
 					</ul>
 				</c:when>
 				<c:otherwise>
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link" href="/metacoding/panel/panelForm">글쓰기</a></li>
 						<li class="nav-item"><a class="nav-link" href="/metacoding/user/userForm">회원정보</a></li>
-						<li class="nav-item"><a class="nav-link" href="/metacoding/logout">로그아웃</a></li>
+						<li class="nav-item"><a class="nav-link" href="/metacoding/login/logout">로그아웃</a></li>
 					</ul>
 				</c:otherwise>
 			</c:choose>

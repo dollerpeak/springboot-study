@@ -1,7 +1,5 @@
 package com.study.metacoding.blog.join.controller;
 
-import java.util.Enumeration;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/metacoding/join")
+@RequestMapping("/metacoding/auth/join")
 @RequiredArgsConstructor
 @Slf4j
 public class JoinController {

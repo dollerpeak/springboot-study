@@ -5,8 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.study.common.util.DateFormat;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -37,7 +35,7 @@ public class BlogController {
 //			log.info("session principal is null");
 //		}
 		
-		log.info("======= BlogController");
+		log.info("======= 1234 BlogController");
 
 		return "/metacoding/home";
 	}

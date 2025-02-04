@@ -47,7 +47,7 @@ $(function() {
 
 				$.ajax({
 					type: "POST",
-					url: "/metacoding/join/join",
+					url: "/metacoding/auth/join/join",
 					data: JSON.stringify(joinData),
 					contentType: "application/json; charset=utf-8", // 요청데이터 형식
 					dataType: "json" // 응답데이터 형식

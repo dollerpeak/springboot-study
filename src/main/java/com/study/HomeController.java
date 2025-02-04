@@ -11,7 +11,7 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String home() {		
-		log.info("======= HomeController");
+		log.info("======= 1234 HomeController");
 		return "/home";
 	}
 	

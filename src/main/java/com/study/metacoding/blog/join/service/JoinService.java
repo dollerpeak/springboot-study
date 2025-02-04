@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JoinService {
 	private final JoinRepository joinRepository;
+	private final BCryptPasswordEncoder encodePassword;
 
 	public ResultData insertUser(UserDto nUserDto) throws Exception {
 		ResultData resultData = new ResultData(ResultData.CODE_SUCCESS, null, null);
@@ -41,6 +43,7 @@ public class JoinService {
 		} else {
 			// 신규유저
 			nUserDto.setRole(RoleType.USER.name());
+			nUserDto.setPassword(encodePassword.encode(nUserDto.getPassword()));
 			userEntity = nUserDto.toUserEntity();
 			List<UserEntity> userEntityList = new ArrayList<>();
 			

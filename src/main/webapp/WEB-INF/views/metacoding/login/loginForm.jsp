@@ -5,7 +5,8 @@
 <%@ include file="../layout/header.jsp"%>
 
 <div class="container">
-	<form action="#" method="post">
+	<!-- <form action="#" method="post"> -->
+	<form action="/metacoding/auth/login/login" method="post">	
 		<div class="form-group">
 			<label for="name">Name:</label> 
 			<input type="text" name="name" class="form-control" placeholder="Enter name" id="name">
