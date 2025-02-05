@@ -26,4 +26,20 @@
 		AND PASSWORD = #{password}
 	</select>
 	
+	<!-- spring security -->
+	<select id="selectUserName" parameterType="com.study.metacoding.blog.entity.UserEntity" resultType="com.study.metacoding.blog.entity.UserEntity">
+		SELECT
+			ID,
+			NAME,
+			PASSWORD,	
+			EMAIL,
+			ROLE,
+			FRST_REG_DATE,
+			FRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID
+		FROM USER
+		WHERE NAME = #{name}
+	</select>
+	
 </mapper>

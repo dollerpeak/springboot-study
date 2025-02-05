@@ -1,6 +1,8 @@
 package com.study.metacoding.blog.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +25,7 @@ public class BlogController {
 	HttpServletResponse nHttpServletResponse;
 
 	@GetMapping("/home")
-	public String home() {
+	public String home(@AuthenticationPrincipal UserDetails nUserDetails) {
 		
 //		if(nHttpSession.getAttribute("principal") != null) {			
 //			log.info("session principal = " + nHttpSession.getAttribute("principal"));
@@ -36,6 +38,7 @@ public class BlogController {
 //		}
 		
 		log.info("======= 1234 BlogController");
+		log.info("nUserDetails = " + nUserDetails.toString());
 
 		return "/metacoding/home";
 	}

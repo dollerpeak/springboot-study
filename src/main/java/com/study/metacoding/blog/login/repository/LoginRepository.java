@@ -21,4 +21,8 @@ public class LoginRepository {
 		return sqlSessionTemplate.selectOne(namespace + "selectUser", nUserEntity);
 	}
 	
+	public UserEntity selectUserName(UserEntity nUserEntity) {
+		return sqlSessionTemplate.selectOne(namespace + "selectUserName", nUserEntity);
+	}
+	
 }

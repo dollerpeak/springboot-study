@@ -6,7 +6,7 @@
 
 <div class="container">
 	<!-- <form action="#" method="post"> -->
-	<form action="/metacoding/auth/login/login" method="post">	
+	<form action="/metacoding/auth/loginProc" method="post">	
 		<div class="form-group">
 			<label for="name">Name:</label> 
 			<input type="text" name="name" class="form-control" placeholder="Enter name" id="name">
@@ -15,8 +15,8 @@
 			<label for="password">Password:</label> 
 			<input type="password" name="password" class="form-control" placeholder="Enter password" id="password">
 		</div>
-	</form>
 	<button id="btn-login" class="btn btn-primary">로그인</button>
+	</form>	
 </div>
 
 <!-- <script src="/js/metacoding/login/login.js"></script> -->

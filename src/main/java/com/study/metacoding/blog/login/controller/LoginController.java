@@ -3,13 +3,8 @@ package com.study.metacoding.blog.login.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.study.common.ResultData;
-import com.study.metacoding.blog.dto.UserDto;
 import com.study.metacoding.blog.login.service.LoginService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,8 +26,6 @@ public class LoginController {
 	HttpServletRequest nHttpServletRequest;
 	@Autowired
 	HttpServletResponse nHttpServletResponse;
-	
-	
 
 	@GetMapping("/loginForm")
 	public String login() {		
