@@ -1,6 +1,7 @@
-package com.study.metacoding.blog.dto;
+package com.study.metacoding.blog.user.dto;
 
-import com.study.metacoding.blog.entity.UserEntity;
+
+import com.study.metacoding.blog.user.entity.UserEntity;
 
 import lombok.Data;
 

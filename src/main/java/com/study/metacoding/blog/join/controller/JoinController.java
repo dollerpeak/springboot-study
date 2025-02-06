@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.study.common.ResultData;
-import com.study.metacoding.blog.dto.UserDto;
 import com.study.metacoding.blog.join.service.JoinService;
+import com.study.metacoding.blog.user.dto.UserDto;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

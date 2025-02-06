@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.study.common.ResultData;
-import com.study.metacoding.blog.dto.UserDto;
-import com.study.metacoding.blog.entity.UserEntity;
 import com.study.metacoding.blog.login.repository.LoginRepository;
+import com.study.metacoding.blog.user.dto.UserDto;
+import com.study.metacoding.blog.user.entity.UserEntity;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -70,7 +70,7 @@ public class LoginService {
 			if (userEntity != null) {
 				resultMap.put(ResultData.TYPE_OBJECT, userEntity.toUserDto());
 				resultData.setData(resultMap);
-				resultData.setMessage("spring security, 로그인 성공");
+				resultData.setMessage("spring security, 로그인확인, name 판단 성공");
 				
 				log.info("userEntity.toUserDto() = " + userEntity.toUserDto());
 			} else {

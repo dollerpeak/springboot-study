@@ -1,3 +1,4 @@
+package com.study.metacoding.blog.user.controller;
 //package com.study.metacoding.blog.controller;
 //
 //import org.springframework.stereotype.Controller;

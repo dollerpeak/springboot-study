@@ -3,14 +3,14 @@
 
 <mapper namespace="com.study.metacoding.blog.join">
 
-	<select id="selectNameCount" parameterType="com.study.metacoding.blog.entity.UserEntity" resultType="java.lang.Integer">
+	<select id="selectNameCount" parameterType="com.study.metacoding.blog.user.entity.UserEntity" resultType="java.lang.Integer">
 		SELECT
 			COUNT(*)
 		FROM USER
 		WHERE NAME = #{name}
 	</select>
 	
-	<insert id="insertUser" parameterType="com.study.metacoding.blog.entity.UserEntity">
+	<insert id="insertUser" parameterType="com.study.metacoding.blog.user.entity.UserEntity">
 		INSERT INTO USER (			
 			NAME,
 			PASSWORD,	
@@ -24,7 +24,7 @@
 		)
 	</insert>
 	
-	<select id="selectUser" parameterType="com.study.metacoding.blog.entity.UserEntity" resultType="com.study.metacoding.blog.entity.UserEntity">
+	<select id="selectUser" parameterType="com.study.metacoding.blog.user.entity.UserEntity" resultType="com.study.metacoding.blog.user.entity.UserEntity">
 		SELECT
 			ID,
 			NAME,

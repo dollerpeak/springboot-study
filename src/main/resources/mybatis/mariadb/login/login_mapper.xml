@@ -3,14 +3,14 @@
 
 <mapper namespace="com.study.metacoding.blog.login">
 
-	<select id="selectNameCount" parameterType="com.study.metacoding.blog.entity.UserEntity" resultType="java.lang.Integer">
+	<select id="selectNameCount" parameterType="com.study.metacoding.blog.user.entity.UserEntity" resultType="java.lang.Integer">
 		SELECT
 			COUNT(*)
 		FROM USER
 		WHERE NAME = #{name}
 	</select>
 	
-	<select id="selectUser" parameterType="com.study.metacoding.blog.entity.UserEntity" resultType="com.study.metacoding.blog.entity.UserEntity">
+	<select id="selectUser" parameterType="com.study.metacoding.blog.user.entity.UserEntity" resultType="com.study.metacoding.blog.user.entity.UserEntity">
 		SELECT
 			ID,
 			NAME,
@@ -27,7 +27,7 @@
 	</select>
 	
 	<!-- spring security -->
-	<select id="selectUserName" parameterType="com.study.metacoding.blog.entity.UserEntity" resultType="com.study.metacoding.blog.entity.UserEntity">
+	<select id="selectUserName" parameterType="com.study.metacoding.blog.user.entity.UserEntity" resultType="com.study.metacoding.blog.user.entity.UserEntity">
 		SELECT
 			ID,
 			NAME,

@@ -1,4 +1,4 @@
-package com.study.metacoding.blog.service;
+package com.study.metacoding.blog.user.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.study.common.util.DateFormat;
-import com.study.metacoding.blog.dto.UserDto;
-import com.study.metacoding.blog.entity.UserEntity;
-import com.study.metacoding.blog.repository.UserRepository;
+import com.study.metacoding.blog.user.dto.UserDto;
+import com.study.metacoding.blog.user.entity.UserEntity;
+import com.study.metacoding.blog.user.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

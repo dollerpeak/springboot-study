@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.study.metacoding.blog.entity.PanelEntity">
+<mapper namespace="com.study.metacoding.blog.panel">
 
-	<insert id="insert" parameterType="com.study.metacoding.blog.entity.PanelEntity">
+	<insert id="insert" parameterType="com.study.metacoding.blog.panel.entity.PanelEntity">
 		INSERT INTO PANEL (			
+			TITLE,
+			CONTENTS,	
+			HITS,
+			USER_ID
+		) VALUES (
+			#{title},
+			#{contents},	
+			#{hits},
+			#{userId}
+		)
+	</insert>
+	
+	<select id="selectMaxId" resultType="java.lang.Integer">
+		SELECT
+			MAX(ID) 
+		FROM PANEL
+	</select>
+	
+	<select id="select" parameterType="java.lang.Integer" resultType="com.study.metacoding.blog.panel.entity.PanelEntity">
+		SELECT
+			ID,
 			TITLE,
 			CONTENTS,	
 			HITS,
@@ -13,17 +34,9 @@
 			FRST_REG_USER_ID,
 			LAST_CHG_DATE,
 			LAST_CHG_USER_ID
-		) VALUES (
-			#{title},
-			#{contents},	
-			#{hits},
-			#{userId},
-			#{frstRegDate},
-			#{frstRegUserId},
-			#{lastChgDate},
-			#{lastChgUserId}
-		)
-	</insert>
+		FROM PANEL
+		WHERE ID = #{id}
+	</select>
 	
 	<!-- <select id="selectAll" resultType="com.study.codingrecipe.board.entity.BoardEntity">
 		SELECT
@@ -47,19 +60,6 @@
 		WHERE SEQ = #{seq}
 	</update> -->
 	
-	<!-- <select id="selectSeq" parameterType="Long" resultType="com.study.codingrecipe.board.entity.BoardEntity">
-		SELECT
-			SEQ,
-			TITLE,
-			CONTENTS,
-			PASSWORD,	
-			HITS,
-			FRST_REG_DATE,
-			FRST_REG_USER_ID,
-			LAST_CHG_DATE,
-			LAST_CHG_USER_ID 
-		FROM BOARD
-		WHERE SEQ = #{seq}
-	</select> -->
+	
 	
 </mapper>

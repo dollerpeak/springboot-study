@@ -33,6 +33,7 @@ public class LoginController {
 		return "/metacoding/login/loginForm";
 	}
 	
+	// session 이용
 //	@PostMapping("/login")
 //	@ResponseBody
 //	public ResultData login(@RequestBody UserDto nUserDto) {
@@ -67,34 +68,5 @@ public class LoginController {
 //
 //		return resultData;
 //	}
-	
-//	@PostMapping("/login")
-//	@ResponseBody
-//	public ResultData login(@RequestBody UserDto nUserDto) {
-//		ResultData resultData = new ResultData(ResultData.CODE_SUCCESS, null, null);
-//		UserDto resultDto;
-//
-//		try {
-//			log.info("nUserDto = " + nUserDto);
-//			resultData = loginService.selectUser(nUserDto);
-//			log.info("resultData.toString() = " + resultData.toString());
-//			resultDto = (UserDto) resultData.getData().get(ResultData.TYPE_OBJECT);
-//			log.info("resultDto.getId() = " + resultDto.getId());			
-//		} catch (Exception e) {
-//			log.error("e = " + e.toString());
-//		}
-//
-//		return resultData;
-//	}
-	
-	@GetMapping("/logout")
-	public String logout() {		
-		log.info("logout");
-		//return "/metacoding/home";
-		return "/home";
-	}
-	
-	
-	
 	
 }

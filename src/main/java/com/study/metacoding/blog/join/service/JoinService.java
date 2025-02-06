@@ -11,9 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.study.common.ResultData;
 import com.study.common.RoleType;
-import com.study.metacoding.blog.dto.UserDto;
-import com.study.metacoding.blog.entity.UserEntity;
 import com.study.metacoding.blog.join.repository.JoinRepository;
+import com.study.metacoding.blog.user.dto.UserDto;
+import com.study.metacoding.blog.user.entity.UserEntity;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +43,7 @@ public class JoinService {
 		} else {
 			// 신규유저
 			nUserDto.setRole(RoleType.USER.name());
+			// security 처리하는 암호화 모듈 적용
 			nUserDto.setPassword(passwordEncoder.encode(nUserDto.getPassword()));
 			userEntity = nUserDto.toUserEntity();
 			List<UserEntity> userEntityList = new ArrayList<>();

@@ -1,6 +1,6 @@
-package com.study.metacoding.blog.dto;
+package com.study.metacoding.blog.panel.dto;
 
-import com.study.metacoding.blog.entity.PanelEntity;
+import com.study.metacoding.blog.panel.entity.PanelEntity;
 
 import lombok.Data;
 
