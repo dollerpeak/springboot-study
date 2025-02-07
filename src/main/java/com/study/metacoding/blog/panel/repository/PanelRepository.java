@@ -1,5 +1,7 @@
 package com.study.metacoding.blog.panel.repository;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -23,6 +25,10 @@ public class PanelRepository {
 	
 	public PanelEntity select(int nId) {
 		return sqlSessionTemplate.selectOne(namespace + "select", nId);
+	}
+
+	public List<PanelEntity> selectAll() {
+		return sqlSessionTemplate.selectList(namespace + "selectAll");
 	}
 
 }

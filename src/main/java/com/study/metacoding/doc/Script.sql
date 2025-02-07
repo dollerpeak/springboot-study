@@ -118,11 +118,12 @@ where id = 3
 
 select * from panel
 
+alter table panel modify contents longblob  
 
 
 select * from reply
 
-
+commit
 
 
 

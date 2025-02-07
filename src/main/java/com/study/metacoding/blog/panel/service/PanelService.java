@@ -1,6 +1,8 @@
 package com.study.metacoding.blog.panel.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -30,9 +32,12 @@ public class PanelService {
 		
 		UserEntity userEntity;
 		int count = 0;
-		PanelEntity nPanelEntity;
+		PanelEntity panelEntity;
 		int row = 0; 		
 		int maxid = 0;
+		List<PanelEntity> panelEntityList = new ArrayList<>();
+		int i;
+		List<PanelDto> panelDtoList = new ArrayList<>();
 		
 		userEntity = new UserEntity();
 		userEntity.setName(nUserName);
@@ -42,21 +47,28 @@ public class PanelService {
 		if (count > 0) {
 			userEntity = userRepository.selectUserName(userEntity);
 			log.info("userEntity = " + userEntity);
-			nPanelDto.setUserId(userEntity.getId());
-			log.info("nPanelDto = " + nPanelDto);
-			nPanelEntity = nPanelDto.toPanelEntity();
-			log.info("nPanelEntity = " + nPanelEntity);
 			
-			row = panelRepository.insert(nPanelEntity);
+			nPanelDto.setUserId(userEntity.getId());
+			log.info("nPanelDto.getTitle() = " + nPanelDto.getTitle());
+			
+			panelEntity = nPanelDto.toPanelEntity();
+			log.info("panelEntity.getTitle() = " + panelEntity.getTitle());
+			
+			row = panelRepository.insert(panelEntity);
 			log.info("row = " + row);
 			
-			maxid = panelRepository.selectMaxId();
-			log.info("maxid = " + maxid);
+//			maxid = panelRepository.selectMaxId();
+//			log.info("maxid = " + maxid);
 			
-			nPanelEntity = panelRepository.select(maxid);
-			log.info("nPanelEntity = " + nPanelEntity);
+//			panelEntity = panelRepository.select(maxid);
+//			log.info("panelEntity.getTitle() = " + panelEntity.getTitle());
+			panelEntityList = panelRepository.selectAll();
+			log.info("panelEntityList.size() = " + panelEntityList.size());
+			for (i = 0; i < panelEntityList.size(); i += 1) {
+				panelDtoList.add(panelEntityList.get(i).toPanelDto());
+			}
 			
-			resultMap.put(ResultData.TYPE_OBJECT, nPanelEntity.toPanelDto());
+			resultMap.put(ResultData.TYPE_LIST, panelDtoList);
 			resultData.setData(resultMap);
 			resultData.setMessage("글쓰기 성공");
 		} else {

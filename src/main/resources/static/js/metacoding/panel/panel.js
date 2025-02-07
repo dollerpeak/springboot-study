@@ -23,9 +23,17 @@ $(function() {
 		console.log(">>> setEventListener");
 
 		let panelData = {
+			id: "",
 			title: "",
 			contents: "",
+			hits: "",
+			userId: "",
+			frstRegDate: "",
+			frstRegUserId: "",
+			lastChgDate: "",
+			lastChgUserId: ""
 		};
+		let panelDataList = new Array()
 
 		$("#btn-insert").on("click", function() {
 			//console.log("btn-insert, click");
@@ -48,12 +56,15 @@ $(function() {
 					contentType: "application/json; charset=utf-8", // 요청데이터 형식
 					dataType: "json" // 응답데이터 형식
 				}).done(function(response) {
-					console.log("done, response = ", JSON.stringify(response));
+					//console.log("done, response = ", JSON.stringify(response));
 					if (response.data == null) {
 						alert(response.message);
 					} else {
-						panelData = response.data.object;
-						console.log("done, panelData = ", JSON.stringify(panelData));
+						//panelData = response.data.list;
+						//console.log("done, panelData = ", JSON.stringify(response.data.list));
+						console.log("done, panelData = ", JSON.stringify(response.data.list[0]));
+						panelDataList.push(response.data.list[0]);
+						console.log("done, panelDataList = ", JSON.stringify(panelDataList[0]));
 						console.log("done, 글저장 성공");
 						alert(response.message);
 						

@@ -39,12 +39,7 @@ public class PanelController {
 		PanelDto resultDto;
 
 		try {
-			panelService.insertPanel(nPanelDto, nUserDetails.getUsername());
-
-			Map<String, Object> resultMap = new HashMap<>();
-			resultMap.put(ResultData.TYPE_OBJECT, nPanelDto);
-			resultData.setData(resultMap);
-			resultData.setMessage("글쓰기 성공");
+			resultData = panelService.insertPanel(nPanelDto, nUserDetails.getUsername());
 		} catch (Exception e) {
 			log.error("e = " + e.toString());
 		}

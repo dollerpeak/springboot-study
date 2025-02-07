@@ -4,18 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.study.common.ResultData;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/metacoding")
+@RequiredArgsConstructor
 @Slf4j
 public class BlogController {
+	private final BlogService blogService;
 	
 	@Autowired
 	HttpSession nHttpSession;
@@ -25,7 +31,9 @@ public class BlogController {
 	HttpServletResponse nHttpServletResponse;
 
 	@GetMapping("/home")
-	public String home(@AuthenticationPrincipal UserDetails nUserDetails) {
+	public String home(@AuthenticationPrincipal UserDetails nUserDetails, Model nModel) {
+		ResultData resultData = new ResultData(ResultData.CODE_SUCCESS, null, null);
+		
 		log.info("======= metacoding home, BlogController");
 		
 		// session 테스트
@@ -41,6 +49,13 @@ public class BlogController {
 		
 		// security, UserDetails 정보, 로그인된 정보
 		log.info("nUserDetails = " + nUserDetails.toString());
+		
+		try {
+			resultData = blogService.selectAll();
+			nModel.addAttribute("list", resultData.getData().get(ResultData.TYPE_LIST));
+		} catch (Exception e) {
+			log.error("e = " + e.toString());
+		}		
 
 		return "/metacoding/home";
 	}

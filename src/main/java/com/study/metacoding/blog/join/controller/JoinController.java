@@ -51,14 +51,14 @@ public class JoinController {
 			resultDto = (UserDto) resultData.getData().get(ResultData.TYPE_OBJECT);
 			log.info("resultDto.getId() = " + resultDto.getId());
 
-			if (resultData.getData() != null) {
-				nHttpSession.setAttribute("principal", resultDto.getId());
-				nHttpSession.setMaxInactiveInterval(30);
-
-				log.info("session make, resultDto.getId()");
-				log.info("nHttpSession.getMaxInactiveInterval() = " + nHttpSession.getMaxInactiveInterval());
-			}
-			log.info("session = " + nHttpSession.getAttribute("principal"));
+//			if (resultData.getData() != null) {
+//				nHttpSession.setAttribute("principal", resultDto.getId());
+//				nHttpSession.setMaxInactiveInterval(30);
+//
+//				log.info("session make, resultDto.getId()");
+//				log.info("nHttpSession.getMaxInactiveInterval() = " + nHttpSession.getMaxInactiveInterval());
+//			}
+//			log.info("session = " + nHttpSession.getAttribute("principal"));
 			//log.info("nHttpSession.getCreationTime() = " + nHttpSession.getCreationTime());
 			//log.info("nHttpSession.getLastAccessedTime() = " + nHttpSession.getLastAccessedTime());
 
