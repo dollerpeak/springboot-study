@@ -33,13 +33,28 @@ public class PanelController {
 		log.info("nId = " + nId);
 		
 		try {
-			resultData = panelService.detailPanel(nId);
+			resultData = panelService.detailPanel(nId, true);
 			nModel.addAttribute(ResultData.TYPE_OBJECT, resultData.getData().get(ResultData.TYPE_OBJECT));
 		} catch (Exception e) {
 			log.error("e = " + e.toString());
 		}
 		
 		return "/metacoding/panel/detailForm";
+	}
+	
+	@GetMapping("/updateForm/{nId}")
+	public String updateForm(@PathVariable int nId, Model nModel) {
+		ResultData resultData = new ResultData(ResultData.CODE_ERROR_SERVER, null, null);
+		log.info("PanelController, updateForm");
+
+		try {
+			resultData = panelService.detailPanel(nId, false);
+			nModel.addAttribute(ResultData.TYPE_OBJECT, resultData.getData().get(ResultData.TYPE_OBJECT));
+		} catch (Exception e) {
+			log.error("e = " + e.toString());
+		}
+
+		return "/metacoding/panel/updateForm";
 	}
 
 }

@@ -82,6 +82,40 @@ $(function() {
 		});
 
 		$("#btn-update").on("click", function() {
+			console.log("btn-update, click");
+			panelData.id = $("#id").val();
+			panelData.title = $("#title").val();
+			panelData.contents = $("#contents").val();
+			//console.log("panelData = ", JSON.stringify(panelData));
+			
+			if (panelData.title == null || panelData.title.length <= 0) {
+				alert("title을 입력해 주세요.");
+			} else if (panelData.contents == null || panelData.contents.length <= 0) {
+				alert("contents를 입력해 주세요.");
+			} else {
+				$.ajax({
+					type: "POST",
+					url: "/metacoding/rest/panel/update",
+					data: JSON.stringify(panelData),
+					contentType: "application/json; charset=utf-8", // 요청데이터 형식
+					dataType: "json" // 응답데이터 형식
+				}).done(function(response) {
+					console.log("done, response = ", JSON.stringify(response));
+					if (response.data == null) {
+						alert(response.message);
+					} else {
+						console.log("done, 글수정 성공");
+						alert(response.message);
+						
+						location.href = "/metacoding/panel/detailPanel/" + response.data.object.id;						
+					}
+				}).fail(function(error) {
+					console.log("fail = ", JSON.stringify(error));
+					alert("글수정 실패");
+					
+					location.href = "/metacoding/panel/updateForm";
+				});
+			}
 		});
 		
 		$("#btn-delete").on("click", function() {

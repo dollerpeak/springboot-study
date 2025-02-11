@@ -3,10 +3,12 @@ package com.study.metacoding.blog.panel.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.context.annotation.CommonAnnotationBeanPostProcessor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.study.common.ResultData;
+import com.study.common.util.DateFormat;
 import com.study.metacoding.blog.panel.dto.PanelDto;
 import com.study.metacoding.blog.panel.entity.PanelEntity;
 import com.study.metacoding.blog.panel.repository.PanelRepository;
@@ -75,7 +77,7 @@ public class PanelService {
 		return resultData;
 	}
 
-	public ResultData detailPanel(int nId) throws Exception {
+	public ResultData detailPanel(int nId, boolean nHits) throws Exception {
 		ResultData resultData = new ResultData(ResultData.CODE_ERROR_SERVER, null, null);
 		Map<String, Object> resultMap = new HashMap<>();
 		
@@ -88,9 +90,11 @@ public class PanelService {
 			resultData.setMessage(nId + " 게시물이 없음");
 		} else {
 			// 조회수 적용
-			panelEntity.setHits(panelEntity.getHits() + 1);
-			row = panelRepository.update(panelEntity);
-			log.info("row = " + row);
+			if (nHits == true) {
+				panelEntity.setHits(panelEntity.getHits() + 1);
+				row = panelRepository.updateHits(panelEntity);
+				log.info("row = " + row);
+			}
 			
 			panelEntity = panelRepository.select(nId);
 			
@@ -100,8 +104,7 @@ public class PanelService {
 			resultData.setMessage("조회 성공, nId = " + nId);
 		}
 		
-		return resultData;
-		
+		return resultData;		
 	}
 
 	public ResultData deletePanel(int nId) throws Exception {
@@ -126,6 +129,30 @@ public class PanelService {
 			resultData.setMessage(nId + " 게시물이 없음");
 		}
 
+		return resultData;
+	}
+
+	public ResultData update(PanelDto nPanelDto) throws Exception {
+		ResultData resultData = new ResultData(ResultData.CODE_ERROR_SERVER, null, null);
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		PanelEntity panelEntity = null;
+		int row = 0;
+		
+		// 업데이트 정보
+		nPanelDto.setLastChgDate(DateFormat.getFormatString(System.currentTimeMillis(), null));
+		
+		panelEntity = nPanelDto.toPanelEntity();
+		log.info("panelEntity = " + panelEntity);
+		row = panelRepository.update(panelEntity);
+		log.info("row = " + row);
+		
+		panelEntity = panelRepository.select(panelEntity.getId());
+		resultMap.put(ResultData.TYPE_OBJECT, panelEntity.toPanelDto());
+		resultData.setData(resultMap);
+		resultData.setCode(ResultData.CODE_SUCCESS);
+		resultData.setMessage(panelEntity.getTitle() + ", 글을 수정했습니다.");
+		
 		return resultData;
 	}
 }

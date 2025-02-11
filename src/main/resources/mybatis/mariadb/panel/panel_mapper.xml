@@ -58,7 +58,7 @@
 		ORDER BY ID DESC
 	</select>
 	
-	<update id="update" parameterType="com.study.metacoding.blog.panel.entity.PanelEntity">
+	<update id="updateHits" parameterType="com.study.metacoding.blog.panel.entity.PanelEntity">
 		UPDATE PANEL
 			SET HITS = #{hits}
 		WHERE ID = #{id}
@@ -68,6 +68,12 @@
 		DELETE FROM PANEL
 		WHERE ID = #{id}
 	</delete>
+	
+	<update id="update" parameterType="com.study.metacoding.blog.panel.entity.PanelEntity">
+		UPDATE PANEL
+			SET TITLE = #{title}, CONTENTS = #{contents}, LAST_CHG_DATE = #{lastChgDate}, LAST_CHG_USER_ID = #{lastChgUserId}
+		WHERE ID = #{id}
+	</update>
 	
 	
 	

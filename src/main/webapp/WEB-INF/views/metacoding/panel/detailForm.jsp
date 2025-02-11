@@ -36,7 +36,7 @@
 	</form>
 	<!-- 임의로 spirng security userdetails.username과 frstRegUserId를 비교 -->
 	<c:if test="${object.frstRegUserId == principal.username}">
-		<button id="btn-update" class="btn btn-warning">수정</button>
+		<a href="/metacoding/panel/updateForm/${object.id}" class="btn btn-warning">수정</a>
 		<button id="btn-delete" class="btn btn-danger">삭제</button>
 	</c:if>	
 </div>

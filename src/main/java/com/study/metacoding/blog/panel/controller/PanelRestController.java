@@ -52,4 +52,19 @@ public class PanelRestController {
 		return resultData;
 	}
 	
+	@PostMapping("/update")
+	public ResultData updatePanel(@RequestBody PanelDto nPanelDto, @AuthenticationPrincipal UserDetails nUserDetails) {
+		ResultData resultData = new ResultData(ResultData.CODE_SUCCESS, null, null);
+		log.info("updatePanel");
+		
+		try {
+			nPanelDto.setLastChgUserId(nUserDetails.getUsername());
+			resultData = panelService.update(nPanelDto);
+		} catch (Exception e) {
+			log.error("e = " + e.toString());
+		}
+
+		return resultData;
+	}
+	
 }
