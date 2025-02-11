@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SecurityConfig {
 	
+	// //, URL
 	@Bean
 	public HttpFirewall allowUrlEncodedDoubleSlashHttpFirewall() {
 		StrictHttpFirewall strictHttpFirewall = new StrictHttpFirewall();
@@ -41,8 +42,9 @@ public class SecurityConfig {
 
 		// login 설정
 		http.formLogin(login -> login.loginPage("/metacoding/auth/login/loginForm")
-				.loginProcessingUrl("/metacoding/auth/loginProc").usernameParameter("name")
-				.passwordParameter("password").defaultSuccessUrl("/metacoding/home")
+				.loginProcessingUrl("/metacoding/auth/loginProc")
+				.usernameParameter("name").passwordParameter("password")
+				.defaultSuccessUrl("/metacoding/home")
 				.failureUrl("/metacoding/auth/login/loginForm"));
 		
 //		// logout 설정

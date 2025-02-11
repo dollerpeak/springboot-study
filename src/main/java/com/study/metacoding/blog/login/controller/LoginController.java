@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class LoginController {
-	private final LoginService loginService;;
+//	private final LoginService loginService;
 	
 	@Autowired
 	HttpSession nHttpSession;
@@ -29,7 +29,7 @@ public class LoginController {
 
 	@GetMapping("/loginForm")
 	public String login() {		
-		log.info("loginForm");
+		log.info("LoginController, loginForm");
 		return "/metacoding/login/loginForm";
 	}
 	

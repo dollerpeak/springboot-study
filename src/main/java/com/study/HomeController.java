@@ -11,7 +11,7 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String home() {		
-		log.info("======= study 전체,  HomeController");
+		log.info("HomeController, ======= study 전체");
 		return "/home";
 	}
 	

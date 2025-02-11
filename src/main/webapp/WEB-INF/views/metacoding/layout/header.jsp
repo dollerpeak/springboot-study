@@ -36,6 +36,8 @@
 </head>
 <body>
 	<h6>principal ==> ${principal}</h6>
+	<%-- <h6>${principal.username}</h6> --%>
+	<%-- <h6>${principal.password}</h6> --%>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
 		<a class="navbar-brand" href="/">Main</a>
 		<a class="navbar-brand" href="/metacoding/home">Metacoding</a>

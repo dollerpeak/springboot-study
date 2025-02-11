@@ -11,6 +11,7 @@
 //})
 //
 $(function() {
+	console.log(">>> login");
 	console.log(">>> 1.function");
 
 	window.onload = function() {

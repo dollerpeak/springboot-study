@@ -12,8 +12,9 @@
 			<!-- <img class="card-img-top" src="img_avatar1.png" alt="Card image"> -->
 			<div class="card-body">
 				<h4 class="card-title">${panel.title}</h4>
+				<h6>${panel.frstRegUserId}, 조회 ${panel.hits}회</h6>
 				<!-- <p class="card-text">내용영역</p> -->
-				<a href="#" class="btn btn-primary">상세보기</a>
+				<a href="/metacoding/panel/detailPanel/${panel.id}" class="btn btn-primary">상세보기</a>
 			</div>
 		</div>
 	</c:forEach>

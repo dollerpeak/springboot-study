@@ -3,17 +3,21 @@
 
 <mapper namespace="com.study.metacoding.blog.panel">
 
-	<insert id="insert" parameterType="com.study.metacoding.blog.panel.entity.PanelEntity">
+	<insert id="insert" parameterType="com.study.metacoding.blog.panel.entity.PanelEntity" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO PANEL (			
 			TITLE,
 			CONTENTS,	
 			HITS,
-			USER_ID
+			USER_ID,
+			FRST_REG_USER_ID,
+			LAST_CHG_USER_ID
 		) VALUES (
 			#{title},
 			#{contents},	
 			#{hits},
-			#{userId}
+			#{userId},
+			#{frstRegUserId},
+			#{lastChgUserId}
 		)
 	</insert>
 	
@@ -54,11 +58,16 @@
 		ORDER BY ID DESC
 	</select>
 	
-	<!-- <update id="updateSeq" parameterType="Long">
-		UPDATE BOARD
-			SET HITS = HITS+1
-		WHERE SEQ = #{seq}
-	</update> -->
+	<update id="update" parameterType="com.study.metacoding.blog.panel.entity.PanelEntity">
+		UPDATE PANEL
+			SET HITS = #{hits}
+		WHERE ID = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.Integer">
+		DELETE FROM PANEL
+		WHERE ID = #{id}
+	</delete>
 	
 	
 	

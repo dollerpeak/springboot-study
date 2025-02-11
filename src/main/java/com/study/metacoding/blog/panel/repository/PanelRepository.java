@@ -30,5 +30,13 @@ public class PanelRepository {
 	public List<PanelEntity> selectAll() {
 		return sqlSessionTemplate.selectList(namespace + "selectAll");
 	}
+	
+	public int update(PanelEntity nPanelEntity) {
+		return sqlSessionTemplate.update(namespace + "update", nPanelEntity);
+	}
+
+	public int delete(int nId) {
+		return sqlSessionTemplate.delete(namespace + "delete", nId);		
+	}
 
 }

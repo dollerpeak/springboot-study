@@ -1,6 +1,5 @@
 package com.study.metacoding.blog.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -10,9 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.study.common.ResultData;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,12 +19,12 @@ import lombok.extern.slf4j.Slf4j;
 public class BlogController {
 	private final BlogService blogService;
 	
-	@Autowired
-	HttpSession nHttpSession;
-	@Autowired
-	HttpServletRequest nHttpServletRequest;
-	@Autowired
-	HttpServletResponse nHttpServletResponse;
+//	@Autowired
+//	HttpSession nHttpSession;
+//	@Autowired
+//	HttpServletRequest nHttpServletRequest;
+//	@Autowired
+//	HttpServletResponse nHttpServletResponse;
 
 	@GetMapping("/home")
 	public String home(@AuthenticationPrincipal UserDetails nUserDetails, Model nModel) {
@@ -55,7 +51,7 @@ public class BlogController {
 			nModel.addAttribute("list", resultData.getData().get(ResultData.TYPE_LIST));
 		} catch (Exception e) {
 			log.error("e = " + e.toString());
-		}		
+		}
 
 		return "/metacoding/home";
 	}

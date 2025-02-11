@@ -11,6 +11,7 @@
 //})
 //
 $(function() {
+	console.log(">>> panel");
 	console.log(">>> 1.function");
 
 	window.onload = function() {
@@ -33,7 +34,7 @@ $(function() {
 			lastChgDate: "",
 			lastChgUserId: ""
 		};
-		let panelDataList = new Array()
+		//let panelDataList = new Array()
 
 		$("#btn-insert").on("click", function() {
 			//console.log("btn-insert, click");
@@ -41,7 +42,7 @@ $(function() {
 			panelData.contents = $("#contents").val();
 
 			//console.log("panelData = ", panelData);
-			console.log("panelData = ", JSON.stringify(panelData));
+			//console.log("panelData = ", JSON.stringify(panelData));
 
 			if (panelData.title == null || panelData.title.length <= 0) {
 				alert("title을 입력해 주세요.");
@@ -51,20 +52,20 @@ $(function() {
 
 				$.ajax({
 					type: "POST",
-					url: "/metacoding/panel/insertPanel",
+					url: "/metacoding/rest/panel/insert",
 					data: JSON.stringify(panelData),
 					contentType: "application/json; charset=utf-8", // 요청데이터 형식
 					dataType: "json" // 응답데이터 형식
 				}).done(function(response) {
-					//console.log("done, response = ", JSON.stringify(response));
+					console.log("done, response = ", JSON.stringify(response));
 					if (response.data == null) {
 						alert(response.message);
 					} else {
 						//panelData = response.data.list;
 						//console.log("done, panelData = ", JSON.stringify(response.data.list));
-						console.log("done, panelData = ", JSON.stringify(response.data.list[0]));
-						panelDataList.push(response.data.list[0]);
-						console.log("done, panelDataList = ", JSON.stringify(panelDataList[0]));
+						//console.log("done, panelData = ", JSON.stringify(response.data.list[0]));
+						//panelDataList.push(response.data.list[0]);
+						//console.log("done, panelDataList = ", JSON.stringify(panelDataList[0]));
 						console.log("done, 글저장 성공");
 						alert(response.message);
 						
@@ -75,10 +76,38 @@ $(function() {
 					console.log("fail = ", JSON.stringify(error));
 					alert("글저장 실패");
 					
-					location.href = "/metacoding/panel/panelForm";
+					location.href = "/metacoding/panel/insertForm";
 				});
 			}
-		})
+		});
+
+		$("#btn-update").on("click", function() {
+		});
+		
+		$("#btn-delete").on("click", function() {
+			console.log("btn-delete, click");
+			panelData.id = $("#id").text();
+			console.log("panelData = ", JSON.stringify(panelData));
+
+			$.ajax({
+				type: "DELETE",
+				url: "/metacoding/rest/panel/deletePanel/" + panelData.id,
+				data: {},
+				contentType: "application/json; charset=utf-8", // 요청데이터 형식
+				dataType: "json" // 응답데이터 형식
+			}).done(function(response) {
+				console.log("done, response = ", JSON.stringify(response));
+				//console.log("done, 글삭제 성공");
+				alert(response.message);
+
+				location.href = "/metacoding/home";
+			}).fail(function(error) {
+				console.log("fail = ", JSON.stringify(error));
+				alert("글삭제 실패");
+
+				location.href = "/metacoding/home";
+			});
+		});
 	}
 
 

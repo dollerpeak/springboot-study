@@ -11,6 +11,7 @@
 //})
 
 $(function() {
+	console.log(">>> join");
 	console.log(">>> 1.function");
 
 	window.onload = function() {
@@ -47,7 +48,7 @@ $(function() {
 
 				$.ajax({
 					type: "POST",
-					url: "/metacoding/auth/join/join",
+					url: "/metacoding/auth/rest/join/join",
 					data: JSON.stringify(joinData),
 					contentType: "application/json; charset=utf-8", // 요청데이터 형식
 					dataType: "json" // 응답데이터 형식
