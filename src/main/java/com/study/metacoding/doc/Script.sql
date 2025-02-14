@@ -111,10 +111,9 @@ order by id desc
 -- delete from user
 -- where 1=1
 
-
-update user
-set password = "3456"
-where id = 3
+-- update user
+-- set password = "3456"
+-- where id = 3
 
 select * from panel
 
