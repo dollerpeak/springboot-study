@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.dbms.dao.MybatisDao">
+
+	<select id="getCount" resultType="java.lang.Integer">
+		/*com.study.dbms.dao.MybatisDao.getCount*/
+		SELECT COUNT(*) FROM BOARD
+	</select>
+
+	<select id="getList" resultType="com.study.dbms.dto.MybatisDto">
+		/*com.study.dbms.dao.MybatisDao.getList*/
+		SELECT * FROM BOARD
+		WHERE 1=1
+		AND 1=1
+	</select>
+
+	<select id="getDetail" parameterType="java.lang.String"
+		resultType="com.study.dbms.dto.MybatisDto">
+		/*com.study.dbms.dao.MybatisDao.getDetail*/
+		SELECT * FROM BOARD
+		WHERE ID = #{id}
+	</select>
+
+</mapper>
+

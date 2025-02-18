@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- <html xmlns:th="http://www.thymeleaf.org"> -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viewport</title>
+
+    <style>
+        body {
+            background: url(/images/easyspub/bg0.jpg) no-repeat fixed;
+            background-size: cover;
+        }
+
+        @media  screen and (max-width:1024px) {
+            body {
+            background: url(/images/easyspub/bg1.jpg) no-repeat fixed;
+            background-size: cover;
+            }
+        }
+
+        @media  screen and (max-width:768px) {
+            body {
+            background: url(/images/easyspub/bg2.jpg) no-repeat fixed;
+            background-size: cover;
+            }
+        }
+
+        @media  screen and (max-width:320px) {
+            body {
+            background: url(/images/easyspub/bg3.jpg) no-repeat fixed;
+            background-size: cover;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="/easyspub/main">
+            <h1 id="top">back main</h1>
+        </a>
+        <hr>
+    </header>
+
+    <section>
+        <h3>[2023-06-21] 반응형웹, 미디어 쿼리</h3>
+        <div>
+            @media<br>
+            참고사이트 : www.yesviz.com/devices.php
+        </div>
+    </section>    
+
+    <footer>
+        <a href="/easyspub/main">
+            <h1 id="top">back main</h1>
+        </a>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!-- <html xmlns:th="http://www.thymeleaf.org"> -->
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>w3school-main</title>
+		
+	<style>
+	</style>
+	
+</head>
+
+<body>
+	<a href="/home"><h1 id="top">back main</h1></a>
+	<hr>
+	
+	<br/>
+	<div>
+	<h1>사이트 링크</h1>
+	<a href="https://www.w3schools.com" target="_blank"><h1>www.w3schools.com</h1></a>
+	</div>	
+	<br/>
+
+	<div>
+		<h1>테스트 페이지 링크</h1>
+		<a href="/w3school/html"><h2>html</h2></a>
+		<a href="/w3school/css"><h2>css</h2></a>
+		<a href="/w3school/js"><h2>js</h2></a>		
+		<a href="/w3school/jquery"><h2>jquery</h2></a>
+		<a href="/w3school/ajax"><h2>ajax</h2></a>		
+		<a href="/w3school/jsp"><h2>jsp</h2></a>
+		<a href="/w3school/responsive"><h2>response</h2></a>		
+		<a href="/w3school/layout"><h2>layout</h2></a>
+	</div>
+	<hr>
+	
+	<div>
+		<h1>Spring Menu</h1>
+		/static<br>
+		- url location정보로 직접 들어올 수 있는 정적페이지 영역<br>
+		- spring 구동 시 /static/index.html 를 찾는다<br>
+		<br>
+		/templates<br>
+		- url location정보로 접근할 수 없는 동적페이지 영역<br>
+		- 리소스에 접근하려면 resource 탐색영역을 수정해야 하는데 thymeleaf 를 사용하면 반영 됨<br>
+		- url로 접근하려면 control영역에서 mapping이 필요<br>
+		- thymeleaf의 디폴트 properties에<br>
+			spring.thymeleaf.prefix=classpath:/templates/<br>
+			spring.thymeleaf.suffix=.html<br>
+			가 적용되어 있어 contorl에서 링크 시 파일명으로만 이동이 가능<br>
+		- *.html파일이 위치<br>
+	</div>
+	<hr>
+	
+	<div>
+		<h1>html : 웹페이지 내용</h1>
+		- !DOCTYPE<br>
+		- html<br>
+		- head : meta<br>
+		- body<br>
+		<h1>css : 웹페이지 레이아웃</h1>
+		- style<br>
+		<h1>java script : 웹페이지 동작 프로그래밍</h3>
+		- script<br>
+	</div>
+	
+	<hr>
+	<a href="/home"><h1 id="top">back main</h1></a>
+
+</body>
+
+</html>

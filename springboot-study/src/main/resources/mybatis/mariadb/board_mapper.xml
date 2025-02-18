@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.codingrecipe.board.entity.BoardEntity">
+
+	<insert id="insert" parameterType="com.study.codingrecipe.board.entity.BoardEntity">
+		INSERT INTO BOARD (			
+			TITLE,
+			CONTENTS,
+			PASSWORD,	
+			HITS,
+			FRST_REG_DATE,
+			FRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID
+		) VALUES (
+			#{title},
+			#{contents},
+			#{password},	
+			#{hits},
+			#{frstRegDate},
+			#{frstRegUserId},
+			#{lastChgDate},
+			#{lastChgUserId}
+		)
+	</insert>
+	
+	<select id="selectAll" resultType="com.study.codingrecipe.board.entity.BoardEntity">
+		SELECT
+			SEQ,
+			TITLE,
+			CONTENTS,
+			PASSWORD,	
+			HITS,
+			FRST_REG_DATE,
+			FRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID 
+		FROM BOARD
+		WHERE 1=1
+		ORDER BY SEQ ASC
+	</select>
+	
+	<update id="updateSeq" parameterType="Long">
+		UPDATE BOARD
+			SET HITS = HITS+1
+		WHERE SEQ = #{seq}
+	</update>
+	
+	<select id="selectSeq" parameterType="Long" resultType="com.study.codingrecipe.board.entity.BoardEntity">
+		SELECT
+			SEQ,
+			TITLE,
+			CONTENTS,
+			PASSWORD,	
+			HITS,
+			FRST_REG_DATE,
+			FRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID 
+		FROM BOARD
+		WHERE SEQ = #{seq}
+	</select>
+	
+</mapper>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grid</title>
+
+    <style>
+        #wrapper{
+            display: grid;
+            grid-template-rows: 0.5fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr; /* 300px 300px 300px*/
+            border: 2px solid red;
+        }
+        .items{
+            background-color: white;
+            padding: 10px;
+        }
+        .items:nth-child(odd){
+            background-color: gray;
+        }
+
+        
+        /* 그리드 라인을 이용해서 사용하기 */
+        /*
+        #wrapper2{
+            display: grid;
+            width: 700px;
+            grid-template-rows: repeat(3, 100px);
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .box1{
+            background-color: skyblue;
+            grid-column: 1/4;
+        }
+        .box2{
+            background-color: green;
+            grid-row: 2/4;
+        }
+        .box3{
+            background-color: orange;
+            grid-row-start: 2;
+            grid-column: 2/4;            
+        }
+        .box4{
+            background-color: yellow;
+            grid-row-start: 3;
+            grid-column-start: 3;
+        }
+        */
+
+        /* 템플릿 영역을 이용해서 사용하기 */
+        #wrapper2{
+            display: grid;
+            width: 700px;
+            grid-template-rows: repeat(3, 100px);
+            grid-template-columns: repeat(3, 1fr);
+            border: 2px solid red;
+            grid-template-areas: 
+            "box1 box1 box1"
+            "box1 box1 box1"
+            "box1 box1 box1";
+        }
+        .box1{
+            background-color: skyblue;
+            grid-area: box1;
+        }
+        .box2{
+            background-color: green;
+            grid-area: box2;
+        }
+        .box3{
+            background-color: orange;
+            grid-area: box3;
+        }
+        .box4{
+            background-color: yellow;
+            grid-area: box4;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="/easyspub/main">
+            <h1 id="top">back main</h1>
+        </a>
+        <hr>
+    </header>
+
+    <section>
+        <div>
+            <h3>[2023-06-21] grid layout</h3>
+        </div>
+        플렉스 박스는 주축과 교차축 개념으로 설정, 1차원 개념<br>
+        그리드 레이아웃은 양축을 한번에 모두 사용, 2차원 개념
+    </section>
+
+    <div>주요개념
+        <ul>
+            <li>row</li>
+            <li>column</li>
+            <li>cap : row, column 사이의 간격</li>
+        </ul>
+        플렉스와 동일하게 특정 영역을 묶어줘야 한다. container처럼, display = grid<br>
+        grid-template-rows, grid-template-columns : fr단위로 상대적인 값으로 표현할수 있다. 그외 px같은 기존값도 가능<br>
+        <br>
+    </div>
+
+    <section>
+        <div id="wrapper">
+            <div class="items">
+                <ul>
+                    <li>111</li>
+                    <li>111</li>
+                    <li>111</li>
+                </ul>
+            </div>
+            <div class="items">grid CSS 속성은 shorthand property 입니다. 외재적인 속성인 (grid-template-rows, grid-template-columns, grid-template-areas), 값과 내재적인 속성인 (grid-auto-rows, grid-auto-columns, grid-auto-flow), 값을 한번에 설정합니다.</div>
+            <div class="items">grid CSS 속성은 shorthand property 입니다. 외재적인 속성인 (grid-template-rows, grid-template-columns, grid-template-areas), 값과 내재적인 속성인 (grid-auto-rows, grid-auto-columns, grid-auto-flow), 값을 한번에 설정합니다.</div>
+            <div class="items">grid CSS 속성은 shorthand property 입니다. 외재적인 속성인 (grid-template-rows, grid-template-columns, grid-template-areas), 값과 내재적인 속성인 (grid-auto-rows, grid-auto-columns, grid-auto-flow), 값을 한번에 설정합니다.</div>
+            <div class="items">grid CSS 속성은 shorthand property 입니다. 외재적인 속성인 (grid-template-rows, grid-template-columns, grid-template-areas), 값과 내재적인 속성인 (grid-auto-rows, grid-auto-columns, grid-auto-flow), 값을 한번에 설정합니다.</div>
+            <div class="items">grid CSS 속성은 shorthand property 입니다. 외재적인 속성인 (grid-template-rows, grid-template-columns, grid-template-areas), 값과 내재적인 속성인 (grid-auto-rows, grid-auto-columns, grid-auto-flow), 값을 한번에 설정합니다.</div>
+        </div>
+    </section>
+    <br>
+    <hr>
+
+    <section>
+        <div>
+            아래와 같은 레이아웃을 꾸밀때 2가지 방법이 있다.<br>
+            그리드 라인을 이용해서 사용하기<br>
+            템플릿 영역을 이용해서 사용하기 : grid-template-areas<br>
+            <br>
+        </div>
+        <div id="wrapper2">
+            <div class="box1">box1</div>
+            <div class="box2">box2</div>
+            <div class="box3">box3</div>
+            <div class="box4">box4</div>
+        </div>
+    </section>
+
+
+    <footer>
+        <a href="/easyspub/main">
+            <h1 id="top">back main</h1>
+        </a>
+    </footer>
+
+</body>
+
+</html>

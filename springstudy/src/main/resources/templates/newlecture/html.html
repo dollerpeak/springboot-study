@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- <html xmlns:th="http://www.thymeleaf.org"> -->
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>newlecture-html</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<style>
+
+	</style>
+</head>
+
+<body>
+	<a href="/newlecture/main"><h1 id="top">back main</h1></a>
+	<hr>
+	
+	<p>
+		<h1>newlecture-html</h1>
+	</p>
+	<hr>
+
+	<div>
+		<h2>시멘틱 : 의미를 부여하고 구분을 위한 방법</h2>
+
+		<h3>html구조</h3>
+		html<br>
+		└ head<br>
+		&nbsp;&nbsp;&nbsp;└ meta, title, style, script<br>
+		└ body<br>
+		&nbsp;&nbsp;&nbsp;└ content<br>
+
+		<h3>시멘틱</h3>
+		header, main, footer, section<br>
+		body 부분을 크게 header, main, footer 로 나눌수 있음<br>
+		기존 영역을 나누던 div 태그 대신 section 사용<br>
+
+		<h3>section 태그</h3>
+		nav, aside, article<br>
+		nav : 주로 링크가 연결되어 있는 메뉴에 사용<br>
+		article : 내용<br>
+		aside : nav, article 을 제외한<br>
+
+	</div>
+	<hr>
+
+	<div>
+		<h2>선택자, selector</h2>
+		tag: 태그명 그대로, h1<br>
+		class: 점으로 표시, .클래스명<br>
+		id: #으로 표시, #id명<br>
+
+		<h2>콤비네이션</h2>
+		(A B: tag, class, id 일 수 있음)<br>
+		(최종적으로 B를 찾는 방법)<br>
+		Descendant selector: 자손, A B<br>
+		Child selector: 자식, A > B<br>
+		Adjacent Sibling selector: 이웃한, A + B<br>
+		General Sibling selector: 이웃들, A ~ B<br>
+		
+		<h2>속성을 이용</h2>
+		#ID a[href="a.html"] : ID 손자중에 a태그를 사용하고 값이 href="a.html" 인것만 선택<br>
+		그외 여러가지가 있는데 많이 사용 안하므로 필요시 마다 찾아서 사용<br>
+		
+		<h2>우선순위</h2>
+		범위가 좁은게 우선순위를 갖는다<br>
+		id > class > tag <br>
+	</div>
+	<hr>
+
+	<a href="/newlecture/main"><h1 id="top">back main</h1></a>
+
+</body>
+
+</html>

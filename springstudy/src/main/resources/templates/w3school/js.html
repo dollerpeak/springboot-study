@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>w3school-js</title>
+
+	<style>
+
+	</style>
+
+	<script src="/js/w3school/test.js">
+		function displayDate() {
+			document.getElementById("demo_2").innerHTML = Date();
+		}
+	</script>
+</head>
+
+<body>
+
+	<a href="/w3school/main"><h1 id="top">back main</h1></a>
+	<hr>
+
+	<div>
+		<h1>설명</h1>
+		- scrpit로 함수정의 : 웹페이지 동작 프로그래밍<br>
+		- html, css 모두 접근 가능<br>
+		- html 태그를 일반 문자열로 사용하면 실제 적용될때 태그로 적용 가능<br>
+	</div>
+	<hr>
+	
+	<div>
+		<h3>document.getElementById(id) : style에 # 정의</h3>
+		<h3>document.getElementByClass(class) : style에 . 정의</h3>
+		<h3>console.log()</h3>
+		<h3>window.alert()</h3>
+	</div>
+	<hr>
+	
+	<div>
+		<h1>변수</h1>
+		<h3>- var : 전역변수?, 2015년전</h3>
+		<h3>- let : 지역변수?, 2015년 이후 출현</h3>
+		<h3>- const : 변경되지 않는값, 2015년 이후 출현</h3>
+	</div>
+	<hr>
+	
+	<div>
+		<h1>연산자</h1>
+		<h3>- 일반적인 연산자 사용가능</h2>
+		<h3>- === 연산자 : 값과 타입이 동시에 확인</h3>
+		<h1>일반 라이브러리 존재</h1>
+		<h1>람다 형식도 있음</h1>
+		<h1>클래스도 가능, 함수도 선언 가능</h1>
+		<pre>
+		class Car {
+			constructor(name, year) {
+				this.name = name;
+				this.year = year;
+			}
+			
+			method_1() { ... }
+			method_1() { ... }
+		}
+		</pre>
+	</div>
+	<hr>
+	
+	
+	<div>
+		<h1>값 치환: ${value}</h1>
+		<h3>- 호출한 값을 치환</h2>
+		
+	</div>
+	<hr>
+	
+	<div>
+		<h1>function 호출 방법</h1>
+		<button onclick="document.getElementById('demo_1').innerHTML=Date()">document.getElementById('demo_1').innerHTML=Date() 호출 : 버튼 이벤트로 함술르 호출하고 리턴값으로 타겟을 지정</button>
+		<p id="demo_1"></p>
+		
+		<button onclick="displayDate()">버튼 이벤트로 함수를 호출하고 함수안에 타겟이 있는 경우</button>
+		<p id="demo_2"></p>
+		
+		<p>
+		<button onclick="this.innerHTML=Date()">this.innerHTML=Date() 버튼 이벤트로 함수를 호출하고 자기자신에 적용</button>
+		</p>
+		
+		<p>
+		<button onclick="this.innerHTML=linkJsFile()">외부에서 가져온 함수 사용 => 링크된 js파일 함수 호출</button>
+		</p>
+		
+		
+		
+	</div>
+	<hr>
+	
+	
+
+	<a href="/w3school/main"><h1 id="top">back main</h1></a>
+
+</body>
+
+</html>

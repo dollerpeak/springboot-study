@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.metacoding.blog.panel">
+
+	<insert id="insert" parameterType="com.study.metacoding.blog.panel.entity.PanelEntity" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO PANEL (			
+			TITLE,
+			CONTENTS,	
+			HITS,
+			USER_ID,
+			FRST_REG_USER_ID,
+			LAST_CHG_USER_ID
+		) VALUES (
+			#{title},
+			#{contents},	
+			#{hits},
+			#{userId},
+			#{frstRegUserId},
+			#{lastChgUserId}
+		)
+	</insert>
+	
+	<select id="selectMaxId" resultType="java.lang.Integer">
+		SELECT
+			MAX(ID) 
+		FROM PANEL
+	</select>
+	
+	<select id="select" parameterType="java.lang.Integer" resultType="com.study.metacoding.blog.panel.entity.PanelEntity">
+		SELECT
+			ID,
+			TITLE,
+			CONTENTS,	
+			HITS,
+			USER_ID,
+			FRST_REG_DATE,
+			FRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID
+		FROM PANEL
+		WHERE ID = #{id}
+	</select>
+	
+	<select id="selectAll" resultType="com.study.metacoding.blog.panel.entity.PanelEntity">
+		SELECT
+			ID,
+			TITLE,
+			CONTENTS,	
+			HITS,
+			USER_ID,
+			FRST_REG_DATE,
+			FRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID
+		FROM PANEL
+		WHERE 1=1
+		ORDER BY ID DESC
+	</select>
+	
+	<update id="updateHits" parameterType="com.study.metacoding.blog.panel.entity.PanelEntity">
+		UPDATE PANEL
+			SET HITS = #{hits}
+		WHERE ID = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.Integer">
+		DELETE FROM PANEL
+		WHERE ID = #{id}
+	</delete>
+	
+	<update id="update" parameterType="com.study.metacoding.blog.panel.entity.PanelEntity">
+		UPDATE PANEL
+			SET TITLE = #{title}, CONTENTS = #{contents}, LAST_CHG_DATE = #{lastChgDate}, LAST_CHG_USER_ID = #{lastChgUserId}
+		WHERE ID = #{id}
+	</update>
+	
+	
+	
+</mapper>

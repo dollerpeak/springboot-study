@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>my-main</title>
+
+<style>
+#header-list {
+	list-style-type: none;
+}
+
+#header-list li {
+	float: left;
+}
+</style>
+
+</head>
+<body>
+
+	<header>
+		<ol id="header-list">
+			<li><img src="/images/easyspub/kakao.jpg" alt="kakao" title="kakao" width="100px" height="100px"></li>
+			<li>이페이지 이름일 들어감</li>
+		</ol>
+	</header>
+
+	<div th:text="${id}"></div>
+
+	<div>
+		<ol id="header-list">
+			<li><img src="/images/easyspub/kakao.jpg" alt="kakao"
+				title="kakao" width="100px" height="100px"></li>
+			<li>이페이지 이름일 들어감</li>
+		</ol>
+	</div>
+
+	<footer>
+		<ol id="header-list">
+			<li><img src="/images/easyspub/kakao.jpg" alt="kakao" title="kakao" width="100px" height="100px"></li>
+			<li>이페이지 이름일 들어감</li>
+		</ol>
+	</footer>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+	<springProperty name="LOG_LEVEL" source="log.level" />
+		
+	<!-- property name="LOG_PATH" value="./log" /-->
+	<springProperty name="LOG_PATH"  source="log.file.path" />
+	
+	<!-- property name="FILE_NAME" value="test.log" /-->
+	<springProperty name="FILE_NAME"  source="log.file.name" />
+	
+	<!-- property name="FILE_SIZE" value="1MB" /-->
+	<springProperty name="FILE_SIZE"  source="log.file.size" />
+	
+	<!-- property name="FILE_COUNT" value="30" /-->
+	<springProperty name="FILE_COUNT"  source="log.file.count" />
+	
+	<property name="PATTERN"
+		value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] %logger{36} : %msg%n" />
+
+	<!-- cosole -->
+	<appender name="CONSOLE"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<!-- rolling file -->
+	<appender name="ROLLING_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/${FILE_NAME}</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/${FILE_NAME}.%d{yyyy-MM-dd}.%i
+			</fileNamePattern>
+			<maxFileSize>${FILE_SIZE}</maxFileSize>
+			<maxHistory>${FILE_COUNT}</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<!-- logger sql -->
+	<logger name="jdbc" level="OFF" />
+	<logger name="jdbc.sqlonly" level="OFF" />
+	<logger name="jdbc.resultset" level="OFF" />
+	<logger name="jdbc.audit" level="OFF" />
+	<logger name="jdbc.connection" level="OFF" />
+	<logger name="jdbc.sqltiming" level="INFO" additivity="true">
+		<!-- <appender-ref ref="CONSOLE" /> -->
+	</logger>
+	<logger name="jdbc.resultsettable" level="INFO" additivity="true">
+		<!-- <appender-ref ref="CONSOLE" /> -->
+	</logger>
+
+	<!-- root level="INFO"-->
+	<root level="${LOG_LEVEL}">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="ROLLING_FILE" />
+	</root>
+</configuration>

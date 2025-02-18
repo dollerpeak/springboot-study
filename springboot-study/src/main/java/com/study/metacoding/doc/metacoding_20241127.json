@@ -1,0 +1,893 @@
+{
+  "version": 6,
+  "entities": [
+    {
+      "entity": {
+        "type": "Project",
+        "id": "7ff803d8-fb75-4194-a62f-14f111875e38",
+        "name": "study"
+      },
+      "children": [
+        {
+          "entity": {
+            "type": "Service",
+            "id": "4a70eecc-f3af-4151-a241-b90d740b4da5",
+            "name": "codingrecipe"
+          },
+          "children": [
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/codingrecipe/home"
+                },
+                "id": "4da63e92-58d1-4f04-92a9-29d80e13711e",
+                "name": "1_home",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/codingrecipe/test/select1/4"
+                },
+                "id": "af18cc9e-1696-45bd-9aaf-6bc9f94b62cd",
+                "name": "2_get_@PathVariable",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/codingrecipe/test/select2/4/uri1/123/uri2/abc"
+                },
+                "id": "3c3dd513-cb11-45b1-afd8-33e4a1d9dfab",
+                "name": "2_get_@PathVariable, 여러개 썩어서",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": [
+                      {
+                        "enabled": true,
+                        "name": "seq",
+                        "value": "4"
+                      },
+                      {
+                        "enabled": true,
+                        "name": "title",
+                        "value": "123"
+                      },
+                      {
+                        "enabled": true,
+                        "name": "contents",
+                        "value": "abc"
+                      },
+                      {
+                        "enabled": true,
+                        "name": "frstRegUserId",
+                        "value": "시스템"
+                      }
+                    ]
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/codingrecipe/test/select6"
+                },
+                "id": "56f10194-e0fa-4235-bf87-43b0296f6a8c",
+                "name": "3_get_@ModelAttribute, dto",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": [
+                      {
+                        "enabled": true,
+                        "name": "seq",
+                        "value": "4"
+                      }
+                    ]
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/codingrecipe/test/select3"
+                },
+                "id": "9de1b76e-22da-48c9-bebf-864ae3fae56c",
+                "name": "3_get_@RequestParam",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": [
+                      {
+                        "enabled": true,
+                        "name": "seq",
+                        "value": "4"
+                      },
+                      {
+                        "enabled": true,
+                        "name": "title",
+                        "value": "123"
+                      },
+                      {
+                        "enabled": true,
+                        "name": "contents",
+                        "value": "abc"
+                      }
+                    ]
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/codingrecipe/test/select5"
+                },
+                "id": "5b45c19f-6e1d-497b-8861-06ed2f7afce5",
+                "name": "3_get_@RequestParam, map",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": [
+                      {
+                        "enabled": true,
+                        "name": "seq",
+                        "value": "4"
+                      },
+                      {
+                        "enabled": true,
+                        "name": "v1",
+                        "value": "123"
+                      },
+                      {
+                        "enabled": true,
+                        "name": "v2",
+                        "value": "abc"
+                      }
+                    ]
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/codingrecipe/test/select4"
+                },
+                "id": "f97a9f6c-eb9a-496e-99dc-4fdabab09662",
+                "name": "3_get_@RequestParam, 여러개 ",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "requestBody": true,
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+                  "name": "POST"
+                },
+                "body": {
+                  "formBody": {
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": [
+                      {
+                        "enabled": true,
+                        "type": "Text",
+                        "name": "seq",
+                        "value": "4"
+                      },
+                      {
+                        "enabled": true,
+                        "type": "Text",
+                        "name": "title",
+                        "value": "title1"
+                      },
+                      {
+                        "enabled": true,
+                        "type": "Text",
+                        "name": "contents",
+                        "value": "contents1"
+                      },
+                      {
+                        "enabled": true,
+                        "type": "Text",
+                        "name": "frstRegUserId",
+                        "value": "시스템"
+                      }
+                    ]
+                  },
+                  "bodyType": "Text",
+                  "textBody": "{\n\"seq\": \"4\",\n\"title\": \"aaa\",\n\"contents\": \"bbb\",\n\"frstRegUserId\": \"시스템\"\n}"
+                },
+                "uri": {
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/codingrecipe/test/select7"
+                },
+                "id": "f05fe549-cc08-4d1a-9c13-fe31fcab75a6",
+                "name": "4_post_@RequestBody, dto",
+                "headers": [
+                  {
+                    "enabled": true,
+                    "name": "Content-Type",
+                    "value": "application/json"
+                  }
+                ]
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "requestBody": true,
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+                  "name": "POST"
+                },
+                "body": {
+                  "formBody": {
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": [
+                      {
+                        "enabled": true,
+                        "type": "Text",
+                        "name": "seq",
+                        "value": "4"
+                      },
+                      {
+                        "enabled": true,
+                        "type": "Text",
+                        "name": "title",
+                        "value": "title1"
+                      },
+                      {
+                        "enabled": true,
+                        "type": "Text",
+                        "name": "contents",
+                        "value": "contents1"
+                      },
+                      {
+                        "enabled": true,
+                        "type": "Text",
+                        "name": "frstRegUserId",
+                        "value": "시스템"
+                      }
+                    ]
+                  },
+                  "bodyType": "Text",
+                  "textBody": "{\n\"seq\": 4,\n\"title\": \"aaa\",\n\"contents\": \"bbb\",\n\"frstRegUserId\": \"시스템\"\n}"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/codingrecipe/test/select8"
+                },
+                "id": "e3c16c33-a5db-4e4c-9fd0-aee20faab1ea",
+                "name": "4_post_@RequestBody, map",
+                "headers": [
+                  {
+                    "enabled": true,
+                    "name": "Content-Type",
+                    "value": "application/json"
+                  }
+                ]
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "requestBody": true,
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+                  "name": "POST"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text",
+                  "textBody": "{\n  \"seq\": 1,\n  \"title\": \"제목\"\n}"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/codingrecipe/test/request-cookie"
+                },
+                "id": "026dac00-be46-4d2a-b4ac-e7d0766885f8",
+                "name": "5_Cookie",
+                "headers": [
+                  {
+                    "enabled": true,
+                    "name": "Content-Type",
+                    "value": "application/json"
+                  }
+                ]
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": [
+                      {
+                        "enabled": true,
+                        "name": "seq",
+                        "value": "1"
+                      },
+                      {
+                        "enabled": true,
+                        "name": "title",
+                        "value": "제목"
+                      }
+                    ]
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/codingrecipe/test/request-get"
+                },
+                "id": "b881039d-e8ba-4698-a47c-123d2613ba2d",
+                "name": "5_HttpServletRequest, @GetMapping",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "requestBody": true,
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+                  "name": "POST"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text",
+                  "textBody": "{\n  \"seq\": 1,\n  \"title\": \"제목\"\n}"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/codingrecipe/test/request-post"
+                },
+                "id": "a51f43cd-c2df-4dcb-9c99-e3216f102310",
+                "name": "5_HttpServletRequest, @PostMapping",
+                "headers": [
+                  {
+                    "enabled": true,
+                    "name": "Content-Type",
+                    "value": "application/json"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "entity": {
+            "type": "Service",
+            "id": "844542e1-7cae-4237-b139-1880aac08ebc",
+            "name": "metacoding"
+          },
+          "children": [
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/metacoding/home"
+                },
+                "id": "859268b5-deed-4ebc-acfa-63740a0ae95a",
+                "name": "1_home",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/metacoding/http/get"
+                },
+                "id": "f9863017-4104-4cf8-8e45-311380e8ee40",
+                "name": "2_http_get",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "requestBody": true,
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+                  "name": "POST"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": [
+                      {
+                        "enabled": true,
+                        "type": "Text",
+                        "name": "",
+                        "value": ""
+                      }
+                    ]
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/metacoding/http/post"
+                },
+                "id": "8348a715-cfb7-4553-aa9a-58260eb3a783",
+                "name": "2_http_post",
+                "headers": [
+                  {
+                    "enabled": true,
+                    "name": "Content-Type",
+                    "value": "application/json"
+                  }
+                ]
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text",
+                  "textBody": "{\n  \"password\" : \"abcd\",\n  \"email\" : \"test@gmail.com\"\n}"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/metacoding/user/delete/5"
+                },
+                "id": "159021cd-cf55-4e04-966a-0a75fb54280c",
+                "name": "3_user_delete",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "requestBody": true,
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+                  "name": "POST"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text",
+                  "textBody": "{\n  \"name\" : \"cron\",\n  \"password\" : \"asdf\",\n  \"email\" : \"cron@gmail.com\",\n  \"role\" : \"USER\"\n}"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/metacoding/user/insert"
+                },
+                "id": "b9fe5b76-8400-4713-9492-22ad6e1920c0",
+                "name": "3_user_insert",
+                "headers": [
+                  {
+                    "enabled": true,
+                    "name": "Content-Type",
+                    "value": "application/json"
+                  }
+                ]
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text",
+                  "textBody": "{\n  \"name\" : \"banana\",\n  \"password\" : \"3456\",\n  \"email\" : \"banana@gmail.com\",\n  \"role\" : \"USER\"\n}"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/metacoding/user/select/1"
+                },
+                "id": "cf0b12e6-f782-413f-9cfb-9a15dec9a5fe",
+                "name": "3_user_select",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text",
+                  "textBody": "{\n  \"name\" : \"banana\",\n  \"password\" : \"3456\",\n  \"email\" : \"banana@gmail.com\",\n  \"role\" : \"USER\"\n}"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/metacoding/user/selectAll"
+                },
+                "id": "14f530aa-16f0-4249-b373-801c1d5e6c24",
+                "name": "3_user_selectAll",
+                "headers": []
+              }
+            },
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "requestBody": true,
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.4",
+                  "name": "PUT"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text",
+                  "textBody": "{\n  \"password\" : \"abcd\",\n  \"email\" : \"test@gmail.com\"\n}"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/metacoding/user/update/5"
+                },
+                "id": "5a25e1e9-fa37-4535-8086-dcae97eb5e46",
+                "name": "3_user_update",
+                "headers": [
+                  {
+                    "enabled": true,
+                    "name": "Content-Type",
+                    "value": "application/json"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "entity": {
+            "type": "Scenario",
+            "description": "",
+            "id": "7cdfd8c6-e10d-4d27-b773-efcf55026246",
+            "name": "view"
+          },
+          "children": [
+            {
+              "entity": {
+                "type": "Request",
+                "method": {
+                  "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+                  "name": "GET"
+                },
+                "body": {
+                  "formBody": {
+                    "overrideContentType": true,
+                    "encoding": "application/x-www-form-urlencoded",
+                    "items": []
+                  },
+                  "bodyType": "Text"
+                },
+                "uri": {
+                  "query": {
+                    "delimiter": "&",
+                    "items": []
+                  },
+                  "scheme": {
+                    "name": "http",
+                    "version": "V11"
+                  },
+                  "host": "localhost:8081",
+                  "path": "/"
+                },
+                "id": "7f93f7f0-e3ad-4149-8ff3-201d77a1000e",
+                "name": "home",
+                "headers": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

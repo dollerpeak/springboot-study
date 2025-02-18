@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<!-- <html xmlns:th="http://www.thymeleaf.org"> -->
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>easyspub-html</title>
+
+	<style>
+		table {
+			border: 1px solid #ccc;
+			border-collapse: collapse;
+		}
+		
+		th, td {
+			border: 1px solid #ccc;
+			padding: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<a href="/easyspub/main"><h1 id="top">back main</h1></a>
+	<hr>
+	
+	<section>
+		<p>
+		<h1>title : 텍스트, 리스트</h1>
+		</p>
+	
+		<div>
+			<h1>레드향</h1>
+			<p>껍질에 붉은 빛이 돌아 레드향이라 불린다.</p>
+			<p>
+				레드향은 <em>한라봉과 귤을 교배</em>한 것으로<br> 알맹이가 굵고 통통해 식감이 좋으며<br>
+				비타민 C와 비타민 P가 풍부해 <strong>혈액순환, 감기예방</strong>등에 좋은 것으로 알려져 있다.
+			</p>
+	
+			<h2>레드향 샐러드 레시피</h2>
+			<p>
+				<b>재료 :</b> 레드향 1개, 아보카도 1개, 토마토 1개, 샐러드 ㅅ채소 30g
+			</p>
+			<p>
+				<b>드레싱 :</b> 올리브유 1큰술, 레몬즙 2큰술, 꿀 1큰술, 소금 약간
+			</p>
+	
+			<ol>
+				<li>샐러드 채소를 씻고 물기를 제거한 후 준비합니다.</li>
+				<li>레드향과 아보카도, 토마토를 먹기 좋은 크기를 썰어둡니다.</li>
+			</ol>
+	
+		</div>
+	</section>
+	<hr>
+
+	<section>
+		<h1>title : 테이블</h1>
+		<table>
+			<caption>선물용과 가정용 상품 구성</caption>
+			<tr>
+				<th>용도</th>
+				<th>중량</th>
+				<th>갯수</th>
+				<th>가격</th>
+			</tr>
+			<tr>
+				<td>선물용</td>
+				<td>3kg</td>
+				<td>11~16과</td>
+				<td>35,000원</td>
+			</tr>
+			<tr></tr>
+			<tr></tr>
+			<tr></tr>
+		</table>
+		<br>
+	
+		<table style="border:1px solid; color: red;">
+			<caption>test</caption>
+			<tr>
+				<th>1</th>
+				<th>2</th>
+				<th>3</th>
+			</tr>
+			<tr>
+				<td>a</td>
+				<td>b</td>
+				<td>c</td>
+			</tr>
+			<tr>
+				<td>aa</td>
+				<td>bb</td>
+				<td>cc</td>
+			</tr>
+		</table>
+	</section>
+	<hr>
+
+	<section>
+		<h1>title : 이미지, 비디오, 오디오</h1>
+		<div>
+			<img src="/images/easyspub/kakao.jpg" alt="images kakao" width="20%">
+		</div>
+		<br>
+		<div>
+			<audio src="/medias/easyspub/sound.mp3" controls></audio>
+		</div>
+		<br>
+		<div>
+			<video src="/medias/easyspub/video.mp4" controls muted poster="/images/easyspub/music.jpg"></video>
+		</div>
+	</section>
+	<hr>
+	
+	<section>
+		<h1>title : link</h1>
+		<div>
+			<a href="/easyspub/main">main</a>
+			<br>
+			<a href="/easyspub/main" target="_blank">main new window</a>
+		</div>
+		<br>
+		<div>
+			<a href="/easyspub/main"><img src="/images/easyspub/orange.jpg" alt="images orange" width="20%"></a>
+		</div>
+		<br>
+		<div>
+			<a href=#top>북마크로 활용(지정한 id로 이동)</a>
+		</div>
+	</section>
+	<hr>
+	
+	<section>
+		<h1>title : 입력창</h1>
+		<form action=""><!-- action = 실행될 스크립트 -->
+			<label for="id">ID : <input type="text" id="id"></label>
+			<br>
+			<label for="pw">PW : <input type="password" id="pw"></label>
+			<br>
+			<input type="submit" value="로그인">
+		</form>
+		<br>
+		
+		<form>
+			<fieldset>
+				<legend>주문정보</legend>
+				<ol>
+					<li>
+						<label>주문상품</label>
+						<input type="text" value="apple">
+					</li>
+					<li>
+						<label>체크박스</label>
+						<ul>
+							<li>
+								<label><input type="checkbox" value="c1">바나나</label>
+								<input type="number">개 (최소, 최대 없음)
+							</li>
+							<li>
+								<label><input type="checkbox" value="c2">사과</label>
+								<input type="number" min="0" max="10">개 (최소 0, 최대 10)
+							</li>
+							<li>
+								<label><input type="checkbox" value="c3">오렌지</label>
+								<input type="range" min="0" max="3" value="1">개 (최소 0, 최대 3)
+							</li>
+						</ul>
+					</li>
+					<li>
+						<label>라디오버튼</label>
+						<ul>
+							<li>
+								<label><input type="radio" name="gift" value="r1">바나나</label>
+							</li>
+							<li>
+								<label><input type="radio" name="gift" value="r2">사과</label>
+							</li>
+							<li>
+								<label><input type="radio" name="gift" value="r3">오렌지</label>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<label>이름</label>
+						<input type="text">
+					</li>
+					<li>
+						<label>주소</label>
+						<input type="text">
+					</li>
+					<li>
+						<label>전화번호</label>
+						<input type="tel">
+					</li>
+					<li>
+						<label>이메일</label>
+						<input type="email">
+					</li>
+				</ol>
+			</fieldset>
+		</form>
+		
+	</section>
+	<hr>
+
+	<section>
+		<form>
+			<h2>날짜 지정하기</h2>
+			<input type="date"><br>
+			<input type="month"><br>
+			<input type="week"><br>
+	
+			<h2>시간 지정하기</h2>
+			<input type="time"><br>
+			<input type="datetime-local"><br>
+	
+			<h2>범위 제한</h2>
+			<input type="date" min="2023-05-03" max="2023-05-10"><br>
+			<input type="time" min="14:00" max="16:00">
+
+			<h2>hidden : 개발자 도구에서 모두 보이긴 한다.</h2>
+			<input type="hidden"><br>
+		</form>
+	</section>
+	<hr>
+
+	<section>
+		<h2>레드향 주문</h2>
+		<form>
+			<fieldset>
+				<legend>배송정보</legend>
+				<ul>
+					<li>
+						<label for="prod">주문상품</label>
+						<input type="text" id="prod" value="상품용 3KG" readonly>
+					</li>
+					<li>
+						<label for="name">이름</label>
+						<input type="text" id="name" placeholder="이름입력" required autofocus>
+					</li>
+					<li>
+						<label for="addr">주소</label>
+						<input type="text" id="addr" placeholder="주소입력" required>
+					</li>
+					<li>
+						<label for="mail">이메일</label>
+						<input type="email" id="mail" placeholder="이메일입력">
+					</li>
+					<li>
+						<label for="phone">연락처</label>
+						<input type="tel" id="phone" placeholder="하이픈빼고입력">
+					</li>
+					<li>
+						<label for="day">배송일</label>
+						<input type="date" id="day">
+					</li>
+					<li>
+						<label for="memo">메모</label>
+						<textarea id="memo" cols="40" rows="4"></textarea>
+					</li>
+					<li>
+						<label>셀렉트박스</label>
+						<select>
+							<option value="sel-1">셀렉트1</option>
+							<option value="sel-2" selected>셀렉트2</option>
+							<option value="sel-3">셀렉트3</option>
+						</select>
+					</li>
+					<li>
+						<label>라디오버튼</label>
+						<ul>
+							<li>
+								<label><input type="radio" name="gift" value="r1">바나나</label>
+							</li>
+							<li>
+								<label><input type="radio" name="gift" value="r2">사과</label>
+							</li>
+							<li>
+								<label><input type="radio" name="gift" value="r3">오렌지</label>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</fieldset>
+			<div>
+				<input type="submit" value="주문하기">
+				<input type="reset" value="취소하기">
+			</div>
+		</form>
+	</section>
+	<hr>
+
+	<a href="/easyspub/main"><h1 id="top">back main</h1></a>
+
+</body>
+
+</html>

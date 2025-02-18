@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<!-- <html xmlns:th="http://www.thymeleaf.org"> -->
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>easyspub-css</title>
+
+	<style>
+		#container {
+			width: 600px;
+			margin: 10px auto;
+		}
+	
+		h2 {
+			color: blue;
+			font-size: 2em;
+			font-style: italic;
+		}		
+		
+	</style>
+	<link href="/css/easyspub/register.css" rel="stylesheet" type="text/css">
+	<link href="/css/easyspub/test1.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<a href="/easyspub/main"><h1 id="top">back main</h1></a>
+	<hr>
+	
+	<p>
+		<h1>easyspub-css</h1>
+	</p>
+	<hr>
+
+	<section id="container">
+		<h2>[2023-06-13]회원 가입을 환영합니다.</h2>
+		<form>
+			<fieldset>
+				<legend>사용자정보</legend>
+				<ul>
+					<li>
+						<label for="id">아이디</label>
+						<input type="text" id="id">
+					</li>
+					<li>
+						<label for="email">이메일</label>
+						<input type="email" id="email">
+					</li>
+					<li>
+						<label for="password">비밀번호</label>
+						<input type="password" id="password">
+					</li>
+					<li>
+						<label for="password-check">비밀번호 확인</label>
+						<input type="password" id="password-check">
+					</li>
+					<li>
+						<label>가입경로</label>
+						<select>
+							<option value="sel-1" selected>블로그</option>
+							<option value="sel-2">페이스북</option>
+							<option value="sel-3">인스타그램</option>
+						</select>
+					</li>
+					<li>
+						<label for="memo">메모</label>
+						<textarea id="memo" cols="40" rows="4"></textarea>
+					</li>
+				</ul>
+			</fieldset>
+		</form>
+		<form>
+			<fieldset>
+				<legend>이벤트와 새로운 소식</legend>
+						<label><input type="radio" name="gift" value="r1">메일 수신</label>
+						<label><input type="radio" name="gift" value="r2">메일 수신 안함</label>
+				</ul>
+			</fieldset>
+		</form>
+		<div id="buttons">
+			<input type="submit" value="가입하기">
+			<input type="reset" value="취소">
+		</div>
+	</section>
+	<hr>
+
+	<section>
+		<h2 style="color: red;">[2023-06-13]레드향</h2>
+		<p class="red">껍질에 붉은 빛이 돌아 레드향이라 불린다.</p>
+		<p>레드향은 한라봉과 귤을 교배한 것ㄱ으로 일발 귤보다 2~3배 크고, 과육이 붉고 통통하다.</p>
+		<p>비타민 C와 비타민 P가 풍부해 혈액순환, 감기예방 등에 좋은 것으로 알려져 있다.</p>
+	</section>
+	<hr>
+
+	<section>
+		<h3>[2023-06-16] html, css의 기본 박스모델</h3>
+		<div>
+			박스모델로 이해하면 쉽다.<br>
+			모든 오브젝트는 박스로 이루어져 있고.<br>
+			박스는 content, pading, border, margin으로 이루어져 있다.<br>
+		</div>
+		<br>
+	
+		<style>
+			#boxmodel1 {
+				background-color: yellow;
+				text-align: center;
+				border: 10px solid orange;
+				padding: 10px;
+				margin: 10px;
+			}
+		</style>
+		<div id="boxmodel1">content</div>
+	</section>
+	<hr>
+
+	<section>
+		<h3>[2023-06-20] 레이아웃을 구성하는 css 박스모델</h3>
+		<style>
+			#layoutboxmodel1 {				
+			}
+		</style>
+		<div id="layoutboxmodel1">basic
+			<ul>
+				<li>menu_1</li>
+				<li>menu_2</li>
+				<li>menu_3</li>
+			</ul>
+		</div>
+		<br>
+
+		<style>
+			#layoutboxmodel2 ul {
+				list-style: none;
+			}
+			#layoutboxmodel2 ul li {
+				border: 1px solid black;
+				padding: 20px;
+				margin: 0 20px;
+			}
+		</style>
+		<div id="layoutboxmodel2">css
+			<ul>
+				<li>menu_1</li>
+				<li>menu_2</li>
+				<li>menu_3</li>
+			</ul>
+		</div>
+		<br>
+
+		<style>
+			#layoutboxmodel3 ul {
+				list-style: none;
+			}
+			#layoutboxmodel3 ul li {
+				display: inline-block;
+				border: 1px solid black;
+				padding: 20px;
+				margin: 0 20px;
+			}
+		</style>
+		<div id="layoutboxmodel3">style
+			<ul>
+				<li>menu_1</li>
+				<li>menu_2</li>
+				<li>menu_3</li>
+			</ul>
+		</div>
+		<br>
+
+		<style>
+			.box1 {
+				width: 100px;
+				height: 100px;
+				border: 1px solid black;
+				display: inline-block;
+				margin: 50px;
+			}
+			.box1 > div {
+				width: 100px;
+				height: 100px;
+				background-color: orange;
+			}
+			#movex:hover {
+				transform: translateX(30px);
+			}
+			#movey:hover {
+				transform: translateY(30px);
+			}
+			#movez:hover {
+				transform: translate(30px, 30px);
+			}
+		</style>
+		<p>move</p>
+		<div class="box1">
+			<div id="movex"></div>
+		</div>
+		<div class="box1">
+			<div id="movey"></div>
+		</div>
+		<div class="box1">
+			<div id="movez"></div>
+		</div>
+		<br>
+
+		<style>
+			#scalex:hover {
+				transform: scaleX(1.5);
+			}
+			#scaley:hover {
+				transform: scaleY(1.5);
+			}
+			#scalez:hover {
+				transform: scale(0.5, 1.5);
+			}
+		</style>
+		<p>scale</p>
+		<div class="box1">
+			<div id="scalex"></div>
+		</div>
+		<div class="box1">
+			<div id="scaley"></div>
+		</div>
+		<div class="box1">
+			<div id="scalez"></div>
+		</div>
+		<br>
+
+		<style>
+			.box2 {
+				width: 100px;
+				height: 100px;
+				border: 1px solid black;
+				display: inline-block;
+				margin: 50px;
+				perspective: 200px; /* 원근감 */
+			}
+			.box2 > div {
+				width: 100px;
+				height: 100px;
+				background-color: orange;
+				transition: all 2s; /* 동안 연출 */
+			}
+			#rotatex:hover {
+				transform: rotateX(55deg);
+			}
+			#rotatey:hover {
+				transform: rotateY(55deg);
+			}
+			#rotatez:hover {
+				transform: rotateZ(55deg);
+			}
+			#rotatexyz:hover {
+				transform: rotate3d(2.5, 1.2, -1.5, 55deg);
+			}
+		</style>
+		<p>입체회전</p>
+		<div class="box2">
+			<div id="rotatex"></div>
+		</div>
+		<div class="box2">
+			<div id="rotatey"></div>
+		</div>
+		<div class="box2">
+			<div id="rotatez"></div>
+		</div>
+		<div class="box2">
+			<div id="rotatexyz"></div>
+		</div>
+		<br>
+	</section>
+	<hr>
+
+	<section>
+		<h3>[2023-06-21] 반응형웹, 미디어 쿼리</h3>
+		<div>
+			@media<br>
+			참고사이트 : www.yesviz.com/devices.php
+		</div>		
+	</section>
+	<hr>
+
+	<a href="/easyspub/main"><h1 id="top">back main</h1></a>
+
+</body>
+
+</html>

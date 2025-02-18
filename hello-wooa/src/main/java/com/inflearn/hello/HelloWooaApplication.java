@@ -1,0 +1,13 @@
+package com.inflearn.hello;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class HelloWooaApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(HelloWooaApplication.class, args);
+	}
+
+}

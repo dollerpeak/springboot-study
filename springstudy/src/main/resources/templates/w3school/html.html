@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<!-- <html xmlns:th="http://www.thymeleaf.org"> -->
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	<title>w3school-html</title>
+</head>
+
+<body>
+	<a href="/w3school/main"><h1 id="top">back main</h1></a>
+	<hr>
+	
+	<p>
+		<h1>구조</h1>
+		!DOCTYPE html : html을 사용표시로 최 상단에 적용<br>
+		html : html페이지 전체를 html 태그로<br>
+		head : 탭에 나타나는 제목을 title, 문자 형식을 meta<br>
+		body : 페이지 구성<br>
+		태그는 요소와 속성으로 구분<br>
+		- 요소 : 태그의 종류<br>
+		- 속성 : 태그안에 추가적으로 적용할 수 있는 태그<br>
+	</p>
+	<hr>
+	
+	<div>
+		<h1>block & inline</h1>
+		- block : 하나의 영역을 정의하는 느낌<br>
+		- inline : 속성을 추가하는 느낌<br>
+		
+		<h2>style, class, id 등으로 CSS 속성을 함께 사용하기 용의</h2>
+		
+		class : style에 미리 정의해 두고 가져다 쓰는 느낌<br>
+		- .city{}, ex)마침표.클래스명<br>
+		- 1개이상 클래스도 적용가능, class="city main" 같은 방법으로<br>
+		- JavaScript getElementsByClassName()사용하여 클래스 사용<br>
+		<div>
+			<style>
+				.city {
+					background-color: tomato;
+					color: white;
+					border: 2px solid black;
+					margin: 20px;
+					padding: 20px;
+				}
+		
+				.note {
+					font-size: 120%;
+					color: red;
+				}
+				
+				.test {
+					background-color: tomato;
+					color: white;
+					padding-left: 20px;
+				}
+			</style>
+			
+			<script>
+				function myFunction() {
+					var x = document.getElementsByClassName("test");
+					for (var i = 0; i < x.length; i++) {
+						x[i].style.color = "black";
+					}
+				}
+			</script>
+		
+			<div class="city">
+				<h2>London</h2>
+				<p>London is the capital of England.</p>
+			</div>
+			<p>This is some <span class="note">important</span> text.</p>
+			
+						
+			<button onclick="myFunction()" title="class test">class test : function 사용</button>
+			<p class="test">class test</p>
+		</div>
+		
+		<div>
+			<h2>id</h2>
+			class 와 달리 여러곳에서 쓸수 없고 html페이지 내에서 고유해야 한다.<br>
+			책갈피 기능과 유사<br>
+			<a href="#bookmark" title="link w3school">동일 페이지 내 링크</a><br><br>
+			
+			style에 #으로 시작하는 id명<br>
+			사용은 #을 제외하고 사용<br>
+			(class는 style에 .으로 시작하는 class명)<br>
+			<style>
+				#myHeader {
+					background-color: lightblue;
+					color: black;
+					padding: 5px;
+					text-align: left;
+				}
+			</style>
+			<h1 id="myHeader">My Header</h1>
+			<a href="#bookmark">북마크와 동일하게 사용할 수 있다.</a><br><br>
+			
+			javascript를 이용하면 class와 동일하게 style과 내용까지 변경이 가능<br>
+			- class같은 경우는 동적페이지에서 전체적인 폼을 변경할때 사용되고<br>
+			- id같은 경우는 동적페이지에서 값을 변경할때 사용될것 같다.<br>
+			<script>
+				function displayResult() {
+					document.getElementById("myHeader").innerHTML = "Have a nice day!";
+				}
+			</script>
+			<button onclick="displayResult()">class header, Change text</button>
+		</div>		
+		
+		
+	</div>
+	<hr>
+	
+	<p>
+		<h1>HEAD</h1>
+		html안에 head와 body로 구분<br>
+		
+		title : 탭에 표시되는 제목, 웹 검색 시 사용<br>
+		icon : 탭에 표시되는 아이콘<br>
+		style : html 문서에 전체 적용되는 형식<br>
+		- tag를 명시하고 적용 형식을 작성, ex) h1 {color:red;}<br>
+		link : 현재 문서와 외부 리소스간 연동에 사용<br>
+		- 주로 style sheet를 연결하는데 사용<br>
+		- ex) link rel="stylesheet" href="mystyle.css"><br>		
+		script : 사용하는 함수 정의<br>
+		base : 페이지 전체에 작용되며 주로 단축 depth를 줄이고자 사용<br>
+		- 리소스경로, URL경로 등 긴 요소의 동일한 부분(주로 앞쪽)을 미리 정의해서 사용<br>
+		meta : html문서 형식 정의<br>
+		<br>
+		
+		아이콘 적용 : head 영역에 아래 코드처럼 작성, 맨앞의 <는 제거<br>
+		<pre>
+			meta charset="UTF-8">
+			title>template-html</title>
+			link rel="icon" href="favicon.ico">
+		</pre>
+		<br>
+		
+		<h2>meta</h2>
+		검색 엔진용 키워드 : name="keywords" content="HTML, CSS, JavaScript"<br>
+		웹 페이지에 대한 설명 : name="description" content="Free Web tutorials"<br>
+		페이지 작성자 : name="author" content="John Doe"<br>
+		30초마다 문서 새로 ​​고침: http-equiv="refresh" content="30"<br>
+		뷰포트 설정 : name="viewport" content="width=device-width, initial-scale=1.0"<br>
+		- content="width=device-width : 장치의 가로에 맞게 표현<br>
+		- initial-scale=1.0 : 초기 배율<br>
+		자바스크립트<br>
+		<pre>
+			script>
+			function myFunction() {
+			  document.getElementById("demo").innerHTML = "Hello JavaScript!";
+			}
+			/script>
+		</pre>
+		<br>
+		
+		base<br>		
+		<pre>
+			base href="https://www.w3schools.com/" target="_blank">
+			head에 위와 같이 정의하면
+			이후 herf, scr 등 url지정 시 위 링크 기준으로 적용됨
+			url도 기존과 달리 상대주소로 설정가능
+		</pre>
+		
+	</p>
+	<hr>
+	
+	<p>
+		<h1>브라우저 제목, 아이콘</h1>
+		브라우저 탭의 제목과 아이콘 표시<br>
+		head 영역에 아래 코드처럼 작성, 맨앞의 <는 제거<br>
+		<pre>
+			meta charset="UTF-8">
+			title>template-html</title>
+			link rel="icon" href="favicon.ico">
+		</pre>
+	</p>
+	<hr>
+	
+	<p>
+		<h1>단락</h1>
+		P : 단락<br>
+		br : 줄바꿈<br>
+		hr : 가로 구분선<br>
+	</p>
+	<hr>
+	
+	<p>
+		<h1>제목</h1>
+		h1부터 h6까지<br>
+		<h1>[tag:h1] html</h1>
+		<h2>[tag:h2] html</h2>
+		<h3>[tag:h3] html</h3>
+		<h4>[tag:h4] html</h4>
+		<h5>[tag:h5] html</h5>
+		<h6>[tag:h6] html</h6>
+	</p>
+	<hr>
+	
+	<p>
+		<h1>text style</h1>
+		[tag:b] Hypertext <b>Markup</b> Language<br>
+		[tag:strong] Hypertext <strong>Markup</strong> Language<br>
+		[tag:i] <i>Hypertext Markup Language</i><br>
+		[tag:em] <em>Hypertext Markup Language</em><br>
+		[tag:small] <small>Hypertext Markup Language</small><br>
+		[tag:mark] Hypertext <mark>Markup</mark> Language<br>
+		[tag:del] Hypertext <del>Markup</del> Language<br>
+		[tag:ins] Hypertext <ins>Markup</ins> Language<br>
+		[tag:sub] Hypertext <sub>Markup</sub> Language<br>
+		[tag:sup] Hypertext <sup>Markup</sup> Language<br>
+		[tag:u] Hypertext <u>Markup</u> Language
+	</p>
+	<p style="font-size:20px">[tag:style font-size] Hypertext Markup Language</p>
+	<p style="color:red">[tag:style color] Hypertext Markup Language</p>
+	<p style="background-color:yellow"> [tag:style background-color] Hypertext Markup Language</p>
+	<p style="font-family:courier">[tag:style font-family, 글꼴] Hypertext Markup Language</p>
+	<p style="text-align:left">[tag:style text-align] Hypertext Markup Language</p>
+	<p style="text-align:center">[tag:style text-align] Hypertext Markup Language</p>
+	<p style="text-align:right">[tag:style text-align] Hypertext Markup Language</p>
+	<p>[tag:abbr title, 툴팁] The <abbr title="World Health Organization">WHO</abbr> was founded in 1948</p>
+	<p>[tag:b title, 툴팁] The <b title="World Health Organization">WHO</b> was founded in 1948</p>
+	<p>[tag:bdo, 문자역순] <bdo dir="rtl">Hypertext Markup Language</bdo></p>
+	<p style="border:2px solid red">[tag:boarder, 아웃라인] Hypertext Markup Language</p>
+	<pre>
+	[tag:pre, 문자 그대로 적용] asgadsfasdf, adsfasdf. asdfasdf
+	asdfasf
+	</pre>	
+	<p>
+		Hypertext Markup Language <br>
+		<blockquote>
+		[tag:blockquote 인용구] Hypertext Markup Language
+		</blockquote>
+	</p>
+	<hr>
+	
+	<p>
+		<h1>링크</h1>
+		href : 링크적용, 주소는 절대경로<br>
+		target : 링크시 창여는 방법, default _self, 새창 _blank
+		title : 툴팁<br>
+		id : 페이지 내에서 링크 가능하며 id로 표시된 위치로 스크롤 이동<br>
+		<br>
+		
+		a tag<br>
+		<a href="https://www.w3schools.com/html/" target="_blank" title="link w3school">link w3school</a>
+		<br><br>
+		
+		버튼, 창여는 방법 적용 안됨<br>
+		<button onclick="document.location='https://www.w3schools.com/html/'" title="link w3school">link w3school</button>
+		<br><br>
+		
+		<span id="bookmark">id : 링크에 # + id 명으로 적용해야 함</span><br>
+		<a href="#top" title="link w3school">동일 페이지 내 링크</a>
+		<br><br>
+	</p>
+	<hr>
+	
+	<p>
+		<h1>이미지</h1>
+		img : 이미지는 상대경로 (static 가 root)<br>
+		href : 링크적용, 주소는 절대경로<br>
+		target : 링크시 창여는 방법, default _self, 새창 _blank
+		alt : 표시 이미지가 없는 경우 디폴트 텍스트<br>
+		title : 툴팁<br>
+		<br>
+		
+		
+		링크O<br>
+		<img alt="html" src="/images/w3school/img_html.jpg" style="width: 100px; height: 150px;" title="not link">
+		<br><br>
+		링크X<br>
+		<a href="https://www.w3schools.com/html/" target="_blank"> 
+			<img alt="html" src="/images/w3school/img_html.jpg" style="width: 100px; height: 150px;" title="link w3school">
+		</a>
+		<br><br>
+		버튼, 창여는 방법 적용 안됨<br>
+		<button onclick="document.location='https://www.w3schools.com/html/'">link w3school</button>
+		<br><br>
+		
+		<p>
+			이미지 맵<br>
+			이미지에 영역을 나누어 클릭 했을때 링크를 걸수가 있다<br>
+			아래 코드처럼 작성, 맨앞의 <는 제거<br>
+			<pre>
+				img src="workplace.jpg" alt="Workplace" usemap="#workmap">
+				map name="workmap">
+				  area shape="rect" coords="34,44,270,350" alt="Computer" href="computer.htm">
+				  area shape="rect" coords="290,172,333,250" alt="Phone" href="phone.htm">
+				  area shape="circle" coords="337,300,44" alt="Coffee" href="coffee.htm">
+				/map>
+			</pre>
+		</p>		
+	</p>
+	<hr>
+	
+	<h1>백그라운드</h1>
+	<p style="background-color:rgb(0, 255, 0)">
+		웹페이지 백그라운드 색상 적용 가능<br>
+		- body에 적용하면 전체 페이지 적용 가능<br>
+	</p>
+	
+	<p>
+		웹페이지 백그라운드 이미지 적용 가능<br>
+		- body에 적용하면 전체 페이지 적용 가능<br>
+		- background-repeat: no-repeat : 화면보다 이미지가 작을때 반복 안함<br>
+		- background-attachment: fixed : 화면(영역)을 꽉 채움<br>
+		- background-size: cover : <br>
+	</p>
+	<p style="background-image:url('/images/w3school/img_html.jpg'); background-repeat: no-repeat;">
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	</p>
+	
+	<p>
+		웹페이지 화면 사이즈에 따른 개별 백그라운드 이미지 적용 가능<br>
+		아래 코드처럼 작성, 맨앞의 <는 제거<br>
+		<pre>
+			picture>
+			  source media="(min-width: 650px)" srcset="img_food.jpg">
+			  source media="(min-width: 465px)" srcset="img_car.jpg">
+			  img src="img_girl.jpg">
+			/picture>
+		</pre>
+	</p>
+	<hr>
+		
+	<p>
+		<h1>테이블</h1>
+		tabel - tr - th/td 구조<br>
+		테이블 그리는 예제<br>
+		<!--<table style="width:100%">-->
+		<table style="border: 1px solid black">
+			<tr>
+				<th style="border: 1px solid black">순번</th>
+				<th style="border: 1px solid black">data</th>
+				<th style="border: 1px solid black">table 설명</th>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">1</td>
+				<td style="border: 1px solid black">data1</td>
+				<td style="border: 1px solid black">tr : table row</td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">2</td>
+				<td style="border: 1px solid black">data2</td>
+				<td style="border: 1px solid black">th : table header</td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">3</td>
+				<td style="border: 1px solid black">data3</td>
+				<td style="border: 1px solid black">td : table data</td>
+			</tr>
+		</table>
+		<br>
+		
+		외곽 테두리 선 예제<br>
+		<table style="border: 1px solid black; border-collapse: collapse">
+			<tr>
+				<th style="border: 1px solid black">순번</th>
+				<th style="border: 1px solid black">data</th>
+				<th style="border: 1px solid black">table 설명</th>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">1</td>
+				<td style="border: 1px solid black">data1</td>
+				<td style="border: 1px solid black">tr : table row</td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">2</td>
+				<td style="border: 1px solid black">data2</td>
+				<td style="border: 1px solid black">th : table header</td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">3</td>
+				<td style="border: 1px solid black">data3</td>
+				<td style="border: 1px solid black">td : table data</td>
+			</tr>
+		</table>
+		<br>
+		
+		쎌에 색깔 적용 예제<br>
+		<table style="border: 1px solid black; border-collapse: collapse">
+			<tr>
+				<th style="border: 1px solid black; background-color: red">순번</th>
+				<th style="border: 1px solid black">data</th>
+				<th style="border: 1px solid black">table 설명</th>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">1</td>
+				<td style="border: 1px solid black; background-color: rgb(0, 128, 255)">data1</td>
+				<td style="border: 1px solid black">tr : table row</td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">2</td>
+				<td style="border: 1px solid black">data2</td>
+				<td style="border: 1px solid black">th : table header</td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">3</td>
+				<td style="border: 1px solid black">data3</td>
+				<td style="border: 1px solid black; background-color: rgb(255, 255, 0)">td : table data</td>
+			</tr>
+		</table>
+		<br>
+		
+		외곽석 라운딩 예제<br>
+		<table style="border: 1px solid black; border-radius: 10px">
+			<tr>
+				<th style="border: 1px solid black; background-color: red">순번</th>
+				<th style="border: 1px solid black">data</th>
+				<th style="border: 1px solid black">table 설명</th>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">1</td>
+				<td style="border: 1px solid black; background-color: rgb(0, 128, 255)">data1</td>
+				<td style="border: 1px solid black">tr : table row</td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">2</td>
+				<td style="border: 1px solid black">data2</td>
+				<td style="border: 1px solid black">th : table header</td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">3</td>
+				<td style="border: 1px solid black">data3</td>
+				<td style="border: 1px solid black; background-color: rgb(255, 255, 0)">td : table data</td>
+			</tr>
+		</table>
+		<br>
+		
+		<!-- border-style : dotted, dashed, solid, double, groove, ridge, inset, outset ... -->
+		<table style="border-style: inset">
+			<caption>table style 예제</caption>
+			<tr>
+				<th>순번</th>
+				<th>data</th>
+				<th>table 설명</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>data1</td>
+				<td>tr : table row</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>data2</td>
+				<td>th : table header</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>data3</td>
+				<td>td : table data</td>
+			</tr>
+		</table>
+		<br>
+		
+		<table style="border: 1px solid black; width: 100%">
+			<caption>쎌 크기 변경 예제</caption>
+			<tr>
+				<th style="border: 1px solid black; width: 50%">순번</th>
+				<th style="border: 1px solid black">data</th>
+				<th style="border: 1px solid black">table 설명</th>
+			</tr>
+			<tr style="height: 200px;">
+				<td style="border: 1px solid black">1</td>
+				<td style="border: 1px solid black">data1</td>
+				<td style="border: 1px solid black">tr : table row</td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">2</td>
+				<td style="border: 1px solid black">data2</td>
+				<td style="border: 1px solid black">th : table header</td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid black">3</td>
+				<td style="border: 1px solid black">data3</td>
+				<td style="border: 1px solid black">td : table data</td>
+			</tr>
+		</table>
+		<br>
+		
+		<table style="border: 1px solid black">
+			<caption>header를 세로로 예제</caption>
+			<tr>
+				<th style="border: 1px solid black">순번</th>
+				<td style="border: 1px solid black">1</td>
+				<td style="border: 1px solid black">2</td>
+				<td style="border: 1px solid black">3</td>
+			</tr>
+			<tr>
+				<th style="border: 1px solid black">data</th>
+				<td style="border: 1px solid black">data1</td>
+				<td style="border: 1px solid black">data2</td>
+				<td style="border: 1px solid black">data3</td>
+			</tr>
+			<tr>
+				<th style="border: 1px solid black">table 설명</th>
+				<td style="border: 1px solid black">tr : table row</td>
+				<td style="border: 1px solid black">th : table header</td>
+				<td style="border: 1px solid black">td : table data</td>
+			</tr>
+		</table>
+		<br>
+		
+		<table style="border: 1px solid black">
+			<caption>텍스트 정렬 예제</caption>
+			<tr>
+				<th style="border: 1px solid black">순번</th>
+				<td style="border: 1px solid black">1</td>
+				<td style="border: 1px solid black">2</td>
+				<td style="border: 1px solid black; text-align: right">3</td>
+			</tr>
+			<tr>
+				<th style="border: 1px solid black">data</th>
+				<td style="border: 1px solid black">data1</td>
+				<td style="border: 1px solid black; text-align: center">data2</td>
+				<td style="border: 1px solid black">data3</td>
+			</tr>
+			<tr>
+				<th style="border: 1px solid black">table 설명</th>
+				<td style="border: 1px solid black">tr : table row</td>
+				<td style="border: 1px solid black">th : table header</td>
+				<td style="border: 1px solid black">td : table data</td>
+			</tr>
+		</table>
+		<br>
+		
+		<table style="border: 1px solid black">
+			<caption>합쳐진 쎌 예제</caption>
+			<tr>
+				<th style="border: 1px solid black" colspan="3">순번</th>
+				<!--<td style="border: 1px solid black">1</td>-->
+				<!--<td style="border: 1px solid black">2</td>-->
+				<td style="border: 1px solid black; text-align: right">3</td>
+			</tr>
+			<tr>
+				<th style="border: 1px solid black" rowspan="2">data</th>
+				<td style="border: 1px solid black">data1</td>
+				<td style="border: 1px solid black; text-align: center">data2</td>
+				<td style="border: 1px solid black">data3</td>
+			</tr>
+			<tr>
+				<!--<th style="border: 1px solid black">table 설명</th>-->
+				<td style="border: 1px solid black">tr : table row</td>
+				<td style="border: 1px solid black">th : table header</td>
+				<td style="border: 1px solid black">td : table data</td>
+			</tr>
+		</table>
+		<br>
+		
+		padding : 적용을 중심으로 외곽까지의 공간 (상하좌우 별도로 적용가능 : padding-top, bottom, left, right)<br>
+		<table style="border: 1px solid black; padding: 20px;">
+			<tr>
+				<th style="border: 1px solid black">순번</th>
+				<td style="border: 1px solid black">1</td>
+				<td style="border: 1px solid black; padding: 20px;">2</td>
+				<td style="border: 1px solid black; text-align: right">3</td>
+			</tr>
+			<tr>
+				<th style="border: 1px solid black">data</th>
+				<td style="border: 1px solid black">data1</td>
+				<td style="border: 1px solid black; text-align: center">data2</td>
+				<td style="border: 1px solid black">data3</td>
+			</tr>
+			<tr>
+				<th style="border: 1px solid black">table 설명</th>
+				<td style="border: 1px solid black">tr : table row</td>
+				<td style="border: 1px solid black">th : table header</td>
+				<td style="border: 1px solid black">td : table data</td>
+			</tr>
+		</table>
+		<br>
+		
+		spacing : 각 쎌마다 공간
+		<table style="border: 1px solid black; border-spacing: 20px;">
+			<tr>
+				<th style="border: 1px solid black">순번</th>
+				<td style="border: 1px solid black">1</td>
+				<td style="border: 1px solid black">2</td>
+				<td style="border: 1px solid black; text-align: right">3</td>
+			</tr>
+			<tr>
+				<th style="border: 1px solid black">data</th>
+				<td style="border: 1px solid black">data1</td>
+				<td style="border: 1px solid black; text-align: center">data2</td>
+				<td style="border: 1px solid black">data3</td>
+			</tr>
+			<tr>
+				<th style="border: 1px solid black">table 설명</th>
+				<td style="border: 1px solid black">tr : table row</td>
+				<td style="border: 1px solid black">th : table header</td>
+				<td style="border: 1px solid black">td : table data</td>
+			</tr>
+		</table>
+		<br>
+		
+		Colgroup : column 속성에 속성을 부여할 수 있음
+		<table style="border: 1px solid black">
+			<colgroup>
+				<!-- 0~2까지-->
+				<!--<col span="2" style="background-color: red">-->
+				<!-- 0~2까지, 나머지 부분 5까지-->
+				<!--<col span="2" style="background-color: red">
+				<col span="5" style="background-color: red">-->
+				<!-- 1부터 1개까지, 비워두면 시작점으로 인식-->
+				<col span="1">
+				<col span="1" style="background-color: red">
+			</colgroup>
+			<tr>
+				<th style="border: 1px solid black">순번</th>
+				<td style="border: 1px solid black">1</td>
+				<td style="border: 1px solid black">2</td>
+				<td style="border: 1px solid black">3</td>
+			</tr>
+			<tr>
+				<th style="border: 1px solid black">data</th>
+				<td style="border: 1px solid black">data1</td>
+				<td style="border: 1px solid black">data2</td>
+				<td style="border: 1px solid black">data3</td>
+			</tr>
+			<tr>
+				<th style="border: 1px solid black">table 설명</th>
+				<td style="border: 1px solid black">tr : table row</td>
+				<td style="border: 1px solid black">th : table header</td>
+				<td style="border: 1px solid black">td : table data</td>
+			</tr>
+		</table>
+		<br>
+		
+	</p>
+	<hr>
+	
+	<p>
+		<h1>리스트</h1>
+		
+		unordered list, 기본 *으로 나열<br>
+		<ul>
+			<li>Coffee</li>
+			<li>Tea</li>
+			<li>Milk</li>
+		</ul>
+		<br>
+		
+		ordered list, 순번으로 나열<br>
+		<ol>
+			<li>Coffee</li>
+			<li>Tea</li>
+			<li>Milk</li>
+		</ol>
+		<br>
+		
+		ordered list, type으로 순번을 표현 : 1, A, a, I, i<br>
+		<ol type="I">
+			<li>Coffee</li>
+			<li>Tea</li>
+			<li>Milk</li>
+		</ol>
+		<br>
+		
+		ordered list, 시작 기회값을 적용, type으로 순번을 표현 : 1, A, a, I, i<br>
+		<ol type="I" start="10">
+			<li>Coffee</li>
+			<li>Tea</li>
+			<li>Milk</li>
+		</ol>
+		<br>
+		
+		description list, 각 리스트에 설명을 첨부한 나열<br>
+		<dl>
+			<dt>Coffee</dt>
+			<dd>- black hot drink</dd>
+			<dt>Milk</dt>
+			<dd>- white cold drink</dd>
+		</dl>
+		<br>
+		
+		스타일 적용 : disc, circle, square, none<br>
+		<ul style="list-style-type:square;">
+			<li>Coffee</li>
+			<li>Tea</li>
+			<li>Milk</li>
+		</ul>
+		<br>
+		
+		중첩적용 리스트<br>
+		<ul>
+			<li>Coffee</li>
+			<li>Tea
+				<ul>
+					<li>Black tea</li>
+					<li>Green tea</li>
+				</ul>
+			</li>
+			<li>Milk</li>
+		</ul>
+		
+		가로 리스트 : 나머지는 CSS에서 <br>
+		<ul style="list-style-type: none;
+		  margin: 0;
+		  padding: 0;
+		  overflow: hidden;
+		  background-color: #333333;">
+			<li style="float: left;"><a style="display: block; color: white; text-align: center; padding: 16px; text-decoration: none; background-color: #111111;" href="#home">Home</a></li>
+			<li style="float: left;"><a style="display: block; color: white; text-align: center; padding: 16px; text-decoration: none;" href="#news">News</a></li>
+			<li style="float: left;"><a style="display: block; color: white; text-align: center; padding: 16px; text-decoration: none;" href="#contact">Contact</a></li>
+			<li style="float: left;"><a style="display: block; color: white; text-align: center; padding: 16px; text-decoration: none;" href="#about">About</a></li>
+		</ul>
+		
+	</p>
+	<hr>
+	
+	<h2>
+		<h1>form</h1>
+		- 사용자의 입력을 받기 위해 사용<br>
+		<br>
+		input을 받을때 label로 표기하며 label의 for와 input의 id가 동일해야 한다.<br>
+		
+		<form action="#">
+			<label for="name">name:</label>
+			<input type="text" id="name" name="name"> : input에 name이 key, value가 value로 전송된다.<br>
+			<input type="submit" value="Submit"> : 액션을 했을때 form의 action으로 값이 전송된다.<br>
+		</form>
+		<br>
+		input의 type : 다 해보지는 않았지만 많다.
+		<ul>
+			<li>button<input type="button"></li>
+			<li>checkbox<input type="checkbox"></li>
+			<li>color<input type="color"></li>
+			<li>date<input type="date"></li>
+			<li>datetime-local<input type="datetime-local"></li>
+			<li>email<input type="email"></li>
+			<li>file<input type="file"></li>
+			<li>hidden<input type="hidden"></li>
+			<li>image<input type="image"></li>
+			<li>month<input type="month"></li>
+			<li>number<input type="number"></li>
+			<li>password<input type="password"></li>
+			<li>radio<input type="radio"></li>
+			<li>range<input type="range"></li>
+			<li>reset<input type="reset"></li>
+			<li>search<input type="search"></li>
+			<li>submit<input type="submit"></li>
+			<li>tel<input type="tel"></li>
+			<li>text<input type="text"> (default value)</li>
+			<li>time<input type="time"></li>
+			<li>url<input type="url"></li>
+			<li>week<input type="week"></li>
+		</ul>
+		<br>
+		select : 셀렉트 박스<br>
+		- option이 값으로 인식된다.<br>
+		<form action="#">
+			<label for="cars">Choose a car</label><br>
+			<select name="cars" id="cars">
+				<option value="volvo">현대</option>
+				<option value="saab">기아</option>
+				<option value="opel">대우</option>
+				<option value="audi">쌍용</option>
+			</select>
+			<br>
+			<input type="submit" value="Submit">
+		</form>
+		<br>
+		<h2>그외 다양한 요소가 있는데 이건 하면서 익혀야 한다.</h2><br>
+		
+		
+	</div>
+	<hr>
+	
+	<div>
+		<h1>웹페이지내 웹페이지 표시</h1>
+		- 크기는 보통 pix로 지정<br>
+		- 절대경로를 넣어도 링크가 되는 사이트가 있고 안되는 사이트가 있네<br>
+		- 내부페이는 controller가 받는것처럼 파일확장자 없이 적용 (파일확장자는 thymeleaf properties에서 적용<br>
+		<!--<iframe src="https://www.l4d.or.kr" name="iframe_a" style="height:500px;width:300px;" title="Iframe Example">동대문도서관</iframe>-->
+		<iframe src="/w3school/css" name="iframe_a" style="height:500px;width:300px;" title="Iframe Example">test css</iframe>
+		<br><br>
+		iframe에 링크 걸기<br>
+		- iframe상에서 페이지 이동이 된다.<br>
+		<!--<a href="https://www.l4d.or.kr/hgc/index.do" target="iframe_a">휘경어린이도서관</a>-->
+		<a href="/w3school/js" target="iframe_a">test javascript</a>		
+	</div>
+	<hr>
+	
+	<div>
+		<h1>semantic(의미있는 속성)</h1>
+		- 반응형 웹사이트<br>
+		- 화면 크기에 따른 자동변형 웹사이트<br>
+		<br>
+		
+		<img src="/images/w3school/semantics.gif" alt="sematics">
+		<br>
+		
+		종류<Br>
+		- 쭉보면 꼭 써야 하는건 아니고 예약어가 많으니 사용자가 구분해서 사용하면 될것 같다.<br>
+		<ol>
+			<li>header</li>
+			- 메인제목
+			<li>nav</li>
+			- 각 메뉴에 대한 링크
+			<li>section</li>
+			- 주제, 제목
+			<li>article</li>
+			- 문서의 내용
+			<li>aside</li>
+			- 별개의 내용
+			<li>footer</li>
+			- 웹페이지 하단			
+			<li>main</li>
+			- 문서 하나에 고유해야 하는 요소
+			<li>details</li>
+			- 열고 닫을 수 있는 내용
+			- summary 와 함께 표시되어 detail의 제목이 됨 
+			<li>figure</li>
+			- 이미지나 표를 표현할때 하단에 붙는 내용으로 figcaption으로 설명을 표기
+		</ol>
+	</div>
+	<hr>
+	
+	<div>
+		<h1>responsive web</h1>
+		- 반응형 웹사이트<br>
+		- 화면 크기에 따른 자동변형 웹사이트<br>
+		<br>
+		BootStrap<br>
+		- html, css, jquery를 사용한 반응형 웹사이트<br>
+
+	</div>
+	<hr>	
+	
+	<div>
+		<h1>java script의 대략적인 구조</h1>
+		- class말고 id로 script로 정의하고<br>
+		  함수이든 속성이든 예로 getElementClass, Id<br>
+		- 태그에서 id로 호출해서 사용하는 방식<br>
+		- 아래와 비슷한 형식으로 사용<br>
+		<pre>					
+			script>
+				function myFunction() {
+					document.getElementById("demo").innerHTML = "Hello JavaScript!";
+				}
+			/script>
+			button type="button" onclick="myFunction()">Click Me!</button>			
+			p id="demo">This is a demonstration.</p>
+		</pre>
+		
+	</div>
+	<hr>
+	
+
+	<a href="/w3school/main"><h1 id="top">back main</h1></a>
+
+</body>
+
+</html>

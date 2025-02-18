@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>w3school-css</title>
+	
+	<style>
+		h4 {color: red;}
+		h6 {color: blue;}
+	</style>
+	<link rel="stylesheet" href="/css/w3school/css.css">
+	
+</head>
+
+<body>
+	<a href="/w3school/main"><h1 id="top">back main</h1></a>
+	<hr>
+
+	<div>
+		<h1>설명</h1>
+		기존 html 파일을 좀 더 다양하게 사용가능<br>
+		html + CSS 구성으로 쓰지 않는 것이 있을까?<br>
+	</div>
+	<hr>
+
+	<div>
+		<h1>적용방식</h1>
+		(inline) html 태그에 style 속성으로 추가<br>
+		(internal) html head 영역에 style 로 적용해서 해당 페이지 전체에 적용 가능<br>
+		(external) link 로 외부 CSS파일에 연결 (link rel="stylesheet" href="mystyle.css")<br>
+	</div>
+	<hr>
+	
+	<div>
+		<h1>head에 tag별로 정의</h1>
+		<h4>h4 내부 style, red</h4>
+		<h5>h5 외부 css 링크, green</h5>
+		<h6>h6 내부 style, blue</h6>
+	</div>
+	<hr>
+	
+	
+	<div>
+		<h1>head에 style로 정의 및 사용하는 방법</h1>
+		
+		<ul>
+			<li><h3>일반적인 사용</h3></li>
+			<h2>html 태그를 직접 지정</h2>
+			- 선언 : h1 {font-size:10px; color:red}<br>
+			- 사용 : h1 태그를 사용할때 마다 선언한 값이 그대로 적용<br>
+			<h2>id를 사용해서 지정</h2>
+			- 선언 : #car {font-size:10px; color:red}<br>
+			- 사용 h1 id="car" {font-size:10px; color:red}, id를 선택해서 사용<br>
+			<h2>class를 사용해서 지정</h2>
+			- 선언 : .car {font-size:10px; color:red}<br>
+			- 사용 h1 class="car" {font-size:10px; color:red}, id를 선택해서 사용<br>
+			<h2>여러개를 선언 할때는 h1, p {font-size:10px; color:red}</h2>
+		    <h2>여러개를 사용할때는 id 또는 class = "지정 지정 지정 .."</h2>
+			
+			<li><h3>Combinators : 복잡하네 그냥 개념만</h3></li>
+			<h2>Descendant</h2>
+			- 선언 : div p {font-size:10px; color:red}<br>
+			- 사용 : div 태그안에 p 태그가 있으면 적용<br>
+			<h2>Child</h2>
+			- 선언 : div > p {font-size:10px; color:red}<br>
+			- 사용 : div 태그안에 p 태그가 바로 아래 뎁스에 있을때만 중간에 다른 태그가 있으면 적용되지 않는다.<br>
+			<h2>Adjacent Sibling</h2>
+			- 선언 : div + p {font-size:10px; color:red}<br>
+			- 사용 : div 태그가 끝나고(/div) p 태그가 나타날때<br>
+			<h2>General Sibling</h2>
+			- 선언 : div ~ p {font-size:10px; color:red}<br>
+			- 사용 : div 태그가 끝나고(/div) 이후 나타나는 모든 p 태그에서 태그가 끝날때(/p) p 태그는 모두 영향을 받는다.<br>
+			
+			<li><h3>Pseudo-classes</h3></li>
+			<h2>- 특정상태에 따라를 지정해서 사용</h2>
+			<h2>Anchor</h2>
+			- 선언 : a:hover {font-size:10px; color:red}<br>
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp a:visited {font-size:10px; color:green}<br>
+			- 사용 : a 태그 사용 시 방문한 페이지 이면 visited, 마우스가 포커싱되면 hover 적용<br>
+			<h2>Classes</h2>
+			- 선언 : a.highlight:hover {font-size:10px; color:red}<br>
+			- 사용 : a 태그 사용 시 class="highlight" 사용하면 적용<br>
+			<h2>div에 hover</h2>
+			- 선언 : div:hover {font-size:10px; color:red}<br>
+			- 사용 : div 태그에 마우스 포커스 되면 적용<br>
+			
+			<li><h3>Attribute</h3></li>
+			<h2>- 태그에 특정 속성에 있을때 적용</h2>
+			<h2>태그[속성]</h2>
+			- 선언 : a[target] {font-size:10px; color:red}<br>
+			- 사용 : a 태그에 target 속성이 있는 경우 적용<br>
+			<h2>태그[속성="값""]</h2>
+			- 선언 : a[target="_blank"] {font-size:10px; color:red}<br>
+			- 사용 : a 태그에 target 속성과 같이 모두 동일할때 적용<br>
+			
+			<li><h3>그외 무수히 많음, 필요할때 마다 찾아서 하는 걸로</h3></li>
+			
+		</ul>
+		
+	</div>
+	<hr>
+	
+	<div>
+		<h1>background</h1>
+		<p style="background-color: red;">style="background-color: red;</p>
+		<p
+			style="background-image: url(/images/w3school/img_html.jpg); background-repeat: no-repeat; background-position: right; background-attachment: scroll;">
+			background-image: url(images/img_html.jpg);</p>
+		아래의 속성으로 미리 정의해두고 호출해서 한번에 사용할 수 있음<br>
+		- background-color<br>
+		- background-image<br>
+		- background-repeat<br>
+		- background-attachment<br>
+		- background-position<br>
+	</div>
+	<hr>
+	
+	<div>
+		<h1>border</h1>
+		<p style="border-style: solid; border-color: red; border-width: 2px 2px 2px 20px; ">style="border: 2px solid red;</p>		
+		<p style="border-left: solid red 20px;">style="border: 2px solid red;</p>
+		- 필요한 값만 연속적으로 작성도 가능<br>
+	</div>
+	<hr>
+	
+	<div>
+		<h1>margin & padding</h1>
+		<p><h3>margin : 여백, 정의된 테두리 외부</h3></p>
+		<p style="border: solid red 2px; margin: 70px;">margin</p>
+		
+		<p><h3>padding : 여백, 정의된 테두리 내부</h3></p>
+		<p style="border: solid red 2px; padding: 70px;">padding</p>
+	</div>
+	<hr>
+
+	<div>
+		<h1>width & height</h1>
+		<p style="border: 5px solid red; width: 500px;">adfasdfasdfasdfasdfasdfadfasdfasdfasdfasdfasdfadfasdfasdfasdfasdfasdfadfasdfasdfasdfasdfasdfadfasdfasdfasdfasdfasdf</p>
+	</div>
+	<hr>
+	
+	<div>
+		<h1>outline</h1>
+		<p style="outline-style: dashed; ">adfasdfasdfasdfasdfasdfadfasdfasdfasdfasdfasdfadfasdfasdfasdfasdfasdfadfasdfasdfasdfasdfasdfadfasdfasdfasdfasdfasdf</p>
+	</div>
+	<hr>
+	
+	
+	<a href="/w3school/main"><h1 id="top">back main</h1></a>
+
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+@import url(/static/css/newlecture/reset.css);
+
+/* sticky */
+header {
+    background-color: beige;
+    width: 700px;
+    height: 100px;
+    position: sticky;
+    /* left: 0px; */
+    top: 0px; 
+}
+
+/* s1 */
+#s1 ul {
+    background-color: yellow;
+    width: 700px;
+    height: 150px;
+    position: relative;
+}
+#s1 li:nth-child(1) {
+    background-color: red;
+}
+#s1 li:nth-child(2) {
+    background-color: green;
+    /* position: static; */
+    position: absolute;
+    left: 30px;
+    top: 15px;    
+}
+#s1 li:nth-child(3) {
+    background-color: blue;
+}
+
+/* s2 */
+#s2 ul {
+    background-color: yellow;
+    width: 700px;
+    height: 150px;
+}
+#s2 li:nth-child(1) {
+    background-color: red;
+    position: relative;
+    left: 30px;
+    top: 30px;
+}
+#s2 li:nth-child(2) {
+    background-color: green;
+}
+#s2 li:nth-child(3) {
+    background-color: blue;
+}
+
+/* s3 */
+#s3 ul {
+    background-color: yellow;
+    width: 700px;
+    height: 150px;
+}
+#s3 li:nth-child(1) {
+    background-color: red;
+}
+#s3 li:nth-child(2) {
+    background-color: green;
+    position: fixed;
+    left: 30px;
+    top: 30px;
+}
+#s3 li:nth-child(3) {
+    background-color: blue;
+}
+
+/* s4 */
+#s4 ul {
+    background-color: yellow;
+    width: 700px;
+    height: 150px;
+}
+#s4 li:nth-child(1) {
+    background-color: red;
+}
+#s4 li:nth-child(2) {
+    background-color: green;
+    position: fixed;
+    left: 30px;
+    top: 30px;
+}
+#s4 li:nth-child(3) {
+    background-color: blue;
+}
