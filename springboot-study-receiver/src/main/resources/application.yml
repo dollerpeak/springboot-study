@@ -1,0 +1,17 @@
+
+# server 
+server:
+  port: 8082  
+  servlet:
+    # context-path: / # http://localhost:8081/
+    context-path: /receiver # http://localhost:8082/receiver/
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+      #force-request: true
+      #force-response: true
+
+spring: 
+  application: 
+    name: springboot-study-receiver
