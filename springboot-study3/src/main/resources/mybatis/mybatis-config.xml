@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<!-- camel 표기 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<!-- java null을 DB NULL로 적용 -->
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	<!-- 
+	<typeAliases>
+		<typeAlias type="com.study.codingrecipe.board.dto.BoardDto" alias="board" />
+	</typeAliases> 
+	-->
+</configuration>

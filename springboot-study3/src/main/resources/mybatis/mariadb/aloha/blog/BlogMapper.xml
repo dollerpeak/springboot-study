@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper.java 파일과 일치해야 함 -->
+<mapper namespace="com.study.aloha.blog.BlogMapper">
+
+	<insert id="insert" parameterType="com.study.aloha.blog.BlogEntity" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO BLOG (			
+			TITLE,
+			WRITER,
+			CONTENTS,	
+			HITS,
+			FRST_REG_USER_ID,
+			LAST_CHG_USER_ID
+		) VALUES (
+			#{title},
+			#{writer},
+			#{contents},	
+			#{hits},
+			#{frstRegUserId},
+			#{lastChgUserId}
+		)
+	</insert>
+	
+	<!-- 
+	<select id="selectMaxId" resultType="java.lang.Integer">
+		SELECT
+			MAX(ID) 
+		FROM PANEL
+	</select>
+	 -->
+	
+	<select id="select" resultType="com.study.aloha.blog.BlogEntity">
+		SELECT
+			ID,
+			TITLE,
+			WRITER,
+			CONTENTS,
+			HITS,
+			FRST_REG_DATE,
+			FRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID
+		FROM BLOG
+		WHERE 1=1
+		ORDER BY ID DESC
+	</select>
+	 
+	<select id="detail" parameterType="java.lang.Long" resultType="com.study.aloha.blog.BlogEntity">
+		SELECT
+			ID,
+			TITLE,
+			WRITER,
+			CONTENTS,
+			HITS,
+			FRST_REG_DATE,
+			FRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID
+		FROM BLOG
+		WHERE ID = #{id}
+	</select>
+
+	
+	<update id="update" parameterType="com.study.aloha.blog.BlogEntity">
+		UPDATE BLOG
+			SET TITLE = #{title}, WRITER = #{writer}, CONTENTS = #{contents}, HITS = #{hits},
+				LAST_CHG_DATE = #{lastChgDate}, LAST_CHG_USER_ID = #{lastChgUserId}  
+		WHERE ID = #{id}
+	</update>
+	
+	
+	<delete id="delete" parameterType="java.lang.Long">
+		DELETE FROM BLOG
+		WHERE ID = #{id}
+	</delete>
+	
+	
+	
+</mapper>

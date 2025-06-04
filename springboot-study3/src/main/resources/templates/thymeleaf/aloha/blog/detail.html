@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>blog</title>
+</head>
+<body>
+	<h1>상세</h1>
+	<a href="/aloha/blog">뒤로</a> </br>
+	</br></br>
+	
+	<table border="1">
+		<tr>
+			<td>제목</td>
+			<td th:text="${blog.title}"></td>
+		</tr>
+		<tr>
+			<td>작성자</td>
+			<td th:text="${blog.writer}"></td>
+		</tr>
+		<tr>
+			<td colspan="2" th:text="${blog.content}"></td>
+		</tr>
+		<tr>
+			<td>작성일</td>
+			<td th:text="${blog.regDate}"></td>
+		</tr>
+		<tr>
+			<td>수정일</td>
+			<td th:text="${blog.upDate}"></td>
+		</tr>
+	</table>
+	<a th:href="@{/aloha/blog/update(id=${blog.id})}">수정</a>
+	
+	
+</body>
+</html>

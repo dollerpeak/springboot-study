@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쇼핑몰 메인</title>
+    <!-- Bootstrap CSS CDN 링크 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 추가적인 사용자 정의 CSS 파일이 있다면 여기에 링크 -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 예시를 위한 간단한 스타일 */
+        .hero-section {
+            background: url('https://via.placeholder.com/1920x600?text=Hero+Image') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+            margin-bottom: 40px;
+        }
+        .product-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px; /* 세로 간격은 유지 */
+            text-align: center;
+        }
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* 네비게이션 바 내부 요소들의 세로 정렬 및 간격 조정 */
+        /* .container에 d-flex, align-items-center, flex-wrap 적용 */
+        /* 네비게이션 항목들의 하단 마진 제거 */
+        .navbar-brand,
+        .navbar .search-form-container,
+        .navbar-nav {
+             margin-bottom: 0; /* Flex item이 되었을 때 불필요한 하단 마진 제거 */
+        }
+
+        .navbar-brand {
+            padding-top: .3125rem; /* 기본 패딩 유지 */
+            padding-bottom: .3125rem; /* 기본 패딩 유지 */
+            margin-right: 1rem; /* 로고와 검색창 사이 간격 */
+        }
+
+
+        /* 검색 폼 컨테이너: 남은 공간 채움 */
+        .navbar .search-form-container {
+             flex-grow: 1; /* 로고와 메뉴 사이의 남은 공간 채움 */
+             max-width: 500px; /* 검색창 컨테이너 최대 너비 설정 (조정 가능) */
+             margin-right: 1rem; /* 검색창과 메뉴 사이 간격 */
+
+             /* 모바일 뷰 조정 */
+             /* 모바일에서는 너비 100% 사용 및 하단 마진 추가 */
+             /* flex-grow: 1은 유지하되, max-width를 해제하고 width 100% 적용 */
+        }
+
+        /* 검색창 내부 (입력필드, 버튼) 정렬 및 간격 */
+        .navbar form.d-flex {
+             /* .search-form-container에 flex-grow: 1을 줘서 너비를 확보하고,
+                이 form 자체는 그 공간 안에서 d-flex로 내용을 정렬 */
+            align-items: center; /* 입력 필드와 버튼의 세로 중앙 정렬 */
+            width: 100%; /* 부모 컨테이너(.search-form-container) 너비에 맞춤 */
+        }
+
+         /* 검색 입력 필드와 버튼의 세로 마진 제거 */
+        .navbar form.d-flex .form-control-sm,
+        .navbar form.d-flex .btn-sm {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+
+        /* 메뉴 항목 목록 (.navbar-nav): 항상 가로 정렬 및 줄바꿈 허용 */
+        .navbar-nav {
+            /* .container에 flex-wrap이 있으므로 이 ul도 wrap 됨 */
+            /* 내부 li 요소들을 가로로 정렬 */
+            display: flex;
+            flex-direction: row; /* 항상 가로 정렬 */
+            flex-wrap: wrap; /* 공간 부족 시 메뉴 항목들 줄바꿈 */
+            align-items: center; /* 메뉴 항목들의 세로 중앙 정렬 */
+            padding-left: 0; /* ul의 기본 패딩 제거 */
+            list-style: none; /* ul의 기본 리스트 스타일 제거 */
+            margin-left: auto !important; /* 항상 오른쪽으로 정렬 */
+        }
+
+         /* 메뉴 개별 항목 (.nav-item) 간 간격 */
+        .navbar-nav .nav-item {
+             margin-left: 0.5rem; /* 각 메뉴 항목의 왼쪽 간격 */
+             margin-right: 0.5rem; /* 각 메뉴 항목의 오른쪽 간격 */
+             margin-bottom: 0.5rem; /* 줄바꿈 시 항목들 간 하단 간격 */
+        }
+
+         /* 드롭다운 토글 링크의 패딩 조정 (선택 사항) */
+         .navbar-nav .nav-link.dropdown-toggle {
+              padding-right: 0.5rem; /* 드롭다운 화살표와 텍스트 사이 간격 */
+         }
+
+
+        /* 모바일 뷰 조정 (lg breakpoint 이하) */
+        @media (max-width: 991.98px) {
+             .navbar .search-form-container {
+                 margin-left: 0; /* 모바일에서 왼쪽 마진 제거 */
+                 margin-right: 0; /* 모바일에서 오른쪽 마진 제거 */
+                 margin-bottom: 0.5rem; /* 모바일에서 하단 마진 추가 */
+                 max-width: none; /* 모바일에서 최대 너비 제한 해제 */
+                 width: 100%; /* 모바일에서 너비 100% 사용 */
+             }
+
+             /* 모바일에서 로고와 검색창, 메뉴 사이 간격 조정 */
+             .navbar-brand {
+                  margin-right: 0.5rem;
+             }
+
+             /* 모바일 메뉴 항목 목록 (.navbar-nav) */
+             .navbar-nav {
+                  width: 100%; /* 모바일에서 너비 100% 사용 */
+                  justify-content: center; /* 모바일에서 메뉴 항목들을 중앙 정렬 (선택 사항) */
+                  margin-left: 0 !important; /* 중앙 정렬 시 auto 마진 제거 */
+             }
+
+              /* 모바일 메뉴 항목 간격 조정 */
+             .navbar-nav .nav-item {
+                 margin: 0.25rem 0.5rem; /* 위아래, 좌우 간격 조정 */
+             }
+
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 네비게이션 바 (Header) -->
+    <nav class="navbar navbar-light bg-light"> <!-- navbar-expand-lg 제거 -->
+        <div class="container d-flex align-items-center flex-wrap"> <!-- container에 Flexbox 적용 및 줄바꿈 허용 -->
+
+            <!-- 가장 왼쪽: 로고/아이콘 -->
+            <a class="navbar-brand" href="#">🛍️ MyShop</a>
+
+            <!-- 검색창 컨테이너 -->
+            <div class="search-form-container">
+                 <form class="d-flex" role="search"> <!-- form 자체에 d-flex로 내부 정렬 -->
+                     <input class="form-control form-control-sm me-2" type="search" placeholder="상품 검색" aria-label="Search">
+                     <button class="btn btn-sm btn-outline-success" type="submit">검색</button>
+                 </form>
+            </div>
+
+            <!-- 메뉴 항목 목록 -->
+            <!-- ms-auto로 오른쪽 정렬, d-flex flex-row flex-wrap으로 내부 항목 가로 정렬 및 줄바꿈 -->
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex flex-row flex-wrap">
+                <!-- 카테고리 드롭다운 메뉴 -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            카테고리
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">전자 제품</a></li>
+                            <li><a class="dropdown-item" href="#">패션/의류</a></li>
+                            <li><a class="dropdown-item" href="#">식품</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                             <li><a class="dropdown-item" href="#">모든 카테고리</a></li>
+                        </ul>
+                    </li>
+                <!-- 로그인/회원가입 -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">로그인/회원가입</a>
+                </li>
+            </ul>
+
+             <!-- 토글 버튼과 collapse div 제거됨 -->
+
+        </div>
+    </nav>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="container">
+
+        <!-- 히어로 섹션 (큰 배너 또는 소개 영역) -->
+        <div class="hero-section">
+            <h1>특별한 상품들을 만나보세요!</h1>
+            <p class="lead">최신 트렌드와 인기 상품들을 한눈에 확인하세요.</p>
+            <a href="#" class="btn btn-primary btn-lg">쇼핑하기</a>
+        </div>
+
+        <!-- 추천 상품 섹션 (가로 스크롤 취소, 원래 그리드 유지) -->
+        <h2>추천 상품</h2>
+        <div class="row">
+            <!-- 추천 상품 아이템 (원래 4개) -->
+            <div class="col-md-6 col-lg-3">
+                <div class="product-item">
+                    <img src="https://via.placeholder.com/300x200?text=Product+1" class="img-fluid" alt="추천 상품 이미지 1">
+                    <h5>추천 상품 1</h5>
+                    <p>가격: ₩ 10,000</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary">상세 보기</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="product-item">
+                     <img src="https://via.placeholder.com/300x200?text=Product+2" class="img-fluid" alt="추천 상품 이미지 2">
+                    <h5>추천 상품 2</h5>
+                    <p>가격: ₩ 25,000</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary">상세 보기</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="product-item">
+                     <img src="https://via.placeholder.com/300x200?text=Product+3" class="img-fluid" alt="추천 상품 이미지 3">
+                    <h5>추천 상품 3</h5>
+                    <p>가격: ₩ 50,000</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary">상세 보기</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="product-item">
+                     <img src="https://via.placeholder.com/300x200?text=Product+4" class="img-fluid" alt="추천 상품 이미지 4">
+                    <h5>추천 상품 4</h5>
+                    <p>가격: ₩ 30,000</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary">상세 보기</a>
+                </div>
+            </div>
+        </div> <!-- /row for 추천 상품 -->
+
+        <!-- 전자 제품 추천 섹션 (기존대로 유지) -->
+        <h2 class="mt-4">전자 제품 추천</h2>
+        <div class="row">
+            <!-- 전자 제품 아이템 (예시 4개) -->
+            <div class="col-md-6 col-lg-3">
+                <div class="product-item">
+                    <img src="https://via.placeholder.com/300x200?text=Electronics+1" class="img-fluid" alt="전자 제품 이미지 1">
+                    <h5>노트북</h5>
+                    <p>가격: ₩ 1,200,000</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary">상세 보기</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="product-item">
+                     <img src="https://via.placeholder.com/300x200?text=Electronics+2" class="img-fluid" alt="전자 제품 이미지 2">
+                    <h5>스마트폰</h5>
+                    <p>가격: ₩ 800,000</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary">상세 보기</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="product-item">
+                     <img src="https://via.placeholder.com/300x200?text=Electronics+3" class="img-fluid" alt="전자 제품 이미지 3">
+                    <h5>무선 이어폰</h5>
+                    <p>가격: ₩ 150,000</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary">상세 보기</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="product-item">
+                     <img src="https://via.placeholder.com/300x200?text=Electronics+4" class="img-fluid" alt="전자 제품 이미지 4">
+                    <h5>스마트 워치</h5>
+                    <p>가격: ₩ 300,000</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary">상세 보기</a>
+                </div>
+            </div>
+        </div> <!-- /row for 전자 제품 -->
+
+        <!-- 패션/의류 추천 섹션 (기존대로 유지) -->
+        <h2 class="mt-4">패션/의류 추천</h2>
+        <div class="row">
+            <!-- 패션/의류 아이템 (예시 4개) -->
+            <div class="col-md-6 col-lg-3">
+                <div class="product-item">
+                    <img src="https://via.placeholder.com/300x200?text=Fashion+1" class="img-fluid" alt="패션/의류 이미지 1">
+                    <h5>여성 블라우스</h5>
+                    <p>가격: ₩ 45,000</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary">상세 보기</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="product-item">
+                     <img src="https://via.placeholder.com/300x200?text=Fashion+2" class="img-fluid" alt="패션/의류 이미지 2">
+                    <h5>남성 티셔츠</h5>
+                    <p>가격: ₩ 30,000</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary">상세 보기</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="product-item">
+                     <img src="https://via.placeholder.com/300x200?text=Fashion+3" class="img-fluid" alt="패션/의류 이미지 3">
+                    <h5>청바지</h5>
+                    <p>가격: ₩ 70,000</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary">상세 보기</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="product-item">
+                     <img src="https://via.placeholder.com/300x200?text=Fashion+4" class="img-fluid" alt="패션/의류 이미지 4">
+                    <h5>스니커즈</h5>
+                    <p>가격: ₩ 95,000</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary">상세 보기</a>
+                </div>
+            </div>
+        </div> <!-- /row for 패션/의류 -->
+
+        <!-- 다른 카테고리 섹션도 동일한 구조로 추가 가능 -->
+
+    </div> <!-- /container -->
+
+    <!-- 푸터 (Footer) -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 MyShop. All rights reserved.</p>
+            <div>
+                <a href="#">이용약관</a> | <a href="#">개인정보처리방침</a> | <a href="#">고객센터</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

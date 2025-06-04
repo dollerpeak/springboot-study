@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>multipart</title>
+</head>
+<body>
+	<h1>상세</h1>
+	<a href="/aloha/blog">뒤로</a> </br>
+	</br></br>
+	
+	<table border="1">
+		<tr>
+			<td>제목</td>
+			<td colspan="5" th:text="${blog.title}"></td>
+		</tr>
+		<tr>
+			<td>작성자</td>
+			<td colspan="5" th:text="${blog.writer}"></td>
+		</tr>
+		<tr>
+			<td>내용</td>
+			<td colspan="5" th:text="${blog.contents}"></td>
+		</tr>
+		<tr>
+			<td>작성일</td>
+			<td colspan="5" th:text="${blog.frstRegDate}"></td>
+		</tr>
+		<tr>
+			<td>수정일</td>
+			<td colspan="5" th:text="${blog.lastChgDate}"></td>
+		</tr>
+		
+		<!-- 첨부파일 -->
+		<tr th:each="attach:${blog.attachList}">
+			<td>첨부파일</td>
+			<td>
+				<!-- <img th:src="@{/file/beef.jpg}" height="100" alt="미리보기"> -->
+				<img th:src="@{/aloha/blog/multipart/attach/thumnail(id=${attach.id})}" height="100" alt="미리보기">
+			</td>
+			<td th:text="${attach.originalName}"></td>
+			<td th:text="${attach.size}"></td>
+			<td th:text="${attach.path}"></td>
+			<td>
+				<button type="button">다운로드</button>
+				<button type="button">삭제</button>
+			</td>
+		</tr>
+	</table>
+	<!-- <a th:href="@{/aloha/blog/update(id=${blog.id})}">수정</a> -->
+	<a th:href="@{#}">수정</a>
+	
+	
+</body>
+</html>

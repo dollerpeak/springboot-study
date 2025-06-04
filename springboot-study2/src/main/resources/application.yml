@@ -1,0 +1,89 @@
+
+# server 
+server:
+  port: 8081  
+  servlet:
+    context-path: / # http://localhost:8081/
+    # context-path: /test # http://localhost:8081/test/
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+      #force-request: true
+      #force-response: true
+
+
+# spring
+spring:
+  #profiles:
+  #  active:
+  #  - 
+  application:
+    name: "springboot-study2"
+  datasource: # datasource
+    #driver-class-name: org.mariadb.jdbc.Driver
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    #url: jdbc:mariadb://localhost:3306/springstudy?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowMultiQueries=true
+    url: jdbc:log4jdbc:mariadb://localhost:3306/springstudy?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowMultiQueries=true
+    username: atdata
+    password: atdata.1!!
+    hikari:
+      pool-name: HikariPool-${spring.application.name}
+#  thymeleaf:
+#    prefix: classpath:/templates/thymeleaf
+#    suffix: .html
+#    cache: false
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+
+# log
+logging:
+  config: classpath:logback-config.xml
+  level:
+    root: info
+  file:
+    path: ./log
+    name: ${spring.application.name}.log
+  logback:
+    rollingpolicy:
+      max-file-size: 1MB
+      max-history: 3
+      total-size-cap: 10MB
+      #file-name-pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} %clr([%-5level]) ${PID:-} --- [%thread] %clr(%-40.40logger{36}){cyan} : %msg%n"
+      file-name-pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] ${PID:-} --- [%thread] %-40.40logger{36} : %msg%n"
+
+
+# mybatis
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mariadb/**/*.xml
+
+
+# test
+test:
+  yaml:
+    one: yaml_1
+    two: yaml_2
+    direct: yaml_direct
+    list: yml_list1, yml_list2
+
+prefixyaml:
+  number: 123
+  str: abc
+  list: a,b,c
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.aloha.blog.attach">
+
+	<insert id="insert" parameterType="com.study.aloha.blog.attach.AttachEntity" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO ATTACH (			
+			BLOG_ID,
+			ORIGINAL_NAME,
+			SAVE_NAME,
+			PATH,
+			SIZE,
+			FRST_REG_USER_ID,
+			LAST_CHG_USER_ID
+		) VALUES (
+			#{blogId},
+			#{originalName},
+			#{saveName},
+			#{path},
+			#{size},
+			#{frstRegUserId},
+			#{lastChgUserId}
+		)
+	</insert>
+	
+	<select id="select" resultType="com.study.aloha.blog.attach.AttachEntity">
+		SELECT
+			ID,
+			BLOG_ID,
+			ORIGINAL_NAME,
+			SAVE_NAME,
+			PATH,
+			SIZE,
+			FRST_REG_DATE,
+			FRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID
+		FROM ATTACH
+		WHERE 1=1
+		ORDER BY ID DESC
+	</select>
+	
+	<select id="detail" parameterType="java.lang.Long" resultType="com.study.aloha.blog.attach.AttachEntity">
+		SELECT
+			ID,
+			BLOG_ID,
+			ORIGINAL_NAME,
+			SAVE_NAME,
+			PATH,
+			SIZE,
+			FRST_REG_DATE,
+			FRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID
+		FROM ATTACH
+		WHERE 1=1
+		AND ID = #{id}
+		ORDER BY ID DESC
+	</select>
+	
+	<select id="selectBlog" parameterType="java.lang.Long" resultType="com.study.aloha.blog.attach.AttachEntity">
+		SELECT
+			ID,
+			BLOG_ID,
+			ORIGINAL_NAME,
+			SAVE_NAME,
+			PATH,
+			SIZE,
+			FRST_REG_DATE,
+			FRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID
+		FROM ATTACH
+		WHERE 1=1
+		AND BLOG_ID = #{blogId}
+		ORDER BY ID DESC
+	</select>
+	
+	<!-- <update id="update" parameterType="com.study.aloha.blog.attach.AttachEntity">
+		UPDATE ATTACH
+			SET BLOG_ID = #{blogId}, ORIGINAL_NAME = #{originalName}, 
+				SAVE_NAME = #{saveName}, PATH = #{path}, SIZE = #{size},
+				LAST_CHG_DATE = #{lastChgDate}, LAST_CHG_USER_ID = #{lastChgUserId}  
+		WHERE ID = #{id}
+	</update> -->	
+	
+	<!-- <delete id="delete" parameterType="java.lang.Long">
+		DELETE FROM ATTACH
+		WHERE ID = #{id}
+	</delete> -->
+	
+	
+</mapper>

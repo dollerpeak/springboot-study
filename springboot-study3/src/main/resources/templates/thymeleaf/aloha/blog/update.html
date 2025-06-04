@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>blog</title>
+</head>
+<body>
+	<h1>수정</h1>
+	<a href="/aloha/blog">뒤로</a> </br>
+	</br></br>
+ 
+ 	<form action="/aloha/blog/update" method="post" id="form">
+ 	<!-- <form action="/aloha/blog/delete" method="post" id="form"> -->
+		<table border="1">
+			<tr style="display: none">
+				<td>id</td>
+				<td>
+					<input type="number" name="id" id="id" th:value="${blog.id}">
+				</td>
+			</tr>
+			<tr>
+				<td>제목</td>
+				<td>
+					<input type="text" name="title" id="title" th:value="${blog.title}">
+					<!-- <input type="text" name="title" id="title" th:field="${blog.title}"> -->
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<!-- <input type="text" name="content" id="content" th:value="${blog.content}"></br> -->
+					<input type="text" name="content" id="content" th:field="${blog.content}"></br>
+				</td>
+			</tr>
+		</table>
+		<input type="submit" value="수정-FORM">
+		<button type="button" onclick="update()" >수정-JS</button> </br>
+		<!-- <button type="button" id="btn-update">수정-JS</button> </br> -->
+		<input type="submit" value="삭제-FORM">
+		<button type="button" onclick="remove()">삭제-JS</button></br>
+		<!-- <button type="button" id="btn-test">Fetch-JS</button> </br> -->
+	</form>
+	<!-- <a th:href="@{/aloha/blog/update(id=${blog.id})}">수정</a> -->
+	
+	<script src="/js/aloha/blog/update.js"></script>
+	<!-- <script type="text/javascript">
+		let test = "[[${blog.id}]]";
+		alert(test);
+	</script> -->
+	
+</body>
+</html>

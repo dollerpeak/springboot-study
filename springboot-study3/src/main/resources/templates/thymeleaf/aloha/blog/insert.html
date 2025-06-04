@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>blog</title>
+</head>
+<body>
+	<h1>작성</h1>
+	<a href="/aloha/blog">뒤로</a> </br>
+	</br></br>
+	
+	<form action="/aloha/blog/insert" method="post">
+		<!-- <input type="hidden" name="id" id="id" value="0"> -->
+		<input type="number" name="id" id="id" value="0" style="display: none">		
+		<label>제목</label>
+		<input type="text" name="title" id="title"></br>
+		<label>작성자</label>
+		<input type="text" name="writer" id="writer"></br>
+		<label>내용</label>
+		<!-- <input type="text" name="content" id="content"></br> -->
+		<input type="text" name="content" id="content"></br>
+		<input type="submit" value="등록">
+	</form>
+	
+</body>
+</html>
