@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.study.aloha.test.di.TestObject;
 import com.study.aloha.test.request.RequestBoard;
 
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +38,10 @@ public class ControllerBoard {
 		boardList.add(new RequestBoard("제목1", "작성자1", "내용1"));
 		boardList.add(new RequestBoard("제목2", "작성자2", "내용2"));
 		boardList.add(new RequestBoard("제목3", "작성자3", "내용3"));
+		
+		// 초기화 테스트
+		TestObject testObject = new TestObject();
+		log.info("testObject = " + testObject.toString());
 		
 		return new ResponseEntity<>(boardList, HttpStatus.OK);
 	}

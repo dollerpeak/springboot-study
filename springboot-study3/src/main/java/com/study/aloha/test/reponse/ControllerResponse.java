@@ -62,9 +62,11 @@ public class ControllerResponse {
 	
 	@ResponseBody
 	@GetMapping(value = "/entity")
-	public ResponseEntity<String> entity() {		
+	//public ResponseEntity<String> entity() {
+	public ResponseEntity<?> entity() {		
 		//return new ResponseEntity<>("success", HttpStatus.OK);
 		return new ResponseEntity<>("bad request", HttpStatus.BAD_REQUEST);
+		//return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	
@@ -82,7 +84,8 @@ public class ControllerResponse {
 		//httpHeaders.setContentType(MediaType.IMAGE_PNG);
 		httpHeaders.setContentType(MediaType.IMAGE_JPEG);
 
-		return new ResponseEntity<>(imageByte, httpHeaders, HttpStatus.OK);
+		//return new ResponseEntity<>(imageByte, httpHeaders, HttpStatus.OK);
+		return ResponseEntity.ok().headers(httpHeaders).body(imageByte);
 	}
 	
 //	@ResponseBody
