@@ -22,6 +22,12 @@ public class BlogRepository {
 
 	public List<BlogEntity> select() throws Exception {
 		log.info("select");
+		
+		// <<< 에러 만들기
+		//String str = "abc";
+		//int a = Integer.parseInt(str);
+		// >>> 에러 만들기
+		
 		return sqlSessionTemplate.selectList(namespace + "select");
 	}
 

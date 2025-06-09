@@ -25,12 +25,23 @@ public class BoardRestController {
 
 	@GetMapping()
 	public ResponseEntity<?> getAll() {
-		try {
-			List<BlogDto> blogList = blogService.select();
-			return new ResponseEntity<>(blogList, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+//		try {
+//			List<BlogDto> blogList = blogService.select();
+//			return new ResponseEntity<>(blogList, HttpStatus.OK);
+//		} catch (Exception e) {
+//			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+
+		// RestControllerAdvice 테스트
+		List<BlogDto> blogList = blogService.select();
+		
+		// <<< 에러 만들기
+		//String str = "abc";
+		//int a = Integer.parseInt(str);
+		//log.info("에러 만들기");
+		// >>> 에러 만들기
+		
+		return new ResponseEntity<>(blogList, HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")

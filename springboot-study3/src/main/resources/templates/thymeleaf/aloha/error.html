@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>home</title>
+	
+	<!-- bootstrap -->
+	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+	<link href="/css/bootstrap-5.3.5/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container">
+		<div>
+			<h2>error page</h2>
+			<a href="/aloha/blog">
+				<h3>뒤로</h3>
+			</a>
+		</div>
+		<div>
+			<p></p>코드:<span th:text=${resultData.code}></span>
+			<p></p>메세지:<span th:text=${resultData.message}></span>
+		</div>
+	</div>
+
+
+	<!-- bootstrap -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script> -->
+	<script src="/js/bootstrap-5.3.5/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

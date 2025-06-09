@@ -1,9 +1,12 @@
 package com.study.aloha.blog;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.study.aloha.blog.attach.AttachDto;
 import com.study.aloha.blog.attach.AttachService;
 import com.study.common.DateFormat;
+import com.study.common.ResultData;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,18 +28,62 @@ public class BlogService {
 	AttachService attachService;
 
 	// repository로 mapper연결할때
-	public List<BlogDto> select() throws Exception {
+	//public List<BlogDto> select() throws Exception {
+	public List<BlogDto> select() {
 		log.info("select");
 		
 		List<BlogDto> listDto = new ArrayList<>();
-		List<BlogEntity> listEntity = blogRepository.select();
+		
+		try {
+			// <<< 에러 만들기
+			//String str = "abc";
+			//int a = Integer.parseInt(str);
+			// >>> 에러 만들기
+			
+			List<BlogEntity> listEntity = blogRepository.select();
 
-		for (BlogEntity entity : listEntity) {
-			//log.info("service - writer = " + entity.getWriter());
-			listDto.add(entity.toDto());
-		}
+			for (BlogEntity entity : listEntity) {
+				//log.info("service - writer = " + entity.getWriter());
+				listDto.add(entity.toDto());
+			}	
+		} catch (Exception e) {
+			log.error("에러 만들기");
+			//log.error("repository 에러 만들기");
+			//log.error("service 에러 만들기");
+		}		
 
 		return listDto;
+	}
+	
+	public ResultData exception_select() {
+		log.info("select");
+		
+		ResultData resultData = new ResultData(HttpStatus.OK.value(), null, null);
+		List<BlogDto> listDto = new ArrayList<>();
+		
+		try {
+			// <<< 에러 만들기
+			String str = "abc";
+			int a = Integer.parseInt(str);
+			// >>> 에러 만들기
+			
+			List<BlogEntity> listEntity = blogRepository.select();
+
+			for (BlogEntity entity : listEntity) {
+				//log.info("service - writer = " + entity.getWriter());
+				listDto.add(entity.toDto());
+			}	
+		} catch (Exception e) {
+			log.error("에러 만들기, e = " + e.getMessage());
+			//log.error("repository 에러 만들기");
+			//log.error("service 에러 만들기");
+			
+			resultData.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+			resultData.setMessage("서비스에서 에러발생");
+			resultData.setData(null);
+		}		
+
+		return resultData;
 	}
 	
 //	@Autowired

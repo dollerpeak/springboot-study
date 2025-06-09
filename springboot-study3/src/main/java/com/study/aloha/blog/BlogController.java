@@ -1,9 +1,5 @@
 package com.study.aloha.blog;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +12,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.study.common.DateFormat;
+import com.study.common.ResultData;
+import com.study.common.exception.CustomException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/aloha/blog")
 public class BlogController {
+
 	@Autowired
 	BlogService blogService;
 
@@ -36,7 +34,8 @@ public class BlogController {
 	
 	// select
 	@GetMapping("/select")
-	public String select(Model model) throws Exception{
+	//public String select(Model model) throws Exception{
+	public String select(Model model) {
 //		blogService.select();
 //		List<Blog> blogList = new ArrayList<>();
 //		blogList.add(new Blog(0, "제목0", "작성자0", "내용0", DateFormat.getFormatString(System.currentTimeMillis(), null),
@@ -48,8 +47,19 @@ public class BlogController {
 
 		// repository로 mapper연결할때
 		model.addAttribute("blogList", blogService.select());
+
+		// 에러만들어서 처리
+		ResultData resultData = blogService.exception_select();
+		
+		log.info("resultData.getCode() = " + resultData.getCode());
+		if(resultData.getCode() == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
+			throw new CustomException(resultData);
+		}
+
+
 		// interface mapper연결할때
-		//model.addAttribute("blogList", blogService.select_mapper());
+		// model.addAttribute("blogList", blogService.select_mapper());
+		
 		log.info("controller - select");
 		
 		return "/aloha/blog/select";
