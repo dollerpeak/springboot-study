@@ -41,10 +41,14 @@ public class SecurityConfig {
 	// 임시로 메모리에 사용자 정보를 저장해서 테스트 가능
 	@Bean
 	public UserDetailsService users() {
-		UserDetails user = User.builder().username("user").password(passwordEncoder().encode("1234")).roles("USER")
+		UserDetails user = User.builder().username("user")
+				.password(passwordEncoder().encode("1234"))
+				.roles("USER")
 				.build();
 
-		UserDetails admin = User.builder().username("admin").password(passwordEncoder().encode("abcd")).roles("ADMIN")
+		UserDetails admin = User.builder().username("admin")
+				.password(passwordEncoder().encode("abcd"))
+				.roles("ADMIN")
 				.build();
 
 		return new InMemoryUserDetailsManager(user, admin);
