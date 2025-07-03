@@ -1,4 +1,4 @@
-package com.shm.my;
+package com.shm.join;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/my")
+@RequestMapping("/join")
 @Slf4j
-public class MyController {
+public class JoinController {
 
 	@GetMapping("")
 	public String main() {
-		log.info("=====> my");
-		return "/my/my";
+		log.info("=====> join");
+		return "/join/join";
 	}
-
+	
 }

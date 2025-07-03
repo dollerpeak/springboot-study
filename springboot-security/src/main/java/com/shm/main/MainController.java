@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("")
+//@RequestMapping("/")
 @Slf4j
 public class MainController {
 
-	@GetMapping({ "", "/" })
+	//@GetMapping({ "", "/" })
+	@GetMapping("")
 	public String main() {
+		log.info("=====> main");
 		return "/main";
 	}
 
