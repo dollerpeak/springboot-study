@@ -28,6 +28,7 @@ public class SecurityConfig {
 		// 인증, 인가
 		http.authorizeHttpRequests(auth -> auth				
 				.requestMatchers("/my", "/my/**").authenticated() // 로그인 사용자
+				.requestMatchers("/seller", "/seller/**").authenticated() // 로그인 판매자
 				.requestMatchers("/admin", "/admin/**").authenticated() // 로그인 관리자 
 				.anyRequest().permitAll()); // 모든 사용자
 
