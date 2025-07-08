@@ -12,38 +12,38 @@ server:
 
 spring:
   application:
-    name: springboot-study3
+    name: springboot-security
 #  servlet:
 #    multipart:
 #      max-file-size: 10MB # default 1MB
 #      max-request-size: 100MB # default 10MB
 #      location: D:\\workspace-sts\\upload\\
-#  datasource:
-#    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-#    url: jdbc:log4jdbc:mariadb://localhost:3306/springstudy?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowMultiQueries=true
-#    username: atdata
-#    password: atdata.1!!
-#    hikari:
-#      pool-name: HikariPool-${spring.application.name}
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mariadb://localhost:3306/springstudy?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowMultiQueries=true
+    username: atdata
+    password: atdata.1!!
+    hikari:
+      pool-name: HikariPool-${spring.application.name}
   thymeleaf:
     prefix: classpath:/templates/thymeleaf
     suffix: .html
     cache: false
 
-#logging:
-#  config: classpath:logback-config.xml
-#  level:
-#    root: info
-#  file:
-#    path: ./log
-#    name: ${spring.application.name}.log
-#  logback:
-#    rollingpolicy:
-#      max-file-size: 1MB
-#      max-history: 3
-#      total-size-cap: 10MB
-#      #file-name-pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} %clr([%-5level]) ${PID:-} --- [%thread] %clr(%-40.40logger{36}){cyan} : %msg%n"
-#      file-name-pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] ${PID:-} --- [%thread] %-40.40logger{36} : [%M:%L] %msg%n"
+logging:
+  config: classpath:logback-config.xml
+  level:
+    root: info
+  file:
+    path: ./log
+    name: ${spring.application.name}.log
+  logback:
+    rollingpolicy:
+      max-file-size: 1MB
+      max-history: 3
+      total-size-cap: 10MB
+      #file-name-pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} %clr([%-5level]) ${PID:-} --- [%thread] %clr(%-40.40logger{36}){cyan} : %msg%n"
+      file-name-pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] ${PID:-} --- [%thread] %-40.40logger{36} : [%M:%L] %msg%n"
 
 #mybatis:
 #  #configuration:

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shm.user">	
+ 
+ 	<insert id="insert" parameterType="com.shm.user.UserEntity" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO USER (
+			NAME,
+			PASSWORD,
+			ROLE
+		) VALUES (
+			#{name},
+			#{password},
+			#{role}
+		)
+	</insert>
+
+	<select id="selectByUserName" parameterType="string" resultType="com.shm.user.UserEntity">
+		SELECT
+			ID,
+			NAME,
+			PASSWORD,
+			ROLE,
+			FRST_REG_DATE,
+			FRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID
+		FROM USER
+		WHERE NAME = #{name}
+	</select>
+	
+	<update id="update" parameterType="com.shm.user.UserEntity">
+		UPDATE USER
+			SET NAME = #{name}, PASSWORD = #{password}, ROLE = #{role},
+				LAST_CHG_DATE = #{lastChgDate}, LAST_CHG_USER_ID = #{lastChgUserId}
+		WHERE ID = #{id}
+	</update>
+
+
+	<delete id="deleteByUserName" parameterType="string">
+		DELETE FROM USER
+		WHERE NAEM = #{name}
+	</delete>
+	
+</mapper>
