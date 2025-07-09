@@ -3,6 +3,7 @@ package com.shm.user;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -11,24 +12,22 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserRepository {
 	private String namespace = "com.shm.user.";
+	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	public int insert(UserEntity userEntity) throws Exception {
 		return sqlSessionTemplate.insert(namespace + "insert", userEntity);
 	}
 
-	public List<UserEntity> selectByUserName(String name) throws Exception {
-		return sqlSessionTemplate.selectList(namespace + "selectByUserName", name);
+	public List<UserEntity> selectByName(String name) throws Exception {
+		return sqlSessionTemplate.selectList(namespace + "selectByName", name);
 	}
 
 	public int update(UserEntity userEntity) throws Exception {
 		return sqlSessionTemplate.update(namespace + "update", userEntity);
 	}
 
-	public int deleteByUserName(String name) throws Exception {
-		return sqlSessionTemplate.delete(namespace + "deleteByUserName", name);
+	public int deleteByName(String name) throws Exception {
+		return sqlSessionTemplate.delete(namespace + "deleteByName", name);
 	}
 }
-
-
-

@@ -3,6 +3,8 @@
  */
 
 console.log(">>> join");
+let csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+let csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
 
 window.onload = function() {
 	console.log(">>> window.onload");
@@ -14,31 +16,53 @@ function setEventListener() {
 	console.log(">>> setEventListener");
 	
 	// 회원가입
-	document.getElementById("btn-join").addEventListener("click", function() {
-		let data = {
-			"username": "",
-			"password": ""
-		}
-		let username = document.getElementById("username").innerText;
+	document.getElementById("btn-join").addEventListener("click", async function() {		
+		let name = document.getElementById("name").value;
 		let password = document.getElementById("password").value;
 		let confirmPassword = document.getElementById("confirmPassword").value;
-
-		// 지금은 그냥 4자 이상 입력
-		if (username.length < 4) {
-			alert("아이디는 4자 이상 입력하세요.");
+		let url;
+		let option;
+		let data = {
+			"name": "",
+			"password": ""
 		}
-		if (password.length < 4) {
-			alert("패스워드는 4자 이상 입력하세요.");
-		}	
-		
+		let response;
+
+		//console.log("csrfToken = " + csrfToken);
+		//console.log("name = " + name + ", " + name.length);
+		//console.log("password = " + password + ", " + password.length);
+		//console.log("confirmPassword = " + confirmPassword + ", " + confirmPassword.length);		
+
 		// 입력 패스워드 비교
-		if(password === confirmPassword) {
+		if (password === confirmPassword) {
 			// 맞음
+			url = "/api/join/join";
+			option = {
+				method: "POST",
+				headers: {
+					[csrfHeader]: csrfToken,
+					"Content-Type": "application/json",
+				},
+			}
+			data.name = name;
+			data.password = password;
+
+			// 비동기로 받아야 로그출력이 가능
+			response = await commonFetch(url, option, data);
+			console.log("response = " + JSON.stringify(response));
+
+			if (response.code == 200) {
+				alert(response.title + "\n" + response.message);
+				//location.href = response.data.url; // 뒤로가기 가능
+				location.replace(response.data.url); // 뒤로가기가 안됨
+			} else {
+				alert(response.title + "\n" + response.message);
+				//alert(response.message + "\n" + response.log);
+				location.replace("/join"); // 현재페이지
+			}
 		} else {
-			// 틀림
 			alert("패스워드가 정확한지 확인하세요.");
 		}
-
 	});
 }
 

@@ -2,12 +2,12 @@
 <html lang="ko">
 
 <!-- 고정 head -->
-<th:block th:replace="/layout/head :: head"></th:block>
+<th:block th:replace="~{/layout/head :: head}"></th:block>
 
 <body>
 
 	<!-- 고정 상단 header -->
-	<div th:replace="/layout/header :: header"></div>
+	<div th:replace="~{/layout/header :: header}"></div>
 
 	<!-- 비어있는 메인 콘텐츠 영역 -->
 	<main class="container my-5">
@@ -163,7 +163,7 @@
 
 
 	<!-- 고정 하단 footer -->
-	<div th:replace="/layout/footer :: footer"></div>
+	<div th:replace="~{/layout/footer :: footer}"></div>
 </body>
 
 </html>

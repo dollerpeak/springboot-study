@@ -45,12 +45,12 @@ logging:
       #file-name-pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} %clr([%-5level]) ${PID:-} --- [%thread] %clr(%-40.40logger{36}){cyan} : %msg%n"
       file-name-pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] ${PID:-} --- [%thread] %-40.40logger{36} : [%M:%L] %msg%n"
 
-#mybatis:
-#  #configuration:
-#  #  map-underscore-to-camel-case: true
-#  #  type-aliases-package: com.study.codingrecipe.board.dto.BoardDto
-#  config-location: classpath:mybatis/mybatis-config.xml
-#  mapper-locations: classpath:mybatis/mariadb/**/*.xml
+mybatis:
+  #configuration:
+  #  map-underscore-to-camel-case: true
+  #  type-aliases-package: com.study.codingrecipe.board.dto.BoardDto
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mariadb/**/*.xml
 
 
 

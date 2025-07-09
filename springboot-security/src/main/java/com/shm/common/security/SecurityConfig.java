@@ -22,6 +22,8 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		
+		//http.csrf(csrf -> csrf.disable());
 
 		// 페이지 접근허용
 		http.authorizeHttpRequests(auth -> auth //

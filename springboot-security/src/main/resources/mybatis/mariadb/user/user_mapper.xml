@@ -15,7 +15,7 @@
 		)
 	</insert>
 
-	<select id="selectByUserName" parameterType="string" resultType="com.shm.user.UserEntity">
+	<select id="selectByName" parameterType="string" resultType="com.shm.user.UserEntity">
 		SELECT
 			ID,
 			NAME,
@@ -37,7 +37,7 @@
 	</update>
 
 
-	<delete id="deleteByUserName" parameterType="string">
+	<delete id="deleteByName" parameterType="string">
 		DELETE FROM USER
 		WHERE NAEM = #{name}
 	</delete>

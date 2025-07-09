@@ -16,6 +16,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+insert into user (name, password, role) values ('id', 'pw', 'role')
 
 CREATE TABLE `category` (
   `id` INT unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
@@ -27,10 +28,10 @@ CREATE TABLE `category` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-insert into category (name) values ('패션') 
-insert into category (name) values ('뷰티')
-insert into category (name) values ('식품')
-insert into category (name) values ('디지털')
+insert into category (name) values ('패션'); 
+insert into category (name) values ('뷰티');
+insert into category (name) values ('식품');
+insert into category (name) values ('디지털');
 
 
 CREATE TABLE `product` (
@@ -51,6 +52,11 @@ CREATE TABLE `product` (
 commit
 
 select * from category
+
+select * from user
+
+
+
 
 
 
