@@ -28,9 +28,6 @@ public class JoinRestController {
 		ResultData resultData = new ResultData(HttpStatus.OK.value(), "[회원가입]", null, null, null);
 		Map<String, String> resultMap = new HashMap<>();
 
-		// user, seller, admin 구분은 우선 적용
-		userDto.setRole(UserRole.ROLE_USER.getName());
-
 		resultData = joinService.insert(userDto);
 		if (resultData.getCode() == HttpStatus.OK.value()) {
 			resultMap.put(ResultData.TYPE_URL, "/login");

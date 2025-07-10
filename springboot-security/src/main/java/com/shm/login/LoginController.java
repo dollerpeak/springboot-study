@@ -16,7 +16,6 @@ public class LoginController {
 
 	@GetMapping("")
 	public String main() {
-		log.info("=====> main");
 		return "/login/login";
 	}
 	

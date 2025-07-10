@@ -12,6 +12,11 @@
 	<!-- 고정 상단 header -->
 	<header class="fixed-top text-center py-2">
 		<a href="#" class="text-decoration-none fw-bold fs-4 text-dark">MyShop</a>
+		
+		<!-- test  -->
+		<div sec:authorize="isAuthenticated()">로그인</div>
+		<div sec:authorize="isAnonymous()">로그아웃</div>
+		<!-- test  --> 
 	</header>
 </div>
 

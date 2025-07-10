@@ -7,10 +7,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.shm.common.resultdata.ResultData;
+import com.shm.common.role.UserRole;
 import com.shm.user.UserDto;
 import com.shm.user.UserEntity;
 import com.shm.user.UserRepository;
@@ -23,20 +25,27 @@ import lombok.extern.slf4j.Slf4j;
 public class JoinService {
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	public ResultData insert(UserDto userDto) {
 		ResultData resultData = new ResultData(HttpStatus.OK.value(), "[회원가입]", null, null, null);
 		Map<String, UserEntity> resultMap = new HashMap<>();
 		
 		UserEntity userEntity;
-		List<UserEntity> userList = new ArrayList<>();
+		List<UserEntity> userEntityList = new ArrayList<>();
 		int seq;
 
 		try {
-			userEntity = userDto.toEntity();
-			userList = userRepository.selectByName(userDto.getName());
+			// user, seller, admin 구분은 우선 적용
+			userDto.setRole(UserRole.ROLE_USER.getName());
+			// 패스워드 암호화
+			userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
 			
-			if (userList.size() == 0) {
+			userEntity = userDto.toEntity();
+			userEntityList = userRepository.selectByName(userDto.getName());
+			
+			if (userEntityList.size() == 0) {
 				seq = userRepository.insert(userEntity);
 				
 				resultData.setMessage("회원가입을 축하드립니다.");

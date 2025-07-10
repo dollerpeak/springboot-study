@@ -1,6 +1,8 @@
 server:
   port: 8081  
   servlet:
+    session:
+      timeout: 1m
     context-path: / # http://localhost:8081/
     #context-path: /test # http://localhost:8081/test/
     encoding:
@@ -9,6 +11,7 @@ server:
       force: true
       #force-request: true
       #force-response: true
+
 
 spring:
   application:
@@ -30,6 +33,7 @@ spring:
     suffix: .html
     cache: false
 
+
 logging:
   config: classpath:logback-config.xml
   level:
@@ -44,6 +48,7 @@ logging:
       total-size-cap: 10MB
       #file-name-pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} %clr([%-5level]) ${PID:-} --- [%thread] %clr(%-40.40logger{36}){cyan} : %msg%n"
       file-name-pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] ${PID:-} --- [%thread] %-40.40logger{36} : [%M:%L] %msg%n"
+
 
 mybatis:
   #configuration:

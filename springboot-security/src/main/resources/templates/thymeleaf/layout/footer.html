@@ -30,7 +30,12 @@
 				</div>
 				<div class="col">
 					<a href="#" class="d-block py-2 text-dark text-decoration-none"> 
-						<i class="bi bi-person"></i><br /> 
+						<div sec:authorize="isAuthenticated()">
+							<i class="bi bi-person-fill-gear"></i><br />
+						</div>
+						<div sec:authorize="isAnonymous()">
+							<i class="bi bi-person-fill-lock"></i><br />
+						</div> 
 						<!-- <small>MY</small> -->
 					</a>
 				</div>
