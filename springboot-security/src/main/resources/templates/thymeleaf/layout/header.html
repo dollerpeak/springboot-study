@@ -11,12 +11,16 @@
 
 	<!-- 고정 상단 header -->
 	<header class="fixed-top text-center py-2">
-		<a href="#" class="text-decoration-none fw-bold fs-4 text-dark">MyShop</a>
+		<a href="/" class="text-decoration-none fw-bold fs-4 text-dark">MyShop</a>
 		
 		<!-- test  -->
-		<div sec:authorize="isAuthenticated()">로그인</div>
-		<div sec:authorize="isAnonymous()">로그아웃</div>
-		<!-- test  --> 
+		<div sec:authorize="isAuthenticated()">상태:로그인</div>
+		<div sec:authorize="isAnonymous()">상태:로그아웃</div>
+		<!-- logout  --> 
+		<form method="post" th:action="@{/logout}">
+			<!-- <input type="hidden" name="_csrf" th:value="${_csrf.token}" /> -->
+			<button type="submit" class="btn btn-danger">로그아웃</button>
+		</form>
 	</header>
 </div>
 

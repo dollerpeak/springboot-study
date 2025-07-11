@@ -18,6 +18,7 @@ CREATE TABLE `user` (
 
 insert into user (name, password, role) values ('id', 'pw', 'role')
 
+
 CREATE TABLE `category` (
   `id` INT unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
   `name` VARCHAR(20) NOT NULL COMMENT '카테고리명',
@@ -54,6 +55,18 @@ commit
 select * from category
 
 select * from user
+name	password
+1		1
+2		$2a$10$4dk1SUzwtu8DZQY3JgSeTuNuFX9aLaGJhKmGzkLY1S4f9HEXRX/a.
+3		{noop}3
+
+-- delete from user
+where 1=1
+and name = '5'
+
+
+
+
 
 
 

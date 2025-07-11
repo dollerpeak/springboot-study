@@ -7,7 +7,10 @@ import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerF
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -26,8 +29,9 @@ public class SecurityConfig {
 	public PasswordEncoder passwordEncoder() {
 		log.info(">>> passwordEncoder 적용");
 		return new BCryptPasswordEncoder();
-		// 평문사용
+		// 평문사용		
 		//return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		//return NoOpPasswordEncoder.getInstance(); // 권장하지 않음
 	}
 
 	@Bean
@@ -43,7 +47,7 @@ public class SecurityConfig {
 				.requestMatchers("/seller", "/seller/**").authenticated() // 로그인 판매자
 				.requestMatchers("/admin", "/admin/**").authenticated() // 로그인 관리자
 				.anyRequest().permitAll() // 모든 사용자
-		); // 모든 사용자
+		);
 
 		// static 아래의 공용 리소스 허용
 		// .requestMatchers("/js/**", "/css/**", "/file/**", "/image/**", "/media/**").permitAll()
@@ -54,35 +58,32 @@ public class SecurityConfig {
 		// 실제는 ROLE_ADMIN, ROLE_USER
 		// .requestMatchers("/my", "/my/**").hasRole("ADMIN")
 		
-		// login
+		// login, form방식으로만 작동
 		http.formLogin(form -> form
-				.loginPage("/login") // 페이지 접근허용이 되지 않을경우 리다이렉트, GET요청
-				//.loginProcessingUrl(null) // POST요청
+				.loginPage("/login") // GET요청, 커스텀해서 만들 수 있음
+				//.loginProcessingUrl("/login") // POST요청, 핸들러가 없어야 내부에서 자동 처리
 				.usernameParameter("name") // form name, id tag
 				.passwordParameter("password") // form password, id tag
 				.defaultSuccessUrl("/") // 성공 시 리다이렉트, / 이게 안들어가면 에러발생
 				.failureUrl("/login") // 실패 시 리다이렉트, / 이게 안들어가면 에러발생
-				.permitAll() // 이거 사용하면 csrf 예외 설정이 됨
+				//.permitAll() // 
 		);
 		
-//		http.logout(logout -> logout
-//				.logoutUrl("/logout") // 로그아웃 요청 URL
-//				//.logoutSuccessUrl("/login?logout") // 로그아웃 후 이동할 URL
-//				.invalidateHttpSession(true) // 세션 무효화
-//				.deleteCookies("JSESSIONID") // JSESSIONID 쿠키 삭제
-//				.permitAll() // 이거 사용하면 csrf 예외 설정이 됨
-//		);
+		// logout, form방식으로만 작동
+		http.logout(logout -> logout
+				.logoutUrl("/logout") // POST요청
+				.logoutSuccessUrl("/") // 로그아웃 후 이동할 URL
+				.invalidateHttpSession(true) // 서버 세션 제거
+				.clearAuthentication(true) // SecurityContext 제거
+				.deleteCookies("JSESSIONID") // 클라이언트 쿠키도 삭제
+				//.permitAll() //
+		);
 		
 		// 인증에 사용될 service 적용
-		http.userDetailsService(customUserDetailsService);
-		
+		http.userDetailsService(customUserDetailsService);		
 
 		return http.build();
 	}
-	
-//	public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> sessionCustomizer() {
-//	    return factory -> factory.setSessionTimeout(Duration.ofMinutes(60));  // 60분 유지
-//	}
 
 //	// url DoubleSlash error
 //	@Bean
