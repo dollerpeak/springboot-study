@@ -49,7 +49,7 @@ public class SecurityConfig {
 		// login, form방식으로만 작동
 		http.formLogin(form -> form
 				.loginPage("/login") // GET요청, 커스텀해서 만들 수 있음
-				//.loginProcessingUrl("/login") // POST요청, 핸들러가 없어야 내부에서 자동 처리
+				.loginProcessingUrl("/login") // POST요청, 핸들러가 없어야 내부에서 자동 처리
 				.usernameParameter("email") // form name, id tag
 				.passwordParameter("password") // form password, id tag
 				.defaultSuccessUrl("/") // 성공 시 리다이렉트, / 이게 안들어가면 에러발생
