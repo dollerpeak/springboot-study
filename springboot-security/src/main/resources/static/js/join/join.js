@@ -16,13 +16,15 @@ function setEventListener() {
 	console.log(">>> setEventListener");
 	
 	// 회원가입
-	document.getElementById("btn-join").addEventListener("click", async function() {		
+	document.getElementById("btn-join").addEventListener("click", async function() {
+		let email = document.getElementById("email").value;		
 		let name = document.getElementById("name").value;
 		let password = document.getElementById("password").value;
 		let confirmPassword = document.getElementById("confirmPassword").value;
 		let url;
 		let option;
 		let data = {
+			"email": "",
 			"name": "",
 			"password": ""
 		}
@@ -31,7 +33,9 @@ function setEventListener() {
 		//console.log("csrfToken = " + csrfToken);
 		//console.log("name = " + name + ", " + name.length);
 		//console.log("password = " + password + ", " + password.length);
-		//console.log("confirmPassword = " + confirmPassword + ", " + confirmPassword.length);		
+		//console.log("confirmPassword = " + confirmPassword + ", " + confirmPassword.length);
+		
+		// 이메일, 이름, 패스워트 문자패턴 검증 필요		
 
 		// 입력 패스워드 비교
 		if (password === confirmPassword) {
@@ -44,6 +48,7 @@ function setEventListener() {
 					"Content-Type": "application/json",
 				},
 			}
+			data.email = email;
 			data.name = name;
 			data.password = password;
 

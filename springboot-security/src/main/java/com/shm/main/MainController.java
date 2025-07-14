@@ -1,14 +1,11 @@
 package com.shm.main;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
+import org.springframework.security.core.AuthenticatedPrincipal;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.shm.common.security.CustomUserDetails;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -19,17 +16,33 @@ import lombok.extern.slf4j.Slf4j;
 public class MainController {
 
 	@GetMapping({ "", "/" })
-	public String main(HttpSession session) {
+	public String main(HttpSession session, Authentication authentication) {
 		log.info("=====> main");
 		
-//		// test
-//		Object securityContext = session.getAttribute("SPRING_SECURITY_CONTEXT");
-//		if (securityContext != null) {
-//			log.info("=====> SecurityContext 존재: 로그인 되어 있음");
-//		} else {
-//			log.info("=====> SecurityContext 없음: 로그인 안되어 있음");
-//		}		
-//		log.info("=====> 세션 유지 시간 = " + session.getMaxInactiveInterval());
+		// test
+		Object securityContext = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		if (securityContext != null) {
+			log.info("=====> SecurityContext 존재: 로그인 되어 있음");
+		} else {
+			log.info("=====> SecurityContext 없음: 로그인 안되어 있음");
+		}		
+		log.info("=====> 세션 유지 시간 = " + session.getMaxInactiveInterval());
+		
+		if (authentication != null) {
+			CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+			// dto
+			log.info("=====> principal = " + customUserDetails.getUserDto().getEmail());
+			log.info("=====> principal = " + customUserDetails.getUserDto().getName());
+			log.info("=====> principal = " + customUserDetails.getUserDto().getPassword());
+			log.info("=====> principal = " + customUserDetails.getUserDto().getRole());
+//			// 필수정보
+//			log.info("=====> principal = " + customUserDetails.getEmail());
+//			log.info("=====> principal = " + customUserDetails.getName());
+//			log.info("=====> principal = " + customUserDetails.getPassword());
+//			log.info("=====> principal = " + customUserDetails.getRole());
+		} else {
+			log.info("=====> principal = " + authentication);
+		}				
 		
 		
 //		// 날짜

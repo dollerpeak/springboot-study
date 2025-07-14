@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shm.common.resultdata.ResultData;
-import com.shm.common.role.UserRole;
 import com.shm.user.UserDto;
 
 import lombok.extern.slf4j.Slf4j;

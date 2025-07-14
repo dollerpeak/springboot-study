@@ -19,15 +19,15 @@ public class UserRepository {
 		return sqlSessionTemplate.insert(namespace + "insert", userEntity);
 	}
 
-	public List<UserEntity> selectByName(String name) throws Exception {
-		return sqlSessionTemplate.selectList(namespace + "selectByName", name);
+	public List<UserEntity> selectByEmail(String email) throws Exception {
+		return sqlSessionTemplate.selectList(namespace + "selectByEmail", email);
 	}
 
 	public int update(UserEntity userEntity) throws Exception {
 		return sqlSessionTemplate.update(namespace + "update", userEntity);
 	}
 
-	public int deleteByName(String name) throws Exception {
-		return sqlSessionTemplate.delete(namespace + "deleteByName", name);
+	public int deleteByEmail(String email) throws Exception {
+		return sqlSessionTemplate.delete(namespace + "deleteByEmail", email);
 	}
 }

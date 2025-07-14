@@ -1,20 +1,12 @@
 package com.shm.common.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.server.WebServerFactory;
-import org.springframework.boot.web.server.WebServerFactoryCustomizer;
-import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
-import com.zaxxer.hikari.util.ClockSource.Factory;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,7 +19,7 @@ public class SecurityConfig {
 	// 암호화 방식
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		log.info(">>> passwordEncoder 적용");
+		//log.info(">>> passwordEncoder 적용");
 		return new BCryptPasswordEncoder();
 		// 평문사용		
 		//return PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -36,33 +28,29 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		log.info(">>> securityFilterChain 적용");
+		//log.info(">>> securityFilterChain 적용");
 		
 		// CSRF 사용 유무
 		//http.csrf(csrf -> csrf.disable());
 
 		// 페이지 접근허용
+		// static 아래의 공용 리소스 허용 필요
+		// - .requestMatchers("/js/**", "/css/**", "/file/**", "/image/**", "/media/**").permitAll()
+		// - 인증이 필요한 페이지만 제외하고 전부 허용하는 방법으로 적용
+		// spring security에서 사용하는 UserDetails를 사용할 경우 ROLE활용 가능
+		// - .requestMatchers("/my", "/my/**").hasRole("ADMIN") // ADMIN, USER
 		http.authorizeHttpRequests(auth -> auth //
 				.requestMatchers("/user", "/user/**").authenticated() // 로그인 사용자
 				.requestMatchers("/seller", "/seller/**").authenticated() // 로그인 판매자
 				.requestMatchers("/admin", "/admin/**").authenticated() // 로그인 관리자
 				.anyRequest().permitAll() // 모든 사용자
-		);
-
-		// static 아래의 공용 리소스 허용
-		// .requestMatchers("/js/**", "/css/**", "/file/**", "/image/**", "/media/**").permitAll()
-		// 위에는 인증이 필요한 페이지만 제외하고 전부 허용하는 방법으로 적용
-
-		// spring security에서 사용하는 UserDetails를 사용할 경우 ROLE활용 예
-		// security에는 USER, ADMIN존재
-		// 실제는 ROLE_ADMIN, ROLE_USER
-		// .requestMatchers("/my", "/my/**").hasRole("ADMIN")
+		);		
 		
 		// login, form방식으로만 작동
 		http.formLogin(form -> form
 				.loginPage("/login") // GET요청, 커스텀해서 만들 수 있음
 				//.loginProcessingUrl("/login") // POST요청, 핸들러가 없어야 내부에서 자동 처리
-				.usernameParameter("name") // form name, id tag
+				.usernameParameter("email") // form name, id tag
 				.passwordParameter("password") // form password, id tag
 				.defaultSuccessUrl("/") // 성공 시 리다이렉트, / 이게 안들어가면 에러발생
 				.failureUrl("/login") // 실패 시 리다이렉트, / 이게 안들어가면 에러발생

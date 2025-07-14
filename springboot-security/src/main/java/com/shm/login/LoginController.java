@@ -16,10 +16,11 @@ public class LoginController {
 		return "/login/login";
 	}
 	
+//	// from에서 요청하는 URL로 핸들러가 없어야 내부 처리가 가능
+//	// - 만들어 둔다면 별도로 처리해야 함
 //	@PostMapping("/loginin")
 //	public String customLogin() {
-//		log.info("=====> login");
-//		return "/login/login";
+//		return "/main/main";
 //	}
 
 }

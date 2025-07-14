@@ -21,13 +21,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 	private UserRepository userRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {		
-		log.info(">>> loadUserByUsername 호출");
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		log.info(">>> loadUserByUsername, email = " + email);
 		List<UserEntity> userEntityList = new ArrayList<>();
 		UserEntity userEntity = null;
-		
+
 		try {
-			userEntityList = userRepository.selectByName(name);
+			userEntityList = userRepository.selectByEmail(email);
 			if (userEntityList.size() == 1) {
 				userEntity = userEntityList.get(0);
 			}
@@ -41,7 +41,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 //	            .password(userEntity.getPassword())
 //	            .roles("USER") // 필수지만 role 기반 권한 쓰지 않을 경우 USER 하나만 줌
 //	            .build();
-		return new CustomUserDetails(userEntity.getName(), userEntity.getPassword());
+//		// CustomUserDetails
+//		return new CustomUserDetails(userEntity.getEmail(), userEntity.getName(), userEntity.getPassword(),
+//				userEntity.getRole());
+		// CustomUserDetails - UserDto
+		return new CustomUserDetails(userEntity.toDto());
 	}
 
 }

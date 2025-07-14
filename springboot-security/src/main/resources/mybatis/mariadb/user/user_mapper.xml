@@ -5,19 +5,22 @@
  
  	<insert id="insert" parameterType="com.shm.user.UserEntity" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO USER (
+			EMAIL,
 			NAME,
 			PASSWORD,
 			ROLE
 		) VALUES (
+			#{email},
 			#{name},
 			#{password},
 			#{role}
 		)
 	</insert>
 
-	<select id="selectByName" parameterType="string" resultType="com.shm.user.UserEntity">
+	<select id="selectByEmail" parameterType="string" resultType="com.shm.user.UserEntity">
 		SELECT
 			ID,
+			EMAIL,
 			NAME,
 			PASSWORD,
 			ROLE,
@@ -26,20 +29,20 @@
 			LAST_CHG_DATE,
 			LAST_CHG_USER_ID
 		FROM USER
-		WHERE NAME = #{name}
+		WHERE EMAIL = #{email}
 	</select>
 	
 	<update id="update" parameterType="com.shm.user.UserEntity">
 		UPDATE USER
-			SET NAME = #{name}, PASSWORD = #{password}, ROLE = #{role},
+			SET EMAIL = #{email}, NAME = #{name}, PASSWORD = #{password}, ROLE = #{role},
 				LAST_CHG_DATE = #{lastChgDate}, LAST_CHG_USER_ID = #{lastChgUserId}
 		WHERE ID = #{id}
 	</update>
 
 
-	<delete id="deleteByName" parameterType="string">
+	<delete id="deleteByEmail" parameterType="string">
 		DELETE FROM USER
-		WHERE NAEM = #{name}
+		WHERE EMAIL = #{email}
 	</delete>
 	
 </mapper>

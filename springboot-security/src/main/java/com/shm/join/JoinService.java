@@ -34,26 +34,31 @@ public class JoinService {
 		
 		UserEntity userEntity;
 		List<UserEntity> userEntityList = new ArrayList<>();
-		int seq;
 
 		try {
 			// user, seller, admin 구분은 우선 적용
 			userDto.setRole(UserRole.ROLE_USER.getName());
 			// 패스워드 암호화
 			userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
+			// 평문을 사용한다면 다르게 저장해야 함
+			// - NoOpPasswordEncoder.getInstance(); 사용했다면 그냥 passwordEncoder를 그대로 사용
+			// - PasswordEncoderFactories.createDelegatingPasswordEncoder(); 사용했다면 접두사로 암호화 알고리즘을 표기함
+			// -- {bcrypt}, {sha256}
+			// -- 만약 평문으로 하고 싶다면 아래처럼 적용해야 함
+			//userDto.setPassword("{noop}" + userDto.getPassword());			
 			
 			userEntity = userDto.toEntity();
-			userEntityList = userRepository.selectByName(userDto.getName());
+			userEntityList = userRepository.selectByEmail(userDto.getEmail());
 			
 			if (userEntityList.size() == 0) {
-				seq = userRepository.insert(userEntity);
+				userRepository.insert(userEntity);
 				
 				resultData.setMessage("회원가입을 축하드립니다.");
 				resultMap.put(ResultData.TYPE_OBJECT, userEntity);
 				resultData.setData(resultMap);
 			} else {
 				resultData.setCode(HttpStatus.BAD_REQUEST.value());
-				resultData.setMessage("다른 아이디를 사용해 주세요.");
+				resultData.setMessage("다른 이메일을 사용해 주세요.");
 			}
 		} catch (Exception e) {
 			log.error("e = " + e.toString());
