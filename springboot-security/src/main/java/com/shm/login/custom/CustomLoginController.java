@@ -1,4 +1,4 @@
-package com.shm.login;
+package com.shm.login.custom;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/custom/login")
 @Slf4j
-public class LoginController {
+public class CustomLoginController {
 
 	@GetMapping("")
 	public String main() {
-		log.info("=====> login");
-		return "/login/login";
+		log.info("=====> custom login");
+		return "/login/custom/login";
 	}
 
 }

@@ -12,11 +12,14 @@
 	<!-- 고정 상단 header -->
 	<header class="fixed-top text-center py-2">
 		<a href="/" class="text-decoration-none fw-bold fs-4 text-dark">MyShop</a>
-		
-		<!-- logout  --> 
-		<form method="post" th:action="@{/logout}">
-			<!-- <input type="hidden" name="_csrf" th:value="${_csrf.token}" /> -->
+
+		<!-- form logout  -->
+		<!-- <form method="post" th:action="@{/logout}"> -->
+		<!-- fetch logout  -->
+		<form method="post" th:action="@{/custom/logout}">
 			<button type="submit" class="btn btn-danger">
+				<!-- <input type="hidden" name="_csrf" th:value="${_csrf.token}" /> -->
+				
 				<!-- 로그인 여부 확인 -->
 				<div sec:authorize="isAuthenticated()">
 					<!-- DTO -->
@@ -29,7 +32,7 @@
 				</div>
 			</button>
 		</form>
-		
+
 	</header>
 </div>
 

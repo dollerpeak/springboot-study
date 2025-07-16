@@ -2,41 +2,40 @@
  * 
  */
 
-console.log(">>> login");
+console.log(">>> custom login");
 let csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
 let csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
 
 window.onload = function() {
 	console.log(">>> window.onload");
 	
-	//setEventListener();
+	setEventListener();
 }
 
 function setEventListener() {
 	console.log(">>> setEventListener");
 	
-	// 회원가입
-	document.getElementById("btn-join").addEventListener("click", async function() {		
-		let name = document.getElementById("name").value;
+	// 로그인
+	document.getElementById("btn-login").addEventListener("click", async function() {
+		let email = document.getElementById("email").value;
 		let password = document.getElementById("password").value;
-		let confirmPassword = document.getElementById("confirmPassword").value;
 		let url;
 		let option;
 		let data = {
-			"name": "",
+			"email": "",
 			"password": ""
 		}
 		let response;
 
 		//console.log("csrfToken = " + csrfToken);
-		//console.log("name = " + name + ", " + name.length);
-		//console.log("password = " + password + ", " + password.length);
-		//console.log("confirmPassword = " + confirmPassword + ", " + confirmPassword.length);		
+		//console.log("email = " + email + ", " + email.length);
+		//console.log("password = " + password + ", " + password.length);	
+		
+		// 이메일 문자패턴 검증 필요	
 
 		// 입력 패스워드 비교
-		if (password === confirmPassword) {
-			// 맞음
-			url = "/api/join/join";
+		if (email.length > 0 && password.length > 0) {
+			url = "/api/custom/login";
 			option = {
 				method: "POST",
 				headers: {
@@ -44,7 +43,7 @@ function setEventListener() {
 					"Content-Type": "application/json",
 				},
 			}
-			data.name = name;
+			data.email = email;
 			data.password = password;
 
 			// 비동기로 받아야 로그출력이 가능
@@ -58,10 +57,10 @@ function setEventListener() {
 			} else {
 				alert(response.title + "\n" + response.message);
 				//alert(response.message + "\n" + response.log);
-				location.replace("/join"); // 현재페이지
+				location.replace("/login"); // 현재페이지
 			}
 		} else {
-			alert("패스워드가 정확한지 확인하세요.");
+			alert("이메일과 패스워드를 입력해 주세요.");
 		}
 	});
 }

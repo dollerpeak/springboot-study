@@ -3,10 +3,13 @@ package com.shm.common.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,7 +22,7 @@ public class SecurityConfig {
 	// 암호화 방식
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		//log.info(">>> passwordEncoder 적용");
+		//log.info("=====> passwordEncoder");
 		return new BCryptPasswordEncoder();
 		// 평문사용		
 		//return PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -28,10 +31,15 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		//log.info(">>> securityFilterChain 적용");
+		//log.info("=====> securityFilterChain");
 		
 		// CSRF 사용 유무
-		//http.csrf(csrf -> csrf.disable());
+		// http.csrf(csrf -> csrf.disable());
+		// token을 js에서 읽을 수 있게 cookie에 저장
+		// - 기본설정값으로 작성하지 않음
+		// http.csrf(csrf -> csrf
+		// 		.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+		// );
 
 		// 페이지 접근허용
 		// static 아래의 공용 리소스 허용 필요
@@ -46,31 +54,53 @@ public class SecurityConfig {
 				.anyRequest().permitAll() // 모든 사용자
 		);		
 		
-		// login, form방식으로만 작동
-		http.formLogin(form -> form
-				.loginPage("/login") // GET요청, 커스텀해서 만들 수 있음
-				.loginProcessingUrl("/login") // POST요청, 핸들러가 없어야 내부에서 자동 처리
-				.usernameParameter("email") // form name, id tag
-				.passwordParameter("password") // form password, id tag
-				.defaultSuccessUrl("/") // 성공 시 리다이렉트, / 이게 안들어가면 에러발생
-				.failureUrl("/login") // 실패 시 리다이렉트, / 이게 안들어가면 에러발생
-				//.permitAll() // 
-		);
+		// form 방식
+		// - login
+		//http.formLogin(form -> form
+		//		.loginPage("/login") // GET요청, 커스텀해서 만들 수 있음
+		//		.loginProcessingUrl("/login") // POST요청, 핸들러가 없어야 내부에서 자동 처리
+		//		.usernameParameter("email") // form name, id tag
+		//		.passwordParameter("password") // form password, id tag
+		//		.defaultSuccessUrl("/") // 성공 시 리다이렉트, / 이게 안들어가면 에러발생
+		//		.failureUrl("/login") // 실패 시 리다이렉트, / 이게 안들어가면 에러발생
+		//		//.permitAll() // 
+		//);
 		
-		// logout, form방식으로만 작동
-		http.logout(logout -> logout
-				.logoutUrl("/logout") // POST요청
-				.logoutSuccessUrl("/") // 로그아웃 후 이동할 URL
-				.invalidateHttpSession(true) // 서버 세션 제거
-				.clearAuthentication(true) // SecurityContext 제거
-				.deleteCookies("JSESSIONID") // 클라이언트 쿠키도 삭제
-				//.permitAll() //
+		// - logout
+		//http.logout(logout -> logout
+		//		.logoutUrl("/logout") // POST요청
+		//		.logoutSuccessUrl("/") // 로그아웃 후 이동할 URL
+		//		.invalidateHttpSession(true) // 서버 세션 제거
+		//		.clearAuthentication(true) // SecurityContext 제거
+		//		.deleteCookies("JSESSIONID") // 클라이언트 쿠키도 삭제
+		//		//.permitAll() //
+		//);
+		
+//		//session이 완료되었을때 작동
+//		// - 타임아웃, 인증 여부 순으로 체크
+//		// - 인증여부와 관계없이 타임아웃만되면 처리됨 (cookie는 인증여부와 관계없이 생성됨)
+//		http.sessionManagement(session -> session
+//				.invalidSessionUrl("/timeout") // 세션완료시 리다이렉트
+//		);
+		
+		http.exceptionHandling(exception -> exception
+				.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+				//.authenticationEntryPoint((request, response, authException) -> {
+                //    // CustomAuthenticationEntryPoint 조건 구현
+                //})
 		);
 		
 		// 인증에 사용될 service 적용
 		http.userDetailsService(customUserDetailsService);		
 
 		return http.build();
+	}
+	
+	// fetch 로그인 시 필요
+	// form인 경우 있어도 무방
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+		return configuration.getAuthenticationManager();
 	}
 
 //	// url DoubleSlash error

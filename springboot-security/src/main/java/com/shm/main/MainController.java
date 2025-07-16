@@ -1,7 +1,7 @@
 package com.shm.main;
 
-import org.springframework.security.core.AuthenticatedPrincipal;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -20,7 +20,7 @@ public class MainController {
 		log.info("=====> main");
 		
 		// test
-		Object securityContext = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		Object securityContext = session.getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
 		if (securityContext != null) {
 			log.info("=====> SecurityContext 존재: 로그인 되어 있음");
 		} else {
@@ -31,15 +31,15 @@ public class MainController {
 		if (authentication != null) {
 			CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
 			// dto
-			log.info("=====> principal = " + customUserDetails.getUserDto().getEmail());
-			log.info("=====> principal = " + customUserDetails.getUserDto().getName());
-			log.info("=====> principal = " + customUserDetails.getUserDto().getPassword());
-			log.info("=====> principal = " + customUserDetails.getUserDto().getRole());
+			log.info("=====> principal, email = " + customUserDetails.getUserDto().getEmail());
+			log.info("=====> principal, name = " + customUserDetails.getUserDto().getName());
+			log.info("=====> principal, password = " + customUserDetails.getUserDto().getPassword());
+			log.info("=====> principal, role = " + customUserDetails.getUserDto().getRole());
 //			// 필수정보
-//			log.info("=====> principal = " + customUserDetails.getEmail());
-//			log.info("=====> principal = " + customUserDetails.getName());
-//			log.info("=====> principal = " + customUserDetails.getPassword());
-//			log.info("=====> principal = " + customUserDetails.getRole());
+//			log.info("=====> principal, email = " + customUserDetails.getEmail());
+//			log.info("=====> principal, name = " + customUserDetails.getName());
+//			log.info("=====> principal, password = " + customUserDetails.getPassword());
+//			log.info("=====> principal, role = " + customUserDetails.getRole());
 		} else {
 			log.info("=====> principal = " + authentication);
 		}				

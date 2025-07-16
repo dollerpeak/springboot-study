@@ -31,6 +31,7 @@ function setEventListener() {
 		let response;
 
 		//console.log("csrfToken = " + csrfToken);
+		//console.log("email = " + email + ", " + email.length);
 		//console.log("name = " + name + ", " + name.length);
 		//console.log("password = " + password + ", " + password.length);
 		//console.log("confirmPassword = " + confirmPassword + ", " + confirmPassword.length);
