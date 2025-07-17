@@ -13,6 +13,7 @@ public class JoinController {
 
 	@GetMapping("")
 	public String main() {
+		log.info("===> JoinController");
 		return "/join/join";
 	}
 	

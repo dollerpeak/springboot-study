@@ -13,7 +13,7 @@ public class CustomLoginController {
 
 	@GetMapping("")
 	public String main() {
-		log.info("=====> custom login");
+		log.info("===> CustomLoginController");
 		return "/login/custom/login";
 	}
 

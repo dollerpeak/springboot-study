@@ -40,6 +40,12 @@ public class SecurityConfig {
 		// http.csrf(csrf -> csrf
 		// 		.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 		// );
+		// csrf 예외처리
+		// - GET 방식보다 안전
+		// - 로그아웃 시 세션타임아웃 상태에서 403에러 발생으로 적용
+		http.csrf(csrf -> csrf
+				.ignoringRequestMatchers("/api/custom/logout")
+		);
 
 		// 페이지 접근허용
 		// static 아래의 공용 리소스 허용 필요
@@ -83,6 +89,7 @@ public class SecurityConfig {
 //				.invalidSessionUrl("/timeout") // 세션완료시 리다이렉트
 //		);
 		
+		// 페이지별 예외적용, 리다이렉트
 		http.exceptionHandling(exception -> exception
 				.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
 				//.authenticationEntryPoint((request, response, authException) -> {

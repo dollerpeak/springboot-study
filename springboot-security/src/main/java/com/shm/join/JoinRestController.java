@@ -24,12 +24,17 @@ public class JoinRestController {
 
 	@PostMapping("/join")
 	public ResultData join(@RequestBody UserDto userDto) {
+		log.info("===> JoinRestController");
+		
 		ResultData resultData = new ResultData(HttpStatus.OK.value(), "[회원가입]", null, null, null);
 		Map<String, String> resultMap = new HashMap<>();
 
 		resultData = joinService.insert(userDto);
 		if (resultData.getCode() == HttpStatus.OK.value()) {
-			resultMap.put(ResultData.TYPE_URL, "/login");
+			// form
+			//resultMap.put(ResultData.TYPE_URL, "/login");
+			// fetch
+			resultMap.put(ResultData.TYPE_URL, "/custom/login");
 			resultData.setData(resultMap);
 		}
 		log.info("resultData = " + resultData.toString());

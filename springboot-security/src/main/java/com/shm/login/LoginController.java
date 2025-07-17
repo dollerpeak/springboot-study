@@ -13,7 +13,7 @@ public class LoginController {
 
 	@GetMapping("")
 	public String main() {
-		log.info("=====> login");
+		log.info("===> LoginController");
 		return "/login/login";
 	}
 

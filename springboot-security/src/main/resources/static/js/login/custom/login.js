@@ -2,18 +2,16 @@
  * 
  */
 
-console.log(">>> custom login");
-let csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
-let csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+console.log("===> custom login");
 
 window.onload = function() {
-	console.log(">>> window.onload");
+	//console.log("=====> window.onload");
 	
 	setEventListener();
 }
 
 function setEventListener() {
-	console.log(">>> setEventListener");
+	//console.log("=====> setEventListener");
 	
 	// 로그인
 	document.getElementById("btn-login").addEventListener("click", async function() {
@@ -27,9 +25,9 @@ function setEventListener() {
 		}
 		let response;
 
-		//console.log("csrfToken = " + csrfToken);
+		//console.log("commonCsrfToken = " + commonCsrfToken);
 		//console.log("email = " + email + ", " + email.length);
-		//console.log("password = " + password + ", " + password.length);	
+		//console.log("password = " + password + ", " + password.length);
 		
 		// 이메일 문자패턴 검증 필요	
 
@@ -39,7 +37,7 @@ function setEventListener() {
 			option = {
 				method: "POST",
 				headers: {
-					[csrfHeader]: csrfToken,
+					[commonCsrfHeader]: commonCsrfToken,
 					"Content-Type": "application/json",
 				},
 			}
@@ -57,7 +55,7 @@ function setEventListener() {
 			} else {
 				alert(response.title + "\n" + response.message);
 				//alert(response.message + "\n" + response.log);
-				location.replace("/login"); // 현재페이지
+				location.replace("/custom/login"); // 현재페이지
 			}
 		} else {
 			alert("이메일과 패스워드를 입력해 주세요.");

@@ -1,6 +1,12 @@
 /**
  * 
  */
+console.log("===> common");
+
+let commonCsrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+let commonCsrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+//let commonAuthName = document.querySelector('meta[name="auth-name"]').getAttribute(content);
+//let commonAuthRole = document.querySelector('meta[name="auth-role"]').getAttribute(content);
 
 /*
 사용예제
@@ -19,7 +25,7 @@ let option = {
 }
 */
 async function commonFetch(url, option, data) {
-	//console.log(">>> commonFetch");
+	//console.log("===> commonFetch");
 
 	try {
 		let response = await fetch(url, {

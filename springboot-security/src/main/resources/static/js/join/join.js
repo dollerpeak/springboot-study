@@ -2,18 +2,16 @@
  * 
  */
 
-console.log(">>> join");
-let csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
-let csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+console.log("===> join");
 
 window.onload = function() {
-	console.log(">>> window.onload");
+	//console.log("=====> window.onload");
 	
 	setEventListener();
 }
 
 function setEventListener() {
-	console.log(">>> setEventListener");
+	//console.log("=====> setEventListener");
 	
 	// 회원가입
 	document.getElementById("btn-join").addEventListener("click", async function() {
@@ -30,7 +28,7 @@ function setEventListener() {
 		}
 		let response;
 
-		//console.log("csrfToken = " + csrfToken);
+		//console.log("commonCsrfToken = " + commonCsrfToken);
 		//console.log("email = " + email + ", " + email.length);
 		//console.log("name = " + name + ", " + name.length);
 		//console.log("password = " + password + ", " + password.length);
@@ -45,7 +43,7 @@ function setEventListener() {
 			option = {
 				method: "POST",
 				headers: {
-					[csrfHeader]: csrfToken,
+					[commonCsrfHeader]: commonCsrfToken,
 					"Content-Type": "application/json",
 				},
 			}

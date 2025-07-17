@@ -12,26 +12,34 @@
 	<!-- 고정 상단 header -->
 	<header class="fixed-top text-center py-2">
 		<a href="/" class="text-decoration-none fw-bold fs-4 text-dark">MyShop</a>
-
+		
 		<!-- form logout  -->
-		<!-- <form method="post" th:action="@{/logout}"> -->
-		<!-- fetch logout  -->
-		<form method="post" th:action="@{/custom/logout}">
+		<!-- 
+		<form method="post" th:action="@{/logout}">
 			<button type="submit" class="btn btn-danger">
-				<!-- <input type="hidden" name="_csrf" th:value="${_csrf.token}" /> -->
-				
-				<!-- 로그인 여부 확인 -->
+				<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
 				<div sec:authorize="isAuthenticated()">
-					<!-- DTO -->
 					<span sec:authentication="principal.userDto.role"></span>
-					<!-- 필수정보 -->
-					<!-- <span sec:authentication="principal.role"></span> -->
 				</div>
 				<div sec:authorize="isAnonymous()">
 					<span sec:authentication="principal"></span>
 				</div>
 			</button>
 		</form>
+		 -->
+
+		<!-- fetch logout  -->
+		<div>
+			<button class="btn btn-danger" id="btn-logout">				
+				<!-- 로그인 여부 확인 -->
+				<div sec:authorize="isAuthenticated()">
+					<span sec:authentication="principal.userDto.role"></span>
+				</div>
+				<div sec:authorize="isAnonymous()">
+					<span sec:authentication="principal"></span>
+				</div>
+			</button>
+		</div>
 
 	</header>
 </div>

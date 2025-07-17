@@ -17,32 +17,32 @@ public class MainController {
 
 	@GetMapping({ "", "/" })
 	public String main(HttpSession session, Authentication authentication) {
-		log.info("=====> main");
+		log.info("===> MainController");
 		
 		// test
 		Object securityContext = session.getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
 		if (securityContext != null) {
-			log.info("=====> SecurityContext 존재: 로그인 되어 있음");
+			log.info("SecurityContext 있음");
 		} else {
-			log.info("=====> SecurityContext 없음: 로그인 안되어 있음");
+			log.info("SecurityContext 없음");
 		}		
-		log.info("=====> 세션 유지 시간 = " + session.getMaxInactiveInterval());
+		log.info("세션 타임아웃, 시간 = " + session.getMaxInactiveInterval());
 		
 		if (authentication != null) {
 			CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
 			// dto
-			log.info("=====> principal, email = " + customUserDetails.getUserDto().getEmail());
-			log.info("=====> principal, name = " + customUserDetails.getUserDto().getName());
-			log.info("=====> principal, password = " + customUserDetails.getUserDto().getPassword());
-			log.info("=====> principal, role = " + customUserDetails.getUserDto().getRole());
+			log.info("principal, email = " + customUserDetails.getUserDto().getEmail());
+			log.info("principal, name = " + customUserDetails.getUserDto().getName());
+			log.info("principal, password = " + customUserDetails.getUserDto().getPassword());
+			log.info("principal, role = " + customUserDetails.getUserDto().getRole());
 //			// 필수정보
-//			log.info("=====> principal, email = " + customUserDetails.getEmail());
-//			log.info("=====> principal, name = " + customUserDetails.getName());
-//			log.info("=====> principal, password = " + customUserDetails.getPassword());
-//			log.info("=====> principal, role = " + customUserDetails.getRole());
+//			log.info("principal, email = " + customUserDetails.getEmail());
+//			log.info("principal, name = " + customUserDetails.getName());
+//			log.info("principal, password = " + customUserDetails.getPassword());
+//			log.info("principal, role = " + customUserDetails.getRole());
 		} else {
-			log.info("=====> principal = " + authentication);
-		}				
+			log.info("인증정보 없음");
+		}
 		
 		
 //		// 날짜

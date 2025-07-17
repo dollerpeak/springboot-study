@@ -17,32 +17,32 @@
 		<div class="container-fluid">
 			<div class="row text-center footer-nav">
 				<div class="col">
-					<a href="#" class="d-block py-2 text-dark text-decoration-none"> 
+					<a href="/" class="d-block py-2 text-dark text-decoration-none"> 
 						<i class="bi bi-house"></i><br /> 
-						<!-- <small>홈</small> -->
 					</a>
 				</div>
 				<div class="col">
 					<a href="#" class="d-block py-2 text-dark text-decoration-none"> 
 						<i class="bi bi-search"></i><br /> 
-						<!-- <small>찾기</small> -->
 					</a>
 				</div>
 				<div class="col">
-					<a href="#" class="d-block py-2 text-dark text-decoration-none"> 
+					<div> 
 						<div sec:authorize="isAuthenticated()">
-							<i class="bi bi-person-fill-gear"></i><br />
+							<a href="#" class="d-block py-2 text-dark text-decoration-none">
+								<i class="bi bi-person-fill-gear"></i><br />
+							</a>
 						</div>
 						<div sec:authorize="isAnonymous()">
-							<i class="bi bi-person-fill-lock"></i><br />
-						</div> 
-						<!-- <small>MY</small> -->
-					</a>
+							<a href="/custom/login" class="d-block py-2 text-dark text-decoration-none">
+								<i class="bi bi-person-fill-lock"></i><br />
+							</a>
+						</div>
+					</div> 
 				</div>
 				<div class="col">
 					<a href="#" class="d-block py-2 text-dark text-decoration-none"> 
-						<i class="bi bi-cart"></i><br /> 
-						<!-- <small>장바구니</small> -->
+						<i class="bi bi-cart"></i><br />
 					</a>
 				</div>
 			</div>
@@ -52,6 +52,7 @@
 	<!-- Bootstrap JS -->
 	<script src="/js/bootstrap-5.3.5/bootstrap.bundle.min.js"></script>
 	<script src="/js/common/common.js"></script>
+	<script src="/js/logout/custom/logout.js"></script>
 </div>
 
 
