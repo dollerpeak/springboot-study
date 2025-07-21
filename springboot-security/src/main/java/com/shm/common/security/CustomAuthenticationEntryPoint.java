@@ -24,10 +24,11 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		boolean path = uri.startsWith("/user") || uri.startsWith("/seller") || uri.startsWith("/admin");
 		
-		if(path == true && (auth == null || auth.isAuthenticated() == false)) {			
+		if(path == true && (auth == null || auth.isAuthenticated() == false)) {
 			response.sendRedirect("/timeout");
+		} else {
+			//
 		}
-		
 	}
 
 }

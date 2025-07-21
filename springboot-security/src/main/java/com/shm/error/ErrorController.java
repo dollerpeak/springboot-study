@@ -1,4 +1,4 @@
-package com.shm.timeout;
+package com.shm.error;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/timeout")
+@RequestMapping("/error")
 @Slf4j
-public class TimeoutController {
+public class ErrorController {
 
 	@GetMapping("")
 	public String main() {
-		log.info("===> TimeoutController");
-		return "/timeout/timeout";
+		log.info("===> ErrorController");
+		return "/error/error";
 	}
 	
 }

@@ -34,8 +34,13 @@ function setEventListener() {
 		response = await commonFetch(url, option, data);
 		console.log("response = " + JSON.stringify(response));
 
-		if (response.code == 200) {
-			alert(response.title + "\n" + response.message);
+		if (response.code == 200 || response.code == 401) {
+			if (response.code == 200) {
+				alert(response.title + "\n" + response.message);
+			} else {
+				// 타임아웃이거나 로그인이 안된 경우
+				//alert("타임아웃이거나 로그인이 안된 경우");
+			}
 			//location.href = response.data.url; // 뒤로가기 가능
 			location.replace(response.data.url); // 뒤로가기가 안됨
 		} else {

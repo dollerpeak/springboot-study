@@ -46,16 +46,21 @@ function setEventListener() {
 
 			// 비동기로 받아야 로그출력이 가능
 			response = await commonFetch(url, option, data);
-			console.log("response = " + JSON.stringify(response));
-
-			if (response.code == 200) {
-				alert(response.title + "\n" + response.message);
-				//location.href = response.data.url; // 뒤로가기 가능
-				location.replace(response.data.url); // 뒤로가기가 안됨
+			
+			if (response == null) {
+				console.log("response is null");
 			} else {
-				alert(response.title + "\n" + response.message);
-				//alert(response.message + "\n" + response.log);
-				location.replace("/custom/login"); // 현재페이지
+				console.log("response = " + JSON.stringify(response));
+
+				if (response.code == 200) {
+					alert(response.title + "\n" + response.message);
+					//location.href = response.data.url; // 뒤로가기 가능
+					location.replace(response.data.url); // 뒤로가기가 안됨
+				} else {
+					alert(response.title + "\n" + response.message);
+					//alert(response.message + "\n" + response.log);
+					location.replace("/custom/login"); // 현재페이지
+				}
 			}
 		} else {
 			alert("이메일과 패스워드를 입력해 주세요.");

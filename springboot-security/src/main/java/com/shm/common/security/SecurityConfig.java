@@ -89,13 +89,13 @@ public class SecurityConfig {
 //				.invalidSessionUrl("/timeout") // 세션완료시 리다이렉트
 //		);
 		
-		// 페이지별 예외적용, 리다이렉트
-		http.exceptionHandling(exception -> exception
-				.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
-				//.authenticationEntryPoint((request, response, authException) -> {
-                //    // CustomAuthenticationEntryPoint 조건 구현
-                //})
-		);
+//		// 페이지별 예외적용, 리다이렉트
+//		http.exceptionHandling(exception -> exception
+//				.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+//				//.authenticationEntryPoint((request, response, authException) -> {
+//                //    // CustomAuthenticationEntryPoint 조건 구현
+//                //})
+//		);
 		
 		// 인증에 사용될 service 적용
 		http.userDetailsService(customUserDetailsService);		

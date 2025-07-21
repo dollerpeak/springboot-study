@@ -43,12 +43,12 @@ async function commonFetch(url, option, data) {
 			throw new Error("response.status = " + response.status);
 		}
 	} catch (error) {		
-		console.error("url = " + url);
-		console.error("option = " + JSON.stringify(option));
-		console.error("data = " + JSON.stringify(data));
+		//console.error("url = " + url);
+		//console.error("option = " + JSON.stringify(option));
+		//console.error("data = " + JSON.stringify(data));
 		
 		// 생성된 에러메세지 출력
-		alert(error);
+		//alert(error);
 		return null;
 	}
 }

@@ -22,7 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		log.info("=====> loadUserByUsername, email = " + email);
+		log.info("===> loadUserByUsername, email = " + email);
 		List<UserEntity> userEntityList = new ArrayList<>();
 		UserEntity userEntity = null;
 
@@ -34,6 +34,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		} catch (Exception e) {
 			log.error("e = " + e.toString());
 		}
+		log.info("userEntity = " + userEntity);
 
 //		// UserDetails을 사용하는 경우
 //		return User.builder()

@@ -68,6 +68,7 @@ public class CustomLogoutRestController {
 				log.info("timeout = O / auth = O, 로그아웃 필요 있음");
 			} else {
 				log.info("timeout = O / auth = X, 로그아웃 필요 없음");
+				resultData.setCode(HttpStatus.UNAUTHORIZED.value());
 			}
 		} else {
 			if (auth == true) {
@@ -76,6 +77,7 @@ public class CustomLogoutRestController {
 			} else {
 				// 이런 경우는 없어야 겠지
 				log.info("timeout = X / auth = X, 로그아웃 필요 없음");
+				resultData.setCode(HttpStatus.UNAUTHORIZED.value());
 			}
 		}			
 		
