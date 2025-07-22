@@ -36,12 +36,15 @@ async function commonFetch(url, option, data) {
 		console.log("response.status = " + response.status);
 		// response.json() 한번 읽으면 다시 읽을 수 없음
 
-		if (response.status == 200) {
-			return await response.json();
-		} else {
-			// 에러메세지 생성
-			throw new Error("response.status = " + response.status);
-		}
+		// 여기서 판단하지 않고 받는 쪽에서 판단
+		return await response.json();
+		
+		//if (response.status == 200) {
+		//	return await response.json();
+		//} else {
+		//	// 에러메세지 생성
+		//	throw new Error("response.status = " + response.status);
+		//}
 	} catch (error) {		
 		//console.error("url = " + url);
 		//console.error("option = " + JSON.stringify(option));
@@ -52,5 +55,41 @@ async function commonFetch(url, option, data) {
 		return null;
 	}
 }
+
+
+function commonError(response) {
+	//console.log("===> commonError");
+
+	let error = true;	
+	let url;
+	let params;
+	
+	if (response.data != null && response.data.url != null) {
+		error = false;
+	}
+	
+	if (error == true) {
+		// get
+		url = "/fail/error";
+		params = new URLSearchParams({
+			code: response.code,
+			title: response.title,
+			message: response.message,
+			log: response.log
+		}).toString();
+
+		//console.log("url = " + url);
+		//console.log("params = " + params);
+
+		//location.href = `${url}?${params}`; // 뒤로가기 가능
+		location.replace(`${url}?${params}`); // 뒤로가기 불가
+	} else {
+		alert(response.title + "\n" + response.message);
+		//location.replace(response.data.url); // 뒤로가기 가능
+		location.replace(response.data.url); // 뒤로가기 불가
+	}
+}
+
+
 
 

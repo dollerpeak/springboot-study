@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.shm.common.exception.CustomExceptionData;
 import com.shm.common.resultdata.ResultData;
 import com.shm.common.role.UserRole;
 import com.shm.user.UserDto;
@@ -30,7 +31,7 @@ public class JoinService {
 
 	public ResultData insert(UserDto userDto) {
 		ResultData resultData = new ResultData(HttpStatus.OK.value(), "[회원가입]", null, null, null);
-		Map<String, UserEntity> resultMap = new HashMap<>();
+		Map<Object, Object> resultMap = new HashMap<>();
 		
 		UserEntity userEntity;
 		List<UserEntity> userEntityList = new ArrayList<>();
@@ -54,17 +55,24 @@ public class JoinService {
 				userRepository.insert(userEntity);
 				
 				resultData.setMessage("회원가입을 축하드립니다.");
+				
 				resultMap.put(ResultData.TYPE_OBJECT, userEntity);
+				resultMap.put(ResultData.TYPE_URL, "/custom/login");
 				resultData.setData(resultMap);
 			} else {
 				resultData.setCode(HttpStatus.BAD_REQUEST.value());
 				resultData.setMessage("다른 이메일을 사용해 주세요.");
+				
+				resultMap.put(ResultData.TYPE_URL, "/join");
+				resultData.setData(resultMap);
 			}
 		} catch (Exception e) {
 			log.error("e = " + e.toString());
 			resultData.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
 			resultData.setMessage("회원가입에 실패했습니다.");
 			resultData.setLog(e.toString());
+			
+			throw new CustomExceptionData(resultData);
 		}
 		log.info("resultData = " + resultData.toString());
 

@@ -55,16 +55,27 @@ function setEventListener() {
 
 				// 비동기로 받아야 로그출력이 가능
 				response = await commonFetch(url, option, data);
-				console.log("response = " + JSON.stringify(response));
-
-				if (response.code == 200) {
-					alert(response.title + "\n" + response.message);
-					//location.href = response.data.url; // 뒤로가기 가능
-					location.replace(response.data.url); // 뒤로가기가 안됨
+				//console.log("response = " + response);
+				
+				if (response == null) {
+					//console.log("response is null");
+					location.replace("/fail"); // 에러페이지
 				} else {
-					alert(response.title + "\n" + response.message);
-					//alert(response.message + "\n" + response.log);
-					location.replace("/join"); // 현재페이지
+					//console.log("response = " + JSON.stringify(response));
+					if (response.code == 200) {
+						//console.log("response.data.object.email = " + response.data.object.email);
+						// 성공메세지
+						alert(response.title + "\n" + response.message);
+						// 성공페이지
+						//location.href = response.data.url; // 뒤로가기 가능
+						location.replace(response.data.url); // 뒤로가기 불가
+					} else {
+						//alert(response.title + "\n" + response.message);
+						//alert(response.message + "\n" + response.log);
+						//location.replace("/join"); // 현재페이지
+						//location.replace(response.data.url); // 뒤로가기가 안됨
+						commonError(response);
+					}
 				}
 			} else {
 				alert("패스워드가 정확한지 확인하세요.");
