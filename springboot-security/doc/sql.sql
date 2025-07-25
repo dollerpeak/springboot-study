@@ -60,9 +60,9 @@ select * from category
 select * from user
 
 
--- delete from user
+delete from user
 where 1=1
-and name = '444'
+and name = '333'
 
 
 
