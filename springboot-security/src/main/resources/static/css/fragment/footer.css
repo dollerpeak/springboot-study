@@ -1,0 +1,8 @@
+footer.fixed-bottom {
+	background-color: #f8f9fa;
+	border-top: 1px solid #ccc;
+}
+
+.footer-nav i {
+	font-size: 1.5rem;
+}
