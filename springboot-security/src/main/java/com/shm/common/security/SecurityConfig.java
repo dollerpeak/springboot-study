@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,20 +17,44 @@ import lombok.extern.slf4j.Slf4j;
 public class SecurityConfig {
 	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
+	
+//	@Autowired
+//	private CustomLoginSuccessHandler customLoginSuccessHandler;
+//	@Autowired
+//	private CustomLoginFailHandler customLoginFailHandler;
+//	@Autowired
+//	private CustomAccessDeniedHandler customAccessDeniedHandler;
 
 	// 암호화 방식
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		//log.info("=====> passwordEncoder");
+		log.info("===> passwordEncoder");
 		return new BCryptPasswordEncoder();
 		// 평문사용		
 		//return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		//return NoOpPasswordEncoder.getInstance(); // 권장하지 않음
 	}
+	
+	// AuthenticationManager
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+		log.info("===> authenticationManager");
+		return configuration.getAuthenticationManager();
+	}
+
+//	// url DoubleSlash error
+//	@Bean
+//	public HttpFirewall allowUrlEncodedDoubleSlashHttpFirewall() {
+//		log.info("===> allowUrlEncodedDoubleSlashHttpFirewall");
+//		StrictHttpFirewall strictHttpFirewall = new StrictHttpFirewall();
+//		strictHttpFirewall.setAllowUrlEncodedDoubleSlash(true);
+//
+//		return strictHttpFirewall;
+//	}
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		//log.info("=====> securityFilterChain");
+		log.info("===> securityFilterChain");
 		
 		// CSRF 사용 유무
 		// http.csrf(csrf -> csrf.disable());
@@ -60,27 +83,27 @@ public class SecurityConfig {
 				.anyRequest().permitAll() // 모든 사용자
 		);		
 		
-		// form 방식
-		// - login
-		//http.formLogin(form -> form
-		//		.loginPage("/login") // GET요청, 커스텀해서 만들 수 있음
-		//		.loginProcessingUrl("/login") // POST요청, 핸들러가 없어야 내부에서 자동 처리
-		//		.usernameParameter("email") // form name, id tag
-		//		.passwordParameter("password") // form password, id tag
-		//		.defaultSuccessUrl("/") // 성공 시 리다이렉트, / 이게 안들어가면 에러발생
-		//		.failureUrl("/login") // 실패 시 리다이렉트, / 이게 안들어가면 에러발생
-		//		//.permitAll() // 
-		//);
+//		// form 방식
+//		// - login
+//		http.formLogin(form -> form
+//				.loginPage("/login") // GET요청, 커스텀해서 만들 수 있음
+//				.loginProcessingUrl("/login") // POST요청, 핸들러가 없어야 내부에서 자동 처리
+//				.usernameParameter("email") // form name, id tag
+//				.passwordParameter("password") // form password, id tag
+//				//.successHandler(customLoginSuccessHandler) // 로그인 성공, 별도 핸들러 구현시 적용
+//				.defaultSuccessUrl("/") // 성공 시 리다이렉트, / 이게 안들어가면 에러발생
+//				//.failureHandler(customLoginFailHandler) // 로그인 실패, 별도 핸들러 구현시 적용
+//				.failureUrl("/login") // 실패 시 리다이렉트, / 이게 안들어가면 에러발생
+//		);
 		
-		// - logout
-		//http.logout(logout -> logout
-		//		.logoutUrl("/logout") // POST요청
-		//		.logoutSuccessUrl("/") // 로그아웃 후 이동할 URL
-		//		.invalidateHttpSession(true) // 서버 세션 제거
-		//		.clearAuthentication(true) // SecurityContext 제거
-		//		.deleteCookies("JSESSIONID") // 클라이언트 쿠키도 삭제
-		//		//.permitAll() //
-		//);
+//		// - logout
+//		http.logout(logout -> logout
+//				.logoutUrl("/logout") // POST요청
+//				.logoutSuccessUrl("/") // 로그아웃 후 이동할 URL
+//				.invalidateHttpSession(true) // 서버 세션 제거
+//				.clearAuthentication(true) // SecurityContext 제거
+//				.deleteCookies("JSESSIONID") // 클라이언트 쿠키도 삭제
+//		);
 		
 //		//session이 완료되었을때 작동
 //		// - 타임아웃, 인증 여부 순으로 체크
@@ -97,26 +120,19 @@ public class SecurityConfig {
 //                //})
 //		);
 		
+//		// 인증(권한??) 예외적용, 리다이렉트
+//		http.exceptionHandling(exception -> exception
+//				.accessDeniedHandler(customAccessDeniedHandler)
+//				.accessDeniedPage("/fail")
+//		);
+		
+		
 		// 인증에 사용될 service 적용
 		http.userDetailsService(customUserDetailsService);		
 
 		return http.build();
 	}
 	
-	// fetch 로그인 시 필요
-	// form인 경우 있어도 무방
-	@Bean
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
-		return configuration.getAuthenticationManager();
-	}
 
-//	// url DoubleSlash error
-//	@Bean
-//	public HttpFirewall allowUrlEncodedDoubleSlashHttpFirewall() {
-//		StrictHttpFirewall strictHttpFirewall = new StrictHttpFirewall();
-//		strictHttpFirewall.setAllowUrlEncodedDoubleSlash(true);
-//
-//		return strictHttpFirewall;
-//	}
 
 }

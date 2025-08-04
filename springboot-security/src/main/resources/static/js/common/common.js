@@ -69,6 +69,7 @@ function commonError(response) {
 	}
 	
 	if (error == true) {
+		// 의도된 에러 중 URL정보가 없는 경우 (global exception)
 		// get
 		url = "/fail/error";
 		params = new URLSearchParams({
@@ -84,6 +85,7 @@ function commonError(response) {
 		//location.href = `${url}?${params}`; // 뒤로가기 가능
 		location.replace(`${url}?${params}`); // 뒤로가기 불가
 	} else {
+		// 의도된 에러 중 URL정보가 있는 경우
 		alert(response.title + "\n" + response.message);
 		//location.replace(response.data.url); // 뒤로가기 가능
 		location.replace(response.data.url); // 뒤로가기 불가

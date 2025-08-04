@@ -58,7 +58,7 @@ function setEventListener() {
 				//console.log("response = " + response);
 				
 				if (response == null) {
-					//console.log("response is null");
+					// 의도하지 않은 에러 화면
 					location.replace("/fail"); // 에러페이지
 				} else {
 					//console.log("response = " + JSON.stringify(response));
@@ -70,10 +70,7 @@ function setEventListener() {
 						//location.href = response.data.url; // 뒤로가기 가능
 						location.replace(response.data.url); // 뒤로가기 불가
 					} else {
-						//alert(response.title + "\n" + response.message);
-						//alert(response.message + "\n" + response.log);
-						//location.replace("/join"); // 현재페이지
-						//location.replace(response.data.url); // 뒤로가기가 안됨
+						// 의도한 에러 하면
 						commonError(response);
 					}
 				}
