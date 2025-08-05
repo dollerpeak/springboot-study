@@ -46,7 +46,7 @@ public class JoinService {
 			// - PasswordEncoderFactories.createDelegatingPasswordEncoder(); 사용했다면 접두사로 암호화 알고리즘을 표기함
 			// -- {bcrypt}, {sha256}
 			// -- 만약 평문으로 하고 싶다면 아래처럼 적용해야 함
-			//userDto.setPassword("{noop}" + userDto.getPassword());			
+			//userDto.setPassword("{noop}" + userDto.getPassword());
 			
 			userEntity = userDto.toEntity();
 			userEntityList = userRepository.selectByEmail(userDto.getEmail());
