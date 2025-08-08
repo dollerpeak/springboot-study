@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.shm.common.exception.CustomExceptionData;
 import com.shm.common.resultdata.ResultData;
+import com.shm.common.security.CustomUserDetails;
 import com.shm.user.UserDto;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -47,6 +48,9 @@ public class CustomLoginService {
 			HttpSession session = request.getSession(true);
 			session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
 					SecurityContextHolder.getContext());
+			
+			CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+			resultData.setMessage(customUserDetails.getUserDto().getName() + " 님 환영합니다.");
 
 			resultMap.put(ResultData.TYPE_URL, "/");
 			resultData.setData(resultMap);

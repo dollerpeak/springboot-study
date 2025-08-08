@@ -16,14 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SecurityConfig {
 	@Autowired
-	private CustomUserDetailsService customUserDetailsService;
-	
-//	@Autowired
-//	private CustomLoginSuccessHandler customLoginSuccessHandler;
-//	@Autowired
-//	private CustomLoginFailHandler customLoginFailHandler;
-//	@Autowired
-//	private CustomAccessDeniedHandler customAccessDeniedHandler;
+	private CustomUserDetailsService customUserDetailsService;	
 
 	// 암호화 방식
 	@Bean
@@ -77,9 +70,10 @@ public class SecurityConfig {
 		// spring security에서 사용하는 UserDetails를 사용할 경우 ROLE활용 가능
 		// - .requestMatchers("/my", "/my/**").hasRole("ADMIN") // ADMIN, USER
 		http.authorizeHttpRequests(auth -> auth //
-				.requestMatchers("/user", "/user/**").authenticated() // 로그인 사용자
+				//.requestMatchers("/seller", "/seller/**").hasRole("SELLER") // test
+				//.requestMatchers("/user", "/user/**").authenticated() // 로그인 사용자
 				.requestMatchers("/seller", "/seller/**").authenticated() // 로그인 판매자
-				.requestMatchers("/admin", "/admin/**").authenticated() // 로그인 관리자
+				.requestMatchers("/admin", "/admin/**").authenticated() // 로그인 관리자				
 				.anyRequest().permitAll() // 모든 사용자
 		);		
 		
@@ -90,9 +84,9 @@ public class SecurityConfig {
 //				.loginProcessingUrl("/login") // POST요청, 핸들러가 없어야 내부에서 자동 처리
 //				.usernameParameter("email") // form name, id tag
 //				.passwordParameter("password") // form password, id tag
-//				//.successHandler(customLoginSuccessHandler) // 로그인 성공, 별도 핸들러 구현시 적용
+//				//.successHandler(new CustomLoginSuccessHandler()) // 로그인 성공, 별도 핸들러 구현시 적용
 //				.defaultSuccessUrl("/") // 성공 시 리다이렉트, / 이게 안들어가면 에러발생
-//				//.failureHandler(customLoginFailHandler) // 로그인 실패, 별도 핸들러 구현시 적용
+//				//.failureHandler(new CustomLoginFailHandler()) // 로그인 실패, 별도 핸들러 구현시 적용
 //				.failureUrl("/login") // 실패 시 리다이렉트, / 이게 안들어가면 에러발생
 //		);
 		
@@ -105,6 +99,13 @@ public class SecurityConfig {
 //				.deleteCookies("JSESSIONID") // 클라이언트 쿠키도 삭제
 //		);
 		
+		
+		// 401 인증, 403 인가 핸들러
+		http.exceptionHandling(exception -> exception
+				.authenticationEntryPoint(new CustomAuthenticationEntryPoint()) // 401 - 인증, 로그인 안됨
+				.accessDeniedHandler(new CustomAccessDeniedHandler()) // 403 - 인가, 권한없음
+		);
+		
 //		//session이 완료되었을때 작동
 //		// - 타임아웃, 인증 여부 순으로 체크
 //		// - 인증여부와 관계없이 타임아웃만되면 처리됨 (cookie는 인증여부와 관계없이 생성됨)
@@ -112,23 +113,12 @@ public class SecurityConfig {
 //				.invalidSessionUrl("/timeout") // 세션완료시 리다이렉트
 //		);
 		
-//		// 페이지별 예외적용, 리다이렉트
-//		http.exceptionHandling(exception -> exception
-//				.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
-//				//.authenticationEntryPoint((request, response, authException) -> {
-//                //    // CustomAuthenticationEntryPoint 조건 구현
-//                //})
-//		);
-		
-//		// 인증(권한??) 예외적용, 리다이렉트
-//		http.exceptionHandling(exception -> exception
-//				.accessDeniedHandler(customAccessDeniedHandler)
-//				.accessDeniedPage("/fail")
-//		);
+		// 이 외 예외사항은 controller까지 오므로 구현해둔 globalexception으로 대응
 		
 		
 		// 인증에 사용될 service 적용
-		http.userDetailsService(customUserDetailsService);		
+		http.userDetailsService(customUserDetailsService);
+		
 
 		return http.build();
 	}

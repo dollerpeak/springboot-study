@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
-<!-- 고정 head -->
-<th:block th:replace="~{/layout/head :: head}"></th:block>
+<head>
+	<!-- fragment meta -->
+	<th:block th:replace="~{/fragment/meta :: meta}"></th:block>
+	<!-- fragment link -->
+	<th:block th:replace="~{/fragment/link :: link}"></th:block>
+	<title>MyShop</title>
+</head>
 
 <body>
 
-	<!-- 고정 상단 header -->
-	<div th:replace="~{/layout/header :: header}"></div>
+	<!-- fragment header -->
+	<th:block th:replace="~{/fragment/header :: header}"></th:block>
 
-	<!-- 비어있는 메인 콘텐츠 영역 -->
+	<!-- 메인 콘텐츠 영역 -->
 	<main class="container my-5">
 	
 		<!-- 슬라이드 배너 (Carousel) -->
@@ -157,9 +162,13 @@
 
 
 	</main>
-
-	<!-- 고정 하단 footer -->
-	<div th:replace="~{/layout/footer :: footer}"></div>
+	
+	<!-- fragment footer -->
+	<th:block th:replace="~{/fragment/footer :: footer}"></th:block>
+	<!-- fragment script -->
+	<th:block th:replace="~{/fragment/script :: script}"></th:block>
 </body>
 
 </html>
+
+

@@ -62,7 +62,7 @@ select * from user
 
 delete from user
 where 1=1
-and name = '333'
+and name = '222'
 
 
 

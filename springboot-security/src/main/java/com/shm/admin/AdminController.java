@@ -1,4 +1,4 @@
-package com.shm.user;
+package com.shm.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/admin")
 @Slf4j
-public class UserController {
+public class AdminController {
 
 	@GetMapping("")
 	public String main() {
-		log.info("=====> UserController");
-		return "/user/user";
+		log.info("=====> AdminController");
+		return "/admin/admin";
 	}
 
 }
