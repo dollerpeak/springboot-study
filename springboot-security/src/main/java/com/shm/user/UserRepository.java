@@ -11,9 +11,13 @@ import lombok.extern.slf4j.Slf4j;
 @Repository
 @Slf4j
 public class UserRepository {
-	private String namespace = "com.shm.user.";
+	private final String namespace = "com.shm.user.";	
+	private final SqlSessionTemplate sqlSessionTemplate;
+
 	@Autowired
-	private SqlSessionTemplate sqlSessionTemplate;
+	public UserRepository(SqlSessionTemplate sqlSessionTemplate) {
+		this.sqlSessionTemplate = sqlSessionTemplate;
+	}
 
 	public int insert(UserEntity userEntity) throws Exception {
 		return sqlSessionTemplate.insert(namespace + "insert", userEntity);

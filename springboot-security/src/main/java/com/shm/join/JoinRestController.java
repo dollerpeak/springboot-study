@@ -14,9 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/api/join")
 @Slf4j
-public class JoinRestController {
+public class JoinRestController {	
+	private final JoinService joinService;	
+	
 	@Autowired
-	private JoinService joinService;
+	public JoinRestController(JoinService joinService) {
+		this.joinService = joinService;
+	}
 
 	@PostMapping("/join")
 	public ResultData join(@RequestBody UserDto userDto) {

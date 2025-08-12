@@ -1,0 +1,47 @@
+package com.shm.product;
+
+import java.time.LocalDateTime;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class ProductDto {
+	private int id;
+	private int userId;
+	private int categoryId;
+	private boolean sold;
+	private String name;
+	private int price;
+	private int viewCount;
+	private int sellCount;
+	private String desc;
+	private String thumbnailUrl;
+	private LocalDateTime frstRegDate;
+	private String frstRegUserId;
+	private LocalDateTime lastChgDate;
+	private String lastChgUserId;
+
+	public ProductEntity toEntity() {
+		ProductEntity entity = new ProductEntity();
+
+		entity.setId(id);
+		entity.setUserId(userId);
+		entity.setCategoryId(categoryId);
+		entity.setSold(sold);
+		entity.setName(name);
+		entity.setPrice(price);
+		entity.setViewCount(viewCount);
+		entity.setSellCount(sellCount);
+		entity.setDesc(desc);
+		entity.setThumbnailUrl(thumbnailUrl);		
+		entity.setFrstRegDate(frstRegDate);
+		entity.setFrstRegUserId(frstRegUserId);
+		entity.setLastChgDate(lastChgDate);
+		entity.setLastChgUserId(lastChgUserId);
+
+		return entity;
+	}	
+
+}

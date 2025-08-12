@@ -16,7 +16,103 @@
 
 	<!-- 메인 콘텐츠 영역 -->
 	<main class="container my-5">
-SELLER
+
+		<!-- 내 정보 -->
+		<section class="mb-4">
+			<h2 class="mb-3">내 정보</h2>
+			<div class="card p-3">
+				<div class="row gx-3 gy-2">
+					<div class="col-6">
+						<strong>이름:</strong> <span th:text="${'user.name'}"></span>
+					</div>
+					<div class="col-6">
+						<strong>이메일:</strong> <span th:text="${'user.email'}"></span>
+					</div>
+					<div class="col-6">
+						<strong>가입일:</strong> <span th:text="${'user.joinDate'}"></span>
+					</div>
+					<div class="col-6">
+						<strong>상호명:</strong> <span th:text="${'user.storeName'}"></span>
+					</div>
+					<div class="col-6">
+						<strong>총 판매 횟수:</strong> <span th:text="${'user.totalSell' + '회'}"></span>
+					</div>
+					<div class="col-6">
+						<strong>총 판매 금액:</strong> <span th:text="${'user.totalMoney'}"></span>
+					</div>
+					<div class="col-6">
+						<strong>계속이렇게추가:</strong> <span th:text="${'user.totalReturns' + '회'}"></span>
+					</div>
+					<div class="col-6">
+						<strong>계속이렇게추가:</strong> <span th:text="${'user.totalReturns' + '회'}"></span>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- 최근 등록 상품 -->
+		<section class="mb-4">
+			<div class="d-flex justify-content-between align-items-center mb-3">
+				<h3>최근 등록 상품</h3>
+				<!-- <button type="button" class="btn btn-outline-primary btn-sm">더보기</button> -->
+				<a href="/seller/product/insert" class="btn btn-outline-primary btn-sm" role="button">더보기</a>				
+			</div>
+			
+			<!-- <div th:each="orderGroup : ${recentOrdersByDate}" class="mb-4"> -->
+			<div th:each="orderGroup : ${#numbers.sequence(1,3)}" class="mb-4">
+				<!-- 주문 날짜 -->
+				<h5 th:text="${'2025-08-08 15:55:55'}"></h5>
+
+				<div class="d-flex flex-wrap">
+					<!-- 주문 날짜 내 상품 리스트 -->
+					<!-- <div th:each="order : ${orderGroup.orders}" class="card me-3 mb-3" style="width: 150px;"> -->
+					<div th:each="order : ${#numbers.sequence(1,3)}" class="card me-3 mb-3" style="width: 150px;">
+						<!-- <img th:src="${order.productImage}" class="card-img-top" alt="상품 이미지" style="height: 100px; object-fit: contain;"> -->
+						<!-- <img th:src="${'#'}" class="card-img-top" alt="상품 이미지" style="height: 100px; object-fit: contain;"> -->
+						<img th:src="${'https://img.danawa.com/prod_img/500000/544/160/img/90160544_1.jpg?shrink=330:*&_v=20250624083238'}" class="card-img-top" alt="상품 이미지" style="height: 100px; object-fit: contain;">
+						<div class="card-body p-2">
+							<h6 class="card-title" th:text="${orderGroup + '_order.productName'}"></h6>
+							<p class="card-text text-muted mb-0" th:text="${'카테고리 : 전자'}"></p>
+							<p class="card-text text-muted mb-0" th:text="${order + '_order.price'} + '원'"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- 최근 판매 내역 -->
+		<section class="mb-4">
+			<div class="d-flex justify-content-between align-items-center mb-3">
+				<h3>최근 판매 상품</h3>
+				<button type="button" class="btn btn-outline-primary btn-sm">더보기</button>
+			</div>
+			
+			<!-- <div th:each="orderGroup : ${recentOrdersByDate}" class="mb-4"> -->
+			<div th:each="orderGroup : ${#numbers.sequence(1,3)}" class="mb-4">
+				<!-- 주문 날짜 -->
+				<h5 th:text="${'2025-08-08 15:55:55'}"></h5>
+
+				<div class="d-flex flex-wrap">
+					<!-- 주문 날짜 내 상품 리스트 -->
+					<!-- <div th:each="order : ${orderGroup.orders}" class="card me-3 mb-3" style="width: 150px;"> -->
+					<div th:each="order : ${#numbers.sequence(1,3)}" class="card me-3 mb-3" style="width: 150px;">
+						<!-- <img th:src="${order.productImage}" class="card-img-top" alt="상품 이미지" style="height: 100px; object-fit: contain;"> -->
+						<!-- <img th:src="${'#'}" class="card-img-top" alt="상품 이미지" style="height: 100px; object-fit: contain;"> -->
+						<img th:src="${'https://img.danawa.com/prod_img/500000/544/160/img/90160544_1.jpg?shrink=330:*&_v=20250624083238'}" class="card-img-top" alt="상품 이미지" style="height: 100px; object-fit: contain;">
+						<div class="card-body p-2">
+							<h6 class="card-title" th:text="${orderGroup + '_order.productName'}"></h6>
+							<p class="card-text text-muted mb-0" th:text="${order + '_order.price'} + '원'"></p>
+							<p class="card-text text-muted mb-0" th:text="${'구매자 : 오호호'}"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- 최근 문의 내역 -->
+		<!-- 최근 리뷰 내역 -->
+		<!-- 등등.. 추가 -->
+
 	</main>
 	
 	<!-- fragment footer -->

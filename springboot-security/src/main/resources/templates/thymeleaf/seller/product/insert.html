@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- fragment meta -->
+	<th:block th:replace="~{/fragment/meta :: meta}"></th:block>
+	<!-- fragment link -->
+	<th:block th:replace="~{/fragment/link :: link}"></th:block>
+	<title>MyShop</title>
+</head>
+
+<body>
+
+	<!-- fragment header -->
+	<th:block th:replace="~{/fragment/header :: header}"></th:block>
+
+	<!-- 메인 콘텐츠 영역 -->
+	<main class="container my-5">
+		<section class="mb-4">
+			<h2 class="mb-3">상품 등록</h2>
+			<!-- <form th:action="@{/products/register}" th:method="post" enctype="multipart/form-data" class="card p-4"> -->
+			<form id="form" class="card p-4">
+
+				<!-- 판매 여부 -->
+				<div class="mb-3">
+					<label class="form-label">판매 여부</label> 
+					<select class="form-select" name="isSold" required>
+						<option value="true" selected>판매중</option>
+						<option value="false">판매중지</option>
+					</select>
+				</div>
+
+				<!-- 카테고리 -->
+				<div class="mb-3">
+					<label for="category" class="form-label">카테고리</label> 
+					<select id="category" name="category" class="form-select" required>
+						<option value="">카테고리를 선택하세요</option>
+						<option th:each="cat : ${category.list}" 
+							th:value="${cat.id}" 
+							th:text="${cat.name}">
+						</option>
+					</select>
+				</div>
+
+				<!-- 상품명 -->
+				<div class="mb-3">
+					<label for="productName" class="form-label">상품명</label> 
+					<input type="text" id="productName" name="productName" class="form-control" required>
+				</div>
+
+				<!-- 가격 -->
+				<div class="mb-3">
+					<label for="price" class="form-label">가격</label> 
+					<input type="number" id="price" name="price" class="form-control" min="0" required>
+				</div>
+
+				<!-- 상품 설명 -->
+				<div class="mb-3">
+					<label for="description" class="form-label">상품 설명</label>
+					<textarea id="description" name="description" class="form-control" rows="4"></textarea>
+				</div>
+
+				<!-- 썸네일 이미지 업로드 -->
+				<div class="mb-3">
+					<label for="thumbnail" class="form-label">썸네일 이미지</label> 
+					<input type="file" id="thumbnail" name="thumbnail" class="form-control" accept="image/*" required>
+				</div>
+
+				<!-- 상세설명 이미지 업로드 (복수 가능) -->
+				<div class="mb-3">
+					<label for="detailImages" class="form-label">상세설명 이미지</label> 
+					<input type="file" id="detailImages" name="detailImages" class="form-control" accept="image/*" multiple>
+				</div>
+
+				<!-- 등록 버튼 -->
+				<div class="text-end">
+					<button type="submit" class="btn btn-primary">등록</button>
+				</div>
+			</form>
+		</section>
+	</main>
+
+	<!-- fragment footer -->
+	<th:block th:replace="~{/fragment/footer :: footer}"></th:block>
+	<!-- fragment script -->
+	<th:block th:replace="~{/fragment/script :: script}"></th:block>
+	
+	<script src="/js/seller/product/insert.js"></script>
+</body>
+
+</html>
+

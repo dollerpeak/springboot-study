@@ -14,9 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @Slf4j
-public class SecurityConfig {
+public class SecurityConfig {	
+	private final CustomUserDetailsService customUserDetailsService;
+	
 	@Autowired
-	private CustomUserDetailsService customUserDetailsService;	
+	public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
+		this.customUserDetailsService = customUserDetailsService;
+	}
 
 	// 암호화 방식
 	@Bean
@@ -70,9 +74,8 @@ public class SecurityConfig {
 		// spring security에서 사용하는 UserDetails를 사용할 경우 ROLE활용 가능
 		// - .requestMatchers("/my", "/my/**").hasRole("ADMIN") // ADMIN, USER
 		http.authorizeHttpRequests(auth -> auth //
-				//.requestMatchers("/seller", "/seller/**").hasRole("SELLER") // test
 				//.requestMatchers("/user", "/user/**").authenticated() // 로그인 사용자
-				.requestMatchers("/seller", "/seller/**").authenticated() // 로그인 판매자
+				//.requestMatchers("/seller", "/seller/**").authenticated() // 로그인 판매자
 				.requestMatchers("/admin", "/admin/**").authenticated() // 로그인 관리자				
 				.anyRequest().permitAll() // 모든 사용자
 		);		

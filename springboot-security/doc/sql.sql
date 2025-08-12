@@ -37,9 +37,15 @@ insert into category (name) values ('디지털');
 -- drop table product
 CREATE TABLE `product` (
   `id` INT unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `user_id` INT NOT NULL COMMENT 'user id',
   `category_id` INT unsigned NOT NULL COMMENT '카테고리 id',
+  `sold` BOOLEAN NOT NULL DEFAULT TRUE COMMENT '판매여부',
   `name` VARCHAR(20) NOT NULL COMMENT '제품명',
   `price` INT unsigned NOT NULL COMMENT '가격',
+  `view_count` INT DEFAULT 0 COMMENT '조회수',
+  `sell_count` INT DEFAULT 0 COMMENT '판매수',
+  `desc` VARCHAR(500) COMMENT '설명',
+  `thumbnail_url` VARCHAR(500) NOT NULL COMMENT '썸네일 url',  
   `frst_reg_date` DATETIME NOT NULL DEFAULT current_timestamp() COMMENT '최초등록일',
   `frst_reg_user_id` VARCHAR(20) NOT NULL DEFAULT 'SYSTEM' COMMENT '최초등록자',
   `last_chg_date` DATETIME NOT NULL DEFAULT current_timestamp() COMMENT '변경등록일',
@@ -47,15 +53,28 @@ CREATE TABLE `product` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='상품 테이블';
 
-
+-- drop table product_detail_image
+CREATE TABLE product_detail_image (
+    `id INT` unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `product_id` INT NOT NULL COMMENT 'product id',
+    `sort_order` INT DEFAULT 0 COMMENT '상세이미지 순서',
+    `image_url` VARCHAR(500) NOT NULL COMMENT '상세 url',	
+	`frst_reg_date` DATETIME NOT NULL DEFAULT current_timestamp() COMMENT '최초등록일',
+	`frst_reg_user_id` VARCHAR(20) NOT NULL DEFAULT 'SYSTEM' COMMENT '최초등록자',
+	`last_chg_date` DATETIME NOT NULL DEFAULT current_timestamp() COMMENT '변경등록일',
+	`last_chg_user_id` VARCHAR(20) NOT NULL DEFAULT 'SYSTEM' COMMENT '변경등록자',
+    PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='상품 상세이미지 테이블';
 
 ===========================================================================================
 
 commit
 
+select * from category
+
 select * from product
 
-select * from category
+select * from product_detail_image 
 
 select * from user
 

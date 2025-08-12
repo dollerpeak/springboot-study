@@ -26,9 +26,13 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 @Slf4j
 public class CustomLoginService {
-	@Autowired
-	private AuthenticationManager authenticationManager;
+	private final AuthenticationManager authenticationManager;	
 	
+	@Autowired
+	public CustomLoginService(AuthenticationManager authenticationManager) {
+		this.authenticationManager = authenticationManager;
+	}
+
 	public ResultData select(UserDto userDto, HttpServletRequest request) {
 		ResultData resultData = new ResultData(HttpStatus.OK.value(), "[로그인]", null, null, null);
 		Map<String, String> resultMap = new HashMap<>();

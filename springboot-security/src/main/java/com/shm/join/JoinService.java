@@ -24,10 +24,14 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 @Slf4j
 public class JoinService {
+	private final UserRepository userRepository;
+	private final PasswordEncoder passwordEncoder;	
+	
 	@Autowired
-	private UserRepository userRepository;
-	@Autowired
-	PasswordEncoder passwordEncoder;
+	public JoinService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+		this.userRepository = userRepository;
+		this.passwordEncoder = passwordEncoder;
+	}
 
 	public ResultData insert(UserDto userDto) {
 		ResultData resultData = new ResultData(HttpStatus.OK.value(), "[회원가입]", null, null, null);

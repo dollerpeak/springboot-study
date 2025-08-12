@@ -16,8 +16,12 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api/custom/login")
 @Slf4j
 public class CustomLoginRestController {
+	private final CustomLoginService customLoginService;
+	
 	@Autowired
-	private CustomLoginService customLoginService;
+	public CustomLoginRestController(CustomLoginService customLoginService) {
+		this.customLoginService = customLoginService;
+	}
 
 	@PostMapping("")
 	public ResultData customLogin(@RequestBody UserDto userDto, HttpServletRequest request) {
