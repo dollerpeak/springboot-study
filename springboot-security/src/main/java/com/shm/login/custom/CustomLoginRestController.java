@@ -13,7 +13,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/api/custom/login")
+//@RequestMapping("/api/custom/login")
+@RequestMapping("/api/login")
 @Slf4j
 public class CustomLoginRestController {
 	private final CustomLoginService customLoginService;

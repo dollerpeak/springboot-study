@@ -27,8 +27,9 @@
 		)
 	</insert>
 
-	<!-- <select id="select" resultType="com.shm.product.ProductEntity">
+	<select id="select" resultType="com.shm.product.ProductEntity">
 		SELECT
+			ID,
 			USER_ID,
 			CATEGORY_ID,
 			SOLD,
@@ -43,10 +44,31 @@
 			LAST_CHG_DATE,
 			LAST_CHG_USER_ID
 		FROM PRODUCT
-	</select> -->
+	</select>
+	
+	<select id="selectById" parameterType="int" resultType="com.shm.product.ProductEntity">
+		SELECT
+			ID,
+			USER_ID,
+			CATEGORY_ID,
+			SOLD,
+			NAME,
+			PRICE,
+			VIEW_COUNT,
+			SELL_COUNT,
+			DESC,
+			THUMBNAIL_URL
+			FRST_REG_DATE,
+			FRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID
+		FROM CATEGORY
+		WHERE ID = #{id}
+	</select>
 	
 	<select id="selectByUserId" parameterType="int" resultType="com.shm.product.ProductEntity">
 		SELECT
+			ID,
 			USER_ID,
 			CATEGORY_ID,
 			SOLD,

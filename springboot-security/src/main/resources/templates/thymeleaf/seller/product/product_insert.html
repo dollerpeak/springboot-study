@@ -19,12 +19,12 @@
 		<section class="mb-4">
 			<h2 class="mb-3">상품 등록</h2>
 			<!-- <form th:action="@{/products/register}" th:method="post" enctype="multipart/form-data" class="card p-4"> -->
-			<form id="form" class="card p-4">
+			<form id="form" enctype="multipart/form-data" class="card p-4">
 
 				<!-- 판매 여부 -->
 				<div class="mb-3">
 					<label class="form-label">판매 여부</label> 
-					<select class="form-select" name="isSold" required>
+					<select id="isSold" class="form-select" name="isSold">
 						<option value="true" selected>판매중</option>
 						<option value="false">판매중지</option>
 					</select>
@@ -33,7 +33,7 @@
 				<!-- 카테고리 -->
 				<div class="mb-3">
 					<label for="category" class="form-label">카테고리</label> 
-					<select id="category" name="category" class="form-select" required>
+					<select id="category" name="categoryId" class="form-select">
 						<option value="">카테고리를 선택하세요</option>
 						<option th:each="cat : ${category.list}" 
 							th:value="${cat.id}" 
@@ -45,13 +45,13 @@
 				<!-- 상품명 -->
 				<div class="mb-3">
 					<label for="productName" class="form-label">상품명</label> 
-					<input type="text" id="productName" name="productName" class="form-control" required>
+					<input type="text" id="productName" name="productName" class="form-control">
 				</div>
 
 				<!-- 가격 -->
 				<div class="mb-3">
 					<label for="price" class="form-label">가격</label> 
-					<input type="number" id="price" name="price" class="form-control" min="0" required>
+					<input type="number" id="price" name="price" class="form-control" min="0">
 				</div>
 
 				<!-- 상품 설명 -->
@@ -62,13 +62,13 @@
 
 				<!-- 썸네일 이미지 업로드 -->
 				<div class="mb-3">
-					<label for="thumbnail" class="form-label">썸네일 이미지</label> 
-					<input type="file" id="thumbnail" name="thumbnail" class="form-control" accept="image/*" required>
+					<label for="thumbnail" class="form-label">썸네일 이미지 (JPG/PNG/GIF 지원, 가로세로 492px, 최대 1개)</label> 
+					<input type="file" id="thumbnail" name="thumbnail" class="form-control" accept="image/*">
 				</div>
 
 				<!-- 상세설명 이미지 업로드 (복수 가능) -->
 				<div class="mb-3">
-					<label for="detailImages" class="form-label">상세설명 이미지</label> 
+					<label for="detailImages" class="form-label">상세설명 이미지 (JPG/PNG/GIF 지원, 가로 780px, 최대 3개)</label> 
 					<input type="file" id="detailImages" name="detailImages" class="form-control" accept="image/*" multiple>
 				</div>
 
@@ -85,7 +85,7 @@
 	<!-- fragment script -->
 	<th:block th:replace="~{/fragment/script :: script}"></th:block>
 	
-	<script src="/js/seller/product/insert.js"></script>
+	<script src="/js/seller/product/product_insert.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shm.product.detail">	
+ 
+ 	<insert id="insert" parameterType="com.shm.product.detail.ProductDetailEntity" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO PRODUCT_DETAIL_IMAGE (
+			PRODUCT_ID,
+			SORT_ORDER,
+			IMAGE_URL
+		) VALUES (
+			#{productId},
+			#{sortOrder},
+			#{imageUrl}
+		)
+	</insert>
+	
+	<select id="selectByProductId" parameterType="int" resultType="com.shm.product.detail.ProductDetailEntity">
+		SELECT
+			ID,
+			PRODUCT_ID,
+			SORT_ORDER,
+			IMAGE_URL,
+			FRST_REG_DATE,
+			FRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID
+		FROM PRODUCT_DETAIL_IMAGE
+		WHERE PRODUCT_ID = #{productId}
+		ORDER BY SORT_ORDER ASC
+	</select>
+	
+</mapper>

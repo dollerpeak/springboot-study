@@ -13,10 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.shm.common.exception.CustomExceptionData;
 import com.shm.common.resultdata.ResultData;
-import com.shm.common.role.UserRole;
 import com.shm.user.UserDto;
 import com.shm.user.UserEntity;
 import com.shm.user.UserRepository;
+import com.shm.user.UserRole;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -61,7 +61,8 @@ public class JoinService {
 				resultData.setMessage("회원가입을 축하드립니다.");
 				
 				resultMap.put(ResultData.TYPE_OBJECT, userEntity);
-				resultMap.put(ResultData.TYPE_URL, "/custom/login");
+				//resultMap.put(ResultData.TYPE_URL, "/custom/login");
+				resultMap.put(ResultData.TYPE_URL, "/login");
 				resultData.setData(resultMap);
 			} else {
 				resultData.setCode(HttpStatus.BAD_REQUEST.value());

@@ -37,8 +37,8 @@ public class ProductService {
 			productEntity = productDto.toEntity();
 			productRepository.insert(productEntity);
 			
-			여기서 디테일도 저장해야 함
-			그럼 dto는 detail을 가지게 되나?
+//			여기서 디테일도 저장해야 함
+//			그럼 dto는 detail을 가지게 되나?
 			
 			resultData.setMessage("상품등록을 성공했습니다.");
 			

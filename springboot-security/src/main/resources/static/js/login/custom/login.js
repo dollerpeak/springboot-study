@@ -34,7 +34,8 @@ function setEventListener() {
 
 		if (email.length > 0 && password.length > 0) {
 			if (emailPatten.test(email) == true) {
-				url = "/api/custom/login";
+				//url = "/api/custom/login";
+				url = "/api/login";
 				option = {
 					method: "POST",
 					headers: {
@@ -46,7 +47,7 @@ function setEventListener() {
 				data.password = password;
 
 				// 비동기로 받아야 로그출력이 가능
-				response = await commonFetch(url, option, data);
+				response = await commonFetch(url, option, data, false);
 
 				// 의도하지 않은 에러
 				if (response == null) {
@@ -60,7 +61,8 @@ function setEventListener() {
 					} else {
 						// 의도한 에러 : 알림창 처리만
 						alert(response.title + "\n" + response.message);
-						location.replace("/custom/login"); // 현재페이지
+						//location.replace("/custom/login"); // 현재페이지
+						location.replace("/login"); // 현재페이지
 						//commonError(response);
 					}
 				}

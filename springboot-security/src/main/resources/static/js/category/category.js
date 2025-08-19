@@ -7,8 +7,7 @@ console.log("===> category");
 window.onload = function() {
 	//console.log("=====> window.onload");
 
-	setEventListener();
-	
+	setEventListener();	
 	init();
 }
 
@@ -36,7 +35,7 @@ async function selectCatogory() {
 	}
 
 	// 비동기로 받아야 로그출력이 가능
-	response = await commonFetch(url, option, data);
+	response = await commonFetch(url, option, data, false);
 	//console.log("response = " + response);
 
 	// 의도하지 않은 에러

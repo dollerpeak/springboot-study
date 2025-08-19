@@ -16,11 +16,12 @@ server:
 spring:
   application:
     name: springboot-security
-#  servlet:
-#    multipart:
-#      max-file-size: 10MB # default 1MB
-#      max-request-size: 100MB # default 10MB
-#      location: D:\\workspace-sts\\upload\\
+  servlet:
+    multipart:
+      max-file-size: 10MB # default 1MB
+      max-request-size: 100MB # default 10MB
+      #location: D:\\workspace-sts\\upload\\
+      location: ../upload
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     url: jdbc:log4jdbc:mariadb://localhost:3306/springstudy?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowMultiQueries=true
@@ -58,5 +59,8 @@ mybatis:
   mapper-locations: classpath:mybatis/mariadb/**/*.xml
 
 
-
+project-set:
+  location-image:
+    product-thumbnail: /image/product/thumbnail
+    product-detail: /image/product/detail
 

@@ -31,7 +31,7 @@ function setEventListener() {
 		}
 
 		// 비동기로 받아야 로그출력이 가능
-		response = await commonFetch(url, option, data);
+		response = await commonFetch(url, option, data, false);
 		console.log("response = " + JSON.stringify(response));
 
 		if (response.code == 200 || response.code == 401) {

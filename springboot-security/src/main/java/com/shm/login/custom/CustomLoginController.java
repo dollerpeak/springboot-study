@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/custom/login")
+//@RequestMapping("/custom/login")
+@RequestMapping("/login")
 @Slf4j
 public class CustomLoginController {
 

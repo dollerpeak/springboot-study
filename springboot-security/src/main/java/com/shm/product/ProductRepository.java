@@ -23,8 +23,16 @@ public class ProductRepository {
 		return sqlSessionTemplate.insert(namespace + "insert", productEntity);
 	}
 
-	public List<ProductEntity> selectByUserId(String udserId) throws Exception {
-		return sqlSessionTemplate.selectList(namespace + "selectByUserId", udserId);
+	public List<ProductEntity> select() throws Exception {
+		return sqlSessionTemplate.selectList(namespace + "select");
+	}
+
+	public List<ProductEntity> selectById(String id) throws Exception {
+		return sqlSessionTemplate.selectList(namespace + "selectById", id);
+	}
+
+	public List<ProductEntity> selectByUserId(String userId) throws Exception {
+		return sqlSessionTemplate.selectList(namespace + "selectByUserId", userId);
 	}
 		
 

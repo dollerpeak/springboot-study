@@ -1,4 +1,4 @@
-package com.shm.common.role;
+package com.shm.user;
 
 public enum UserRole {
 	ROLE_USER("USER"), 
