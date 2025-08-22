@@ -54,8 +54,8 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='상품 테이블';
 
 -- drop table product_detail_image
-CREATE TABLE product_detail_image (
-    `id INT` unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+CREATE TABLE `product_detail_image` (
+    `id` INT unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
     `product_id` INT NOT NULL COMMENT 'product id',
     `sort_order` INT DEFAULT 0 COMMENT '상세이미지 순서',
     `image_url` VARCHAR(500) NOT NULL COMMENT '상세 url',	
@@ -78,10 +78,9 @@ select * from product_detail_image
 
 select * from user
 
-
 delete from user
 where 1=1
-and name = '222'
+and name = '444'
 
 
 
