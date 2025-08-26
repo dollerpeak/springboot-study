@@ -44,7 +44,7 @@ CREATE TABLE `product` (
   `price` INT unsigned NOT NULL COMMENT '가격',
   `view_count` INT DEFAULT 0 COMMENT '조회수',
   `sell_count` INT DEFAULT 0 COMMENT '판매수',
-  `desc` VARCHAR(500) COMMENT '설명',
+  `description` VARCHAR(500) COMMENT '설명',
   `thumbnail_url` VARCHAR(500) NOT NULL COMMENT '썸네일 url',  
   `frst_reg_date` DATETIME(0) NOT NULL DEFAULT current_timestamp() COMMENT '최초등록일',
   `frst_reg_user_id` VARCHAR(20) NOT NULL DEFAULT 'SYSTEM' COMMENT '최초등록자',
@@ -72,10 +72,13 @@ commit
 
 select * from category
 
+-- delete from product 
 select * from product
 
+-- delete from product_detail_image 
 select * from product_detail_image 
 
+-- delete from user
 select * from user
 
 delete from user
