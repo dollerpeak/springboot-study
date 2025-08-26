@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -35,9 +37,10 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 //			//
 //		}
 		
+		int httpStatus = HttpStatus.FORBIDDEN.value(); // 403
 		String url = "/fail/error";
 		String code = URLEncoder.encode("403", StandardCharsets.UTF_8);
-		String title = URLEncoder.encode("인가에러", StandardCharsets.UTF_8);
+		String title = URLEncoder.encode("[인가에러]", StandardCharsets.UTF_8);
 		String message = URLEncoder.encode("권한이 없습니다.", StandardCharsets.UTF_8);
 		String log = URLEncoder.encode("403, 인가에러", StandardCharsets.UTF_8);
 

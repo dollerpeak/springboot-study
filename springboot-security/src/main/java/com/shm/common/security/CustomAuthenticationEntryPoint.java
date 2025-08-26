@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -35,9 +36,10 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 //			//
 //		}
 		
+		int httpStatus = HttpStatus.UNAUTHORIZED.value(); // 401
 		String url = "/fail/error";
 		String code = URLEncoder.encode("401", StandardCharsets.UTF_8);
-		String title = URLEncoder.encode("인증에러", StandardCharsets.UTF_8);
+		String title = URLEncoder.encode("[인증에러]", StandardCharsets.UTF_8);
 		String message = URLEncoder.encode("로그인을 먼저 해주세요.", StandardCharsets.UTF_8);
 		String log = URLEncoder.encode("401, 인증에러", StandardCharsets.UTF_8);
 

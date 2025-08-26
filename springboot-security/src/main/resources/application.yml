@@ -60,7 +60,14 @@ mybatis:
 
 
 project-set:
-  location-image:
-    product-thumbnail: /image/product/thumbnail
-    product-detail: /image/product/detail
+  upload:
+    root: /upload
+    image:
+      product-thumbnail: /image/product/thumbnail
+      product-detail: /image/product/detail
+
+
+
+
+
 

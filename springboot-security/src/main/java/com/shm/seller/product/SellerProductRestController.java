@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.shm.common.resultdata.ResultData;
+import com.shm.common.security.CustomUserDetails;
+import com.shm.common.security.GlobalAuthentication;
 import com.shm.product.ProductDto;
+import com.shm.user.UserDto;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,10 +19,12 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api/seller/product")
 @Slf4j
 public class SellerProductRestController {
+	private final GlobalAuthentication globalAuthentication;
 	private final SellerProductService sellerProductService;
 	
 	@Autowired
-	public SellerProductRestController(SellerProductService sellerProductService) {
+	public SellerProductRestController(GlobalAuthentication globalAuthentication, SellerProductService sellerProductService) {
+		this.globalAuthentication = globalAuthentication;
 		this.sellerProductService = sellerProductService;
 	}	
 
@@ -31,8 +36,9 @@ public class SellerProductRestController {
 		//log.info("productDto = " + productDto.toString());
 		//log.info("thumbnailImage = " + thumbnailImage.getOriginalFilename());
 		//log.info("detailImage = " + detailImage[0].getOriginalFilename());
-
-		ResultData resultData = sellerProductService.insert(productDto, thumbnailImage, detailImage);		
+		
+		UserDto userDto = globalAuthentication.getCustomUserDetails().getUserDto();
+		ResultData resultData = sellerProductService.insert(userDto, productDto, thumbnailImage, detailImage);		
 
 		return resultData;
 	}

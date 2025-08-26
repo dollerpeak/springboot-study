@@ -1,6 +1,8 @@
 package com.shm.product;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,12 +18,14 @@ public class ProductEntity {
 	private int price;
 	private int viewCount;
 	private int sellCount;
-	private String desc;
+	private String description;
 	private String thumbnailUrl;
 	private LocalDateTime frstRegDate;
 	private String frstRegUserId;
 	private LocalDateTime lastChgDate;
 	private String lastChgUserId;
+	
+	private List<String> detailUrlList = new ArrayList<>();
 
 	public ProductDto toDto() {
 		ProductDto dto = new ProductDto();
@@ -34,12 +38,14 @@ public class ProductEntity {
 		dto.setPrice(price);
 		dto.setViewCount(viewCount);
 		dto.setSellCount(sellCount);
-		dto.setDesc(desc);
-		dto.setThumbnailUrl(thumbnailUrl);		
+		dto.setDescription(description);
+		dto.setThumbnailUrl(thumbnailUrl);
 		dto.setFrstRegDate(frstRegDate);
 		dto.setFrstRegUserId(frstRegUserId);
 		dto.setLastChgDate(lastChgDate);
 		dto.setLastChgUserId(lastChgUserId);
+
+		dto.setDetailUrlList(detailUrlList);
 
 		return dto;
 	}	

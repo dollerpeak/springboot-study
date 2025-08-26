@@ -1,4 +1,4 @@
-package com.shm.common.filter;
+package com.shm.common.config;
 
 import java.io.IOException;
 

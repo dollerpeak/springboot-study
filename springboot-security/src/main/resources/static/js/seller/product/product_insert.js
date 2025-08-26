@@ -27,14 +27,14 @@ function setEventListener() {
 		let sold = document.getElementById("isSold").value;
 		let name = document.getElementById("productName").value.trim();
 		let price = document.getElementById("price").value;
-		let desc = document.getElementById("description").value.trim();
+		let description = document.getElementById("description").value.trim();
 		let thumbnailImage = document.getElementById("thumbnail").files[0];
 		let detailImages = document.getElementById("detailImages").files;
 		//console.log("categoryId = " + categoryId);
 		//console.log("sold = " + sold);
 		//console.log("name = " + name);
 		//console.log("price = " + price);
-		//console.log("desc = " + desc);
+		//console.log("description = " + description);
 		//console.log("thumbnailImage.length = " + thumbnailImage.length);
 		//console.log("thumbnailImage = " + thumbnailImage.name);
 		//console.log("detailImages.length = " + detailImages.length);
@@ -127,7 +127,7 @@ function setEventListener() {
 			sold: sold,			
 			name: name,
 			price: price,
-			desc: desc
+			description: description
 		};		
 		//console.log("productDto = " + JSON.stringify(productDto));
 

@@ -1,4 +1,4 @@
-package com.shm.common.util;
+package com.shm.common.config;
 
 public enum FilePath {
 	PATH_ROOT("UPLOAD"), 

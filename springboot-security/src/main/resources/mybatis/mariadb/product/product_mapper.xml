@@ -12,7 +12,7 @@
 			PRICE,
 			VIEW_COUNT,
 			SELL_COUNT,
-			DESC,
+			DESCRIPTION,
 			THUMBNAIL_URL
 		) VALUES (
 			#{userId},
@@ -21,7 +21,7 @@
 			#{name},
 			#{price},
 			#{viewCount},
-			#{desc},
+			#{description},
 			#{sellCount},
 			#{thumbnailUrl}
 		)
@@ -37,7 +37,7 @@
 			PRICE,
 			VIEW_COUNT,
 			SELL_COUNT,
-			DESC,
+			DESCRIPTION,
 			THUMBNAIL_URL
 			FRST_REG_DATE,
 			FRST_REG_USER_ID,
@@ -56,7 +56,7 @@
 			PRICE,
 			VIEW_COUNT,
 			SELL_COUNT,
-			DESC,
+			DESCRIPTION,
 			THUMBNAIL_URL
 			FRST_REG_DATE,
 			FRST_REG_USER_ID,
@@ -76,7 +76,7 @@
 			PRICE,
 			VIEW_COUNT,
 			SELL_COUNT,
-			DESC,
+			DESCRIPTION,
 			THUMBNAIL_URL
 			FRST_REG_DATE,
 			FRST_REG_USER_ID,

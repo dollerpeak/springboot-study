@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import com.shm.admin.AdminController;
 import com.shm.common.exception.CustomExceptionData;
 import com.shm.common.resultdata.ResultData;
 import com.shm.user.UserDto;
@@ -24,13 +24,16 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 @Slf4j
 public class JoinService {
+
+    private final AdminController adminController;
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;	
 	
 	@Autowired
-	public JoinService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+	public JoinService(UserRepository userRepository, PasswordEncoder passwordEncoder, AdminController adminController) {
 		this.userRepository = userRepository;
 		this.passwordEncoder = passwordEncoder;
+		this.adminController = adminController;
 	}
 
 	public ResultData insert(UserDto userDto) {
@@ -52,10 +55,13 @@ public class JoinService {
 			// -- 만약 평문으로 하고 싶다면 아래처럼 적용해야 함
 			//userDto.setPassword("{noop}" + userDto.getPassword());
 			
+			userDto.setFrstRegUserId(userDto.getEmail());
+			userDto.setLastChgUserId(userDto.getEmail());
 			userEntity = userDto.toEntity();
 			userEntityList = userRepository.selectByEmail(userDto.getEmail());
 			
 			if (userEntityList.size() == 0) {
+				log.info("userEntity = " + userEntity.toString());
 				userRepository.insert(userEntity);
 				
 				resultData.setMessage("회원가입을 축하드립니다.");
