@@ -13,7 +13,7 @@ public class TempleteController {
 
 	@GetMapping({ "", "/" })
 	public String main() {
-		log.info("===> TempleteController");
+		log.info("===> main");
 		
 		return "/templete";
 	}

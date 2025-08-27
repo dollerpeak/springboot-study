@@ -33,6 +33,7 @@ public class SellerProductRestController {
 			@RequestPart("thumbnailImage") MultipartFile thumbnailImage,
 			@RequestPart("detailImages") MultipartFile[] detailImage) {
 		log.info("===> insert");
+		
 		//log.info("productDto = " + productDto.toString());
 		//log.info("thumbnailImage = " + thumbnailImage.getOriginalFilename());
 		//log.info("detailImage = " + detailImage[0].getOriginalFilename());

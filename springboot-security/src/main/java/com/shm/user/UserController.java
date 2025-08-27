@@ -13,7 +13,8 @@ public class UserController {
 
 	@GetMapping("")
 	public String main() {
-		log.info("=====> UserController");
+		log.info("=====> main");
+		
 		return "/user/user";
 	}
 

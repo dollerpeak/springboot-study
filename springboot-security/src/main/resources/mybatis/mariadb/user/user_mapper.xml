@@ -3,7 +3,8 @@
 
 <mapper namespace="com.shm.user">	
  
- 	<insert id="insert" parameterType="com.shm.user.UserEntity" useGeneratedKeys="true" keyProperty="id">
+ 	<!-- <insert id="insert" parameterType="com.shm.user.UserEntity" useGeneratedKeys="true" keyProperty="id"> -->
+ 	<insert id="insert" parameterType="com.shm.user.UserEntity">
 		INSERT INTO USER (
 			EMAIL
 			, NAME
@@ -39,8 +40,7 @@
 
 	<select id="selectByEmail" parameterType="string" resultType="com.shm.user.UserEntity">
 		SELECT
-			ID
-			, EMAIL
+			EMAIL
 			, NAME
 			, PASSWORD
 			, ROLE
@@ -55,8 +55,7 @@
 	<update id="update" parameterType="com.shm.user.UserEntity">
 		UPDATE USER
 			SET 
-				EMAIL = #{email} 
-				, NAME = #{name} 
+				NAME = #{name} 
 				, PASSWORD = #{password} 
 				, ROLE = #{role}
 				<choose>
@@ -64,12 +63,12 @@
 					<otherwise>, LAST_CHG_DATE = current_timestamp()</otherwise>
 				</choose>
 				, LAST_CHG_USER_ID = #{lastChgUserId}
-		WHERE ID = #{id}
+		WHERE EMAIL = #{email}
 	</update>
 
-
 	<delete id="deleteByEmail" parameterType="string">
-		DELETE FROM USER
+		DELETE 
+		FROM USER
 		WHERE EMAIL = #{email}
 	</delete>
 	

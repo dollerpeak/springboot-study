@@ -13,7 +13,11 @@ public class SellerController {
 
 	@GetMapping("")
 	public String main() {
-		log.info("=====> SellerController");
+		log.info("=====> main");
+		
+		// 로그인이 되어 있어야 하고
+		// role = seller 이어야 함
+		
 		return "/seller/seller";
 	}
 

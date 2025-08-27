@@ -57,6 +57,7 @@ public class JoinService {
 			
 			userDto.setFrstRegUserId(userDto.getEmail());
 			userDto.setLastChgUserId(userDto.getEmail());
+			
 			userEntity = userDto.toEntity();
 			userEntityList = userRepository.selectByEmail(userDto.getEmail());
 			

@@ -15,7 +15,8 @@ public class FailController {
 
 	@GetMapping("")
 	public String main() {
-		log.info("===> FailController");
+		log.info("===> main");
+		
 		return "/fail/fail";
 	}
 	

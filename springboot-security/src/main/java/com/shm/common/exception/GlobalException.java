@@ -26,6 +26,7 @@ public class GlobalException {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(customExceptionData.getResultData());			
 		} else {
 			log.info("Controller");
+			
 			request.setAttribute("code", customExceptionData.getResultData().getCode());
 			request.setAttribute("title", customExceptionData.getResultData().getTitle());
 			request.setAttribute("message", customExceptionData.getResultData().getMessage());
@@ -49,6 +50,7 @@ public class GlobalException {
 					HttpStatus.INTERNAL_SERVER_ERROR.value(), "[generic 에러]", "에러가 발생했습니다.", exception.toString(), null));
 		} else {
 			log.info("Controller");
+			
 			request.setAttribute("code", HttpStatus.INTERNAL_SERVER_ERROR.value());
 			request.setAttribute("title", "[generic 에러]");
 			request.setAttribute("message", "에러가 발생했습니다.");

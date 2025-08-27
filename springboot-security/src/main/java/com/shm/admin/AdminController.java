@@ -13,7 +13,8 @@ public class AdminController {
 
 	@GetMapping("")
 	public String main() {
-		log.info("=====> AdminController");
+		log.info("=====> main");
+		
 		return "/admin/admin";
 	}
 

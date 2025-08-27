@@ -7,7 +7,52 @@ console.log("===> product insert");
 window.onload = function() {
 	//console.log("=====> window.onload");
 
+	init();
 	setEventListener();
+}
+
+async function init() {	
+	let url = "/api/category/select";
+	let option = {
+		method: "POST",
+		headers: {
+			[commonCsrfHeader]: commonCsrfToken,
+			"Content-Type": "application/json",
+		},
+	}
+	let data;
+
+	// 비동기로 받아야 로그출력이 가능
+	response = await commonFetch(url, option, data, false);
+
+	// 의도하지 않은 에러
+	if (response == null) {
+		location.replace("/fail"); // 에러페이지
+	} else {
+		if (response.code == 200) {
+			//console.log("response = " + JSON.stringify(response));
+			let categoryHTML = document.getElementById("category");
+			
+			// case 1 : html문법을 알기 어려움
+			//response.data.list.forEach(data => {
+			//	//console.log("data = " + JSON.stringify(data));
+			//	//console.log("data.id = " + data.id);
+			//	let html = document.createElement("option");
+			//	html.value = data.id;				
+			//	html.textContent = data.name;
+			//	categoryHTML.appendChild(html);
+			//});
+			
+			// case 2 : 기존 HTML을 그대로 적용
+			categoryHTML.innerHTML = `<option value="">카테고리를 선택하세요</option>`;
+			response.data.list.forEach(data => {
+				categoryHTML.innerHTML += `<option value="${data.id}">${data.name}</option>`;
+			});
+		} else {
+			//location.replace("/main/main");
+			commonError(response);
+		}
+	}
 }
 
 function setEventListener() {

@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class UserDto {
-	private int id;
 	private String email;
 	private String name;
 	private String password;
@@ -22,7 +21,6 @@ public class UserDto {
 		UserEntity entity = new UserEntity();
 
 		entity.setEmail(email);
-		entity.setId(id);
 		entity.setName(name);
 		entity.setPassword(password);
 		entity.setRole(role);

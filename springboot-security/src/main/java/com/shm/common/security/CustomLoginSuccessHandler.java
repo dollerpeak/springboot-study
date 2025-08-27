@@ -18,7 +18,7 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws ServletException, IOException {
-		log.info("===> CustomLoginSuccessHandler");
+		log.info("===> onAuthenticationSuccess");
 
 		// 추가적인 기능들
 		// - 대표적으로 ID저장, 쿠키생성 작업 수행

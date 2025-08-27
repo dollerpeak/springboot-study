@@ -14,7 +14,8 @@ public class CustomLoginController {
 
 	@GetMapping("")
 	public String main() {
-		log.info("===> CustomLoginController");
+		log.info("===> main");
+		
 		return "/login/custom/login";
 	}
 

@@ -27,7 +27,7 @@ public class CustomLogoutRestController {
 	@PostMapping("")
 	public ResultData customLogout(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) {
-		log.info("===> CustomLogoutRestController");
+		log.info("===> customLogout");
 
 		ResultData resultData = new ResultData(HttpStatus.OK.value(), "[로그아웃]", "로그아웃 되었습니다.", null, null);
 		Map<String, String> resultMap = new HashMap<>();

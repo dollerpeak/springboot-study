@@ -13,7 +13,8 @@ public class TimeoutController {
 
 	@GetMapping("")
 	public String main() {
-		log.info("===> TimeoutController");
+		log.info("===> main");
+		
 		return "/timeout/timeout";
 	}
 	

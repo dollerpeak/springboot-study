@@ -15,7 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 public class GlobalAuthentication {
 
 	public CustomUserDetails getCustomUserDetails() {
-		log.info("===> GlobalAuthentication");
+		log.info("===> getCustomUserDetails");
+		
 		CustomUserDetails customUserDetails = null;
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -23,13 +24,13 @@ public class GlobalAuthentication {
 			customUserDetails = null;
 			log.info("로그인정보 없음");			
 			
-//			// throw new IllegalStateException("인증되지 않은 사용자");
-//			ResultData resultData = new ResultData(HttpStatus.OK.value(), "[인증에러]", null, null, null);
-//			resultData.setCode(HttpStatus.UNAUTHORIZED.value());
-//			resultData.setMessage("로그인을 먼저 해주세요.");
-//			resultData.setLog("401, 인증에러");
-//			
-//			throw new CustomExceptionData(resultData);
+			// throw new IllegalStateException("인증되지 않은 사용자");
+			ResultData resultData = new ResultData(HttpStatus.OK.value(), "[인증에러]", null, null, null);
+			resultData.setCode(HttpStatus.UNAUTHORIZED.value());
+			resultData.setMessage("로그인을 먼저 해주세요.");
+			resultData.setLog("401, 인증에러");
+			
+			throw new CustomExceptionData(resultData);
 		} else {
 			customUserDetails = (CustomUserDetails) authentication.getPrincipal();
 			log.info("로그인정보 있음 : " + customUserDetails.toString());

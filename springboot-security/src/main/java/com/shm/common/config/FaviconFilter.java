@@ -20,6 +20,8 @@ public class FaviconFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+		//log.info("===> doFilter");
+		
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		
 		// 요청 무시하고 로그도 남기지 않음

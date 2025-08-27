@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductDto {
 	private int id;
-	private int userId;
+	private String userEmail;
 	private int categoryId;
 	private boolean sold;
 	private String name;
@@ -31,7 +31,7 @@ public class ProductDto {
 		ProductEntity entity = new ProductEntity();
 
 		entity.setId(id);
-		entity.setUserId(userId);
+		entity.setUserEmail(userEmail);
 		entity.setCategoryId(categoryId);
 		entity.setSold(sold);
 		entity.setName(name);

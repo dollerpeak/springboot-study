@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,6 +58,8 @@ public class SellerProductService {
 		String thumbnailFileName;
 		String thumbnailUrl;
 		Path detailPath;
+		String detailFileName;
+		String detailUrl;
 
 		ProductEntity productEntity;
 		ProductDetailDto productDetailDto;
@@ -67,7 +70,7 @@ public class SellerProductService {
 			thumbnailPath = Util.getFileAbsolutePathCreate(properties, FilePath.PATH_PRODUCT_THUMBNAIL);
 			if (thumbnailPath != null) {
 				if (thumbnailImage != null && false == thumbnailImage.isEmpty()) {
-					// 파일 이동
+					// 파일 저장
 					thumbnailFileName = Util.getDateFormatString(nowTime, "yyyyMMddHHmmssSSS") + "_"
 							+ thumbnailImage.getOriginalFilename();
 					thumbnailImage.transferTo(thumbnailPath.resolve(thumbnailFileName).toFile());
@@ -75,30 +78,44 @@ public class SellerProductService {
 							FilePath.PATH_PRODUCT_THUMBNAIL);
 
 					// 데이터 저장
+					productDto.setUserEmail(userDto.getEmail());
+					productDto.setThumbnailUrl(thumbnailUrl);
+					productDto.setFrstRegUserId(userDto.getEmail());
+					productDto.setLastChgUserId(userDto.getEmail());					
+					
 					productEntity = productDto.toEntity();
-					productEntity.setUserId(userDto.getId());
-					productEntity.setThumbnailUrl(thumbnailUrl);
-
 					productRepository.insert(productEntity);
-					//log.info("productEntity = " + productEntity.toString());
+					log.info("productEntity = " + productEntity.toString());
 					
 					// 디테일 이미지
 					detailPath = Util.getFileAbsolutePathCreate(properties, FilePath.PATH_PRODUCT_DETAIL);
 					if (detailPath != null) {
-						// 디테일 파일 저장
 						count = 0;
 						if (detailImages != null && detailImages.length > 0) {
 							for (MultipartFile file : detailImages) {
 								if (file != null && false == file.isEmpty()) {
-									productEntity.getDetailUrlList()
-											.add(Util.getDateFormatString(nowTime, "yyyyMMddHHmmssSSS") + "_"
-													+ file.getOriginalFilename());
-									file.transferTo(detailPath.resolve(productEntity.getDetailUrlList().get(count)).toFile());
+									// 디테일 파일 저장
+									detailFileName = Util.getDateFormatString(nowTime, "yyyyMMddHHmmssSSS") + "_"
+											+ Integer.toString(count) + "_" + file.getOriginalFilename();
+									file.transferTo(detailPath.resolve(detailFileName).toFile());
+									detailUrl = Util.getFilePropertiesPath(properties, detailFileName,
+											FilePath.PATH_PRODUCT_DETAIL);									
+									
+									// 데이터 저장
+									productDetailDto = new ProductDetailDto();
+									productDetailDto.setProductId(productEntity.getId());
+									productDetailDto.setSortOrder(count);
+									productDetailDto.setImageUrl(detailUrl);
+									productDetailDto.setFrstRegUserId(userDto.getEmail());
+									productDetailDto.setLastChgUserId(userDto.getEmail());
+									
+									productDetailEntity = productDetailDto.toEntity();
+									productDetailRepository.insert(productDetailEntity);									
+									
 									count += 1;
 								}
 							}
 						}
-						//log.info("productEntity = " + productEntity.toString());
 						
 						// 상세이미지가 없는 경우
 						if (count <= 0) {							
@@ -108,34 +125,8 @@ public class SellerProductService {
 
 							throw new CustomExceptionData(resultData);
 						} else {							
-							log.info("productEntity = " + productEntity.toString());
-							
-							// 데이터 저장
-							for (count = 0; count < productEntity.getDetailUrlList().size(); count += 0) {
-								productDetailDto = new ProductDetailDto();
-								productDetailDto.setProductId(productEntity.getId());
-								productDetailDto.setSortOrder(count);
-								productDetailDto.setImageUrl(productEntity.getDetailUrlList().get(count));
-								
-								productDetailRepository.insert(productDetailDto.toEntity());
-							}
-							//productDetailDtoList.add(null)
-							
-							
-							
-//							for (MultipartFile file : detailImages) {
-//								
-//							}
-//							
-//							상품, 상품상세 저장하자
-//							
-//							
-//							[insert:82] userDto : UserDto(id=1, email=111@a.com, name=111, password=$2a$10$rhbgPDAgVTkExcROxcSEHeh48O/7oCUzerbJzbIQYpyddfdv70zo2, role=USER, frstRegDate=2025-08-18T17:13:32, frstRegUserId=SYSTEM, lastChgDate=2025-08-18T17:13:32, lastChgUserId=SYSTEM)
-//							[insert:83] productDto : ProductDto(id=0, userId=0, categoryId=1, sold=true, name=11, price=11, viewCount=0, sellCount=0, desc=11, thumbnailUrl=null, frstRegDate=null, frstRegUserId=null, lastChgDate=null, lastChgUserId=null)
-//							[insert:114] resultData = ResultData(code=200, title=[상품등록], message=null, log=null, data=null)
+							// 상품등록 성공
 						}
-						
-						
 					} else {
 						resultData.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
 						resultData.setMessage("상품등록에 실패했습니다.");

@@ -26,7 +26,7 @@ public class CustomLoginRestController {
 
 	@PostMapping("")
 	public ResultData customLogin(@RequestBody UserDto userDto, HttpServletRequest request) {
-		log.info("===> CustomLoginRestController");
+		log.info("===> customLogin");
 
 		ResultData resultData = customLoginService.select(userDto, request);
 

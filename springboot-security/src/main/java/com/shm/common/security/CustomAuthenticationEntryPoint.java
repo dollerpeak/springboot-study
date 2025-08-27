@@ -24,7 +24,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException authException) throws IOException, ServletException {
-		log.info("===> CustomAuthenticationEntryPoint");
+		log.info("===> commence");
 		
 		String uri = request.getRequestURI();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

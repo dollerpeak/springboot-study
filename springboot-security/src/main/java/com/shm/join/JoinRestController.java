@@ -24,7 +24,7 @@ public class JoinRestController {
 
 	@PostMapping("/join")
 	public ResultData join(@RequestBody UserDto userDto) {
-		log.info("===> JoinRestController");
+		log.info("===> join");
 
 		ResultData resultData = joinService.insert(userDto);
 

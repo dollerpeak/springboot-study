@@ -27,6 +27,7 @@ public class Util {
 	// 설정에 적용된 디렉토리 생성 및 절대 경로 리턴
 	public static Path getFileAbsolutePathCreate(Properties properties, FilePath filePath) throws Exception {
 		Path reval = null;
+		// 파일의 저장위치 ../형식의 상대경로 포함
 		String uploadPath = "spring.servlet.multipart.location";
 
 		// root : upload
@@ -68,6 +69,7 @@ public class Util {
 	// 설정에 적용된 경로
 	public static String getFilePropertiesPath(Properties properties, String fileName, FilePath filePath) {
 		String reval = null;
+		// DB에 저장되는 /형식의 경로
 		String uploadPath = "project-set.upload.root";
 
 		// root : upload

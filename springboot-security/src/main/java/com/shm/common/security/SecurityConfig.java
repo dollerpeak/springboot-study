@@ -26,6 +26,7 @@ public class SecurityConfig {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		log.info("===> passwordEncoder");
+		
 		return new BCryptPasswordEncoder();
 		// 평문사용		
 		//return PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -36,6 +37,7 @@ public class SecurityConfig {
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
 		log.info("===> authenticationManager");
+		
 		return configuration.getAuthenticationManager();
 	}
 

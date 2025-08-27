@@ -13,7 +13,8 @@
 //
 //	@GetMapping("")
 //	public String main() {
-//		log.info("===> LoginController");
+//		log.info("===> main");
+//
 //		return "/login/login";
 //	}
 //

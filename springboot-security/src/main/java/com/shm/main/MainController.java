@@ -16,19 +16,19 @@ import lombok.extern.slf4j.Slf4j;
 //@RequestMapping("/")
 @Slf4j
 public class MainController {	
-	private final GlobalAuthentication globalAuthentication;
+//	private final GlobalAuthentication globalAuthentication;
 	
-	@Autowired
-	public MainController(GlobalAuthentication globalAuthentication) {
-		this.globalAuthentication = globalAuthentication;
-	}
+//	@Autowired
+//	public MainController(GlobalAuthentication globalAuthentication) {
+//		this.globalAuthentication = globalAuthentication;
+//	}
 
 	@GetMapping({ "", "/" })
 	//public String main(HttpSession session, Authentication authentication) {
 	public String main(HttpSession session) {
-		log.info("===> MainController");
+		log.info("===> main");
 		
-		CustomUserDetails customUserDetails = globalAuthentication.getCustomUserDetails();
+//		CustomUserDetails customUserDetails = globalAuthentication.getCustomUserDetails();
 		
 //		// test
 //		Object securityContext = session.getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
