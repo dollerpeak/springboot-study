@@ -2,7 +2,7 @@ server:
   port: 8081  
   servlet:
     session:
-      timeout: 1m # default 30m
+      timeout: 3m # default 30m
     context-path: / # http://localhost:8081/
     #context-path: /test # http://localhost:8081/test/
     encoding:

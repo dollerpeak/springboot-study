@@ -55,7 +55,7 @@ public class MainController {
 //			log.info("인증정보 없음");
 //		}
 
-		
+		// 테스트 코드
 ////		// 날짜
 ////		LocalDate today = LocalDate.of(2025, 2, 10);
 ////		log.info("=====> today : " + today.toString());

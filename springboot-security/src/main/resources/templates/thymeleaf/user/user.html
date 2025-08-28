@@ -21,15 +21,15 @@
 		<section class="mb-4">
 			<h2 class="mb-3">내 정보</h2>
 			<div class="card p-3">
-				<div class="row gx-3 gy-2">
+				<div id="userinfo", class="row gx-3 gy-2">
 					<div class="col-6">
-						<strong>이름:</strong> <span th:text="${'user.name'}"></span>
+						<strong>이름:</strong> <span th:text="${'user.name, 이름'}"></span>
 					</div>
 					<div class="col-6">
-						<strong>이메일:</strong> <span th:text="${'user.email'}"></span>
+						<strong>이메일:</strong> <span th:text="${'user.email, 이메일'}"></span>
 					</div>
 					<div class="col-6">
-						<strong>가입일:</strong> <span th:text="${'user.joinDate'}"></span>
+						<strong>가입일:</strong> <span th:text="${'user.joinDate, 가입일'}"></span>
 					</div>
 					<div class="col-6">
 						<strong>총 주문 횟수:</strong> <span th:text="${'user.totalOrders' + '회'}"></span>
@@ -100,6 +100,8 @@
 	<th:block th:replace="~{/fragment/footer :: footer}"></th:block>
 	<!-- fragment script -->
 	<th:block th:replace="~{/fragment/script :: script}"></th:block>
+	
+	<script src="/js/user/user.js"></script>
 </body>
 
 </html>

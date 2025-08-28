@@ -26,6 +26,10 @@ public class UserRepository {
 	public List<UserEntity> selectByEmail(String email) throws Exception {
 		return sqlSessionTemplate.selectList(namespace + "selectByEmail", email);
 	}
+	
+	public List<UserEntity> selectWithInfoByEmail(String email) throws Exception {
+		return sqlSessionTemplate.selectList(namespace + "selectWithInfoByEmail", email);
+	}
 
 	public int update(UserEntity userEntity) throws Exception {
 		return sqlSessionTemplate.update(namespace + "update", userEntity);

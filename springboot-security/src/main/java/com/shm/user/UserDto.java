@@ -17,6 +17,11 @@ public class UserDto {
 	private LocalDateTime lastChgDate;
 	private String lastChgUserId;
 	
+	private int totalOrderCount;
+	private int totalOrderMoney;
+	private int totalReturnCount;
+	
+	
 	public UserEntity toEntity() {
 		UserEntity entity = new UserEntity();
 
@@ -28,6 +33,10 @@ public class UserDto {
 		entity.setFrstRegUserId(frstRegUserId);
 		entity.setLastChgDate(lastChgDate);
 		entity.setLastChgUserId(lastChgUserId);
+		
+		entity.setTotalOrderCount(totalOrderCount);
+		entity.setTotalOrderMoney(totalOrderMoney);
+		entity.setTotalReturnCount(totalReturnCount);
 
 		return entity;
 	}

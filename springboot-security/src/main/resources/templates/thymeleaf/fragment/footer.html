@@ -18,11 +18,13 @@
 				</div>
 				<div class="col">
 					<div> 
+						<!-- 로그인 된 경우 -->
 						<div sec:authorize="isAuthenticated()">
-							<a href="#" class="d-block py-2 text-dark text-decoration-none">
+							<a href="/rolepath/division" class="d-block py-2 text-dark text-decoration-none">
 								<i class="bi bi-person-fill-gear"></i><br />
 							</a>
 						</div>
+						<!-- 로그인 안된 경우 -->
 						<div sec:authorize="isAnonymous()">
 							<!-- <a href="/custom/login" class="d-block py-2 text-dark text-decoration-none"> -->
 							<a href="/login" class="d-block py-2 text-dark text-decoration-none">

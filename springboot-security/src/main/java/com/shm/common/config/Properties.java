@@ -1,9 +1,6 @@
 package com.shm.common.config;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
@@ -13,6 +10,7 @@ import org.springframework.stereotype.Component;
 public class Properties {
 	private final Environment environment;
 
+	@Autowired
 	public Properties(Environment environment) {
 		this.environment = environment;
 	}
