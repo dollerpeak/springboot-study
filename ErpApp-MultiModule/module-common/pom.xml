@@ -6,8 +6,8 @@
 	<!--parent-->
 	<parent>
 		<groupId>com.erpapp</groupId>
-		<artifactId>ErpApp</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<artifactId>ErpApp-MultiModule</artifactId>
+		<version>0.0.1</version>
 	</parent>
 	
 	<artifactId>module-common</artifactId>	

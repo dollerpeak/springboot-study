@@ -6,15 +6,15 @@
 	<!--parent-->
 	<parent>
 		<groupId>com.erpapp</groupId>
-		<artifactId>ErpApp</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<artifactId>ErpApp-MultiModule</artifactId>
+		<version>0.0.1</version>
 	</parent>
 
 	<artifactId>module-app</artifactId>
 
 	<!--dependencies-->
 	<dependencies>
-		<!--ㅡmodule-->
+		<!--module-->
 		<dependency>
 			<groupId>com.erpapp</groupId>
 			<artifactId>module-common</artifactId>
@@ -26,6 +26,7 @@
 			<version>${project.version}</version>
 		</dependency>
 
+		<!--lib-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
