@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.erp.app.commoncode.CommonGroupCode">
+
+	<insert id="insertGroupCode" parameterType="com.erp.app.commoncode.CommonGroupCodeEntity">
+		INSERT INTO COMMON_GROUP_CODE (
+			CODE,
+			NAME,
+			REMARK,
+			USE_YN,
+			FIRST_REG_DATE,
+			FIRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID
+		) VALUES (
+			#{code},
+			#{name},
+			#{remark},
+			#{useYn},
+			NOW(0),
+			#{firstRegUserId},
+			NOW(0),
+			#{lastChgUserId}
+		)
+	</insert>
+
+	<select id="selectByCode" resultType="com.erp.app.commoncode.CommonGroupCodeEntity">
+		SELECT
+			CODE,
+			NAME,
+			REMARK,
+			USE_YN,
+			FIRST_REG_DATE,
+			FIRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID
+		FROM COMMON_GROUP_CODE
+		WHERE CODE = #{code}
+	</select>
+
+	<update id="updateGroupCode" parameterType="com.erp.app.commoncode.CommonGroupCodeEntity">
+		UPDATE COMMON_GROUP_CODE
+		SET
+			NAME = #{name},
+			REMARK = #{remark},
+			USE_YN = #{useYn},
+			LAST_CHG_DATE = NOW(0),
+			LAST_CHG_USER_ID = #{lastChgUserId}
+		WHERE CODE = #{code}
+	</update>
+
+	<delete id="deleteGroupCode">
+		DELETE FROM COMMON_GROUP_CODE
+		WHERE CODE = #{code}
+	</delete>
+
+	<select id="selectMaxGroupCode" resultType="string">
+		SELECT MAX(CODE)
+		FROM COMMON_GROUP_CODE
+	</select>
+	
+	<select id="selectList" parameterType="com.erp.app.commoncode.CommonGroupCodeDto" 
+            resultType="com.erp.app.commoncode.CommonGroupCodeEntity">
+        SELECT 
+            CODE, 
+            NAME, 
+            REMARK, 
+            USE_YN,
+            FIRST_REG_DATE, 
+            FIRST_REG_USER_ID, 
+            LAST_CHG_DATE, 
+            LAST_CHG_USER_ID
+        FROM COMMON_GROUP_CODE
+        <where>
+            <!-- 코드가 들어오면 정확히 일치하는 건 검색 -->
+            <if test="code != null and code != ''">
+                AND CODE = #{code}
+            </if>
+            <!-- 명칭은 사용자가 일부만 입력해도 나오도록 LIKE 포함 -->
+            <if test="name != null and name != ''">
+                AND NAME LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <!-- 사용여부 필터 (기본값 분기 처리가 필요할 때 대비) -->
+            <if test="useYn != null and useYn != ''">
+                AND USE_YN = #{useYn}
+            </if>
+        </where>
+        <!-- 최근 등록된 마스터 코드가 그리드 상단에 오도록 정렬 규칙 적용 -->
+        ORDER BY CODE DESC
+    </select>
+
+</mapper>

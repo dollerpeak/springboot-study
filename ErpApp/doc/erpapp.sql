@@ -3,87 +3,45 @@ use erpapp
 
 ===========================================================================================
 
--- drop table user
-CREATE TABLE `user` (
---   `id` INT unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `email` VARCHAR(100) NOT NULL COMMENT '이메일',
-  `name` VARCHAR(20) NOT NULL COMMENT '이름',
-  `password` VARCHAR(100) NOT NULL COMMENT '비밀번호',
-  `role` VARCHAR(20) NOT NULL COMMENT '역할',
-  `frst_reg_date` DATETIME(0) NOT NULL DEFAULT current_timestamp() COMMENT '최초등록일',
-  `frst_reg_user_id` VARCHAR(20) NOT NULL DEFAULT 'SYSTEM' COMMENT '최초등록자',
-  `last_chg_date` DATETIME(0) NOT NULL DEFAULT current_timestamp() COMMENT '변경등록일',
-  `last_chg_user_id` VARCHAR(20) NOT NULL DEFAULT 'SYSTEM' COMMENT '변경등록자',
---   PRIMARY KEY (`id`)
-  PRIMARY KEY (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='사용자 테이블';
+-- 공통 그룹 코드 테이블 (CGC로 시작하는 10자리)
+CREATE TABLE COMMON_GROUP_CODE (
+    CODE          		VARCHAR(10)   NOT NULL COMMENT '그룹코드 (CGC0000001)',
+    NAME          		VARCHAR(100)  NOT NULL COMMENT '그룹코드명 (ex: 부서, 직급)',
+    REMARK          	VARCHAR(500)           COMMENT '그룹코드 설명',
+    USE_YN              CHAR(1)       DEFAULT 'Y' COMMENT '사용여부 (Y/N)',
+    FIRST_REG_DATE      DATETIME(0)   NOT NULL COMMENT '최초등록일 (yyyy-mm-dd hh:mm:ss)',
+    FIRST_REG_USER_ID   VARCHAR(100)  NOT NULL COMMENT '최초등록자ID',
+    LAST_CHG_DATE       DATETIME(0)   NOT NULL COMMENT '최종변경일 (yyyy-mm-dd hh:mm:ss)',
+    LAST_CHG_USER_ID    VARCHAR(100)  NOT NULL COMMENT '최종변경자ID',
+    PRIMARY KEY (CODE)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='공통 그룹 코드';
+
+-- 공통 상세 코드 테이블 (순수 PK만 지정)
+CREATE TABLE COMMON_CODE (
+    GROUP_CODE          VARCHAR(10)   NOT NULL COMMENT '그룹코드 (COMMON_GROUP_CODE.CODE 매핑)',
+    CODE                VARCHAR(10)   NOT NULL COMMENT '상세코드 (CC00000001)',
+    NAME                VARCHAR(100)  NOT NULL COMMENT '상세코드명 (ex: 인사팀, 과장)',
+    SORT_ORDER          INT           DEFAULT 0 COMMENT '정렬순서',
+    USE_YN              CHAR(1)       DEFAULT 'Y' COMMENT '사용여부 (Y/N)',
+    FIRST_REG_DATE      DATETIME(0)   NOT NULL COMMENT '최초등록일 (yyyy-mm-dd hh:mm:ss)',
+    FIRST_REG_USER_ID   VARCHAR(100)  NOT NULL COMMENT '최초등록자ID',
+    LAST_CHG_DATE       DATETIME(0)   NOT NULL COMMENT '최종변경일 (yyyy-mm-dd hh:mm:ss)',
+    LAST_CHG_USER_ID    VARCHAR(100)  NOT NULL COMMENT '최종변경자ID',
+    PRIMARY KEY (GROUP_CODE, CODE) -- 복합 PK 자체로 완벽한 인덱스 역할 수행
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='공통 코드';
 
 
--- drop table category
-CREATE TABLE `category` (
-  `id` INT unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `name` VARCHAR(20) NOT NULL COMMENT '카테고리명',
-  `frst_reg_date` DATETIME(0) NOT NULL DEFAULT current_timestamp() COMMENT '최초등록일',
-  `frst_reg_user_id` VARCHAR(20) NOT NULL DEFAULT 'SYSTEM' COMMENT '최초등록자',
-  `last_chg_date` DATETIME(0) NOT NULL DEFAULT current_timestamp() COMMENT '변경등록일',
-  `last_chg_user_id` VARCHAR(20) NOT NULL DEFAULT 'SYSTEM' COMMENT '변경등록자',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='상품 카테고리 테이블';
+ALTER TABLE COMMON_GROUP_CODE CHANGE GROUP_DESC REMARK VARCHAR(500) COMMENT '그룹코드 설명'
 
-insert into category (name) values ('패션'); 
-insert into category (name) values ('뷰티');
-insert into category (name) values ('식품');
-insert into category (name) values ('디지털');
-insert into category (name) values ('가구');
+drop table COMMON_CODE
 
--- drop table product
-CREATE TABLE `product` (
-  `id` INT unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
---   `user_id` INT NOT NULL COMMENT 'user id',
-  `user_email` VARCHAR(100) NOT NULL COMMENT 'user email',
-  `category_id` INT unsigned NOT NULL COMMENT '카테고리 id',
-  `sold` BOOLEAN NOT NULL DEFAULT TRUE COMMENT '판매여부',
-  `name` VARCHAR(20) NOT NULL COMMENT '제품명',
-  `price` INT unsigned NOT NULL COMMENT '가격',
-  `view_count` INT DEFAULT 0 COMMENT '조회수',
-  `sell_count` INT DEFAULT 0 COMMENT '판매수',
-  `description` VARCHAR(500) COMMENT '설명',
-  `thumbnail_url` VARCHAR(500) NOT NULL COMMENT '썸네일 url',  
-  `frst_reg_date` DATETIME(0) NOT NULL DEFAULT current_timestamp() COMMENT '최초등록일',
-  `frst_reg_user_id` VARCHAR(20) NOT NULL DEFAULT 'SYSTEM' COMMENT '최초등록자',
-  `last_chg_date` DATETIME(0) NOT NULL DEFAULT current_timestamp() COMMENT '변경등록일',
-  `last_chg_user_id` VARCHAR(20) NOT NULL DEFAULT 'SYSTEM' COMMENT '변경등록자',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='상품 테이블';
-
--- drop table product_detail_image
-CREATE TABLE `product_detail_image` (
-    `id` INT unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
-    `product_id` INT NOT NULL COMMENT 'product id',
-    `sort_order` INT DEFAULT 0 COMMENT '상세이미지 순서',
-    `image_url` VARCHAR(500) NOT NULL COMMENT '상세 url',	
-	`frst_reg_date` DATETIME(0) NOT NULL DEFAULT current_timestamp() COMMENT '최초등록일',
-	`frst_reg_user_id` VARCHAR(20) NOT NULL DEFAULT 'SYSTEM' COMMENT '최초등록자',
-	`last_chg_date` DATETIME(0) NOT NULL DEFAULT current_timestamp() COMMENT '변경등록일',
-	`last_chg_user_id` VARCHAR(20) NOT NULL DEFAULT 'SYSTEM' COMMENT '변경등록자',
-    PRIMARY KEY (id)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='상품 상세이미지 테이블';
-
-===========================================================================================
 
 commit
 
-select * from category
+===========================================================================================
 
--- delete from product 
-select * from product
-
--- delete from product_detail_image 
-select * from product_detail_image 
-
--- delete from user
-select * from user
-
+select * from common_group_code 
+select * from common_code
 
 
 
