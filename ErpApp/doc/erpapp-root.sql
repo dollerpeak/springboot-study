@@ -19,7 +19,7 @@ alter user 'atdata'@'%' identified by 'atdata.1!!' -- 패스워드 변경
 -- 권한부여
 grant all privileges on erpapp.* to 'atdata'@'%' -- database 전체권한
 grant all privileges on erpapp.tablename to 'atdata'@'%' -- database.tablename 전체권한
-grant select privileges on aroundhub.tablename to 'atdata'@'%' -- database.tablename select권한
+grant select privileges on erpapp.tablename to 'atdata'@'%' -- database.tablename select권한
 
 
 -- 
