@@ -24,3 +24,9 @@ grant select privileges on aroundhub.tablename to 'atdata'@'%' -- database.table
 
 -- 
 flush privileges
+
+
+
+
+
+

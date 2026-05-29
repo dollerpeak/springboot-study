@@ -32,7 +32,6 @@ CREATE TABLE COMMON_CODE (
 
 
 ALTER TABLE COMMON_GROUP_CODE CHANGE GROUP_DESC REMARK VARCHAR(500) COMMENT '그룹코드 설명'
-
 drop table COMMON_CODE
 
 
@@ -44,7 +43,8 @@ select * from common_group_code
 select * from common_code
 
 
-
+SELECT MAX(CODE)
+FROM COMMON_GROUP_CODE
 
 
 
