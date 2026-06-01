@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.erp.app.commoncode.CommonGroupCodeMapper">
+<mapper namespace="com.erp.app.commoncode.CommonCodeMapper">
 
-	<insert id="insert" parameterType="com.erp.app.commoncode.CommonGroupCodeDto">
-		INSERT INTO COMMON_GROUP_CODE (
+	<!--basic-->
+	<insert id="insert" parameterType="com.erp.app.commoncode.CommonCodeDto">
+		INSERT INTO COMMON_CODE (
+			GROUP_CODE,
 			CODE,
 			NAME,
-			REMARK,
+			SORT_ORDER,
 			USE_YN,
 			FIRST_REG_DATE,
 			FIRST_REG_USER_ID,
 			LAST_CHG_DATE,
 			LAST_CHG_USER_ID
 		) VALUES (
+			#{groupCode},
 			#{code},
 			#{name},
-			#{remark},
+			#{sortOrder},
 			#{useYn},
 			NOW(0),
 			#{firstRegUserId},
@@ -25,32 +28,38 @@
 		)
 	</insert>
 
-	<select id="selectByCode" resultType="com.erp.app.commoncode.CommonGroupCodeDto">
+	<select id="selectByCode" parameterType="com.erp.app.commoncode.CommonCodeDto" resultType="com.erp.app.commoncode.CommonCodeDto">
 		SELECT
+			GROUP_CODE,
 			CODE,
 			NAME,
-			REMARK,
+			SORT_ORDER,
 			USE_YN,
 			DATE_FORMAT(FIRST_REG_DATE, '%Y-%m-%d %H:%i:%s') AS FIRST_REG_DATE,
             FIRST_REG_USER_ID, 
             DATE_FORMAT(LAST_CHG_DATE, '%Y-%m-%d %H:%i:%s') AS LAST_CHG_DATE,
             LAST_CHG_USER_ID
-		FROM COMMON_GROUP_CODE
-		WHERE CODE = #{code}
+		FROM COMMON_CODE
+		WHERE GROUP_CODE = #{groupCode}
+			AND CODE = #{code}
 	</select>
 	
-	<select id="selectList" parameterType="com.erp.app.commoncode.CommonGroupCodeDto" resultType="com.erp.app.commoncode.CommonGroupCodeDto">
+	<select id="selectList" parameterType="com.erp.app.commoncode.CommonCodeDto" resultType="com.erp.app.commoncode.CommonCodeDto">
         SELECT 
+        	GROUP_CODE,
             CODE, 
             NAME, 
-            REMARK, 
+			SORT_ORDER,
             USE_YN, 
             DATE_FORMAT(FIRST_REG_DATE, '%Y-%m-%d %H:%i:%s') AS FIRST_REG_DATE,
             FIRST_REG_USER_ID, 
             DATE_FORMAT(LAST_CHG_DATE, '%Y-%m-%d %H:%i:%s') AS LAST_CHG_DATE,
             LAST_CHG_USER_ID
-        FROM COMMON_GROUP_CODE
+        FROM COMMON_CODE
         <where>
+        	<if test="code != null and code != ''">
+                AND GROUP_CODE = #{groupCode}
+            </if>
             <if test="code != null and code != ''">
                 AND CODE = #{code}
             </if>
@@ -80,15 +89,22 @@
 					</otherwise>
 				</choose>
 			</if>
+            <if test="firstRegUserId != null and firstRegUserId != ''">
+                AND FIRST_REG_USER_ID = #{firstRegUserId}
+            </if>
+            <if test="lastChgUserId != null and lastChgUserId != ''">
+                AND LAST_CHG_USER_ID = #{lastChgUserId}
+            </if>
         </where>
-        ORDER BY CODE DESC
+        ORDER BY GROUP_CODE, CODE, SORT_ORDER ASC
     </select>
 
-	<update id="update" parameterType="com.erp.app.commoncode.CommonGroupCodeDto">
-		UPDATE COMMON_GROUP_CODE
+	<update id="update" parameterType="com.erp.app.commoncode.CommonCodeDto">
+		UPDATE COMMON_CODE
 		SET
+			GROUP_CODE = #{groupCode},
 			NAME = #{name},
-			REMARK = #{remark},
+			SORT_ORDER = #{sortOrder},
 			USE_YN = #{useYn},
 			LAST_CHG_DATE = STR_TO_DATE(#{lastChgDate}, '%Y-%m-%d %H:%i:%s'),
 			LAST_CHG_USER_ID = #{lastChgUserId} 
@@ -96,14 +112,17 @@
 	</update>
 
 	<delete id="delete">
-		DELETE FROM COMMON_GROUP_CODE
-		WHERE CODE = #{code}
+		DELETE FROM COMMON_CODE
+		WHERE CODE = #{code}		
 	</delete>
 
 	<!--add-->
-	<select id="selectMaxGroupCode" resultType="string">
-		SELECT MAX(CODE)
-		FROM COMMON_GROUP_CODE
+	<select id="selectMaxCode" parameterType="string" resultType="com.erp.app.commoncode.CommonCodeDto">
+		SELECT 
+			MAX(CODE) AS CODE,
+			MAX(SORT_ORDER) AS SORT_ORDER
+		FROM COMMON_CODE
+		WHERE GROUP_CODE = #{groupCode}
 	</select>
 </mapper>
 

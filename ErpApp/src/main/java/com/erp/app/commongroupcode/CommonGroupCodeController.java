@@ -1,8 +1,10 @@
-package com.erp.app.commoncode;
+package com.erp.app.commongroupcode;
 
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,25 +15,26 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
-@RequestMapping("/api/commoncode")
+@RequestMapping("/api/commongroupcode")
 @RequiredArgsConstructor
 public class CommonGroupCodeController {
 
 	private final CommonGroupCodeService commonGroupCodeService;
 
+	// basic
 	@PostMapping("/insert")
 	public ResponseEntity<Integer> insert(@RequestBody CommonGroupCodeDto dto) {
 		return ResponseEntity.ok(commonGroupCodeService.insert(dto));
 	}
 
-	@PostMapping("/detail")
-	public ResponseEntity<CommonGroupCodeDto> selectByCode(@RequestBody CommonGroupCodeDto dto) {
-		return ResponseEntity.ok(commonGroupCodeService.selectDetail(dto.getCode()));
-	}
+	@GetMapping("/detail/{code}")
+    public ResponseEntity<CommonGroupCodeDto> selectByCode(@PathVariable String code) {
+        return ResponseEntity.ok(commonGroupCodeService.selectDetail(code));
+    }
 
 	@PostMapping("/list")
-	public ResponseEntity<List<CommonGroupCodeDto>> selectList(@RequestBody CommonGroupCodeDto searchDto) {
-		return ResponseEntity.ok(commonGroupCodeService.selectList(searchDto));
+	public ResponseEntity<List<CommonGroupCodeDto>> selectList(@RequestBody(required = false) CommonGroupCodeDto dto) {
+		return ResponseEntity.ok(commonGroupCodeService.selectList(dto));
 	}
 
 	@PostMapping("/update")
@@ -39,9 +42,9 @@ public class CommonGroupCodeController {
 		return ResponseEntity.ok(commonGroupCodeService.update(dto));
 	}
 
-	@PostMapping("/delete")
-	public ResponseEntity<Integer> delete(@RequestBody CommonGroupCodeDto dto) {
-		return ResponseEntity.ok(commonGroupCodeService.delete(dto.getCode()));
-	}
+	@GetMapping("/delete/{code}")
+    public ResponseEntity<Integer> delete(@PathVariable String code) {
+        return ResponseEntity.ok(commonGroupCodeService.delete(code));
+    }
 
 }

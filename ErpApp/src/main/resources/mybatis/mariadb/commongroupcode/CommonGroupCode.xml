@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.erp.app.commongroupcode.CommonGroupCodeMapper">
+
+	<!--basic-->
+	<insert id="insert" parameterType="com.erp.app.commongroupcode.CommonGroupCodeDto">
+		INSERT INTO COMMON_GROUP_CODE (
+			CODE,
+			NAME,
+			REMARK,
+			USE_YN,
+			FIRST_REG_DATE,
+			FIRST_REG_USER_ID,
+			LAST_CHG_DATE,
+			LAST_CHG_USER_ID
+		) VALUES (
+			#{code},
+			#{name},
+			#{remark},
+			#{useYn},
+			NOW(0),
+			#{firstRegUserId},
+			NOW(0),
+			#{lastChgUserId}
+		)
+	</insert>
+
+	<select id="selectByCode" resultType="com.erp.app.commongroupcode.CommonGroupCodeDto">
+		SELECT
+			CODE,
+			NAME,
+			REMARK,
+			USE_YN,
+			DATE_FORMAT(FIRST_REG_DATE, '%Y-%m-%d %H:%i:%s') AS FIRST_REG_DATE,
+            FIRST_REG_USER_ID, 
+            DATE_FORMAT(LAST_CHG_DATE, '%Y-%m-%d %H:%i:%s') AS LAST_CHG_DATE,
+            LAST_CHG_USER_ID
+		FROM COMMON_GROUP_CODE
+		WHERE CODE = #{code}
+	</select>
+	
+	<select id="selectList" parameterType="com.erp.app.commongroupcode.CommonGroupCodeDto" resultType="com.erp.app.commongroupcode.CommonGroupCodeDto">
+        SELECT 
+            CODE, 
+            NAME, 
+            REMARK, 
+            USE_YN, 
+            DATE_FORMAT(FIRST_REG_DATE, '%Y-%m-%d %H:%i:%s') AS FIRST_REG_DATE,
+            FIRST_REG_USER_ID, 
+            DATE_FORMAT(LAST_CHG_DATE, '%Y-%m-%d %H:%i:%s') AS LAST_CHG_DATE,
+            LAST_CHG_USER_ID
+        FROM COMMON_GROUP_CODE
+        <where>
+            <if test="code != null and code != ''">
+                AND CODE = #{code}
+            </if>
+            <if test="name != null and name != ''">
+                AND NAME LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="useYn != null and useYn != ''">
+                AND USE_YN = #{useYn}
+            </if>
+			<if test="firstRegDate != null and firstRegDate != ''">
+				<choose>
+					<when test="firstRegDate.length() == 10">
+						AND FIRST_REG_DATE >= STR_TO_DATE(CONCAT(#{firstRegDate}, ' 00:00:00'), '%Y-%m-%d %H:%i:%s')
+					</when>
+					<otherwise>
+						AND FIRST_REG_DATE >= STR_TO_DATE(#{firstRegDate}, '%Y-%m-%d %H:%i:%s')
+					</otherwise>
+				</choose>
+			</if>
+			<if test="lastChgDate != null and lastChgDate != ''">
+				<choose>
+					<when test="lastChgDate.length() == 10">
+						AND LAST_CHG_DATE &lt;= STR_TO_DATE(CONCAT(#{lastChgDate}, ' 23:59:59'), '%Y-%m-%d %H:%i:%s')
+					</when>
+					<otherwise>
+						AND LAST_CHG_DATE &lt;= STR_TO_DATE(#{lastChgDate}, '%Y-%m-%d %H:%i:%s')
+					</otherwise>
+				</choose>
+			</if>
+            <if test="firstRegUserId != null and firstRegUserId != ''">
+                AND FIRST_REG_USER_ID = #{firstRegUserId}
+            </if>
+            <if test="lastChgUserId != null and lastChgUserId != ''">
+                AND LAST_CHG_USER_ID = #{lastChgUserId}
+            </if>
+        </where>
+        ORDER BY CODE ASC
+    </select>
+
+	<update id="update" parameterType="com.erp.app.commongroupcode.CommonGroupCodeDto">
+		UPDATE COMMON_GROUP_CODE
+		SET
+			NAME = #{name},
+			REMARK = #{remark},
+			USE_YN = #{useYn},
+			LAST_CHG_DATE = STR_TO_DATE(#{lastChgDate}, '%Y-%m-%d %H:%i:%s'),
+			LAST_CHG_USER_ID = #{lastChgUserId} 
+		WHERE CODE = #{code}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM COMMON_GROUP_CODE
+		WHERE CODE = #{code}
+	</delete>
+
+	<!--add-->
+	<select id="selectMaxGroupCode" resultType="string">
+		SELECT 
+			MAX(CODE)
+		FROM COMMON_GROUP_CODE
+	</select>
+</mapper>
+
+

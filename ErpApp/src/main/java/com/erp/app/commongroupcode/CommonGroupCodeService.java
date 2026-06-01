@@ -1,4 +1,4 @@
-package com.erp.app.commoncode;
+package com.erp.app.commongroupcode;
 
 import java.util.List;
 
@@ -16,17 +16,18 @@ public class CommonGroupCodeService {
 
 	private final CommonGroupCodeMapper commonGroupCodeMapper;
 
+	// basic
 	public int insert(CommonGroupCodeDto dto) {
 		String nextCode;
 		String maxCode = commonGroupCodeMapper.selectMaxGroupCode();		
 
 		if (maxCode == null || maxCode.isEmpty()) {
 			// 초기값
-			nextCode = "CGC0000001";
+			nextCode = "CG00000001";
 		} else {
-			// CGC + 0000001
-			int sequence = Integer.parseInt(maxCode.substring(3)) + 1;
-			nextCode = "CGC" + String.format("%07d", sequence);
+			// CG + 00000001
+			int sequence = Integer.parseInt(maxCode.substring(2)) + 1;
+			nextCode = "CG" + String.format("%08d", sequence);
 		}
 		dto.setCode(nextCode);
 
@@ -37,8 +38,8 @@ public class CommonGroupCodeService {
 		return commonGroupCodeMapper.selectByCode(code);
 	}
 
-	public List<CommonGroupCodeDto> selectList(CommonGroupCodeDto searchDto) {
-		return commonGroupCodeMapper.selectList(searchDto);
+	public List<CommonGroupCodeDto> selectList(CommonGroupCodeDto dto) {
+		return commonGroupCodeMapper.selectList(dto);
 	}
 
 	public int update(CommonGroupCodeDto dto) {
@@ -48,5 +49,7 @@ public class CommonGroupCodeService {
 	public int delete(String code) {
 		return commonGroupCodeMapper.delete(code);
 	}
+	
+	// add
 
 }
