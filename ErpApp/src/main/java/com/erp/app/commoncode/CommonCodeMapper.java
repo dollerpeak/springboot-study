@@ -12,7 +12,7 @@ public interface CommonCodeMapper {
 	CommonCodeDto selectByCode(CommonCodeDto dto);
 	List<CommonCodeDto> selectList(CommonCodeDto dto);
 	int update(CommonCodeDto dto);
-	int delete(String code);
+	int delete(CommonCodeDto dto);
 
 	// add
 	CommonCodeDto selectMaxCode(String groupCode);

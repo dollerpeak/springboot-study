@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.erp.app.global.code.CommonResponseCode;
+import com.erp.app.global.exception.BusinessException;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,7 +22,7 @@ public class CommonGroupCodeService {
 	// basic
 	public int insert(CommonGroupCodeDto dto) {
 		String nextCode;
-		String maxCode = commonGroupCodeMapper.selectMaxGroupCode();		
+		String maxCode = commonGroupCodeMapper.selectMaxGroupCode();
 
 		if (maxCode == null || maxCode.isEmpty()) {
 			// 초기값
@@ -31,23 +34,42 @@ public class CommonGroupCodeService {
 		}
 		dto.setCode(nextCode);
 
-		return commonGroupCodeMapper.insert(dto);
+		int result = commonGroupCodeMapper.insert(dto);
+		if (result == 0) {
+			throw new BusinessException(CommonResponseCode.ERROR_INSERT);
+		}
+
+		return result;
 	}
 
 	public CommonGroupCodeDto selectDetail(String code) {
-		return commonGroupCodeMapper.selectByCode(code);
+		CommonGroupCodeDto dto = commonGroupCodeMapper.selectByCode(code);
+		
+		return dto;
 	}
 
 	public List<CommonGroupCodeDto> selectList(CommonGroupCodeDto dto) {
-		return commonGroupCodeMapper.selectList(dto);
+		List<CommonGroupCodeDto> dtoList = commonGroupCodeMapper.selectList(dto);
+		
+		return dtoList;
 	}
 
 	public int update(CommonGroupCodeDto dto) {
-		return commonGroupCodeMapper.update(dto);
+		int result = commonGroupCodeMapper.update(dto);
+		if (result == 0) {
+			throw new BusinessException(CommonResponseCode.ERROR_UPDATE);
+		}
+		
+		return result;
 	}
 
 	public int delete(String code) {
-		return commonGroupCodeMapper.delete(code);
+		int result = commonGroupCodeMapper.delete(code);
+		if (result == 0) {
+			throw new BusinessException(CommonResponseCode.ERROR_DELETE);
+		}
+		
+		return result;
 	}
 	
 	// add

@@ -4,7 +4,7 @@
 <mapper namespace="com.erp.app.commongroupcode.CommonGroupCodeMapper">
 
 	<!--basic-->
-	<insert id="insert" parameterType="com.erp.app.commongroupcode.CommonGroupCodeDto">
+	<insert id="insert">
 		INSERT INTO COMMON_GROUP_CODE (
 			CODE,
 			NAME,
@@ -40,7 +40,7 @@
 		WHERE CODE = #{code}
 	</select>
 	
-	<select id="selectList" parameterType="com.erp.app.commongroupcode.CommonGroupCodeDto" resultType="com.erp.app.commongroupcode.CommonGroupCodeDto">
+	<select id="selectList" resultType="com.erp.app.commongroupcode.CommonGroupCodeDto">
         SELECT 
             CODE, 
             NAME, 
@@ -91,7 +91,7 @@
         ORDER BY CODE ASC
     </select>
 
-	<update id="update" parameterType="com.erp.app.commongroupcode.CommonGroupCodeDto">
+	<update id="update">
 		UPDATE COMMON_GROUP_CODE
 		SET
 			NAME = #{name},

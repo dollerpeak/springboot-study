@@ -4,7 +4,7 @@
 <mapper namespace="com.erp.app.commoncode.CommonCodeMapper">
 
 	<!--basic-->
-	<insert id="insert" parameterType="com.erp.app.commoncode.CommonCodeDto">
+	<insert id="insert">
 		INSERT INTO COMMON_CODE (
 			GROUP_CODE,
 			CODE,
@@ -28,7 +28,7 @@
 		)
 	</insert>
 
-	<select id="selectByCode" parameterType="com.erp.app.commoncode.CommonCodeDto" resultType="com.erp.app.commoncode.CommonCodeDto">
+	<select id="selectByCode" resultType="com.erp.app.commoncode.CommonCodeDto">
 		SELECT
 			GROUP_CODE,
 			CODE,
@@ -44,7 +44,7 @@
 			AND CODE = #{code}
 	</select>
 	
-	<select id="selectList" parameterType="com.erp.app.commoncode.CommonCodeDto" resultType="com.erp.app.commoncode.CommonCodeDto">
+	<select id="selectList" resultType="com.erp.app.commoncode.CommonCodeDto">
         SELECT 
         	GROUP_CODE,
             CODE, 
@@ -99,25 +99,30 @@
         ORDER BY GROUP_CODE, CODE, SORT_ORDER ASC
     </select>
 
-	<update id="update" parameterType="com.erp.app.commoncode.CommonCodeDto">
+	<update id="update">
 		UPDATE COMMON_CODE
 		SET
-			GROUP_CODE = #{groupCode},
 			NAME = #{name},
 			SORT_ORDER = #{sortOrder},
 			USE_YN = #{useYn},
 			LAST_CHG_DATE = STR_TO_DATE(#{lastChgDate}, '%Y-%m-%d %H:%i:%s'),
 			LAST_CHG_USER_ID = #{lastChgUserId} 
-		WHERE CODE = #{code}
+		WHERE GROUP_CODE = #{groupCode}
+			AND CODE = #{code}
 	</update>
 
 	<delete id="delete">
 		DELETE FROM COMMON_CODE
-		WHERE CODE = #{code}		
+		WHERE GROUP_CODE = #{groupCode}
+		<where>
+			<if test="code != null and code != ''">
+				AND CODE = #{code}
+			</if>
+		</where>					
 	</delete>
 
 	<!--add-->
-	<select id="selectMaxCode" parameterType="string" resultType="com.erp.app.commoncode.CommonCodeDto">
+	<select id="selectMaxCode" resultType="com.erp.app.commoncode.CommonCodeDto">
 		SELECT 
 			MAX(CODE) AS CODE,
 			MAX(SORT_ORDER) AS SORT_ORDER

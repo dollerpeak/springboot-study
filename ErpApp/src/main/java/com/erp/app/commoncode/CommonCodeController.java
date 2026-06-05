@@ -42,9 +42,9 @@ public class CommonCodeController {
 		return ResponseEntity.ok(commonCodeService.update(dto));
 	}
 
-	@GetMapping("/delete/{code}")
-	public ResponseEntity<Integer> delete(@PathVariable String code) {
-		return ResponseEntity.ok(commonCodeService.delete(code));
+	@PostMapping("/delete")
+	public ResponseEntity<Integer> delete(@RequestBody CommonCodeDto dto) {
+		return ResponseEntity.ok(commonCodeService.delete(dto));
 	}
 
 }

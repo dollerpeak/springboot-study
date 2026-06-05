@@ -26,7 +26,7 @@ public class CommonCodeService {
 		if (dto.getCode() == null || dto.getCode().isEmpty()) {
 			// 초기값
 			nextCode = "CC00000001";
-			dto.setSortOrder(1);
+			dto.setSortOrder(0);
 		} else {
 			// CC + 00000001
 			int sequence = Integer.parseInt(dto.getCode().substring(2)) + 1;
@@ -50,8 +50,8 @@ public class CommonCodeService {
 		return commonCodeMapper.update(dto);
 	}
 
-	public int delete(String code) {
-		return commonCodeMapper.delete(code);
+	public int delete(CommonCodeDto dto) {
+		return commonCodeMapper.delete(dto);
 	}
 
 	// add
