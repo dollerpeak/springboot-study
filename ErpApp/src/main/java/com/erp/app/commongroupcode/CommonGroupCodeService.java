@@ -43,9 +43,9 @@ public class CommonGroupCodeService {
 	}
 
 	public CommonGroupCodeDto selectDetail(String code) {
-		CommonGroupCodeDto dto = commonGroupCodeMapper.selectByCode(code);
+		CommonGroupCodeDto resultDto = commonGroupCodeMapper.selectByCode(code);
 		
-		return dto;
+		return resultDto;
 	}
 
 	public List<CommonGroupCodeDto> selectList(CommonGroupCodeDto dto) {

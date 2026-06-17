@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.erp.app.global.code.CommonResponseCode;
+import com.erp.app.global.exception.BusinessException;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,11 +18,11 @@ import lombok.extern.slf4j.Slf4j;
 public class CommonCodeService {
 
 	private final CommonCodeMapper commonCodeMapper;
-	
+
 	// basic
 	public int insert(CommonCodeDto dto) {
 		String nextCode;
-		CommonCodeDto maxDto = commonCodeMapper.selectMaxCode(dto.getGroupCode());		
+		CommonCodeDto maxDto = commonCodeMapper.selectMaxCode(dto.getGroupCode());
 		dto.setCode(maxDto.getCode());
 		dto.setSortOrder(maxDto.getSortOrder());
 
@@ -35,23 +38,42 @@ public class CommonCodeService {
 		}
 		dto.setCode(nextCode);
 
-		return commonCodeMapper.insert(dto);
+		int result = commonCodeMapper.insert(dto);
+		if (result == 0) {
+			throw new BusinessException(CommonResponseCode.ERROR_INSERT);
+		}
+
+		return result;
 	}
 
 	public CommonCodeDto selectDetail(CommonCodeDto dto) {
-		return commonCodeMapper.selectByCode(dto);
+		CommonCodeDto resultDto = commonCodeMapper.selectByCode(dto);
+
+		return resultDto;
 	}
 
 	public List<CommonCodeDto> selectList(CommonCodeDto dto) {
-		return commonCodeMapper.selectList(dto);
+		List<CommonCodeDto> dtoList = commonCodeMapper.selectList(dto);
+
+		return dtoList;
 	}
 
 	public int update(CommonCodeDto dto) {
-		return commonCodeMapper.update(dto);
+		int result = commonCodeMapper.update(dto);
+		if (result == 0) {
+			throw new BusinessException(CommonResponseCode.ERROR_UPDATE);
+		}
+
+		return result;
 	}
 
 	public int delete(CommonCodeDto dto) {
-		return commonCodeMapper.delete(dto);
+		int result = commonCodeMapper.delete(dto);
+		if (result == 0) {
+			throw new BusinessException(CommonResponseCode.ERROR_DELETE);
+		}
+
+		return result;
 	}
 
 	// add
